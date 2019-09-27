@@ -9,8 +9,8 @@
 		class="org.apache.commons.dbcp2.BasicDataSource"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
 		p:url="jdbc:oracle:thin:@Localhost:1521:XE"
-		p:username="dd"
-		p:password="dd" />
+		p:username="excuse"
+		p:password="excuse" />
 	
 	
 	<bean id="dataSource"
