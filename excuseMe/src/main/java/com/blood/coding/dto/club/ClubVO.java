@@ -5,20 +5,19 @@ import java.util.Date;
 public class ClubVO {
 	private String club_no;
 	private String mem_id;
-	private int cate_no;
+	private String cate_name;
 	private String club_name;
 	private String club_content;
 	private String club_status;
 	private String club_local;
 	private Date club_regDate;
+	private int replycnt;
+	private int upcnt;
+	private int downcnt;
+	private int joincnt;
+	private int mi;
 	
 	
-	public Date getClub_regDate() {
-		return club_regDate;
-	}
-	public void setClub_regDate(Date club_regDate) {
-		this.club_regDate = club_regDate;
-	}
 	public String getClub_no() {
 		return club_no;
 	}
@@ -31,11 +30,11 @@ public class ClubVO {
 	public void setMem_id(String mem_id) {
 		this.mem_id = mem_id;
 	}
-	public int getCate_no() {
-		return cate_no;
+	public String getCate_name() {
+		return cate_name;
 	}
-	public void setCate_no(int cate_no) {
-		this.cate_no = cate_no;
+	public void setCate_name(String cate_name) {
+		this.cate_name = cate_name;
 	}
 	public String getClub_name() {
 		return club_name;
@@ -61,28 +60,52 @@ public class ClubVO {
 	public void setClub_local(String club_local) {
 		this.club_local = club_local;
 	}
-	public ClubVO(String club_no, String mem_id, int cate_no, String club_name, String club_content, String club_status,
-			String club_local, Date club_regDate) {
-		super();
-		this.club_no = club_no;
-		this.mem_id = mem_id;
-		this.cate_no = cate_no;
-		this.club_name = club_name;
-		this.club_content = club_content;
-		this.club_status = club_status;
-		this.club_local = club_local;
+	public Date getClub_regDate() {
+		return club_regDate;
+	}
+	public void setClub_regDate(Date club_regDate) {
 		this.club_regDate = club_regDate;
+	}
+	public int getReplycnt() {
+		return replycnt;
+	}
+	public void setReplycnt(int replycnt) {
+		this.replycnt = replycnt;
+	}
+	public int getUpcnt() {
+		return upcnt;
+	}
+	public void setUpcnt(int upcnt) {
+		this.upcnt = upcnt;
+	}
+	public int getDowncnt() {
+		return downcnt;
+	}
+	public void setDowncnt(int downcnt) {
+		this.downcnt = downcnt;
+	}
+	public int getJoincnt() {
+		return joincnt;
+	}
+	public void setJoincnt(int joincnt) {
+		this.joincnt = joincnt;
+	}
+	public int getMi() {
+		return mi;
+	}
+	public void setMi(int mi) {
+		this.mi = mi;
 	}
 	@Override
 	public String toString() {
-		return "ClubVO [club_no=" + club_no + ", mem_id=" + mem_id + ", cate_no=" + cate_no + ", club_name=" + club_name
-				+ ", club_content=" + club_content + ", club_status=" + club_status + ", club_local=" + club_local
-				+ ", club_regDate=" + club_regDate + "]";
-	}
-	public ClubVO() {
-		super();
+		return "ClubVO [club_no=" + club_no + ", mem_id=" + mem_id + ", cate_name=" + cate_name + ", club_name="
+				+ club_name + ", club_content=" + club_content + ", club_status=" + club_status + ", club_local="
+				+ club_local + ", club_regDate=" + club_regDate + ", replycnt=" + replycnt + ", upcnt=" + upcnt
+				+ ", downcnt=" + downcnt + ", joincnt=" + joincnt + ", mi=" + mi + "]";
 	}
 	
+	
+
 	
 	
 }
