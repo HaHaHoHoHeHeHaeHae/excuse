@@ -7,13 +7,13 @@ import java.util.Map;
 
 import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.controller.common.PageMaker;
-import com.blood.coding.dao.attach.AttachDAO;
+import com.blood.coding.dao.category.CategoryDAO;
 import com.blood.coding.dao.club.ClubDAO;
-import com.blood.coding.dao.down.DownDAO;
+import com.blood.coding.dao.local.LocalDAO;
 import com.blood.coding.dao.member.MemberDAO;
-import com.blood.coding.dao.reply.ReplyDAO;
-import com.blood.coding.dao.up.UpDAO;
+import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.dto.club.ClubVO;
+import com.blood.coding.dto.local.LocalVO;
 import com.blood.coding.dto.member.MemberVO;
 
 public class ClubServiceImpl implements ClubService {
@@ -53,6 +53,16 @@ public class ClubServiceImpl implements ClubService {
 		this.memberVO=memberVO;
 	}*/
 	
+	
+	private CategoryDAO categoryDAO;
+	public void setCategoryDAO(CategoryDAO categoryDAO) {
+		this.categoryDAO=categoryDAO;
+	}
+	
+	private LocalDAO localDAO;
+	public void setLocalDAO(LocalDAO localDAO) {
+		this.localDAO=localDAO;
+	}
 	// wish랑 join은 나중에 협의해야함
 	
 
@@ -62,8 +72,12 @@ public class ClubServiceImpl implements ClubService {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 
 		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
+		List<CategoryVO> cateList = categoryDAO.selectCategoryList();
+		List<LocalVO> localList = localDAO.selectLocalList();
+		
 		
 		int totalCount = clubDAO.selectSearchClubCount(cri);
+		
 		
 		/*int cno = clubDAO.selectClubSeq();
 		System.out.println("+++++++++++++++++++++");
@@ -88,6 +102,8 @@ public class ClubServiceImpl implements ClubService {
 		// dataMap에 넣기
 		dataMap.put("clubList", clubList);
 		dataMap.put("pageMaker", pageMaker);
+		dataMap.put("cateList", cateList);
+		dataMap.put("localList", localList);
 
 		return dataMap;
  	}
