@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="Member">
+        <sql id="search">
+        	<if test="searchType =='i'.toString()">
+        		and mem_id like '%'||#{keyword}||'%'
+        	</if>
+        	<if test="searchType =='n'.toString()">
+        		and mem_name like '%'||#{keyword}||'%'
+        	</if>
+        	<if test="searchType =='in'.toString()">
+        		and (mem_name like '%'||#{keyword}||'%'
+        		or mem_id like '%'||#{keyword}||'%')
+        	</if>
+        </sql>
+        
+    	<select id="selectMemberList" resultType="member">
+    		select *
+    		from member
+    		where mem_id is not null
+    			<include refid="search"/>
+    		order by mem_regDate
+    	</select>
+    	
+    	<select id="selectMemberListCount">
+    	
+    	    select count(*)
+    	    from member
+    	    where mem_id is not null
+    			<include refid="search"/>
+    	    order by mem_regDate
+    	</select>
+    	
+    	<select id="selectMember" resultType="member">
+    		select *
+    		from member
+    		where mem_id = #{mem_id}
+    	</select>
+    	    
+    	<select id="login" resultType="member">
+    		select *
+    		from member
+    		where mem_id=#{mem_id}
+    	</select>
+    	
+    	<select id ="checkId"  resultType="int">
+    		select count(mem_id)
+    		from member
+    		where mem_id = #{mem_id}
+    	</select>
+    	
+    	<update id="insertMember">
+    		insert into member(mem_id,mem_pwd,mem_gender,mem_birthDate,mem_name,mem_regDate,mem_status,mem_local,mem_phone,mem_phone_check,mem_name_check,mem_id_check,mem_nick)
+    		values(#{mem_id},#{mem_pwd},#{mem_gender},#{mem_birthDate},#{mem_name},sysdate,#{mem_status},#{mem_local},#{mem_phone},#{mem_phone_check},#{mem_name_check},#{mem_id_check},#{mem_nick})
+    	</update>
+    	
+    	<update id="updateMember">
+    		update member
+    		set
+    		mem_pwd=#{mem_pwd},
+    		mem_birthDate=#{mem_birthDate},
+    		mem_name=#{mem_name},
+    		mem_local=#{mem_local},
+    		mem_phone=#{mem_phone},
+    		mem_phone_check=#{mem_phone_check},
+    		mem_id_check=#{mem_id_check},
+    		mem_name_check=#{mem_name_check}
+    		where mem_id = #{mem_id}
+    	</update>
+    	
+    	<update id="updateMemberStatus">
+    		update member
+    		set
+    		mem_status = #{mem_status}
+    		where mem_id = #{mem_id}
+    	</update>
+    	
+    	<select id ="checkNick" resultType="int">
+    		select count(mem_nick)
+    		from member
+    		where mem_nick = #{mem_nick}
+    	</select>
+    	
+    	<select id ="infoPhone">
+    		select mem_phone_check
+    		from member
+    		where mem_id = #{mem_id}
+    	</select>
+    	
+    	<select id ="infoId">
+    		select mem_id_check
+    		from member
+    		where mem_id = #{mem_id}
+    	</select>
+    	
+    	<select id ="infoName">
+    		select mem_name_check
+    		from member
+    		where mem_id = #{mem_id}
+    	</select>
+    	
+    	<select id="selectMemberListNormal" resultType="member">
+    		select *
+    		from member
+    		order by mem_regDate
+    	</select>
+    </mapper>
+    
+    

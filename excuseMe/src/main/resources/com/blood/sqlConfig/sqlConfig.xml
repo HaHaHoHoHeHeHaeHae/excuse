@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+  
+  	<typeAliases>
+  		<typeAlias type="java.lang.Integer" alias="int"/>
+  		<typeAlias type="java.lang.String" alias="str" />
+		<typeAlias type="com.blood.coding.dto.attach.AttachVO" alias="attach"/>
+		<typeAlias type="com.blood.coding.dto.category.CategoryVO" alias="category"/>
+		<typeAlias type="com.blood.coding.dto.club.ClubVO" alias="club"/>
+		<typeAlias type="com.blood.coding.dto.down.DownVO" alias="down"/>
+		<typeAlias type="com.blood.coding.dto.joinClub.JoinClubVO" alias="join"/>
+		<typeAlias type="com.blood.coding.dto.local.LocalVO" alias="local"/>
+		<typeAlias type="com.blood.coding.dto.member.MemberVO" alias="member"/>
+		<typeAlias type="com.blood.coding.dto.notice.NoticeVO" alias="notice"/>
+		<typeAlias type="com.blood.coding.dto.reply.ReplyVO" alias="reply"/>
+		<typeAlias type="com.blood.coding.dto.up.UpVO" alias="up"/>
+		<typeAlias type="com.blood.coding.dto.wish.WishVO" alias="wish"/>
+		
+  	</typeAliases>
+  	
+  </configuration>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<context:annotation-config/>
+	
+	<!-- uploadPath -->
+	<bean id="uploadPath"
+	      class="java.lang.String">
+	      <constructor-arg value="d:\\upload"/>      
+	</bean>
+	<bean id="imgPath"
+	      class="java.lang.String">
+	      <constructor-arg value="/resources/uploadImg/"/>      
+	</bean>
+	
+	<!-- dao -->
+	<bean id="memberDAO" 
+		  class="com.blood.coding.dao.member.MemberDAOImpl"
+		  p:session-ref="sqlSession" 
+		  />
+	<bean id="noticeDAO"
+		  class="com.blood.coding.dao.notice.NoticeDAOImpl"
+		  p:session-ref="sqlSession"/>
+	<bean id="localDAO"
+		  class="com.blood.coding.dao.local.LocalDAOImpl"
+		  p:session-ref="sqlSession"/>
+    <bean id="replyDAO"
+		  class="com.blood.coding.dao.reply.ReplyDAOImpl"
+		  p:session-ref="sqlSession"/>
+    <bean id="clubDAO"
+		  class="com.blood.coding.dao.club.ClubDAOImpl"
+		  p:session-ref="sqlSession" />
+	<bean id="CategoryDAO"
+		  class="com.blood.coding.dao.category.CategoryDAOImpl"
+	      p:session-ref="sqlSession"/>
+		  	  
+	<!-- service -->	
+	<bean id="loginService"
+	  	  class="com.blood.coding.service.common.LoginServiceImpl"
+	  	  p:memberDAO-ref="memberDAO"
+	  	  />
+    <bean id="memberService"
+	  	  class="com.blood.coding.service.member.MemberServiceImpl"
+	  	  p:memberDAO-ref="memberDAO"
+	  	  p:replyDAO-ref="replyDAO"
+	  	  />
+  	<bean id="noticeService"
+  		  class="com.blood.coding.service.notice.NoticeServiceImpl"
+  		  p:noticeDAO-ref="noticeDAO"
+  		  />
+  	<bean id="localService"
+  		  class="com.blood.coding.service.common.LocalServiceImpl"
+  		  p:localDAO-ref="localDAO"
+		  />	
+	<bean id="clubService"
+	  	  class="com.blood.coding.service.club.ClubServiceImpl"
+	  	  p:clubDAO-ref="clubDAO" 
+	  	  p:memberDAO-ref="memberDAO"/>
+	
+</beans>

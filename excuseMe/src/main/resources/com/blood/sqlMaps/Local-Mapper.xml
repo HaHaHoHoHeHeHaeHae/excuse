@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="Local">
+    
+       <select id="selectLocalList" resultType="local">
+       select * 
+       from local
+       order by local_no asc
+      </select>
+      
+      <select id="selectSubLocalList" resultType="local">
+       select * 
+       from sublocal 
+       where local_no = #{local_no}
+       order by local_sub_no asc 
+      </select>
+      <select id="selectLocalNo" resultType="int">
+       select local_no 
+       from local
+       where local_name = #{local_name}
+      </select>
+   </mapper>
