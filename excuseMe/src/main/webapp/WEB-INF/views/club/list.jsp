@@ -82,37 +82,48 @@ li {
 
 			<!-- 동호회 리스트 -->
 
-			<c:forEach var="club" items="${clubList }">
-				<c:if test="${empty clubList }">
-					<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
-				</c:if>
-				<c:if test="${!empty clubList }">
-					<div class="card card-primary card-outline">
-						<div class="card-body box-profile">
-							<div class="text-center">
-								<img class="profile-user-img img-fluid img-circle"
-									src="../../dist/img/user4-128x128.jpg"
-									alt="User profile picture">
+			<div class="clublist">
+				<c:forEach var="club" items="${clubList }">
+					<c:if test="${empty clubList }">
+						<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
+					</c:if>
+					<c:if test="${!empty clubList }">
+						<div class="card card-primary card-outline"
+							style="width: 20%; float: left;">
+							<div class="card-body box-profile">
+								<div class="text-center">
+									<img class="profile-user-img img-fluid img-circle"
+										src="../../dist/img/user4-128x128.jpg"
+										alt="User profile picture">
+								</div>
+								<h3 class="profile-username text-center">${club.club_name }</h3>
+								<div class="content1">
+									<p class="text-muted text-center">${club.club_content}</p>
+								</div>
+								<ul class="list-group list-group-unbordered mb-3">
+									<li class="list-group-item text-center"><b>인원수&nbsp&nbsp</b><b>${club.joincnt }</b></li>
+									<li class="list-group-item"><b>좋아요</b> <a
+										class="float-right">${club.upcnt }</a></li>
+									<li class="list-group-item"><b>싫어요</b> <a
+										class="float-right">${club.downcnt }</a></li>
+								</ul>
+								<ul class="actions vertical small" style="text-align: center;">
+									<li><a href="#" class="button small" style="color:white;">Follow</a></li>
+								</ul>
+									<!-- <div class="3u 12u$(small)">
+											<ul class="actions vertical small">
+												<li><a href="#" class="button special small">Small</a></li>
+												<li><a href="#" class="button small">Small</a></li>
+												<li><a href="#" class="button alt small">Small</a></li>
+											</ul>
+										</div>
+								 -->
 							</div>
-
-							<h3 class="profile-username text-center">${club.club_name }</h3>
-
-							<p class="text-muted text-center">${club.club_content}</p>
-
-							<ul class="list-group list-group-unbordered mb-3">
-								<li class="list-group-item"><b>인원수</b> <a
-									class="float-right">${club.joincnt }</a></li>
-								<li class="list-group-item"><b>좋아요</b> <a
-									class="float-right">${club.upcnt }</a></li>
-								<li class="list-group-item"><b>싫어요</b> <a
-									class="float-right">${club.downcnt }</a></li>
-							</ul>
-
-							<a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
 						</div>
-					</div>
-				</c:if>
-			</c:forEach>
+					</c:if>
+				</c:forEach>
+			</div>
+
 
 			<!-- /.card-body -->
 
@@ -123,14 +134,13 @@ li {
 					<ul class="pagination ">
 						<li class="page-item"><a class="page-link"
 							href="list${pageMaker.makeQuery(1)}"
-							style="text-decoration: none">&lt;&lt;</a>
-						<li class="page-item"><a class="page-link"
+							style="text-decoration: none">&lt;&lt;</a> <li class="page-item"><a class="page-link"
 							href="list<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
 							style="text-decoration: none">&lt;</a></li>
 						<c:forEach begin="${pageMaker.startPage }"
 							end="${pageMaker.endPage }" var="pageNum">
 							<li
-								class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>"`>
+								class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
 								<a class="page-link" href="list${pageMaker.makeQuery(pageNum) }"
 								style="text-decoration: none">${pageNum } </a>
 							</li>
@@ -150,6 +160,7 @@ li {
 						<li class="page-item"><a class="page-link"
 							href="list${pageMaker.makeQuery(pageMaker.realEndPage) }"
 							style="text-decoration: none"> &gt;&gt; </a></li>
+
 					</ul>
 				</div>
 			</div>
@@ -201,5 +212,6 @@ li {
    
    });
 
-   </script>
-</body>
+   
+</script></
+						body>
