@@ -92,20 +92,17 @@ li {
 							style="width: 20%; float: left;">
 							<div class="card-body box-profile">
 								<div class="text-center">
-									<img class="profile-user-img img-fluid img-circle"
-										src="../../dist/img/user4-128x128.jpg"
-										alt="User profile picture">
+									<img class="profile-user-img img-fluid img-circle" 
+										 src="<%=request.getContextPath() %>/resources/logo.png" alt="User profile picture">
 								</div>
 								<h3 class="profile-username text-center">${club.club_name }</h3>
 								<div class="content1">
 									<p class="text-muted text-center">${club.club_content}</p>
 								</div>
 								<ul class="list-group list-group-unbordered mb-3">
-									<li class="list-group-item text-center"><b>인원수&nbsp&nbsp</b><b>${club.joincnt }</b></li>
-									<li class="list-group-item"><b>좋아요</b> <a
-										class="float-right">${club.upcnt }</a></li>
-									<li class="list-group-item"><b>싫어요</b> <a
-										class="float-right">${club.downcnt }</a></li>
+									<li class="list-group-item text-center" style="height: 40px;"><b>인원수&nbsp&nbsp&nbsp&nbsp</b><b>${club.joincnt }</b></li>
+									<li class="list-group-item text-center" style="height: 40px;"><b>좋아요&nbsp&nbsp&nbsp&nbsp</b><b>${club.upcnt }</b></li>
+									<li class="list-group-item text-center" style="height: 40px;"><b>싫어요&nbsp&nbsp&nbsp&nbsp</b><b>${club.downcnt }</b></li>
 								</ul>
 								<ul class="actions vertical small" style="text-align: center;">
 									<li><a href="#" class="button small" style="color:white;">Follow</a></li>
