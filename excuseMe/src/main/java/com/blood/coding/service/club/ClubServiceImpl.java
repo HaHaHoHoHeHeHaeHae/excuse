@@ -48,12 +48,6 @@ public class ClubServiceImpl implements ClubService {
 		this.memberDAO=memberDAO;
 	}
 	
-/*	private MemberVO memberVO;
-	public void setMemberVO(MemberVO memberVO) {
-		this.memberVO=memberVO;
-	}*/
-	
-	
 	private CategoryDAO categoryDAO;
 	public void setCategoryDAO(CategoryDAO categoryDAO) {
 		this.categoryDAO=categoryDAO;

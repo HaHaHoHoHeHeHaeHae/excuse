@@ -37,7 +37,7 @@ li {
 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>동호회 리스트 창</title>
 <c:set var="clubList" value="${dataMap.clubList }" />
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 <c:set var="cateList" value="${dataMap.cateList }" />
@@ -98,7 +98,7 @@ li {
 								<form role="form">
 									<div class="card-body">
 										<div class="form-group">
-											<label for="exampleInputEmail1">Email address</label> <input
+											<label for="exampleInputEmail1"></label> <input
 												type="email" class="form-control" id="exampleInputEmail1"
 												placeholder="Enter email">
 										</div>
@@ -144,7 +144,7 @@ li {
 									<th width="10% align-center">동호회명</th>
 									<th width="20% align-center">등록일</th>
 									<th width="10% align-center">지역</th>
-									<th width="10% align-center">카테고리</th>
+									<!-- <th width="10% align-center">카테고리</th> -->
 									<th width="10% align-center">인원수</th>
 									<th width="10% align-center">up 수</th>
 									<th width="10% align-center">down 수</th>
@@ -162,7 +162,7 @@ li {
 											<td>${club.club_name }</td>
 											<td>${club.club_regDate }</td>
 											<td>${club.club_local }</td>
-											<td>${club.cate_name }</td>
+											<!-- <td>${club.cate_name }</td> 서브카테고리매퍼 완성되면 다시 넣고 돌려보기-->
 											<td>${club.joincnt }</td>
 											<td>${club.upcnt }</td>
 											<td>${club.downcnt }</td>

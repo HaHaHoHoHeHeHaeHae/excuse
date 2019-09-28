@@ -3,20 +3,25 @@ package com.blood.coding.controller.club;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.blood.coding.controller.common.Criteria;
+import com.blood.coding.dao.category.CategoryDAO;
+import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.dto.club.ClubVO;
 import com.blood.coding.service.club.ClubService;
 
@@ -26,6 +31,9 @@ public class ClubController {
 	
 	@Autowired
 	private ClubService clubService;
+	
+	@Autowired
+	private CategoryDAO categoryDAO;
 	
 	//private static final Logger logger = LoggerFactory.getLogger(ClubController.class);
 
@@ -84,6 +92,30 @@ public class ClubController {
 		out.println("window.opener.location.reload();window.close();");//지웠으니까 reload한번 하고 창닫아죠
 		out.println("</script>");
 	}
+	
+	@RequestMapping("/subcategory")
+	   @ResponseBody
+	   public ResponseEntity<List<CategoryVO>> subCategoryList(@RequestBody CategoryVO categoryVO) throws Exception {
+	      
+	      ResponseEntity<List<CategoryVO>> entity = null;
+	      
+	      System.out.println("@");
+	      System.out.println(categoryVO);
+	      System.out.println("@");
+	      
+	      try {
+	         List<CategoryVO> subCategoryList = categoryDAO.selectSubCategoryList(categoryVO.getCate_no());
+	         entity = new ResponseEntity<List<CategoryVO>>(subCategoryList,HttpStatus.OK);
+	      }
+	      catch(SQLException e) {
+	         e.printStackTrace();
+	         entity = new ResponseEntity<List<CategoryVO>>(HttpStatus.INTERNAL_SERVER_ERROR);
+	      }
+	         
+	      
+	      return entity;
+	   }
+		
 }
 
 

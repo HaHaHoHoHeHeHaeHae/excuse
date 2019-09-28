@@ -3,4 +3,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-    <mapper namespace="category"></mapper>
+    <mapper namespace="Category">
+    	<!-- 대분류 카테고리 리스트 출력 -->
+    	<select id="selectCategory" resultType="category">
+    		select
+ 			*
+ 			from
+ 			category
+ 			order by cate_name asc			
+ 			 			
+    	</select>
+    	<!-- 없어도 될듯 ㄱㄷ 
+    	대분류 카테고리 하나 선택했을때
+    	<select id="selectOneCategory" resultType="category">
+    		select
+    		cate_no
+    		from
+    		category
+    		where cate_no = #{cate_no}
+    		
+    	</select> -->
+    	
+    	<!-- 대분류 선택을 기준해서 서브카테고리 목록 -->
+    	<select id="selectSubCategory" resultType="category">
+    		select
+    		*
+    		from
+    		category c, subcategory s
+    		where c.cate_no = s.cate_no
+    		and s.cate_no = #{cate_no}
+    		order by cate_sub_name asc
+    	</select>
+    
+    </mapper>
