@@ -19,6 +19,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 		 
 		List<CategoryVO> categoryList=session.selectList("Category.selectCategory");
 		
+		System.out.println("############");
+		System.out.println(categoryList);
+		System.out.println("############");
 		return categoryList;
 	}
 	//대분류 카테고리를 참조한 소분류 카테고리 리스트 조회
