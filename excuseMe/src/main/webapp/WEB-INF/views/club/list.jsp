@@ -92,8 +92,9 @@ li {
 							style="width: 20%; float: left;">
 							<div class="card-body box-profile">
 								<div class="text-center">
-									<img class="profile-user-img img-fluid img-circle" 
-										 src="<%=request.getContextPath() %>/resources/logo.png" alt="User profile picture">
+									<img class="profile-user-img img-fluid img-circle"
+										src="<%=request.getContextPath()%>/resources/logo.png"
+										alt="User profile picture">
 								</div>
 								<h3 class="profile-username text-center">${club.club_name }</h3>
 								<div class="content1">
@@ -105,9 +106,9 @@ li {
 									<li class="list-group-item text-center" style="height: 40px;"><b>싫어요&nbsp&nbsp&nbsp&nbsp</b><b>${club.downcnt }</b></li>
 								</ul>
 								<ul class="actions vertical small" style="text-align: center;">
-									<li><a href="#" class="button small" style="color:white;">Follow</a></li>
+									<li><a href="#" class="button small" style="color: white;">Follow</a></li>
 								</ul>
-									<!-- <div class="3u 12u$(small)">
+								<!-- <div class="3u 12u$(small)">
 											<ul class="actions vertical small">
 												<li><a href="#" class="button special small">Small</a></li>
 												<li><a href="#" class="button small">Small</a></li>
@@ -131,7 +132,8 @@ li {
 					<ul class="pagination ">
 						<li class="page-item"><a class="page-link"
 							href="list${pageMaker.makeQuery(1)}"
-							style="text-decoration: none">&lt;&lt;</a> <li class="page-item"><a class="page-link"
+							style="text-decoration: none">&lt;&lt;</a>
+						<li class="page-item"><a class="page-link"
 							href="list<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
 							style="text-decoration: none">&lt;</a></li>
 						<c:forEach begin="${pageMaker.startPage }"
@@ -208,7 +210,5 @@ li {
       });
    
    });
-
-   
-</script></
-						body>
+	</script>
+</body>
