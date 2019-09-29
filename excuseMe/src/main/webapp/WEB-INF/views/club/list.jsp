@@ -74,15 +74,24 @@ li {
 	<section id="main" class="wrapper">
 		<div class="inner">
 
-			<!-- 검색창 -->
+			<!-- searchClubList Start-->
 			<header class="align-center">
 				<h1>동호회 리스트</h1>
 				<p>원하는 동호회를 검색하세요.</p>
 			</header>
+			<!-- searchClubList End-->
 
-			<!-- 동호회 리스트 -->
+			<!-- clubList Start -->
+			<!-- alignment -->
+			<section calss="alignment">
+				<div class="listTitle" style="float: right;">
+					<a class="btn btn-app"><i class="fas fa-users"></i> 인원수순</a> <a
+						class="btn btn-app"><i class="fas fa-thumbs-up"></i> 좋아요순</a> <a
+						class="btn btn-app"><i class="fas fa-thumbs-down"></i> 싫어요순</a>
+				</div>
+			</section>
 
-			<div class="clublist">
+			<section class="clublist">
 				<c:forEach var="club" items="${clubList }">
 					<c:if test="${empty clubList }">
 						<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
@@ -108,45 +117,42 @@ li {
 								<ul class="actions vertical small" style="text-align: center;">
 									<li><a href="#" class="button small" style="color: white;">Follow</a></li>
 								</ul>
-								<!-- <div class="3u 12u$(small)">
-											<ul class="actions vertical small">
-												<li><a href="#" class="button special small">Small</a></li>
-												<li><a href="#" class="button small">Small</a></li>
-												<li><a href="#" class="button alt small">Small</a></li>
-											</ul>
-										</div>
-								 -->
 							</div>
 						</div>
 					</c:if>
 				</c:forEach>
-			</div>
+			</section>
+		</div>
+		<div>&nbsp</div>
+		<br> <br> <br>
+		<!-- clubList End -->
 
+		<!-- joinClub Start-->
+		<section class="joinclub_title">
+			<h3>추천동호회</h3>
+		</section>
+		<!-- joinClub End-->
 
-			<!-- /.card-body -->
+		<!-- pagination Start-->
+		<div class="card-footer clearfix">
+			<div class="pagination justify-content-center m-0">
+				<ul class="pagination ">
+					<li class="page-item"><a class="page-link"
+						href="list${pageMaker.makeQuery(1)}" style="text-decoration: none">&lt;&lt;</a>
+					<li class="page-item"><a class="page-link"
+						href="list<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
+						style="text-decoration: none">&lt;</a></li>
+					<c:forEach begin="${pageMaker.startPage }"
+						end="${pageMaker.endPage }" var="pageNum">
+						<li
+							class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
+							<a class="page-link" href="list${pageMaker.makeQuery(pageNum) }"
+							style="text-decoration: none">${pageNum } </a>
+						</li>
+					</c:forEach>
 
-			<!-- /.card -->
-
-			<div class="card-footer clearfix">
-				<div class="pagination justify-content-center m-0">
-					<ul class="pagination ">
-						<li class="page-item"><a class="page-link"
-							href="list${pageMaker.makeQuery(1)}"
-							style="text-decoration: none">&lt;&lt;</a>
-						<li class="page-item"><a class="page-link"
-							href="list<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
-							style="text-decoration: none">&lt;</a></li>
-						<c:forEach begin="${pageMaker.startPage }"
-							end="${pageMaker.endPage }" var="pageNum">
-							<li
-								class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
-								<a class="page-link" href="list${pageMaker.makeQuery(pageNum) }"
-								style="text-decoration: none">${pageNum } </a>
-							</li>
-						</c:forEach>
-
-						<li class="page-item"><a class="page-link"
-							href="list
+					<li class="page-item"><a class="page-link"
+						href="list
 									<c:if test="${pageMaker.next }">
 										${pageMaker.makeQuery(pageMaker.endPage+1) }
 									</c:if>
@@ -154,19 +160,17 @@ li {
 										${pageMaker.makeQuery(pageMaker.cri.page) }
 									</c:if>
 								"
-							style="text-decoration: none">&gt;</a></li>
+						style="text-decoration: none">&gt;</a></li>
 
-						<li class="page-item"><a class="page-link"
-							href="list${pageMaker.makeQuery(pageMaker.realEndPage) }"
-							style="text-decoration: none"> &gt;&gt; </a></li>
+					<li class="page-item"><a class="page-link"
+						href="list${pageMaker.makeQuery(pageMaker.realEndPage) }"
+						style="text-decoration: none"> &gt;&gt; </a></li>
 
-					</ul>
-				</div>
+				</ul>
 			</div>
 		</div>
+		</div>
 	</section>
-
-
 
 	<!-- jQuery -->
 	<script
@@ -176,7 +180,7 @@ li {
 		src="<%=request.getContextPath()%>/resources/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.min.js"></script>
-	S
+
 	<script
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
 	<script
@@ -194,15 +198,19 @@ li {
       
       /* alert(go); */
       $.ajax({
-         data:JSON.stringify({ "cate_no":$(this).val() }),
+         data:JSON.stringify({ "
+							cate_no":$(this).val() }),
          contentType:"application/JSON",
          type: "POST",
          url: "<%=request.getContextPath()%>/subcategory",
-         cache: false,
-         success: function(data) {
+         cache:
+							false,
+         success:
+							function(data) {
             console.log(data);
             $("#subCategory").html("");
-            for(var sub of data){
+            for(var
+							sub ofdata){
                console.log(sub.cate_sub_name);
                $("#subCategory").append("<option>"+sub.cate_sub_name+"</option>");
             }
@@ -210,5 +218,7 @@ li {
       });
    
    });
-	</script>
+	
+							
+</script>
 </body>
