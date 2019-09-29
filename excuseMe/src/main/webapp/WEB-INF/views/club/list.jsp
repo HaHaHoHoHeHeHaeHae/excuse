@@ -83,7 +83,7 @@ li {
 
 			<!-- clubList Start -->
 			<!-- alignment -->
-			<section calss="alignment">
+			<section class="alignment" style="height:70px;">
 				<div class="listTitle" style="float: right;">
 					<a class="btn btn-app"><i class="fas fa-users"></i> 인원수순</a> <a
 						class="btn btn-app"><i class="fas fa-thumbs-up"></i> 좋아요순</a> <a
@@ -91,7 +91,7 @@ li {
 				</div>
 			</section>
 
-			<section class="clublist">
+			<section class="clublist" style="height:936px;">
 				<c:forEach var="club" items="${clubList }">
 					<c:if test="${empty clubList }">
 						<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
@@ -123,7 +123,7 @@ li {
 				</c:forEach>
 			</section>
 		</div>
-		<div>&nbsp</div>
+
 		<br> <br> <br>
 		<!-- clubList End -->
 
