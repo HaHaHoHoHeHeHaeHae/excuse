@@ -1,5 +1,6 @@
 package com.blood.coding.controller.common;
 
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -104,35 +105,39 @@ public class LoginController {
 		return "/common/searchIdPwd";
 	}
 	
-	@RequestMapping("/searchId")
-	public String searchId() throws Exception{
+	@RequestMapping(value="/searchId", method=RequestMethod.GET)
+	public String searchIdGET() throws Exception{
 		return "/common/searchId";
 	}
+	
+	@RequestMapping(value="/searchId", method=RequestMethod.POST)
+	public ResponseEntity<String> searchIdPOST(@RequestParam("mem_name") String mem_name, @RequestParam("mem_phone") String mem_phone, @RequestParam("mem_birthDate") String mem_birthDate) throws Exception{
+		ResponseEntity<String> entity = null;
+		MemberVO vo = new MemberVO();
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+		Date birthDate = transFormat.parse(mem_birthDate);
+
+		vo.setMem_birthDate(birthDate);
+		vo.setMem_name(mem_name);
+		vo.setMem_phone(mem_phone);
+		
+		try {
+			String mem_id = service.idFind(vo);
+
+			entity = new ResponseEntity<String>(mem_id,HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return entity;
+	}
+	
 	@RequestMapping("/searchPwd")
 	public String searchPwd() throws Exception{
 		return "/common/searchPwd";
 	}
-	@RequestMapping("/findId")
-	public ModelAndView findMemId(HttpServletRequest request) throws Exception{
-		ModelAndView mav = new ModelAndView();
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-		String mem_name = request.getParameter("mem_name");
-		String mem_phone = request.getParameter("mem_phone");
-		Date mem_birthDate =  transFormat.parse(request.getParameter("mem_birthDate"));
-		
-		MemberVO vo = new MemberVO();
-		vo.setMem_birthDate(mem_birthDate);
-		vo.setMem_name(mem_name);
-		vo.setMem_phone(mem_phone);
-		
-		String mem_id = service.idFind(vo);
-		vo.setMem_id(mem_id);
-		mav.addObject("memberVO",vo);
-		mav.setViewName("/findId");
-		return mav;
-		
-	}
+	
 	
 	@RequestMapping("/findPwd")
 	public ModelAndView findMemPwd(HttpServletRequest request) throws Exception{

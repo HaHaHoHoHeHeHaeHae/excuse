@@ -268,7 +268,7 @@
 						<span class="button special" id="signup">회원가입</span>
 					</div>
 					<div class="2u$ 12u$(small)">
-						<span class="button alt">취&nbsp&nbsp&nbsp&nbsp소</span>
+						<span class="button alt" onclick="self.location='<%=request.getContextPath()%>/common/login'">취&nbsp&nbsp&nbsp&nbsp소</span>
 					</div>
 				</div>
 			</div>
@@ -586,6 +586,18 @@ $("#signup").click(function(){
 	}
 });
 </script>
-
+	<!-- jQuery -->
+	<script
+		src="<%=request.getContextPath()%>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script
+		src="<%=request.getContextPath()%>/resources/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+   	<script src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
+	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
+	
 </body>
 </html>

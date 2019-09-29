@@ -60,10 +60,10 @@
           </div>
         </div>
         <div class="social-auth-links text-center">
-        <input type="submit" class="button small" placeholder="로그인">
+        <input type="submit" class="button small" placeholder="로그인" value="로그인">
 
         
-        <span class="button small" onclick="location.href='/'">
+        <span class="button small" onclick="">
           	회원가입
         </span>
       </div>
@@ -73,7 +73,7 @@
       <!-- /.social-auth-links -->
       
       <p class="mb-1">
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href="#">아이디/비밀번호를 잊으셨습니까?</a>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<a href='<%=request.getContextPath()%>/common/searchIdPwd'>아이디/비밀번호를 잊으셨습니까?</a>
       </p>
     </div>
     <!-- /.login-card-body -->

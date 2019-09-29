@@ -71,8 +71,11 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public String findPwd(String mem_id) throws SQLException {
-		String pwd = session.selectOne("Member.findPwd",mem_id);
+	public String findPwd(String mem_id,String mem_name) throws SQLException {
+		MemberVO memberVO = new MemberVO();
+		memberVO.setMem_id(mem_id);
+		memberVO.setMem_name(mem_name);
+		String pwd = session.selectOne("Member.findPwd",memberVO);
 		return pwd;
 	}
 
