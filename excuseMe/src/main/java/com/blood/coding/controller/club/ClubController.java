@@ -40,8 +40,12 @@ public class ClubController {
 	@RequestMapping("/list") //동호회 리스트보기
 	public ModelAndView clubList(Criteria cri, ModelAndView modelnView) throws SQLException{
 		String url = "/club/list";
+
 		Map<String, Object> dataMap = clubService.getClubList(cri);
 		modelnView.addObject("dataMap",dataMap);
+		
+
+		
 		modelnView.setViewName(url);
 		return modelnView;
 	}

@@ -36,12 +36,12 @@ li {
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <head>
-<meta charset="UTF-8">
+
 <title>동호회 리스트 창</title>
 <c:set var="clubList" value="${dataMap.clubList }" />
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
-<c:set var="cateList" value="${dataMap.cateList }" />
-<c:set var="localList" value="${dataMap.localList }" />
+<!--<c:set var="cateList" value="${dataMap.cateList }" />
+<c:set var="localList" value="${dataMap.localList }" />-->
 
 <!-- Font Awesome -->
 <link rel="stylesheet"
@@ -68,130 +68,139 @@ li {
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
 	rel="stylesheet">
 </head>
+
 <body class="subpage">
 	<!-- Main -->
 	<section id="main" class="wrapper">
 		<div class="inner">
+
+			<!-- searchClubList Start-->
 			<header class="align-center">
 				<h1>동호회 리스트</h1>
 				<p>원하는 동호회를 검색하세요.</p>
 			</header>
-			<!-- 검색창 -->
-			<%-- <div class="searchbox align-center">
-				동호회명: <input type="text" id="keyword" name="keyword"
-					placeholder="검색할 동호회를 입력하세요." value="${keyword }" />
-				<button type="button" id="searchKeywordBtn"
-					onclick="SearchKeyword('${keyword}');">검색</button>
-			</div> --%>
-			<section class="content">
-				<div class="container-fluid">
-					<div class="row">
-					
-						<!-- left column -->
-						<div class="col-md-12">
-							<!-- general form elements -->
-							<div class="card card-primary">
-								<div class="card-header">
-									<h3 class="card-title">동호회 검색</h3>
-								</div>
-								<!-- /.card-header -->
-								<!-- form start -->
-								<form role="form">
-									<div class="card-body">
-										<div class="form-group">
-											<label for="exampleInputEmail1"></label> <input
-												type="email" class="form-control" id="exampleInputEmail1"
-												placeholder="Enter email">
-										</div>
-										<div class="form-group">
-											<label for="exampleInputPassword1">Password</label> <input
-												type="password" class="form-control"
-												id="exampleInputPassword1" placeholder="Password">
-										</div>
+			<!-- searchClubList End-->
 
-										<div class="12u$">
-											<div class="select-wrapper">
-												<select name="category" id="category">
-													<option value="" selected disalbed>- Category -</option>
-													
-												</select>
+			<!-- clubList Start -->
+			<!-- alignment -->
+			<section class="alignment" style="height: 70px;">
+				<div class="listTitle" style="float: right;">
+					<a class="btn btn-app"><i class="fas fa-users"></i> 인원수순</a> <a
+						class="btn btn-app"><i class="fas fa-thumbs-up"></i> 좋아요순</a> <a
+						class="btn btn-app"><i class="fas fa-thumbs-down"></i> 싫어요순</a>
+				</div>
+			</section>
+
+			<section class="clublist" style="height: 936px;">
+				<c:forEach var="club" items="${clubList }">
+					<c:if test="${empty clubList }">
+						<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
+					</c:if>
+					<c:if test="${!empty clubList }">
+						<div class="clublist_body"
+							style="width: 20%; float: left; border: 1px;">
+							<div class="card-body box-profile">
+								<div class="text-center">
+									<img class="profile-user-img img-fluid img-circle"
+										src="<%=request.getContextPath()%>/resources/logo.png"
+										alt="User profile picture">
+								</div>
+								<h3 class="profile-username text-center">${club.club_name }</h3>
+								<div class="content1">
+									<p class="text-muted text-center">${club.club_content}</p>
+								</div>
+								<ul class="list-group list-group-unbordered mb-3">
+									<li class="list-group-item text-center" style="height: 40px;"><b>인원수&nbsp&nbsp&nbsp&nbsp</b><b>${club.joincnt }</b></li>
+									<li class="list-group-item text-center" style="height: 40px;"><b>좋아요&nbsp&nbsp&nbsp&nbsp</b><b>${club.upcnt }</b></li>
+									<li class="list-group-item text-center" style="height: 40px;"><b>싫어요&nbsp&nbsp&nbsp&nbsp</b><b>${club.downcnt }</b></li>
+								</ul>
+								<ul class="actions vertical small" style="text-align: center;">
+									<li><a href="#" class="button small" style="color: white;">Follow</a></li>
+								</ul>
+							</div>
+						</div>
+					</c:if>
+				</c:forEach>
+			</section>
+		</div>
+
+		<br> <br> <br>
+		<!-- clubList End -->
+
+		<!-- joinClub Start-->
+		<section class="joinclub_title">
+			<div class="join_wrap"
+				style="width: 953.33px; margin-left: auto; margin-right: auto;">
+				<h3>추천동호회</h3>
+				<div class="card card-solid">
+					<div class="card-body" style="padding-bottom: 0">
+						<div class="row d-flex align-items-stretch">
+							<div class="d-flex align-items-stretch" style="width: 20%;">
+								<div class="card bg-light">
+									<div class="card-header text-muted border-bottom-0">카테고리</div>
+									<div class="card-body pt-0">
+										<div class="row">
+											<div class="col-7">
+												<h2 class="lead">
+													<b>동호회명</b>
+												</h2>
+												<p class="text-muted text-sm">
+													<b>About: </b> 동호회 설명
+												</p>
+												<!-- <ul class="ml-4 mb-0 fa-ul text-muted">
+												<li class="small"><span class="fa-li"><i
+														class="fas fa-lg fa-building"></i></span> Address: Demo Street
+													123, Demo City 04312, NJ</li>
+												<li class="small"><span class="fa-li"><i
+														class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23
+													52</li>
+											</ul> -->
+											</div>
+											<div class="col-5 text-center">
+												<img src="../../dist/img/user1-128x128.jpg" alt=""
+													class="img-circle img-fluid">
 											</div>
 										</div>
-							
-										<div class="form-check">
-											<input type="checkbox" class="form-check-input"
-												id="exampleCheck1"> <label class="form-check-label"
-												for="exampleCheck1">Check me out</label>
+									</div>
+									<div class="card-footer">
+										<div class="text-right">
+											<a href="#" class="btn btn-sm bg-teal"> <i
+												class="fas fa-comments"></i>
+											</a> <a href="#" class="btn btn-sm btn-primary"> <i
+												class="fas fa-user"></i> View Profile
+											</a>
 										</div>
 									</div>
-									<!-- /.card-body -->
-
-									<div class="card-footer">
-										<button type="submit" class="btn btn-primary">Submit</button>
-									</div>
-								</form>
+								</div>
 							</div>
-							<!-- /.card -->
+						</div>
+					</div>
+					<!-- /.card-body -->
+				</div>
+			</div>
+		</section>
+		<!-- joinClub End-->
 
+		<!-- pagination Start-->
+		<div class="card-footer clearfix">
+			<div class="pagination justify-content-center m-0">
+				<ul class="pagination ">
+					<li class="page-item"><a class="page-link"
+						href="list${pageMaker.makeQuery(1)}" style="text-decoration: none">&lt;&lt;</a>
+					<li class="page-item"><a class="page-link"
+						href="list<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
+						style="text-decoration: none">&lt;</a></li>
+					<c:forEach begin="${pageMaker.startPage }"
+						end="${pageMaker.endPage }" var="pageNum">
+						<li
+							class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
+							<a class="page-link" href="list${pageMaker.makeQuery(pageNum) }"
+							style="text-decoration: none">${pageNum } </a>
+						</li>
+					</c:forEach>
 
-							<div class="image fit">
-								<img src="images/pic05.jpg" alt="" />
-							</div>
-							<table align="center" border="1">
-								<div class="listTitle align-center"></div>
-								<tr>
-									<th width="10% align-center">동호회번호</th>
-									<th width="10% align-center">작성자</th>
-									<th width="10% align-center">동호회명</th>
-									<th width="20% align-center">등록일</th>
-									<th width="10% align-center">지역</th>
-									<!-- <th width="10% align-center">카테고리</th> -->
-									<th width="10% align-center">인원수</th>
-									<th width="10% align-center">up 수</th>
-									<th width="10% align-center">down 수</th>
-								</tr>
-								<c:if test="${empty clubList }">
-									<tr>
-										<td><strong> 해당 내용이 없습니다. </strong></td>
-									</tr>
-								</c:if>
-								<c:if test="${!empty clubList }">
-									<c:forEach items="${clubList }" var="club">
-										<tr>
-											<td>${club.club_no }</td>
-											<td>${club.mem_id }</td>
-											<td>${club.club_name }</td>
-											<td>${club.club_regDate }</td>
-											<td>${club.club_local }</td>
-											<!-- <td>${club.cate_name }</td> 서브카테고리매퍼 완성되면 다시 넣고 돌려보기-->
-											<td>${club.joincnt }</td>
-											<td>${club.upcnt }</td>
-											<td>${club.downcnt }</td>
-										</tr>
-									</c:forEach>
-								</c:if>
-							</table>
-							<div class="card-footer clearfix">
-								<div class="pagination justify-content-center m-0">
-									<ul class="pagination ">
-										<li class="page-item"><a class="page-link"
-											href="list${pageMaker.makeQuery(1)}"
-											style="text-decoration: none">&lt;&lt;</a>
-										<li class="page-item"><a class="page-link"
-											href="list<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
-											style="text-decoration: none">&lt;</a></li>
-										<c:forEach begin="${pageMaker.startPage }"
-											end="${pageMaker.endPage }" var="pageNum">
-											<li
-												class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>"`>
-												<a class="page-link"
-												href="list${pageMaker.makeQuery(pageNum) }"
-												style="text-decoration: none">${pageNum } </a>
-											</li>
-										</c:forEach>
-
-										<li class="page-item"><a class="page-link"
-											href="list
+					<li class="page-item"><a class="page-link"
+						href="list
 									<c:if test="${pageMaker.next }">
 										${pageMaker.makeQuery(pageMaker.endPage+1) }
 									</c:if>
@@ -199,33 +208,54 @@ li {
 										${pageMaker.makeQuery(pageMaker.cri.page) }
 									</c:if>
 								"
-											style="text-decoration: none">&gt;</a></li>
+						style="text-decoration: none">&gt;</a></li>
 
-										<li class="page-item"><a class="page-link"
-											href="list${pageMaker.makeQuery(pageMaker.realEndPage) }"
-											style="text-decoration: none"> &gt;&gt; </a></li>
-									</ul>
-								</div>
-							</div>
+					<li class="page-item"><a class="page-link"
+						href="list${pageMaker.makeQuery(pageMaker.realEndPage) }"
+						style="text-decoration: none"> &gt;&gt; </a></li>
+				</ul>
+			</div>
+		</div>
 
-						</div>
-			</section>
+	</section>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
+	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
 
-			<!-- jQuery -->
-			<script
-				src="<%=request.getContextPath()%>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>
-			<!-- Bootstrap 4 -->
-			<script
-				src="<%=request.getContextPath()%>/resources/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-			<script
-				src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.min.js"></script>
-			<script
-				src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
-			<script
-				src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
-			<script
-				src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
-			<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-			<script
-				src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
+	<script>
+   $('#category').change(function() { 
+      
+      <%-- self.location="<%=request.getContextPath()%>/subcategory" --%>
+      
+      /* alert(go); */
+      $.ajax({
+         data:JSON.stringify({ "
+							cate_no":$(this).val() }),
+         contentType:"application/JSON",
+         type: "POST",
+         url: "<%=request.getContextPath()%>/subcategory",
+         cache:
+							false,
+         success:
+							function(data) {
+            console.log(data);
+            $("#subCategory").html("");
+            for(var
+							sub ofdata){
+               console.log(sub.cate_sub_name);
+               $("#subCategory").append("<option>"+sub.cate_sub_name+"</option>");
+            }
+         }
+      });
+   
+   });
+	
+							
+</script>
 </body>

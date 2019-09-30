@@ -66,8 +66,8 @@ public class ClubServiceImpl implements ClubService {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 
 		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
-		List<CategoryVO> cateList = categoryDAO.selectCategoryList();
-		List<LocalVO> localList = localDAO.selectLocalList();
+		//List<CategoryVO> cateList = categoryDAO.selectCategoryList();
+		//List<LocalVO> localList = localDAO.selectLocalList();
 		
 		
 		int totalCount = clubDAO.selectSearchClubCount(cri);
@@ -91,13 +91,11 @@ public class ClubServiceImpl implements ClubService {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(totalCount);
 		
-		
-		
 		// dataMap에 넣기
 		dataMap.put("clubList", clubList);
 		dataMap.put("pageMaker", pageMaker);
-		dataMap.put("cateList", cateList);
-		dataMap.put("localList", localList);
+		//dataMap.put("cateList", cateList);
+		//dataMap.put("localList", localList);
 
 		return dataMap;
  	}
