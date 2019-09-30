@@ -83,7 +83,7 @@ li {
 
 			<!-- clubList Start -->
 			<!-- alignment -->
-			<section class="alignment" style="height:70px;">
+			<section class="alignment" style="height: 70px;">
 				<div class="listTitle" style="float: right;">
 					<a class="btn btn-app"><i class="fas fa-users"></i> 인원수순</a> <a
 						class="btn btn-app"><i class="fas fa-thumbs-up"></i> 좋아요순</a> <a
@@ -91,14 +91,14 @@ li {
 				</div>
 			</section>
 
-			<section class="clublist" style="height:936px;">
+			<section class="clublist" style="height: 936px;">
 				<c:forEach var="club" items="${clubList }">
 					<c:if test="${empty clubList }">
 						<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
 					</c:if>
 					<c:if test="${!empty clubList }">
-						<div class="card card-primary card-outline"
-							style="width: 20%; float: left;">
+						<div class="clublist_body"
+							style="width: 20%; float: left; border: 1px;">
 							<div class="card-body box-profile">
 								<div class="text-center">
 									<img class="profile-user-img img-fluid img-circle"
@@ -129,7 +129,55 @@ li {
 
 		<!-- joinClub Start-->
 		<section class="joinclub_title">
-			<h3>추천동호회</h3>
+			<!-- 전체 가운데 정렬하는거 마전 0 머시기 머시기 찾아서 넣어보기ㄴ -->
+			<div class="join_wrap" style="width: 953.33px; margin-left: auto; margin-right: auto;">
+				<h3>추천동호회</h3>
+				<div class="card card-solid">
+					<div class="card-body" style="padding-bottom: 0">
+						<div class="row d-flex align-items-stretch">
+							<div class="d-flex align-items-stretch" style="width: 20%;">
+								<div class="card bg-light">
+									<div class="card-header text-muted border-bottom-0">카테고리</div>
+									<div class="card-body pt-0">
+										<div class="row">
+											<div class="col-7">
+												<h2 class="lead">
+													<b>동호회명</b>
+												</h2>
+												<p class="text-muted text-sm">
+													<b>About: </b> 동호회 설명
+												</p>
+												<!-- <ul class="ml-4 mb-0 fa-ul text-muted">
+												<li class="small"><span class="fa-li"><i
+														class="fas fa-lg fa-building"></i></span> Address: Demo Street
+													123, Demo City 04312, NJ</li>
+												<li class="small"><span class="fa-li"><i
+														class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23
+													52</li>
+											</ul> -->
+											</div>
+											<div class="col-5 text-center">
+												<img src="../../dist/img/user1-128x128.jpg" alt=""
+													class="img-circle img-fluid">
+											</div>
+										</div>
+									</div>
+									<div class="card-footer">
+										<div class="text-right">
+											<a href="#" class="btn btn-sm bg-teal"> <i
+												class="fas fa-comments"></i>
+											</a> <a href="#" class="btn btn-sm btn-primary"> <i
+												class="fas fa-user"></i> View Profile
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /.card-body -->
+				</div>
+			</div>
 		</section>
 		<!-- joinClub End-->
 
