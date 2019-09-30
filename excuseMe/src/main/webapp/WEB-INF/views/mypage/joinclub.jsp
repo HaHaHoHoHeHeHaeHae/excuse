@@ -80,99 +80,116 @@
 		
 	
 	</div>
+	<div id="all_div">
 	
-	<div id="section_div">
-		<!-- Main -->
-		<section id="main" class="wrapper" >
-		
+	
+		<div id="section_div">
+			<!-- Main -->
+			<section id="main" class="wrapper" >
 			
 				
-		
-			<!-- Menu -->
+					
 			
-				<!-- Elements -->
-				<div class="row">
-					<h2 id="elements">마이페이지 - 가입한 동호회</h2>
-					<!-- <div class="nav nav-pills ml-auto p-2">
-						<span class="button small" onclick="#">글 쓰기</span>
-					</div> -->
-				</div>
-				<div class="row 200%">
-					<div class="12u">
-						<!-- Table -->
-	
-						<c:forEach var="club" items="${clubList }">
-					<c:if test="${empty clubList }">
-						<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
-					</c:if>
-					<c:if test="${!empty clubList }">
-						<div class="clublist_body"
-							 style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin-left:3px; margin-right:3px;width:219px;">
-							<div class="card-body box-profile">
-								<div class="text-center">
-									<img class="profile-user-img img-fluid img-circle"
-										src="<%=request.getContextPath()%>/resources/img/logo.png"
-										alt="User profile picture">
+				<!-- Menu -->
+				
+					<!-- Elements -->
+					<div class="row">
+						<h2 id="elements">마이페이지 - 가입한 동호회</h2>
+						<!-- <div class="nav nav-pills ml-auto p-2">
+							<span class="button small" onclick="#">글 쓰기</span>
+						</div> -->
+					</div>
+					<div class="row 200%">
+						<div class="12u">
+							<!-- Table -->
+		
+							<c:forEach var="club" items="${clubList }">
+						<c:if test="${empty clubList }">
+							<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
+						</c:if>
+						<c:if test="${!empty clubList }">
+							<div class="clublist_body"
+								 style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin-left:3px; margin-right:3px;width:219px;">
+								<div class="card-body box-profile">
+									<div class="text-center">
+										<img class="profile-user-img img-fluid img-circle"
+											src="<%=request.getContextPath()%>/resources/img/logo.png"
+											alt="User profile picture">
+									</div>
+									<h3 class="profile-username text-center" style="height: 31px; width: 190px; overflow: hidden; text-overflow: ellipsis;">${club.club_name }</h3>
+									
+									<ul class="list-group list-group-unbordered mb-3">
+										
+										<li class="list-group-item text-center" style="height: 40px; width: 198px; left: -10px;">
+											<b id="btag">
+												<i class="fas fa-user-alt"></i>&nbsp;&nbsp;${club.joincnt }
+												&nbsp;&nbsp;
+												<i class="far fa-thumbs-up"></i>&nbsp;&nbsp;${club.upcnt }
+												&nbsp;&nbsp;
+												<i class="fas fa-thumbs-down"></i>&nbsp;&nbsp;${club.downcnt }
+											</b>
+										</li>
+										
+									</ul>
+									<ul class="actions vertical small" style="text-align: center;">
+										<li>
+											<div class="btn_g" style="position: relative;">
+												<div class="btn-group" style="position: absolute; left: -18px; top: -13px;">
+													<a href="#" class="button small" style="color: white; ">상세보기</a>&nbsp;<a href="#" class="button special small" style="color: white; ">탈&nbsp;&nbsp;&nbsp;퇴</a>
+												</div>
+											</div>
+										</li>
+										
+									</ul>
 								</div>
-								<h3 class="profile-username text-center">${club.club_name }</h3>
-								
-								<ul class="list-group list-group-unbordered mb-3">
-									<li class="list-group-item text-center" style="height: 40px;"><b>인원수&nbsp&nbsp&nbsp&nbsp</b><b>${club.joincnt }</b></li>
-									<li class="list-group-item text-center" style="height: 40px;"><b>좋아요&nbsp&nbsp&nbsp&nbsp</b><b>${club.upcnt }</b></li>
-									<li class="list-group-item text-center" style="height: 40px;"><b>싫어요&nbsp&nbsp&nbsp&nbsp</b><b>${club.downcnt }</b></li>
-								</ul>
-								<ul class="actions vertical small" style="text-align: center;">
-									<li><a href="#" class="button small" style="color: white;">Follow</a></li>
-								</ul>
 							</div>
-						</div>
-					</c:if>
-				</c:forEach>
-				
-				
-			</section>
-		<section class="content">	
-			<!-- pagination Start-->
-		<div class="card-footer clearfix">
-			<div class="pagination justify-content-center m-0">
-				<ul class="pagination ">
-					<li class="page-item"><a class="page-link"
-						href="joinclub${pageMaker.makeQuery(1)}" style="text-decoration: none">&lt;&lt;</a>
-					<li class="page-item"><a class="page-link"
-						href="joinclub<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
-						style="text-decoration: none">&lt;</a></li>
-					<c:forEach begin="${pageMaker.startPage }"
-						end="${pageMaker.endPage }" var="pageNum">
-						<li
-							class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
-							<a class="page-link" href="joinclub${pageMaker.makeQuery(pageNum) }"
-							style="text-decoration: none">${pageNum } </a>
-						</li>
+						</c:if>
 					</c:forEach>
-
-					<li class="page-item"><a class="page-link"
-						href="joinclub
-									<c:if test="${pageMaker.next }">
-										${pageMaker.makeQuery(pageMaker.endPage+1) }
-									</c:if>
-									<c:if test="${!pageMaker.next }">
-										${pageMaker.makeQuery(pageMaker.cri.page) }
-									</c:if>
-								"
-						style="text-decoration: none">&gt;</a></li>
-
-					<li class="page-item"><a class="page-link"
-						href="joinclub${pageMaker.makeQuery(pageMaker.realEndPage) }"
-						style="text-decoration: none"> &gt;&gt; </a></li>
-				</ul>
-			</div>
-		</div>
-		</div>
-
-		<br> <br> <br>
-		<!-- clubList End -->
-		</section>
+					
+					
+				</section>
+		
+				<!-- pagination Start-->
+			<div class="card-body">
+				<div class="pagination justify-content-center m-0">
+					<ul class="pagination ">
+						<li class="page-item"><a class="page-link"
+							href="joinclub${pageMaker.makeQuery(1)}" style="text-decoration: none">&lt;&lt;</a>
+						<li class="page-item"><a class="page-link"
+							href="joinclub<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
+							style="text-decoration: none">&lt;</a></li>
+						<c:forEach begin="${pageMaker.startPage }"
+							end="${pageMaker.endPage }" var="pageNum">
+							<li
+								class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
+								<a class="page-link" href="joinclub${pageMaker.makeQuery(pageNum) }"
+								style="text-decoration: none">${pageNum } </a>
+							</li>
+						</c:forEach>
 	
+						<li class="page-item"><a class="page-link"
+							href="joinclub
+										<c:if test="${pageMaker.next }">
+											${pageMaker.makeQuery(pageMaker.endPage+1) }
+										</c:if>
+										<c:if test="${!pageMaker.next }">
+											${pageMaker.makeQuery(pageMaker.cri.page) }
+										</c:if>
+									"
+							style="text-decoration: none">&gt;</a></li>
+	
+						<li class="page-item"><a class="page-link"
+							href="joinclub${pageMaker.makeQuery(pageMaker.realEndPage) }"
+							style="text-decoration: none"> &gt;&gt; </a></li>
+					</ul>
+				</div>
+			</div>
+			
+			</div>
+	
+			<br> <br> <br>
+		
+			
 		
 	
 	
@@ -198,4 +215,3 @@
 		/* $("#sidemenu").add("style='padding: 0px;'"); */
 	</script>
 </body>
-</html>
