@@ -91,23 +91,24 @@ li {
 				</div>
 			</section>
 
-			<section class="clublist" style="height: 936px;">
+			<section class="clublist" style="height: 936px;width:auto;">
 				<c:forEach var="club" items="${clubList }">
 					<c:if test="${empty clubList }">
 						<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
 					</c:if>
 					<c:if test="${!empty clubList }">
 						<div class="clublist_body"
-							style="width: 20%; float: left; border: 1px;">
+							 style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin-left:3px; margin-right:3px;width:219px;">
 							<div class="card-body box-profile">
 								<div class="text-center">
 									<img class="profile-user-img img-fluid img-circle"
-										src="<%=request.getContextPath()%>/resources/logo.png"
+										src="<%=request.getContextPath()%>/resources/img/logo.png"
 										alt="User profile picture">
 								</div>
 								<h3 class="profile-username text-center">${club.club_name }</h3>
-								<div class="content1">
-									<p class="text-muted text-center">${club.club_content}</p>
+								<div class="content1" style="margin:10px;">
+									<div class="text-muted text-center" style="max-height:3.6em; overflow:hidden; 
+																			   display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">${club.club_content}</div>
 								</div>
 								<ul class="list-group list-group-unbordered mb-3">
 									<li class="list-group-item text-center" style="height: 40px;"><b>인원수&nbsp&nbsp&nbsp&nbsp</b><b>${club.joincnt }</b></li>

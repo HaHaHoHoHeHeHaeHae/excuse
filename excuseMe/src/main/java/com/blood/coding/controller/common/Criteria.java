@@ -10,16 +10,16 @@ public class Criteria {
 	private String keyword;     //검색어
 	private String local;
 	private int alignment;
-	
+	private String login_local;
 	
 	
 	
 	
 	public Criteria() {
-		this(1, 10, "", "", "", 0);
+		this(1, 10, "", "", "", 0,"");
 	} 
 
-	public Criteria(int page, int perPageNum, String category, String keyword, String local, int alignment) {
+	public Criteria(int page, int perPageNum, String category, String keyword, String local, int alignment, String login_local) {
 		super();
 		this.page = page;
 		this.perPageNum = perPageNum;
@@ -27,6 +27,7 @@ public class Criteria {
 		this.keyword = keyword;
 		this.local = local;
 		this.alignment=alignment;
+		this.setLogin_local(login_local);
 	}
 
 	public int getPage() {
@@ -91,6 +92,14 @@ public class Criteria {
 
 	public void setAlignment(int alignment) {
 		this.alignment = alignment;
+	}
+
+	public String getLogin_local() {
+		return login_local;
+	}
+
+	public void setLogin_local(String login_local) {
+		this.login_local = login_local;
 	}
 
 	
