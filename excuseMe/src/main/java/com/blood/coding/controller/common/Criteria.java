@@ -13,8 +13,6 @@ public class Criteria {
 	private String login_local;
 	
 	
-	
-	
 	public Criteria() {
 		this(1, 10, "", "", "", 0,"");
 	} 
