@@ -78,6 +78,7 @@ public class ClubServiceImpl implements ClubService {
 			club.setReplycnt(replycnt);
 		}
 */
+		
 		// pagination
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);

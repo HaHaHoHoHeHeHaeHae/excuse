@@ -60,5 +60,9 @@
 	  	  class="com.blood.coding.service.club.ClubServiceImpl"
 	  	  p:clubDAO-ref="clubDAO" 
 	  	  p:memberDAO-ref="memberDAO"/>
-	
+	  	  
+	<bean id="CategoryServiceImpl"
+			class="com.blood.coding.wc_test.CategoryServiceImpl"
+			p:categoryDAO-ref="CategoryDAO">
+	</bean>
 </beans>

@@ -27,7 +27,7 @@ public class ManageUserController {
 		
 		MemberPageMaker pageMaker = new MemberPageMaker();
 		pageMaker.setCri(cri);
-		
+		System.out.println("dd");
 		Map<String,Object> dataMap=service.memberlistByAdmin(pageMaker);
 		
 		model.addAllAttributes(dataMap);

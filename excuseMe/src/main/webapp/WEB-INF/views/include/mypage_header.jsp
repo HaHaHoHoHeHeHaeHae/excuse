@@ -113,7 +113,30 @@
 		}
 	}
 	
+			#subm {
+				top: 120px;
+				position: absolute;
+				height: 500px;
+				width: 240px;
+				z-index: 5;
+				background: #25A2C3;
+				left: 4px;
+				margin: 0px;
+				padding: 0px;
+				border-radius: 0px 10px 10px 0px;
+				
+			}
+			.atag {
+				font-size: 18px;
+				
+			}
 			
+			
+			#section_div {
+				position: absolute;
+				left:  280px;
+				width: 1200px;
+			}
 			
 			
 	

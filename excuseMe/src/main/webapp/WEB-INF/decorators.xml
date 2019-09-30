@@ -7,7 +7,10 @@
 	
 	<decorator name="notice" page="notice_decorator.jsp">
 		<pattern>/notice/*</pattern>		
-	</decorator>		
+	</decorator>	
+	<decorator name="mypage" page="mypage_decorator.jsp">
+		<pattern>/mypage/*</pattern>		
+	</decorator>			
 	
 <!-- 	<decorator name="OpenWindow" page="open_decorator.jsp">
 		<pattern>/*</pattern>		
