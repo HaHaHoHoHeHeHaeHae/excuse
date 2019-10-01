@@ -63,7 +63,7 @@
         <input type="submit" class="button small" placeholder="로그인" value="로그인">
 
         
-        <span class="button small" onclick="">
+        <span class="button small" onclick="self.location='<%=request.getContextPath()%>/common/regist'">
           	회원가입
         </span>
       </div>

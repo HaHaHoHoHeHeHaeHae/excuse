@@ -140,7 +140,7 @@ function searchId(){
 	var phone_hidden = $("#mem_phone_hidden").val();
 	var birthDate_hidden = $("#mem_birthDate_hidden").val();
 	if(name_hidden != "success" ||phone_hidden != "success" ||birthDate_hidden != "success"){
-		alert("잘 못 된 입력입니다.")
+		alert("잘 못 된 입력입니다.");
 	}else{
 		$.ajax({
 			url:"<%=request.getContextPath()%>/common/searchId",
@@ -196,7 +196,7 @@ $(document).ready(function(){
 	});
 	$("#mem_birthDate").keyup(function(){
 		var birthDate = $("#mem_birthDate").val();
-		if(name != 0) {
+		if(birthDate != 0) {
 			if(chkBirthDate(birthDate)){
 				$("#mem_birthDate_test").html("");
 				$("#mem_birthDate_hidden").val("success");

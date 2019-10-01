@@ -21,11 +21,11 @@ public class EditorUploadController {
 	private String imgPath;
 	
 	@RequestMapping("/uploadImg")
-	public ResponseEntity<String> uploadImg(MultipartFile file, String id, HttpServletRequest request) throws Exception {
-		
+	public ResponseEntity<String> uploadImg(MultipartFile file, String mem_id, HttpServletRequest request) throws Exception {
+
 		ResponseEntity<String> result = null;
 		
-		String savePath = request.getServletContext().getRealPath(imgPath + id + "/"); 
+		String savePath = request.getServletContext().getRealPath(imgPath + mem_id + "/"); 
 		String uuidName = UUID.randomUUID().toString().replace("-", "");
 		String fileFormat = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 		
@@ -39,7 +39,7 @@ public class EditorUploadController {
 		
 		try {
 			file.transferTo(saveFile);
-			result = new ResponseEntity<String>(request.getContextPath() + imgPath + id + "/" + fileName, HttpStatus.OK);
+			result = new ResponseEntity<String>(request.getContextPath() + imgPath + mem_id + "/" + fileName, HttpStatus.OK);
 		} 
 		catch(Exception e){
 			result = new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -50,11 +50,11 @@ public class EditorUploadController {
 	
 	
 	@RequestMapping("/deleteImg")
-	public ResponseEntity<String> deleteImg(String fileName, String id, HttpServletRequest request) throws Exception {
+	public ResponseEntity<String> deleteImg(String fileName, String mem_id, HttpServletRequest request) throws Exception {
 		
 		ResponseEntity<String> result = null;
 		
-		String savePath = request.getServletContext().getRealPath(imgPath + "/" + id + "/" );
+		String savePath = request.getServletContext().getRealPath(imgPath + "/" + mem_id + "/" );
 		
 		File delFile = new File(savePath + fileName);
 		

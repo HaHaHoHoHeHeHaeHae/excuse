@@ -140,13 +140,13 @@
 	            	<div class="hmenu1" onclick="location.href='#'">
 	            		동호회 생성
 	            	</div>
-	            	<div class="hmenu1" onclick="location.href='#'">
+	            	<div class="hmenu1" onclick="changeIframe('notice');">
 	            		공지사항
 	            	</div>
 	            </div>
 				<div id="hid">
 					<div id="hid2">
-				        <a href="#">[ 로그아웃 ]</a>
+				        <a href="<c:url value='/logout'/>">[ 로그아웃 ]</a>
 				    </div>
 					<div id="hid1">
 						<p>${loginUser.mem_nick} 님 환영합니다</p>

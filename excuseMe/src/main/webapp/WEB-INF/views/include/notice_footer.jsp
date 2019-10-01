@@ -1,4 +1,4 @@
-<footer id="footer" style="position:relative">
+<footer id="footer" style="position:relative;margin-top:80px;">
 	<div class="inner">
 		<h2>Get In Touch</h2>
 		<ul class="actions">
@@ -27,5 +27,9 @@
 	<script src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
 	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
-	<script src="<%=request.getContextPath() %>/resources/bootstrap/plugins/summernote/summernote-bs4.min.js"></script>
+	 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+	<!-- date-range-picker -->
+	<script src="<%=request.getContextPath()%>/resources/adminLTE/plugins/daterangepicker/daterangepicker.js"></script>
 <%@include file="./notice_footer_js.jsp" %>

@@ -6,7 +6,10 @@
 	</decorator>
 	
 	<decorator name="notice" page="notice_decorator.jsp">
-		<pattern>/notice/*</pattern>		
+		<pattern>/notice/regist</pattern>
+		<pattern>/notice/list</pattern>
+		<pattern>/notice/detail</pattern>	
+		<pattern>/notice/modify</pattern>	
 	</decorator>		
 	
 <!-- 	<decorator name="OpenWindow" page="open_decorator.jsp">
@@ -16,8 +19,10 @@
 	
 	
 	<excludes>
+
 		<pattern>*/common/login*</pattern>
 		<pattern>*/common/regist*</pattern>
 		<pattern>*/common/search*</pattern>		
+
 	</excludes>
 </decorators>

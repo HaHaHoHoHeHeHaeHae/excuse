@@ -50,9 +50,11 @@
 			<!-- Elements -->
 			<div class = "row">
 				<h2 id="elements">공지사항</h2>
+				<c:if test="${loginUser.mem_nick eq 'admin'}">
 				<div class="nav nav-pills ml-auto p-2">
-					<span class="button small" onclick="#">글 쓰기</span>
+					<span class="button small" onclick="self.location='<%=request.getContextPath()%>/notice/regist'">글 쓰기</span>
 				</div>
+				</c:if>
 			</div>
 			<div class="row 200%">
 				<div class="12u">
@@ -93,7 +95,7 @@
 										<tr>
 											<td>${notice.not_no.substring(1) }</td>
 											<td>
-												<a href="#" data-name="title" onclick="OpenWindow('detail?not_no=${notice.not_no }','','800','650');">${notice.not_title }</a>
+												<a href="#" data-name="title" onclick="self.location='<%=request.getContextPath()%>/notice/detail?not_no=${notice.not_no }&page=${pageMaker.cri.page }'">${notice.not_title }</a>
 											</td>
 											<td><fmt:formatDate value="${notice.not_regDate }" pattern="yyyy-MM-dd"/></td>
 											<td>${notice.not_viewCnt }</td>
@@ -105,8 +107,8 @@
 											</c:if> --%>
 											<td><ion-icon name="document"></ion-icon></td>
 											<c:if test="${loginUser.mem_nick eq 'admin'}">
-												<td><ion-icon name="build"  onclick="form?not_no=${notice.not_no }','','800','650');"></ion-icon></td>
-												<td><ion-icon name="trash"  onclick="#"></ion-icon></td>
+												<td><div style="cursor:pointer;" onclick="self.location='<%=request.getContextPath()%>/notice/modify?not_no=${notice.not_no }'"><ion-icon name="build"  ></ion-icon></div></td>
+												<td><a style="cursor:pointer;" href='<%=request.getContextPath()%>/notice/remove?not_no=${notice.not_no }'> <ion-icon name="trash"></ion-icon></a></td>
 											</c:if>
 										</tr>
 									</c:forEach>
@@ -168,5 +170,6 @@
 	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
+	
 </body>
 </html>

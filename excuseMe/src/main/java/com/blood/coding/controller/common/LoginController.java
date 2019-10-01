@@ -39,7 +39,10 @@ public class LoginController {
 		return URL;
 	}
 	
-	
+	@RequestMapping("/test123")
+	public String testwe() {
+		return "/notice_sub/regist_test";
+	}
 /*	@RequestMapping("/login")
 	public String login(MemberVO memberVO) throws Exception{
 		String URL = "/common/login";
@@ -84,9 +87,15 @@ public class LoginController {
 	@RequestMapping(value = "/signup", method=RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<Object> signUp(MemberVO memberVO) throws Exception{
-		ResponseEntity<Object> entity = null;
 		
+		ResponseEntity<Object> entity = null;
 		try {
+			String birthDate = memberVO.getBirthDate();
+
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+			System.out.println(birthDate);
+			Date mem_birthDate = transFormat.parse(birthDate);
+			memberVO.setMem_birthDate(mem_birthDate);
 			String id = memberVO.getMem_id();
 			System.out.println(id);
 			service.signUp(memberVO);
