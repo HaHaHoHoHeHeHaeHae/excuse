@@ -75,6 +75,78 @@ div.top {
 				<h1>동호회 리스트</h1>
 				<p>원하는 동호회를 검색하세요.</p>
 			</header>
+			<section class="search" style="height: 300px; width: 1100px;">
+				<div class="search1" style="height: 80px; margin: 0 auto;">
+					<div class="form-group" style="float: left;">
+						<div class="label"
+							style="float: left; margin-left: 10px; margin-right: 20px; width: 450px;">
+							<div class="label_name" style="float: left; margin-right: 10px;">
+								<strong>카테고리:</strong>
+							</div>
+							<div class="select" style="float: left;">
+								<select class="form-control" style="width: 350px; float: left;">
+									<option value="" disabled selected>- 대분류 -</option>
+									<option>option 2</option>
+									<option>option 3</option>
+									<option>option 4</option>
+									<option>option 5</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="label"
+							style="float: left; margin-left: 20px; margin-right: 10px; width: 610px;">
+							<div class="select">
+								<select class="form-control" style="width: 500px; float: left;">
+									<option value="" disabled selected>- 소분류 -</option>
+									<option>option 2</option>
+									<option>option 3</option>
+									<option>option 4</option>
+									<option>option 5</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="search2" style="height: 80px;">
+					<div class="form-group" style="float: left;">
+						<div class="label"
+							style="float: left; margin-left: 10px; margin-right: 20px; width: 450px;">
+							<div class="label_name" style="float: left; margin-right: 10px;">
+								<strong>지역:</strong>
+							</div>
+							<div class="select" style="float: left;">
+								<select class="form-control" style="width: 400px; float: left;">
+									<option value="" disabled selected>-시 도 -</option>
+									<option>option 2</option>
+									<option>option 3</option>
+									<option>option 4</option>
+									<option>option 5</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="label"
+							style="float: left; margin-left: 20px; margin-right: 10px; width: 610px;">
+							<div class="select">
+								<select class="form-control" style="width: 500px; float: left;">
+									<option value="" disabled selected>- 구 군 -</option>
+									<option>option 2</option>
+									<option>option 3</option>
+									<option>option 4</option>
+									<option>option 5</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="search3" style="height: 80px;">
+					<div class="form-group" style="float: left;">
+						<label>Text</label> <input type="text" class="form-control"
+							placeholder="Enter ...">
+					</div>
+				</div>
+			</section>
 			<!-- searchClubList End-->
 
 			<!-- clubList Start -->
@@ -186,7 +258,7 @@ div.top {
 				<ul class="pagination ">
 					<li class="page-item"><a class="page-link"
 						href="list${pageMaker.makeQuery(1)}" style="text-decoration: none">&lt;&lt;</a>
-					<li class="page-item"><a class="page-link"
+						<li class="page-item"><a class="page-link"
 						href="list<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
 						style="text-decoration: none">&lt;</a></li>
 					<c:forEach begin="${pageMaker.startPage }"
@@ -276,6 +348,5 @@ div.top {
    
    });						
 
-</script>
-	</bo
+</script> </bo
 					dy>
