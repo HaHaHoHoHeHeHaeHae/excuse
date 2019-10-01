@@ -38,13 +38,11 @@ public class ClubController {
 	//private static final Logger logger = LoggerFactory.getLogger(ClubController.class);
 
 	@RequestMapping("/list") //동호회 리스트보기
-	public ModelAndView clubList(Criteria cri, ModelAndView modelnView) throws SQLException{
+	public ModelAndView clubList(Criteria cri, ModelAndView modelnView) throws SQLException{ //session에서 멤버VO(local)가져올거기 떄문에 request 추가해줌.
 		String url = "/club/list";
 
-		Map<String, Object> dataMap = clubService.getClubList(cri);
+		Map<String, Object> dataMap = clubService.getClubList(cri); //여기서도 memberVO 추가해줘야함.
 		modelnView.addObject("dataMap",dataMap);
-		
-
 		
 		modelnView.setViewName(url);
 		return modelnView;

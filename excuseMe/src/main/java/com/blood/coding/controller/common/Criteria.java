@@ -17,6 +17,7 @@ public class Criteria {
 		this(1, 10, "", "", "", 0,"");
 	} 
 
+
 	public Criteria(int page, int perPageNum, String category, String keyword, String local, int alignment, String login_local) {
 		super();
 		this.page = page;
@@ -24,8 +25,7 @@ public class Criteria {
 		this.category = category;
 		this.keyword = keyword;
 		this.local = local;
-		this.alignment=alignment;
-		this.setLogin_local(login_local);
+		this.login_local=login_local;
 	}
 
 	public int getPage() {
@@ -78,11 +78,6 @@ public class Criteria {
 		this.local = local;
 	}
 
-	@Override
-	public String toString() {
-		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", category=" + category + ", keyword="
-				+ keyword + ", local=" + local + "]";
-	}
 
 	public int getAlignment() {
 		return alignment;
@@ -100,5 +95,14 @@ public class Criteria {
 		this.login_local = login_local;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", category=" + category + ", keyword="
+				+ keyword + ", local=" + local + ", alignment=" + alignment + ", login_local=" + login_local + "]";
+	}
+
+	
+	
 	
 }

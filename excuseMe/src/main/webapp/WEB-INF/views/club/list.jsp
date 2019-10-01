@@ -1,32 +1,25 @@
-<!-- 
+
 <style>
 div.top {
 	height: 100px;
 }
 
-th {
-	text-align: center;
+.animation {
+	/* overflow: hedden; */
+	width: 600px;
+	height: 100px;
 }
 
-.listTitle {
-	height: 30px;
-	background: pink;
+.slider {
+	width: 1000px;
 }
 
-table {
-	font-size: 10px;
+.slider_img {
+	float: left;
+	width: 100px;
+	height: 100px;
 }
-
-ul {
-	text-align: center;
-}
-
-li {
-	display: inline-block;
-	list-style: none;
-}
-
-</style> -->
+</style>
 
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -85,20 +78,25 @@ li {
 			<!-- alignment -->
 			<section class="alignment" style="height: 70px;">
 				<div class="listTitle" style="float: right;">
-					<a class="btn btn-app"><i class="fas fa-users"></i> 인원수순</a> <a
-						class="btn btn-app"><i class="fas fa-thumbs-up"></i> 좋아요순</a> <a
-						class="btn btn-app"><i class="fas fa-thumbs-down"></i> 싫어요순</a>
+					<a class="btn btn-app"><i class="fas fa-sort-numeric-down-alt"></i>역사가 깊은</a> 
+					<a class="btn btn-app"><i class="fas fa-sort-numeric-down"></i>갓 생긴</a> 
+					<a class="btn btn-app"><i class="fas fa-users"></i>사람많은</a> 
+					<a class="btn btn-app"><i class="fas fa-user"></i>사람적은</a> 
+					<a class="btn btn-app"><i class="fas fa-thumbs-up"></i>인기있는</a> 
+					<a class="btn btn-app"><i class="fas fa-thumbs-down"></i>인기없는</a>
 				</div>
 			</section>
+			
+			<div class="divLine" style="background: #f6755e; margin-bottom:20px;height:5px;"></div>
 
-			<section class="clublist" style="height: 936px;width:auto;">
+			<section class="clublist" style="height: 608px; width: auto;">
 				<c:forEach var="club" items="${clubList }">
 					<c:if test="${empty clubList }">
 						<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
 					</c:if>
 					<c:if test="${!empty clubList }">
 						<div class="clublist_body"
-							 style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin-left:3px; margin-right:3px;width:219px;">
+							style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin: 3px 3px 20px 3px; width: 219px;">
 							<div class="card-body box-profile">
 								<div class="text-center">
 									<img class="profile-user-img img-fluid img-circle"
@@ -106,17 +104,22 @@ li {
 										alt="User profile picture">
 								</div>
 								<h3 class="profile-username text-center">${club.club_name }</h3>
-								<div class="content1" style="margin:10px;">
-									<div class="text-muted text-center" style="max-height:3.6em; overflow:hidden; 
-																			   display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">${club.club_content}</div>
-								</div>
+								<%-- <div class="content1" style="margin: 10px;">
+									<div class="text-muted text-center"
+										style="max-height: 3.6em; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${club.club_content}</div>
+								</div> --%>
 								<ul class="list-group list-group-unbordered mb-3">
-									<li class="list-group-item text-center" style="height: 40px;"><b>인원수&nbsp&nbsp&nbsp&nbsp</b><b>${club.joincnt }</b></li>
-									<li class="list-group-item text-center" style="height: 40px;"><b>좋아요&nbsp&nbsp&nbsp&nbsp</b><b>${club.upcnt }</b></li>
-									<li class="list-group-item text-center" style="height: 40px;"><b>싫어요&nbsp&nbsp&nbsp&nbsp</b><b>${club.downcnt }</b></li>
+									<li class="list-group-item text-center"
+										style="height: 60px; width: 198px; left: -10px;"><b
+										id="btag"> <i class="fas fa-user-alt"></i>&nbsp;&nbsp;${club.joincnt }
+											&nbsp;&nbsp; <i class="far fa-thumbs-up"></i>&nbsp;&nbsp;${club.upcnt }
+											&nbsp;&nbsp; <i class="fas fa-thumbs-down"></i>&nbsp;&nbsp;${club.downcnt }
+									</b></li>
+
 								</ul>
-								<ul class="actions vertical small" style="text-align: center;">
-									<li><a href="#" class="button small" style="color: white;">Follow</a></li>
+								<ul class="actions vertical small"
+									style="text-align: center; margin-bottom: -10px;">
+									<li><a href="#" class="button small" style="color: white;">Detail</a></li>
 								</ul>
 							</div>
 						</div>
@@ -128,10 +131,10 @@ li {
 		<br> <br> <br>
 		<!-- clubList End -->
 
-		<!-- joinClub Start-->
+		<!-- recommendClub Start-->
 		<section class="joinclub_title">
 			<div class="join_wrap"
-				style="width: 953.33px; margin-left: auto; margin-right: auto;">
+				style="width: 1126.66px; margin-left: auto; margin-right: auto;">
 				<h3>추천동호회</h3>
 				<div class="card card-solid">
 					<div class="card-body" style="padding-bottom: 0">
@@ -180,7 +183,7 @@ li {
 				</div>
 			</div>
 		</section>
-		<!-- joinClub End-->
+		<!-- recommendClub End-->
 
 		<!-- pagination Start-->
 		<div class="card-footer clearfix">
@@ -217,8 +220,29 @@ li {
 				</ul>
 			</div>
 		</div>
-
 	</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<script
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
 	<script
@@ -255,8 +279,8 @@ li {
          }
       });
    
-   });
-	
-							
+   });						
+
 </script>
-</body>
+	</bo
+					dy>

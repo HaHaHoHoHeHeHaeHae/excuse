@@ -57,43 +57,39 @@ public class ClubServiceImpl implements ClubService {
 	public void setLocalDAO(LocalDAO localDAO) {
 		this.localDAO=localDAO;
 	}
-	// wish랑 join은 나중에 협의해야함
-	
 
 	
+	
+	
 	@Override
-	public Map<String, Object> getClubList(Criteria cri) throws SQLException {
+	public Map<String, Object> getClubList(Criteria cri) throws SQLException { //(매개변수에 memberVO추가)
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 
 		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
 		//List<CategoryVO> cateList = categoryDAO.selectCategoryList();
 		//List<LocalVO> localList = localDAO.selectLocalList();
 		
-		
+
 		int totalCount = clubDAO.selectSearchClubCount(cri);
 		
-		
-		/*int cno = clubDAO.selectClubSeq();
-		System.out.println("+++++++++++++++++++++");
-		System.out.println("+++++++++++++++++++++");
-		System.out.println(cno);
-		System.out.println("+++++++++++++++++++++");
-		System.out.println("+++++++++++++++++++++");
-		String club_no = "c_" + cno;
-		for(ClubVO club : clubList) {
-			int replycnt = replyDAO.selectReplyListCount(club_no);
-			
-			club.setReplycnt(replycnt);
-		}
-*/
 		// pagination
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(totalCount);
 		
+
+		//cri.setPerPageNum(5);
+
+		//추천리스트
+		//List<ClubVO> recommendList = clubDAO.selectSearchClubList(cri);
+		//cri.setLogin_local(memberVO.get....);
+		
+		
 		// dataMap에 넣기
 		dataMap.put("clubList", clubList);
 		dataMap.put("pageMaker", pageMaker);
+		//dataMap.put("recomendList", recommendList);
+		
 		//dataMap.put("cateList", cateList);
 		//dataMap.put("localList", localList);
 
