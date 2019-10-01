@@ -5,11 +5,12 @@ import java.util.Map;
 
 import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.dto.club.ClubVO;
+import com.blood.coding.dto.member.MemberVO;
 
 public interface ClubService {
 	
 	//리스트+페이지메이커
-	Map<String,Object> getClubList(Criteria cri) throws SQLException;
+	Map<String,Object> getClubList(Criteria cri, MemberVO memberVO) throws SQLException;
 	
 	Map readClub(String club_no) throws SQLException;	
 	ClubVO getClub(String club_no) throws SQLException;

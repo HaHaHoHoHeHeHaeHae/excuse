@@ -6,7 +6,9 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,7 @@ import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.dao.category.CategoryDAO;
 import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.dto.club.ClubVO;
+import com.blood.coding.dto.member.MemberVO;
 import com.blood.coding.service.club.ClubService;
 
 @Controller
@@ -38,10 +41,15 @@ public class ClubController {
 	//private static final Logger logger = LoggerFactory.getLogger(ClubController.class);
 
 	@RequestMapping("/list") //동호회 리스트보기
-	public ModelAndView clubList(Criteria cri, ModelAndView modelnView) throws SQLException{ //session에서 멤버VO(local)가져올거기 떄문에 request 추가해줌.
+	public ModelAndView clubList(Criteria cri, ModelAndView modelnView, HttpServletRequest request) throws SQLException{ //session에서 멤버VO(local)가져올거기 떄문에 request 추가해줌.
 		String url = "/club/list";
-
-		Map<String, Object> dataMap = clubService.getClubList(cri); //여기서도 memberVO 추가해줘야함.
+		HttpSession session = request.getSession();
+		MemberVO memberVO = (MemberVO) session.getAttribute("loginUser");
+		Map<String, Object> dataMap = clubService.getClubList(cri, memberVO);
+		
+		System.out.println("#####");
+		System.out.println(memberVO);
+		System.out.println("#####");
 		modelnView.addObject("dataMap",dataMap);
 		
 		modelnView.setViewName(url);

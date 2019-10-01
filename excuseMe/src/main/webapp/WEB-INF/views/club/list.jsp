@@ -130,74 +130,75 @@ div.top {
 				</c:forEach>
 			</section>
 		</div>
-
-		<br> <br> <br>
-		<!-- clubList End -->
-
-
-		<ul class="action fit small">
-			<li><a href="#" class="button alt fit small"
-				style="width: 1126.66px; margin: 0 auto; text-align: left;">(memberVO.mem_id)님 근처에 인기많은 동호회 리스트에요.</a></li>
-		</ul>
+	</section>
+	<!-- clubList End -->
 
 
+	<ul class="action fit small">
+		<li class="button alt fit big"
+			style="width: 1126.66px; margin: 0 auto; text-align: left;">${memberVO.mem_nick}님
+			근처에 인기많은 동호회 리스트에요.</li>
+	</ul>
 
-		<!-- recommendClub Start-->
-		<section class="joinclub_wrap"
-			style="width: 1126.66px; margin: 0 auto; height: 200px;">
-			<c:forEach var="recommend" items="${recommendList }">
-				<div class="joinclub card bg-light"
-					style="width: 350px; height: 200px; float: left; margin: 0 12.5px 0 12.5px;">
-					<div class="joinclub_sub text-muted border-bottom-0">&nbsp;${recommend.cate_name }</div>
-					<div class="joinclub_sub_body" style="width: 350px; height: 172px;">
-						<div class="sub_body" style="width: 350px; height: 172px;">
-							<div class="1" style="width: 190px; height: 172px; float: left;">
-								<h3 class="1_title"
-									style="text-align: center; padding-top: 8px;">
-									<b>${recommend.club_name }</b>
-								</h3>
-								<ul class="actions vertical small"
-									style="text-align: center; margin-bottom: -10px;">
-									<li><a href="#" class="button alt icon fa-search">Detail</a></li>
-									<li><a href="#" class="button alt icon fa-check">가입하기</a></li>
-								</ul>
-							</div>
-							<div class="2"
-								style="width: 160px; height: 160px; align: center; float: left; padding-right: 20px;">
-								<img src="<%=request.getContextPath()%>/resources/img/logo.png"
-									alt="" class="img-circle img-fluid">
-							</div>
+
+
+	<!-- recommendClub Start-->
+	<section class="joinclub_wrap"
+		style="width: 1126.66px; margin: 0 auto; height: 200px;">
+		<c:forEach var="recommend" items="${recommendList }">
+			<div class="joinclub card bg-light"
+				style="width: 350px; height: 200px; float: left; margin: 0 12.5px 0 12.5px;">
+				<div class="joinclub_sub text-muted border-bottom-0">&nbsp;${recommend.cate_name }</div>
+				<div class="joinclub_sub_body" style="width: 350px; height: 172px;">
+					<div class="sub_body" style="width: 350px; height: 172px;">
+						<div class="1" style="width: 190px; height: 172px; float: left;">
+							<h3 class="1_title" style="text-align: center; padding-top: 8px;">
+								<b>${recommend.club_name }</b>
+							</h3>
+							<ul class="actions vertical small"
+								style="text-align: center; margin-bottom: -10px;">
+								<li><a href="#" class="button alt icon fa-search">Detail</a></li>
+								<li><a href="#" class="button alt icon fa-check">가입하기</a></li>
+							</ul>
+						</div>
+						<div class="2"
+							style="width: 160px; height: 160px; align: center; float: left; padding-right: 20px;">
+							<img src="<%=request.getContextPath()%>/resources/img/logo.png"
+								alt="" class="img-circle img-fluid">
 						</div>
 					</div>
 				</div>
-			</c:forEach>
-		</section>
-		<!-- recommendClub End-->
+			</div>
+		</c:forEach>
+	</section>
+	<br>
+	<br>
 
-		<!-- pagination Start-->
-		<section class="pagination"
-			style="width: 1126.66px; margin: 0 auto; height: 68px;">
-			<div class="card-footer clearfix"
-				style="align: center; width: 1126.66px;">
-				<div class="pagination justify-content-center m-0">
-					<ul class="pagination ">
-						<li class="page-item"><a class="page-link"
-							href="list${pageMaker.makeQuery(1)}"
-							style="text-decoration: none">&lt;&lt;</a>
-						<li class="page-item"><a class="page-link"
-							href="list<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
-							style="text-decoration: none">&lt;</a></li>
-						<c:forEach begin="${pageMaker.startPage }"
-							end="${pageMaker.endPage }" var="pageNum">
-							<li
-								class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
-								<a class="page-link" href="list${pageMaker.makeQuery(pageNum) }"
-								style="text-decoration: none">${pageNum } </a>
-							</li>
-						</c:forEach>
+	<!-- recommendClub End-->
 
-						<li class="page-item"><a class="page-link"
-							href="list
+	<!-- pagination Start-->
+	<section class="pagination"
+		style="width: 1126.66px; margin: 0 auto; height: 68px;">
+		<div class="card-footer clearfix"
+			style="align: center; width: 1126.66px;">
+			<div class="pagination justify-content-center m-0">
+				<ul class="pagination ">
+					<li class="page-item"><a class="page-link"
+						href="list${pageMaker.makeQuery(1)}" style="text-decoration: none">&lt;&lt;</a>
+					<li class="page-item"><a class="page-link"
+						href="list<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
+						style="text-decoration: none">&lt;</a></li>
+					<c:forEach begin="${pageMaker.startPage }"
+						end="${pageMaker.endPage }" var="pageNum">
+						<li
+							class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
+							<a class="page-link" href="list${pageMaker.makeQuery(pageNum) }"
+							style="text-decoration: none">${pageNum } </a>
+						</li>
+					</c:forEach>
+
+					<li class="page-item"><a class="page-link"
+						href="list
 									<c:if test="${pageMaker.next }">
 										${pageMaker.makeQuery(pageMaker.endPage+1) }
 									</c:if>
@@ -205,15 +206,15 @@ div.top {
 										${pageMaker.makeQuery(pageMaker.cri.page) }
 									</c:if>
 								"
-							style="text-decoration: none">&gt;</a></li>
+						style="text-decoration: none">&gt;</a></li>
 
-						<li class="page-item"><a class="page-link"
-							href="list${pageMaker.makeQuery(pageMaker.realEndPage) }"
-							style="text-decoration: none"> &gt;&gt; </a></li>
-					</ul>
-				</div>
+					<li class="page-item"><a class="page-link"
+						href="list${pageMaker.makeQuery(pageMaker.realEndPage) }"
+						style="text-decoration: none"> &gt;&gt; </a></li>
+				</ul>
 			</div>
-		</section>
+		</div>
+	</section>
 
 
 
@@ -236,17 +237,17 @@ div.top {
 
 
 
-		<script
-			src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
-		<script
-			src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
-		<script
-			src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
-		<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-		<script
-			src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
+	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
 
-		<script>
+	<script>
    $('#category').change(function() { 
       
       <%-- self.location="<%=request.getContextPath()%>/subcategory" --%>
@@ -275,5 +276,5 @@ div.top {
    });						
 
 </script>
-		</bo
+	</bo
 					dy>

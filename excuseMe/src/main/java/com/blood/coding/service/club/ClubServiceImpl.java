@@ -62,7 +62,7 @@ public class ClubServiceImpl implements ClubService {
 	
 	
 	@Override
-	public Map<String, Object> getClubList(Criteria cri) throws SQLException { //(매개변수에 memberVO추가)
+	public Map<String, Object> getClubList(Criteria cri,MemberVO memberVO) throws SQLException { //(매개변수에 memberVO추가)
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 
 		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
