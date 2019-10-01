@@ -12,19 +12,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.blood.coding.dao.category.CategoryDAO;
 import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.wc_test.CategoryServiceImpl;
 
 @Controller
 public class CategoryController {
-
 	@Autowired
-	private CategoryServiceImpl service;
+	private CategoryDAO categoryDAO;
 	
 	@RequestMapping("/categoryry")
 	public String categoryList(Model model) throws Exception {
 		
-		List<CategoryVO> categoryList = service.getCategoryList();
+		List<CategoryVO> categoryList = categoryDAO.selectCategoryList();
 		
 		System.out.println("@@@@@@@@@@@");
 		System.out.println(categoryList);
@@ -46,7 +46,7 @@ public class CategoryController {
 		System.out.println("@");
 		
 		try {
-			List<CategoryVO> subCategoryList = service.getSubCategoryList(categoryVO.getCate_no());
+			List<CategoryVO> subCategoryList = categoryDAO.selectSubCategoryList(categoryVO.getCate_no());
 			
 			entity = new ResponseEntity<List<CategoryVO>>(subCategoryList,HttpStatus.OK);
 		}

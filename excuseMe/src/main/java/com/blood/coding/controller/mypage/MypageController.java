@@ -1,13 +1,20 @@
 package com.blood.coding.controller.mypage;
 
+import java.io.PrintWriter;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.blood.coding.controller.common.Criteria;
+import com.blood.coding.controller.common.UploadFileUtils;
+import com.blood.coding.dto.attach.AttachVO;
 import com.blood.coding.service.club.ClubService;
 
 @Controller
@@ -27,4 +34,29 @@ public class MypageController {
 		return modelnView;
 		
 	}
+	
+	@RequestMapping(value="testRegist", method=RequestMethod.GET)
+	public String testRegistget() throws Exception {
+		return "mypage/fileUploadTest";
+	}
+	
+	@RequestMapping(value="testRegist", method=RequestMethod.POST)
+	public void testRegistpost(MultipartFile[] uploadFile, HttpServletResponse response) throws Exception {
+		System.out.println("자 이제 업로드 한다??");
+		AttachVO attach=null;
+		
+		for(MultipartFile file : uploadFile) {
+			attach = UploadFileUtils.uploadFile("d:\\upload", file.getOriginalFilename(), "roro", file.getBytes());
+		}
+		
+		System.out.println(attach);
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('컨트롤러 끝나고 확인함')");
+		out.println("</script>");
+			
+	}
+	
 }

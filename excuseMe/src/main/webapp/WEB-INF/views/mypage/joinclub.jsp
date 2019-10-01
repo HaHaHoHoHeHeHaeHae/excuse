@@ -134,8 +134,10 @@
 									<ul class="actions vertical small" style="text-align: center;">
 										<li>
 											<div class="btn_g" style="position: relative;">
-												<div class="btn-group" style="position: absolute; left: -18px; top: -13px;">
-													<a href="#" class="button small" style="color: white; ">상세보기</a>&nbsp;<a href="#" class="button special small" style="color: white; ">탈&nbsp;&nbsp;&nbsp;퇴</a>
+												<div class="btn-group" style="position: absolute; left: -18px; top: -10px; ">
+													<a href="#" class="button small" style="color: white; width: 108px; height: 35px; position: relative;"><p style="position: relative; left: -12px; font-size: 15px;">상세보기</p></a>
+													&nbsp;
+													<a href="#" class="button special small" style="color: white; width: 102px; height: 35px; position: relative;"><p style="position: relative; left: -7px; font-size: 15px;">탈&nbsp;&nbsp;&nbsp;퇴</p></a>
 												</div>
 											</div>
 										</li>
