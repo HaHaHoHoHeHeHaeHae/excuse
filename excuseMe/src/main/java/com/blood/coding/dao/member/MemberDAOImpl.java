@@ -24,8 +24,8 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		RowBounds rowBounds = new RowBounds(offset,limit);
 		
-		List<MemberVO> list = session.selectList("Member.selectMemberList",cri,rowBounds);
-		return list;
+		List<MemberVO> memberList = session.selectList("Member.selectMemberList",null,rowBounds);
+		return memberList;
 	}
 
 	@Override
@@ -45,8 +45,12 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public void updateMemberStatus(MemberVO memberVO) throws SQLException {
-		session.update("Member.updateMemberStatus",memberVO);
+	public void updateMemberStatus(String mem_id) throws SQLException {
+		session.update("Member.updateMemberStatus",mem_id);
+		MemberVO member = new MemberVO();
+		int num = 0;
+		member.setMem_id(mem_id);
+		member.setMem_status(num);
 
 	}
 
@@ -117,4 +121,6 @@ public class MemberDAOImpl implements MemberDAO {
 		int count = session.selectOne("Member.selectMemberListCount");
 		return count;
 	}
+
+	
 }

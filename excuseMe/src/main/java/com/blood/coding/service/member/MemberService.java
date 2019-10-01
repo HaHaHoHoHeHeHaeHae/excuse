@@ -22,9 +22,10 @@ public interface MemberService {
 	
 	//멤버 댓글내용 보기
 	public List<ReplyVO> getReply(String mem_id)throws SQLException;
-
+	
 	//멤버 탈퇴시키기
-	public void updateMem(MemberVO memberVO) throws SQLException;
+	public void updateMem(String mem_id) throws SQLException;
+	
 	
 
 }
