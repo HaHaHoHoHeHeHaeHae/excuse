@@ -35,6 +35,8 @@ div.top {
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 <!--<c:set var="cateList" value="${dataMap.cateList }" />
 <c:set var="localList" value="${dataMap.localList }" />-->
+<c:set var="recommendList" value="${dataMap.recommendList }" />
+
 
 <!-- Font Awesome -->
 <link rel="stylesheet"
@@ -78,18 +80,19 @@ div.top {
 			<!-- alignment -->
 			<section class="alignment" style="height: 70px;">
 				<div class="listTitle" style="float: right;">
-					<a class="btn btn-app"><i class="fas fa-sort-numeric-down-alt"></i>역사가 깊은</a> 
-					<a class="btn btn-app"><i class="fas fa-sort-numeric-down"></i>갓 생긴</a> 
-					<a class="btn btn-app"><i class="fas fa-users"></i>사람많은</a> 
-					<a class="btn btn-app"><i class="fas fa-user"></i>사람적은</a> 
-					<a class="btn btn-app"><i class="fas fa-thumbs-up"></i>인기있는</a> 
-					<a class="btn btn-app"><i class="fas fa-thumbs-down"></i>인기없는</a>
+					<a class="btn btn-app"><i class="fas fa-sort-numeric-down-alt"></i>역사가
+						깊은</a> <a class="btn btn-app"><i class="fas fa-sort-numeric-down"></i>갓
+						생긴</a> <a class="btn btn-app"><i class="fas fa-users"></i>사람많은</a> <a
+						class="btn btn-app"><i class="fas fa-user"></i>사람적은</a> <a
+						class="btn btn-app"><i class="fas fa-thumbs-up"></i>인기있는</a> <a
+						class="btn btn-app"><i class="fas fa-thumbs-down"></i>인기없는</a>
 				</div>
 			</section>
-			
-			<div class="divLine" style="background: #f6755e; margin-bottom:20px;height:5px;"></div>
 
-			<section class="clublist" style="height: 608px; width: auto;">
+			<div class="divLine"
+				style="background: #f6755e; margin-bottom: 20px; height: 5px;"></div>
+
+			<section class="clublist" style="height: 633.62px; width: auto;">
 				<c:forEach var="club" items="${clubList }">
 					<c:if test="${empty clubList }">
 						<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
@@ -131,80 +134,70 @@ div.top {
 		<br> <br> <br>
 		<!-- clubList End -->
 
+
+		<ul class="action fit small">
+			<li><a href="#" class="button alt fit small"
+				style="width: 1126.66px; margin: 0 auto; text-align: left;">(memberVO.mem_id)님 근처에 인기많은 동호회 리스트에요.</a></li>
+		</ul>
+
+
+
 		<!-- recommendClub Start-->
-		<section class="joinclub_title">
-			<div class="join_wrap"
-				style="width: 1126.66px; margin-left: auto; margin-right: auto;">
-				<h3>추천동호회</h3>
-				<div class="card card-solid">
-					<div class="card-body" style="padding-bottom: 0">
-						<div class="row d-flex align-items-stretch">
-							<div class="d-flex align-items-stretch" style="width: 20%;">
-								<div class="card bg-light">
-									<div class="card-header text-muted border-bottom-0">카테고리</div>
-									<div class="card-body pt-0">
-										<div class="row">
-											<div class="col-7">
-												<h2 class="lead">
-													<b>동호회명</b>
-												</h2>
-												<p class="text-muted text-sm">
-													<b>About: </b> 동호회 설명
-												</p>
-												<!-- <ul class="ml-4 mb-0 fa-ul text-muted">
-												<li class="small"><span class="fa-li"><i
-														class="fas fa-lg fa-building"></i></span> Address: Demo Street
-													123, Demo City 04312, NJ</li>
-												<li class="small"><span class="fa-li"><i
-														class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23
-													52</li>
-											</ul> -->
-											</div>
-											<div class="col-5 text-center">
-												<img src="../../dist/img/user1-128x128.jpg" alt=""
-													class="img-circle img-fluid">
-											</div>
-										</div>
-									</div>
-									<div class="card-footer">
-										<div class="text-right">
-											<a href="#" class="btn btn-sm bg-teal"> <i
-												class="fas fa-comments"></i>
-											</a> <a href="#" class="btn btn-sm btn-primary"> <i
-												class="fas fa-user"></i> View Profile
-											</a>
-										</div>
-									</div>
-								</div>
+		<section class="joinclub_wrap"
+			style="width: 1126.66px; margin: 0 auto; height: 200px;">
+			<c:forEach var="recommend" items="${recommendList }">
+				<div class="joinclub card bg-light"
+					style="width: 350px; height: 200px; float: left; margin: 0 12.5px 0 12.5px;">
+					<div class="joinclub_sub text-muted border-bottom-0">&nbsp;${recommend.cate_name }</div>
+					<div class="joinclub_sub_body" style="width: 350px; height: 172px;">
+						<div class="sub_body" style="width: 350px; height: 172px;">
+							<div class="1" style="width: 190px; height: 172px; float: left;">
+								<h3 class="1_title"
+									style="text-align: center; padding-top: 8px;">
+									<b>${recommend.club_name }</b>
+								</h3>
+								<ul class="actions vertical small"
+									style="text-align: center; margin-bottom: -10px;">
+									<li><a href="#" class="button alt icon fa-search">Detail</a></li>
+									<li><a href="#" class="button alt icon fa-check">가입하기</a></li>
+								</ul>
+							</div>
+							<div class="2"
+								style="width: 160px; height: 160px; align: center; float: left; padding-right: 20px;">
+								<img src="<%=request.getContextPath()%>/resources/img/logo.png"
+									alt="" class="img-circle img-fluid">
 							</div>
 						</div>
 					</div>
-					<!-- /.card-body -->
 				</div>
-			</div>
+			</c:forEach>
 		</section>
 		<!-- recommendClub End-->
 
 		<!-- pagination Start-->
-		<div class="card-footer clearfix">
-			<div class="pagination justify-content-center m-0">
-				<ul class="pagination ">
-					<li class="page-item"><a class="page-link"
-						href="list${pageMaker.makeQuery(1)}" style="text-decoration: none">&lt;&lt;</a>
-					<li class="page-item"><a class="page-link"
-						href="list<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
-						style="text-decoration: none">&lt;</a></li>
-					<c:forEach begin="${pageMaker.startPage }"
-						end="${pageMaker.endPage }" var="pageNum">
-						<li
-							class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
-							<a class="page-link" href="list${pageMaker.makeQuery(pageNum) }"
-							style="text-decoration: none">${pageNum } </a>
-						</li>
-					</c:forEach>
+		<section class="pagination"
+			style="width: 1126.66px; margin: 0 auto; height: 68px;">
+			<div class="card-footer clearfix"
+				style="align: center; width: 1126.66px;">
+				<div class="pagination justify-content-center m-0">
+					<ul class="pagination ">
+						<li class="page-item"><a class="page-link"
+							href="list${pageMaker.makeQuery(1)}"
+							style="text-decoration: none">&lt;&lt;</a>
+						<li class="page-item"><a class="page-link"
+							href="list<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
+							style="text-decoration: none">&lt;</a></li>
+						<c:forEach begin="${pageMaker.startPage }"
+							end="${pageMaker.endPage }" var="pageNum">
+							<li
+								class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
+								<a class="page-link" href="list${pageMaker.makeQuery(pageNum) }"
+								style="text-decoration: none">${pageNum } </a>
+							</li>
+						</c:forEach>
 
-					<li class="page-item"><a class="page-link"
-						href="list
+						<li class="page-item"><a class="page-link"
+							href="list
 									<c:if test="${pageMaker.next }">
 										${pageMaker.makeQuery(pageMaker.endPage+1) }
 									</c:if>
@@ -212,15 +205,15 @@ div.top {
 										${pageMaker.makeQuery(pageMaker.cri.page) }
 									</c:if>
 								"
-						style="text-decoration: none">&gt;</a></li>
+							style="text-decoration: none">&gt;</a></li>
 
-					<li class="page-item"><a class="page-link"
-						href="list${pageMaker.makeQuery(pageMaker.realEndPage) }"
-						style="text-decoration: none"> &gt;&gt; </a></li>
-				</ul>
+						<li class="page-item"><a class="page-link"
+							href="list${pageMaker.makeQuery(pageMaker.realEndPage) }"
+							style="text-decoration: none"> &gt;&gt; </a></li>
+					</ul>
+				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
 
 
@@ -243,17 +236,17 @@ div.top {
 
 
 
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
-	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
+		<script
+			src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
+		<script
+			src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
+		<script
+			src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
+		<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+		<script
+			src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
 
-	<script>
+		<script>
    $('#category').change(function() { 
       
       <%-- self.location="<%=request.getContextPath()%>/subcategory" --%>
@@ -282,5 +275,5 @@ div.top {
    });						
 
 </script>
-	</bo
+		</bo
 					dy>

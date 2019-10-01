@@ -78,17 +78,18 @@ public class ClubServiceImpl implements ClubService {
 		pageMaker.setTotalCount(totalCount);
 		
 
-		//cri.setPerPageNum(5);
+		cri.setPerPageNum(3);
+		cri.setAlignment(2);
 
 		//추천리스트
-		//List<ClubVO> recommendList = clubDAO.selectSearchClubList(cri);
+		List<ClubVO> recommendList = clubDAO.selectSearchClubList(cri);
 		//cri.setLogin_local(memberVO.get....);
 		
 		
 		// dataMap에 넣기
 		dataMap.put("clubList", clubList);
 		dataMap.put("pageMaker", pageMaker);
-		//dataMap.put("recomendList", recommendList);
+		dataMap.put("recommendList", recommendList);
 		
 		//dataMap.put("cateList", cateList);
 		//dataMap.put("localList", localList);
