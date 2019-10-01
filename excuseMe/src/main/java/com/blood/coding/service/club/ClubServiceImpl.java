@@ -79,6 +79,7 @@ public class ClubServiceImpl implements ClubService {
 		
 
 		cri.setPerPageNum(3);
+		cri.setLocal(memberVO.getMem_local());
 		cri.setAlignment(2);
 
 		//추천리스트
@@ -90,7 +91,7 @@ public class ClubServiceImpl implements ClubService {
 		dataMap.put("clubList", clubList);
 		dataMap.put("pageMaker", pageMaker);
 		dataMap.put("recommendList", recommendList);
-		
+		dataMap.put("member", memberVO);
 		//dataMap.put("cateList", cateList);
 		//dataMap.put("localList", localList);
 

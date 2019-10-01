@@ -36,6 +36,7 @@ div.top {
 <!--<c:set var="cateList" value="${dataMap.cateList }" />
 <c:set var="localList" value="${dataMap.localList }" />-->
 <c:set var="recommendList" value="${dataMap.recommendList }" />
+<c:set var="member" value="${dataMap.member }" />
 
 
 <!-- Font Awesome -->
@@ -136,7 +137,7 @@ div.top {
 
 	<ul class="action fit small">
 		<li class="button alt fit big"
-			style="width: 1126.66px; margin: 0 auto; text-align: left;">${memberVO.mem_nick}님
+			style="width: 1126.66px; margin: 0 auto; text-align: left;">${member.mem_nick}님
 			근처에 인기많은 동호회 리스트에요.</li>
 	</ul>
 

@@ -50,6 +50,7 @@ public class ClubController {
 		System.out.println("#####");
 		System.out.println(memberVO);
 		System.out.println("#####");
+		
 		modelnView.addObject("dataMap",dataMap);
 		
 		modelnView.setViewName(url);
