@@ -11,12 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.blood.coding.controller.common.DownloadFileUtils;
 import com.blood.coding.dao.attach.AttachDAO;
+import com.blood.coding.dao.club.ClubDAO;
 import com.blood.coding.dto.attach.AttachVO;
 
 @RestController
 @RequestMapping("/attach")
 public class AttachController {
 
+	@Autowired
+	private ClubDAO clubDAO;
+	
 	@Autowired
 	private AttachDAO attachDAO;
 	
