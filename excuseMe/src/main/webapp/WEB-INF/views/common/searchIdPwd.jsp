@@ -82,11 +82,11 @@
 					<p>아이디/비밀번호 찾기</p>
 				</div>
 				<div class="row" id="iii">
-					<div id="searchID" onclick="#">
-						<img src="<%=request.getContextPath()%>/resources/img/searchID.jpg" onclick="#">
+					<div id="searchID" onclick='openWindow("<%=request.getContextPath() %>/common/searchId","아이디찾기","481","630")'>
+						<img src="<%=request.getContextPath()%>/resources/img/searchID.jpg" >
 					</div>
-					<div id="searchPwd" onclick="#">
-						<img src="<%=request.getContextPath()%>/resources/img/searchPwd.jpg" onclick="#">
+					<div id="searchPwd" onclick='openWindow("<%=request.getContextPath() %>/common/searchPwd","비밀번호찾기","481","333")'>
+						<img src="<%=request.getContextPath()%>/resources/img/searchPwd.jpg">
 					</div>
 				</div>
 			</div>
@@ -96,7 +96,7 @@
 					</div>
 					
 					<div class="2u$ 12u$(small)">
-						<span class="button alt" onclick="#">뒤로가기</span>
+						<span class="button alt" onclick="self.location='<%=request.getContextPath()%>/common/login'">뒤로가기</span>
 					</div>
 				</div>
 			</div>
@@ -105,5 +105,9 @@
 
 	<!-- /.register-box -->
 	<%@include file="/WEB-INF/views/include/login_footer.jsp" %>
+	
+	
+	
+	
 </body>
 </html>

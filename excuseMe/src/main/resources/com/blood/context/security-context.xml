@@ -34,7 +34,7 @@
 		<logout
 			logout-url="/logout"
 			invalidate-session="true"
-			logout-success-url="/login"
+			logout-success-url="/common/login"
 			delete-cookies="JSESSIONID"
 		/>
 		

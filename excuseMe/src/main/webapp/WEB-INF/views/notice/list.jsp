@@ -11,30 +11,6 @@
 <c:set var="noticeList" value="${dataMap.noticeList }" />
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/templated/assets/css/font-awesome.min.css">
-
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
-<!-- icheck bootstrap -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-
-<!-- Theme style -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/dist/css/adminlte.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/templated/assets/css/main.css">
-
-<!-- Google Font: Source Sans Pro -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
 </head>
 <body class="subpage">
 
@@ -50,9 +26,11 @@
 			<!-- Elements -->
 			<div class = "row">
 				<h2 id="elements">공지사항</h2>
+				<c:if test="${loginUser.mem_nick eq 'admin'}">
 				<div class="nav nav-pills ml-auto p-2">
-					<span class="button small" onclick="#">글 쓰기</span>
+					<span class="button small" onclick="self.location='<%=request.getContextPath()%>/notice/regist'">글 쓰기</span>
 				</div>
+				</c:if>
 			</div>
 			<div class="row 200%">
 				<div class="12u">
@@ -93,7 +71,7 @@
 										<tr>
 											<td>${notice.not_no.substring(1) }</td>
 											<td>
-												<a href="#" data-name="title" onclick="OpenWindow('detail?not_no=${notice.not_no }','','800','650');">${notice.not_title }</a>
+												<a href="#" data-name="title" onclick="self.location='<%=request.getContextPath()%>/notice/detail?not_no=${notice.not_no }&page=${pageMaker.cri.page }'">${notice.not_title }</a>
 											</td>
 											<td><fmt:formatDate value="${notice.not_regDate }" pattern="yyyy-MM-dd"/></td>
 											<td>${notice.not_viewCnt }</td>
@@ -105,8 +83,8 @@
 											</c:if> --%>
 											<td><ion-icon name="document"></ion-icon></td>
 											<c:if test="${loginUser.mem_nick eq 'admin'}">
-												<td><ion-icon name="build"  onclick="form?not_no=${notice.not_no }','','800','650');"></ion-icon></td>
-												<td><ion-icon name="trash"  onclick="#"></ion-icon></td>
+												<td><div style="cursor:pointer;" onclick="self.location='<%=request.getContextPath()%>/notice/modify?not_no=${notice.not_no }'"><ion-icon name="build"  ></ion-icon></div></td>
+												<td><div style="cursor:pointer;" onclick="deleteNotice('${notice.not_no}');"><ion-icon name="trash"></ion-icon></div></td>
 											</c:if>
 										</tr>
 									</c:forEach>
@@ -151,22 +129,23 @@
 
 		</div>
 	</section>
-	<!-- jQuery -->
-	<script
-		src="<%=request.getContextPath()%>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>
-	<!-- Bootstrap 4 -->
-	<script
-		src="<%=request.getContextPath()%>/resources/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
-	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
+	<script>
+	function deleteNotice(no){
+		
+		$.ajax({
+			url:"<%=request.getContextPath()%>/notice/remove",
+			data:{not_no: no},
+			type:"POST",
+			success:function(){
+				alert("글이 삭제되었습니다.");
+				window.location.reload();
+			},
+			error:function(){
+				alert("서버 오류입니다. 다시 시도해주세요.");
+			}
+		});
+	}
+		
+	</script>
 </body>
 </html>

@@ -34,8 +34,8 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public String pwdFind(String mem_id) throws SQLException {
-		String mem_pwd = memberDAO.findPwd(mem_id);
+	public String pwdFind(String mem_id, String mem_name) throws SQLException {
+		String mem_pwd = memberDAO.findPwd(mem_id, mem_name);
 		return mem_pwd;
 	}
 

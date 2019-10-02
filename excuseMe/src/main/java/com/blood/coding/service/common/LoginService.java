@@ -20,6 +20,6 @@ public interface LoginService {
 	public String idFind(MemberVO memberVO) throws SQLException;
 	
 	//비밀번호 찾기
-	public String pwdFind(String mem_id) throws SQLException;
+	public String pwdFind(String mem_id,String mem_name) throws SQLException;
 	
 }

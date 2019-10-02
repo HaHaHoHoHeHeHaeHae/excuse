@@ -71,4 +71,20 @@ public class ClubDAOImpl implements ClubDAO {
 
 	}
 
+
+	@Override
+	public List<ClubVO> recommendClubMain(String mem_local) throws SQLException {
+		List<ClubVO> list = session.selectList("Club.recommendClubMain",mem_local);
+		return list;
+		
+	}
+
+
+	@Override
+	public List<ClubVO> recentClubMain() throws SQLException {
+		List<ClubVO> list = session.selectList("Club.recentClubMain");
+		
+		return list;
+	}
+
 }
