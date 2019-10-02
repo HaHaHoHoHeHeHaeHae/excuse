@@ -82,7 +82,7 @@ public class ClubDAOImpl implements ClubDAO {
 
 	@Override
 	public List<ClubVO> recentClubMain() throws SQLException {
-		List<ClubVO> list = session.selectOne("Club.recentClubMain");
+		List<ClubVO> list = session.selectList("Club.recentClubMain");
 		
 		return list;
 	}

@@ -73,7 +73,7 @@ public class NoticeDAOImpl implements NoticeDAO {
 
 	@Override
 	public List<NoticeVO> selectNoticeRecentList() throws SQLException {
-		List<NoticeVO> list = session.selectList("notice.selectNoticeRecentList");
+		List<NoticeVO> list = session.selectList("Notice.selectNoticeRecentList");
 		return list;
 	}
 

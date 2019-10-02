@@ -69,6 +69,7 @@
 			border-left: 1mm solid rgb(179, 223, 242);
 			text-align:center;
 			cursor:pointer;
+			font-weight:900;
 	}
 	#hid1{
 	  	  height:40px;
@@ -124,20 +125,20 @@
 	            
 	            <div id="hmenu">
 	            	<!-- <ul class="nav nav-tabs" -->
-	            	<%-- <c:if test="mem_nick == 'admin'"> --%>
-	            	<div class="hmenu1" onclick="location.href='#'">
-	            		관리페이지
-	            	</div>
-	            	<%-- </c:if> --%>
-	            	<c:if test="mem_nick!='admin'">
-	            	<div class="hmenu1" onclick="location.href='#'">
-	            		마이페이지
-	            	</div>
+	            	<c:if test="${loginUser.mem_nick eq 'admin'}">
+		            	<div class="hmenu1" onclick="changeIframe('manage/club/clubList');">
+		            		관리페이지
+		            	</div>
 	            	</c:if>
-	            	<div class="hmenu1" onclick="location.href='#'">
+	            	<c:if test="${!loginUser.mem_nick eq 'admin'}">
+		            	<div class="hmenu1" onclick="changeIframe('notice');">
+		            		마이페이지
+		            	</div>
+	            	</c:if>
+	            	<div class="hmenu1" onclick="changeIframe('notice');">
 	            		동호회 찾기
 	            	</div>
-	            	<div class="hmenu1" onclick="location.href='#'">
+	            	<div class="hmenu1" onclick="changeIframe('notice');">
 	            		동호회 생성
 	            	</div>
 	            	<div class="hmenu1" onclick="changeIframe('notice');">
