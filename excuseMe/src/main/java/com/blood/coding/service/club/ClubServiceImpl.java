@@ -68,8 +68,7 @@ public class ClubServiceImpl implements ClubService {
 		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
 		//List<CategoryVO> cateList = categoryDAO.selectCategoryList();
 		//List<LocalVO> localList = localDAO.selectLocalList();
-		
-
+	
 		int totalCount = clubDAO.selectSearchClubCount(cri);
 		
 		// pagination
@@ -86,13 +85,16 @@ public class ClubServiceImpl implements ClubService {
 		List<ClubVO> recommendList = clubDAO.selectSearchClubList(cri);
 		//cri.setLogin_local(memberVO.get....);
 		
+		//카테고리
+		List<CategoryVO> category = categoryDAO.selectCategoryList();
+		List<CategoryVO> subcategory = categoryDAO.selectSubCategoryList(cate_no);
 		
 		// dataMap에 넣기
 		dataMap.put("clubList", clubList);
 		dataMap.put("pageMaker", pageMaker);
 		dataMap.put("recommendList", recommendList);
 		dataMap.put("member", memberVO);
-		//dataMap.put("cateList", cateList);
+		dataMap.put("cateList", cateList);
 		//dataMap.put("localList", localList);
 
 		return dataMap;

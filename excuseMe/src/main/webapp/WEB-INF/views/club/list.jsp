@@ -19,7 +19,7 @@ div.top {
 <c:set var="clubList" value="${dataMap.clubList }" />
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 <c:set var="cateList" value="${dataMap.cateList }" />
-<c:set var="localList" value="${dataMap.localList }" />
+<!--<c:set var="localList" value="${dataMap.localList }" /> -->
 <c:set var="recommendList" value="${dataMap.recommendList }" />
 <c:set var="member" value="${dataMap.member }" />
 
@@ -74,10 +74,11 @@ div.top {
 							<div class="select" style="float: left;">
 								<select class="form-control" style="width: 350px; float: left;">
 									<option value="" disabled selected>- 대분류 -</option>
-									<option>option 2</option>
-									<option>option 3</option>
-									<option>option 4</option>
-									<option>option 5</option>
+									<option>스포츠</option>
+									<option>취미</option>
+									<option>댄스</option>
+									<option>노래</option>
+									<option>악기</option>
 								</select>
 							</div>
 						</div>

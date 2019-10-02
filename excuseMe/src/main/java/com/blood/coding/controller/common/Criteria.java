@@ -10,22 +10,22 @@ public class Criteria {
 	private String keyword;     //검색어
 	private String local;
 	private int alignment;
-	private String login_local;
+
 	
 	
 	public Criteria() {
-		this(1, 10, "", "", "", 0,"");
+		this(1, 10, "", "", "", 0);
 	} 
 
 
-	public Criteria(int page, int perPageNum, String category, String keyword, String local, int alignment, String login_local) {
+	public Criteria(int page, int perPageNum, String category, String keyword, String local, int alignment) {
 		super();
 		this.page = page;
 		this.perPageNum = perPageNum;
 		this.category = category;
 		this.keyword = keyword;
 		this.local = local;
-		this.login_local=login_local;
+
 	}
 
 	public int getPage() {
@@ -87,19 +87,11 @@ public class Criteria {
 		this.alignment = alignment;
 	}
 
-	public String getLogin_local() {
-		return login_local;
-	}
-
-	public void setLogin_local(String login_local) {
-		this.login_local = login_local;
-	}
-
 
 	@Override
 	public String toString() {
 		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", category=" + category + ", keyword="
-				+ keyword + ", local=" + local + ", alignment=" + alignment + ", login_local=" + login_local + "]";
+				+ keyword + ", local=" + local + ", alignment=" + alignment+ "]";
 	}
 
 	
