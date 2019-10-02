@@ -72,8 +72,9 @@ div.top {
 							</div>
 							<div class="select" style="float: left;">
 								<!-- category1 -->
-								<select id="category" class="form-control" style="width: 350px; float: left;">
-									<option value="" disabled selected>- 대분류 -</option>
+								<select id="category" class="form-control"
+									style="width: 350px; float: left;">
+									<option disabled selected>- 대분류 -</option>
 									<c:forEach var="cate1" items="${cateList}">
 										<c:if test="${!empty cateList }">
 											<option id="sub1" value="${cate1.cate_no }">${cate1.cate_name }</option>
@@ -83,11 +84,13 @@ div.top {
 							</div>
 						</div>
 
-						<div class="label" style="float: left; margin-left: 20px; margin-right: 10px; width: 0px; height: 40px;">
+						<div class="label"
+							style="float: left; margin-left: 20px; margin-right: 10px; width: 0px; height: 40px;">
 							<div class="select">
 								<!-- category2 -->
-								<select id="subCategory" class="form-control" style="width: 500px; float: left;">
-									<option value="" disabled selected>- 소분류 -</option>
+								<select id="subCategory" class="form-control"
+									style="width: 500px; float: left;">
+									<option disabled selected>- 소분류 -</option>
 								</select>
 							</div>
 						</div>
@@ -132,7 +135,7 @@ div.top {
 							placeholder="동호회를 검색할 단어를 입력하세요." style="width: 1000px;">
 					</div>
 					<ul class="actions" style="float: right;">
-						<li><a href="#" class="button special small">Small</a></li>
+						<li><a href="#" class="button special small">검색</a></li>
 					</ul>
 				</div>
 
@@ -280,64 +283,40 @@ div.top {
 	</section>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
+	<%-- 	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script> --%>
 	<script
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
+	<%-- <script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script> --%>
 	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
 
-	<script>
-   $('#category').change(function() { 
-      
-      <%-- self.location="<%=request.getContextPath()%>/subcategory" --%>
-      
-      /* alert(go); */
-      $.ajax({
-         data:JSON.stringify({ "
-							cate_no":$(this).val() }),
-         contentType:"application/JSON",
-         type: "POST",
-         url: "<%=request.getContextPath()%>/subcategory",
-         cache:
-							false,
-         success:
-							function(data) {
-            console.log(data);
-            $("#subCategory").html("");
-            for(var
-							sub ofdata){
-               console.log(sub.cate_sub_name);
-               $("#subCategory").append("<option>"+sub.cate_sub_name+"</option>");
-            }
-         }
-      });
-   
-   });						
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
-</script>
-	</bo
-					dy>
+	<script>
+	 $('#category').change(function() { 
+	      $.ajax({
+	         data:JSON.stringify({ "cate_no":$(this).val() }),
+	         contentType:"application/JSON",
+	         type: "POST",
+	         url: "<%=request.getContextPath()%>/club/subcategory",
+	         cache: false,
+	         success: function(data) {
+	            	  console.log(data);
+	                  $("#subCategory").html("");
+	                  for(var sub of data){
+	                  console.log(sub.cate_sub_name);
+	                  $("#subCategory").append("<option>"+sub.cate_sub_name+"</option>");
+	                  }
+	         },
+	         error: function(data, textStatus){
+	        	 alert("이거 안됨.돌아가");
+	         }
+	      });
+	   });
+	</script>
+
+
+</body>

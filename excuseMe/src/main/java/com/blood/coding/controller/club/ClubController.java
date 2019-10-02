@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.SystemEnvironmentPropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -38,6 +39,7 @@ public class ClubController {
 	@Autowired
 	private CategoryDAO categoryDAO;
 	
+	
 	//private static final Logger logger = LoggerFactory.getLogger(ClubController.class);
 
 	@RequestMapping("/list") //동호회 리스트보기
@@ -56,6 +58,7 @@ public class ClubController {
 		modelnView.setViewName(url);
 		return modelnView;
 	}
+	
 	
 	@RequestMapping("/detail") //동호회 상세보기
 	public ModelAndView clubDetail(String club_no, ModelAndView modelnView) throws SQLException {

@@ -88,7 +88,6 @@ public class ClubServiceImpl implements ClubService {
 		//카테고리
 		List<CategoryVO> categoryList = categoryDAO.selectCategoryList();
 
-
 		//List<CategoryVO> subcategory = categoryDAO.selectSubCategoryList(cate_no);
 		
 		
