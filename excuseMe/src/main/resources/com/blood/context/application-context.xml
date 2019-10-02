@@ -10,7 +10,7 @@
 	<!-- uploadPath -->
 	<bean id="uploadPath"
 	      class="java.lang.String">
-	      <constructor-arg value="d:\\upload"/>      
+	      <constructor-arg value="d:\upload"/>      
 	</bean>
 	<bean id="imgPath"
 	      class="java.lang.String">

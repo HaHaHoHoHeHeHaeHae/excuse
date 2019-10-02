@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,6 +34,7 @@ public class DownloadFileUtils {
 				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 				headers.add("Content-Disposition", "attachment;filename=\""+new String(fileName.getBytes("utf-8"),"ISO-8859-1")+"\"");
 			}
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(input), headers, HttpStatus.CREATED);
 		}
 		catch(IOException e) {
 			e.printStackTrace();

@@ -16,13 +16,13 @@ public class AttachDAOImpl implements AttachDAO {
 	
 	//상세보기 시 첨부파일 리스트
 		public List<AttachVO> selectAttachesByAttachBoard(String attach_board) throws SQLException{
-			List<AttachVO> list = session.selectList("Attach.selectAttachesByAttachBoard");
+			List<AttachVO> list = session.selectList("Attach.selectAttachesByAttachBoard",attach_board);
 			return list;
 		}
 		
 		//다운로드 시 해당 파일 정보 가져오기
 	    public AttachVO selectAttachByAttachno(int attach_no) throws SQLException{
-	    	AttachVO attach = session.selectOne("Attach.selectAttachByAttachno");
+	    	AttachVO attach = session.selectOne("Attach.selectAttachByAttachno",attach_no);
 	    	return attach;
 	    }
 	    

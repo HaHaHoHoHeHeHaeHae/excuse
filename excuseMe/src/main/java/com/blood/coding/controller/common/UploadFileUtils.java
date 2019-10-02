@@ -77,9 +77,7 @@ public class UploadFileUtils {
 		BufferedImage sourceImg = ImageIO.read(new File(uploadPath + savePath, saveName));
 		
 		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,70);
-		System.out.println("$$$$$$$$$$$$$$");
-		System.out.println("$$$$$$$$요기야$$$$$$");
-		System.out.println("$$$$$$$$$$$$$$");
+		
 		String thumbnailName = uploadPath + savePath + File.separator + "s_" + saveName;
 		File newFile = new File(thumbnailName);
 		
