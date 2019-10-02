@@ -67,4 +67,12 @@ public class NoticeServiceImpl implements NoticeService {
 
 	}
 
+	@Override
+	public Map<String, List<NoticeVO>> noticeRecentList() throws SQLException {
+		Map<String, List<NoticeVO>> map = new HashMap();
+		List<NoticeVO> list = noticeDAO.selectNoticeRecentList();
+		map.put("noticeList", list);
+		return map;
+	}
+
 }

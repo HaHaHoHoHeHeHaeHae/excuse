@@ -55,6 +55,11 @@ public class MemberServiceImpl implements MemberService {
 		return member;
 	}
 	@Override
+	public MemberVO selectMember2(String mem_nick) throws SQLException {
+		MemberVO member= memberDAO.selectMember2(mem_nick);
+		return member;
+	}
+	@Override
 	public List<ReplyVO> getReply(String mem_id) throws SQLException {
 		List<ReplyVO> replylist = replyDAO.selectMemberReply(mem_id);
 		return replylist;

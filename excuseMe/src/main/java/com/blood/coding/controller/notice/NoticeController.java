@@ -155,27 +155,20 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("/remove")
-	public void noticeRemove(String not_no,HttpServletResponse response) throws Exception{
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		
+	public ResponseEntity<Object> noticeRemove(String not_no,HttpServletResponse response) throws Exception{
+		ResponseEntity<Object> entity=null;
+	
 		try {
 			service.removeNotice(not_no);
-			out.println("<script>");
-			out.println("alert('글이 삭제되었습니다.');");
-			out.println("setTimeout(function(){location.reload();},2000);");
-			out.println("</script>");
+			entity = new ResponseEntity<Object>(HttpStatus.OK);
 			
 			
 		}catch(Exception e){
 			e.printStackTrace();
-			out.println("<script>");
-			out.println("alert('서버 오류입니다.');");
-			out.println("setTimeout(function(){location.reload();},2000);");
-			out.println("</script>");
+			entity= new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		
+		return entity;
 
 
 

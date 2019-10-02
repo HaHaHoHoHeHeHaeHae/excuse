@@ -26,5 +26,8 @@ public interface ClubDAO {
 	   
 	//승인 ,운영중지
 	   public void updateClubStatus(ClubVO clubVO) throws SQLException;
-
+	
+	//Made by minho
+	   public List<ClubVO> recommendClubMain(String mem_local) throws SQLException;
+	   public List<ClubVO> recentClubMain() throws SQLException;
 }

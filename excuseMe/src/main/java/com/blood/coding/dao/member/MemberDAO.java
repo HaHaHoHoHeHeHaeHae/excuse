@@ -17,6 +17,7 @@ public interface MemberDAO {
 	
 	//상세보기
 	public MemberVO selectMember(String mem_id) throws SQLException;
+	public MemberVO selectMember2(String mem_nick) throws SQLException;
 	
 	//등록, 수정
 	public void insertMember(MemberVO memberVO) throws SQLException;

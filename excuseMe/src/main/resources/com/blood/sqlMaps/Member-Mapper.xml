@@ -34,12 +34,16 @@
     	    order by mem_regDate
     	</select>
     	
-    	<select id="selectMember" resultType="member">
+    	<select id="selectMember" parameterType="str" resultType="member">
     		select *
     		from member
     		where mem_id = #{mem_id}
     	</select>
-    	    
+    	 <select id="selectMember2" parameterType="str" resultType="member">
+    		select *
+    		from member
+    		where mem_nick = #{mem_nick}
+    	</select>   
     	<select id="login" resultType="member">
     		select *
     		from member

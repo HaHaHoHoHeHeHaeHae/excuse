@@ -2,51 +2,62 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
-    <mapper namespace="Notice">
-    	<select id="selectNoticeList" resultType="notice">
-    		select *
-    		from notice
-    		order by not_regDate desc
-    	</select>
-    	<select id="selectNoticeCount" resultType="int">
-    		select count(*)
-    		from notice
-    	</select>
-    	
-    	<select id="selectNotice" resultType="notice">
-    		select *
-    		from notice
-    		where not_no = #{not_no}
-    	</select>
-    	
-    	<select id="selectNoticeSeq" resultType="int">
-    		select notice_seq.nextval as notice_seq
-    		from dual
-    	</select>
-    	
-    	<update id="insertNotice" parameterType="notice">
-    		insert into notice(not_no, mem_id,not_regDate, not_startDate, not_endDate, not_content, not_title)
-    		values(#{not_no}, #{mem_id},sysdate, #{not_startDate}, #{not_endDate}, #{not_content}, #{not_title})
-    	</update>
-    	
-    	<update id="deleteNotice" >
-    		delete from notice
-    		where not_no = #{not_no}
-    	</update>
-    	
-    	<update id="updateNotice" parameterType="notice">
-    		update notice
-    		set not_startDate = #{not_startDate},
-    			not_endDate = #{not_endDate},
-    			not_content = #{not_content},
-    			not_title= #{not_title}
-    		where not_no =#{not_no}
-    	</update>
-    	
-    	<update id="updateNoticeViewcnt" >
-    		update notice
-    		set not_viewCnt = not_viewCnt + 1
-    		where not_no =#{not_no}
-    	</update>
-    </mapper>
+
+<mapper namespace="Notice">
+	<select id="selectNoticeList" resultType="notice">
+		select *
+		from notice
+		order by not_regDate desc
+	</select>
+	<select id="selectNoticeCount" resultType="int">
+		select count(*)
+		from notice
+	</select>
+
+	<select id="selectNotice" resultType="notice">
+		select *
+		from notice
+		where not_no = #{not_no}
+	</select>
+	
+	<select id="selectNoticeRecentList" resultType="notice">
+		<![CDATA[
+		select *
+		from (select * from notice order by not_regDate desc)
+		where rownum <= 10
+		]]>
+		
+	</select>
+	
+	<select id="selectNoticeSeq" resultType="int">
+		select notice_seq.nextval as notice_seq
+		from dual
+	</select>
+
+	<update id="insertNotice" parameterType="notice">
+		insert into notice(not_no, mem_id,not_regDate, not_startDate, not_endDate,
+		not_content, not_title)
+		values(#{not_no}, #{mem_id},sysdate, #{not_startDate}, #{not_endDate}, #{not_content},
+		#{not_title})
+	</update>
+
+	<update id="deleteNotice">
+		delete from notice
+		where not_no = #{not_no}
+	</update>
+
+	<update id="updateNotice" parameterType="notice">
+		update notice
+		set not_startDate = #{not_startDate},
+		not_endDate = #{not_endDate},
+		not_content = #{not_content},
+		not_title= #{not_title}
+		where not_no =#{not_no}
+	</update>
+
+	<update id="updateNoticeViewcnt">
+		update notice
+		set not_viewCnt = not_viewCnt + 1
+		where not_no =#{not_no}
+	</update>
+</mapper>

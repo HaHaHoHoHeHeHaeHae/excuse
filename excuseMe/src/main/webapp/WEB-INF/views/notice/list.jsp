@@ -11,30 +11,6 @@
 <c:set var="noticeList" value="${dataMap.noticeList }" />
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/templated/assets/css/font-awesome.min.css">
-
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
-<!-- icheck bootstrap -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-
-<!-- Theme style -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/dist/css/adminlte.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/templated/assets/css/main.css">
-
-<!-- Google Font: Source Sans Pro -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
 </head>
 <body class="subpage">
 
@@ -108,7 +84,7 @@
 											<td><ion-icon name="document"></ion-icon></td>
 											<c:if test="${loginUser.mem_nick eq 'admin'}">
 												<td><div style="cursor:pointer;" onclick="self.location='<%=request.getContextPath()%>/notice/modify?not_no=${notice.not_no }'"><ion-icon name="build"  ></ion-icon></div></td>
-												<td><a style="cursor:pointer;" href='<%=request.getContextPath()%>/notice/remove?not_no=${notice.not_no }'> <ion-icon name="trash"></ion-icon></a></td>
+												<td><div style="cursor:pointer;" onclick="deleteNotice('${notice.not_no}');"><ion-icon name="trash"></ion-icon></div></td>
 											</c:if>
 										</tr>
 									</c:forEach>
@@ -153,23 +129,23 @@
 
 		</div>
 	</section>
-	<!-- jQuery -->
-	<script
-		src="<%=request.getContextPath()%>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>
-	<!-- Bootstrap 4 -->
-	<script
-		src="<%=request.getContextPath()%>/resources/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
-	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
-	
+	<script>
+	function deleteNotice(no){
+		
+		$.ajax({
+			url:"<%=request.getContextPath()%>/notice/remove",
+			data:{not_no: no},
+			type:"POST",
+			success:function(){
+				alert("글이 삭제되었습니다.");
+				window.location.reload();
+			},
+			error:function(){
+				alert("서버 오류입니다. 다시 시도해주세요.");
+			}
+		});
+	}
+		
+	</script>
 </body>
 </html>

@@ -33,6 +33,11 @@ public class MemberDAOImpl implements MemberDAO {
 		MemberVO vo = session.selectOne("Member.selectMember",mem_id);
 		return vo;
 	}
+	@Override
+	public MemberVO selectMember2(String mem_nick) throws SQLException {
+		MemberVO vo = session.selectOne("Member.selectMember2",mem_nick);
+		return vo;
+	}
 
 	@Override
 	public void insertMember(MemberVO memberVO) throws SQLException {
