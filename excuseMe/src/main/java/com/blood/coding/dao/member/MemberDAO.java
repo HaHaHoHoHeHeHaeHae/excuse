@@ -23,7 +23,7 @@ public interface MemberDAO {
 	public void updateMember(MemberVO memberVO) throws SQLException;
 	
 	//탈퇴
-	public void updateMemberStatus(MemberVO memberVO) throws SQLException;
+	public void updateMemberStatus(String mem_id) throws SQLException;
 	
 	//로그인
 	public MemberVO loginMain(String mem_id) throws SQLException;

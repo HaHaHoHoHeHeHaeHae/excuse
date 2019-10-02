@@ -2,7 +2,7 @@
 
 <decorators defaultdir="/WEB-INF/decorators">	
 	<decorator name="main" page="decorator.jsp">
-		<pattern>*/main/test</pattern>		
+		<pattern>/*</pattern>		
 	</decorator>
 	
 	<decorator name="notice" page="notice_decorator.jsp">
@@ -19,5 +19,8 @@
 		<pattern>*/common/login*</pattern>
 		<pattern>*/common/regist*</pattern>
 		<pattern>*/common/search*</pattern>		
+		<pattern>*/detail*</pattern>
+		<pattern>*/newdetail*</pattern>
+		<pattern>*/replyList*</pattern>
 	</excludes>
 </decorators>

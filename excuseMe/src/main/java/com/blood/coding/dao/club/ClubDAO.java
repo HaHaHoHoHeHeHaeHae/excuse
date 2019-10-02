@@ -9,9 +9,13 @@ import com.blood.coding.dto.club.ClubVO;
 public interface ClubDAO {
 	//서치리스트
 	   public List<ClubVO> selectSearchClubList(Criteria cri) throws SQLException; 
-	   
+	  
 	//페이지 카운트
 	   public int selectSearchClubCount(Criteria cri) throws SQLException;
+	   
+	 //승인요청 클럽리스트
+	   public List<ClubVO> selectNewClubList(Criteria cri)throws SQLException;
+	   public int selectNewClubListCount(Criteria cri)throws SQLException;
 	   
 	//동호회 상세보기
 	   public ClubVO selectClub(String club_no) throws SQLException;

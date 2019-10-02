@@ -23,4 +23,7 @@ public interface ClubService {
 	//삭제
 	void remove(String club_no) throws SQLException;
 	
+	//신규동호회리스트(관리자페이지에서만)
+	Map<String,Object> getNewClubList(Criteria cri) throws SQLException;
+	
 }

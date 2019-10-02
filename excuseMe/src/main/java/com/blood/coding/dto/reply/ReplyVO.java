@@ -8,7 +8,14 @@ public class ReplyVO {
 	private String club_no;
 	private String reply_content;
 	private Date reply_regDate;
+	private String club_name;
 	
+	public String getClub_name() {
+		return club_name;
+	}
+	public void setClub_name(String club_name) {
+		this.club_name = club_name;
+	}
 	public int getReply_no() {
 		return reply_no;
 	}

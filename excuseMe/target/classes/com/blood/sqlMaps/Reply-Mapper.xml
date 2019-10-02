@@ -2,45 +2,48 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
-    <mapper namespace="Reply-Mapper">
-    	<select id="selectReplyList" resultType="reply">
-    	select * 
-    	from reply
-    	where club_no=#{club_no}
+
+<mapper namespace="Reply-Mapper">
+	<select id="selectReplyList" resultType="reply">
+		select *
+		from reply
+		where club_no=#{club_no}
 		order by reply_no desc
-		</select>
-		
-		<select id="ReplyListCount" resultType="int">
+	</select>
+
+	<select id="ReplyListCount" resultType="int">
 		select count(club_no)
 		from reply
 		where club_no=#{club_no}
-		</select>
-		
-		<update id="insertReply">
-		insert into reply(reply_no,club_no,mem_id,reply_content)
+	</select>
+
+	<update id="insertReply">
+		insert into
+		reply(reply_no,club_no,mem_id,reply_content)
 		values(reply_seq.nextval,#{reply_no},#{mem_id},#{reply_content})
-		</update>
-		
-		<update id="updateReply">
+	</update>
+
+	<update id="updateReply">
 		update reply
-		set reply_content=#{reply_content},reply_regdate=sysdate
-		where reply_no=#{reply_no}
-		</update>
-	
-		<update id="deleteReply">
+		set
+		reply_content=#{reply_content},reply_regdate=sysdate
+		where
+		reply_no=#{reply_no}
+	</update>
+
+	<update id="deleteReply">
 		delete from reply
 		where reply_no=#{reply_no}
-		</update>
-		
-		<select id="selectReplySeqNext" resultType="int">
-			select reply_seq.nextval as reply_no 
-			from dual
-		</select>
-		
-		<select id="selectMemberReply">
-		 select *
-		 from reply
-		 where mem_id=#{mem_id}
-		</select>
-    </mapper>
+	</update>
+
+	<select id="selectReplySeqNext" resultType="int">
+		select reply_seq.nextval as reply_no
+		from dual
+	</select>
+
+	<select id="selectMemberReply" resultType="reply">
+		select c.club_name,r.reply_content,r.reply_regdate
+		from club c, reply r
+		where c.club_no = r.club_no and r.mem_id=#{mem_id}
+	</select>
+</mapper>
