@@ -4,21 +4,6 @@ div.top {
 	height: 100px;
 }
 
-.animation {
-	/* overflow: hedden; */
-	width: 600px;
-	height: 100px;
-}
-
-.slider {
-	width: 1000px;
-}
-
-.slider_img {
-	float: left;
-	width: 100px;
-	height: 100px;
-}
 </style>
 
 
@@ -33,8 +18,8 @@ div.top {
 <title>동호회 리스트 창</title>
 <c:set var="clubList" value="${dataMap.clubList }" />
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
-<!--<c:set var="cateList" value="${dataMap.cateList }" />
-<c:set var="localList" value="${dataMap.localList }" />-->
+<c:set var="cateList" value="${dataMap.cateList }" />
+<c:set var="localList" value="${dataMap.localList }" />
 <c:set var="recommendList" value="${dataMap.recommendList }" />
 <c:set var="member" value="${dataMap.member }" />
 
@@ -75,12 +60,15 @@ div.top {
 				<h1>동호회 리스트</h1>
 				<p>원하는 동호회를 검색하세요.</p>
 			</header>
-			<section class="search" style="height: 300px; width: 1100px;">
-				<div class="search1" style="height: 80px; margin: 0 auto;">
-					<div class="form-group" style="float: left;">
+			<section class="search"
+				style="height: 300px; width: 1100px; align: center;">
+				<div class="search1" style="height: 50px;">
+					<div class="form-group"
+						style="float: left; displayh: inline-block;">
 						<div class="label"
-							style="float: left; margin-left: 10px; margin-right: 20px; width: 450px;">
-							<div class="label_name" style="float: left; margin-right: 10px;">
+							style="float: left; margin-left: 10px; margin-right: 20px; width: 450px; height: 40px;">
+							<div class="label_name"
+								style="float: left; margin-right: 10px; width: 75px;">
 								<strong>카테고리:</strong>
 							</div>
 							<div class="select" style="float: left;">
@@ -95,7 +83,7 @@ div.top {
 						</div>
 
 						<div class="label"
-							style="float: left; margin-left: 20px; margin-right: 10px; width: 610px;">
+							style="float: left; margin-left: 20px; margin-right: 10px; width: 0px; height: 40px;">
 							<div class="select">
 								<select class="form-control" style="width: 500px; float: left;">
 									<option value="" disabled selected>- 소분류 -</option>
@@ -108,15 +96,16 @@ div.top {
 						</div>
 					</div>
 				</div>
-				<div class="search2" style="height: 80px;">
+				<div class="search2" style="height: 50px;">
 					<div class="form-group" style="float: left;">
 						<div class="label"
 							style="float: left; margin-left: 10px; margin-right: 20px; width: 450px;">
-							<div class="label_name" style="float: left; margin-right: 10px;">
+							<div class="label_name"
+								style="float: left; margin-right: 10px; width: 75px;">
 								<strong>지역:</strong>
 							</div>
 							<div class="select" style="float: left;">
-								<select class="form-control" style="width: 400px; float: left;">
+								<select class="form-control" style="width: 350px; float: left;">
 									<option value="" disabled selected>-시 도 -</option>
 									<option>option 2</option>
 									<option>option 3</option>
@@ -127,7 +116,7 @@ div.top {
 						</div>
 
 						<div class="label"
-							style="float: left; margin-left: 20px; margin-right: 10px; width: 610px;">
+							style="float: left; margin-left: 20px; margin-right: 10px; width: 450px;">
 							<div class="select">
 								<select class="form-control" style="width: 500px; float: left;">
 									<option value="" disabled selected>- 구 군 -</option>
@@ -141,11 +130,16 @@ div.top {
 					</div>
 				</div>
 				<div class="search3" style="height: 80px;">
-					<div class="form-group" style="float: left;">
-						<label>Text</label> <input type="text" class="form-control"
-							placeholder="Enter ...">
+					<div class="select"
+						style="width: 800px, float:left; height: 80px;">
+						<input type="text" class="form-control"
+							placeholder="동호회를 검색할 단어를 입력하세요." style="width: 1000px;">
 					</div>
+					<ul class="actions" style="float:right;">
+						<li><a href="#" class="button special small">Small</a></li>
+					</ul>
 				</div>
+
 			</section>
 			<!-- searchClubList End-->
 
@@ -209,8 +203,8 @@ div.top {
 
 	<ul class="action fit small">
 		<li class="button alt fit big"
-			style="width: 1126.66px; margin: 0 auto; text-align: left;">${member.mem_nick}님
-			근처에 인기많은 동호회 리스트에요.</li>
+			style="width: 1126.66px; margin: 0 auto; text-align: left;">[${member.mem_nick}]
+			님 근처에 인기많은 동호회를 찾아보세요.</li>
 	</ul>
 
 
@@ -258,7 +252,7 @@ div.top {
 				<ul class="pagination ">
 					<li class="page-item"><a class="page-link"
 						href="list${pageMaker.makeQuery(1)}" style="text-decoration: none">&lt;&lt;</a>
-						<li class="page-item"><a class="page-link"
+					<li class="page-item"><a class="page-link"
 						href="list<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
 						style="text-decoration: none">&lt;</a></li>
 					<c:forEach begin="${pageMaker.startPage }"
@@ -348,5 +342,6 @@ div.top {
    
    });						
 
-</script> </bo
+</script>
+	</bo
 					dy>
