@@ -14,6 +14,7 @@ import com.blood.coding.controller.common.MemberCriteria;
 import com.blood.coding.controller.common.MemberPageMaker;
 import com.blood.coding.controller.common.PageMaker;
 import com.blood.coding.dto.club.ClubVO;
+import com.blood.coding.dto.member.MemberVO;
 import com.blood.coding.service.club.ClubService;
 
 @Controller
@@ -24,7 +25,7 @@ public class ManageClubController {
 	private ClubService service;
 	
 	@RequestMapping("/clublist")
-	public String memberSearchList(Criteria cri,Model model)throws Exception{
+	public String clubList(Criteria cri,Model model)throws Exception{
 		String url="manage/club/clublist";
 		
 		PageMaker pageMaker = new PageMaker();
@@ -38,7 +39,7 @@ public class ManageClubController {
 	}
 	
 	@RequestMapping("/listSearch")
-	public String noticeSearchList(Criteria cri,Model model)throws Exception{
+	public String clubSearchList(Criteria cri,Model model)throws Exception{
 		System.out.println(123);
 		String url="manage/club/clublist";
 		
@@ -63,7 +64,21 @@ public class ManageClubController {
 		return modelnView;
 	}
 	
+	@RequestMapping("/newclublist")
+	public String newclubList(Criteria cri,Model model)throws Exception{
+		String url="manage/club/newclublist";
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		
+		Map<String,Object> dataMap=service.getNewClubList(cri);
+		
+		model.addAllAttributes(dataMap);
+		
+		return url;		
+	}
 	
+		
 	
 
 }

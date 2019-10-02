@@ -73,10 +73,9 @@
     		where mem_id = #{mem_id}
     	</update>
     	
-    	<update id="updateMemberStatus">
+    	<update id="updateMemberStatus" parameterType="member">
     		update member
-    		set
-    		mem_status = 1
+    		set mem_status = #{mem_status}
     		where mem_id = #{mem_id}
     	</update>
     	

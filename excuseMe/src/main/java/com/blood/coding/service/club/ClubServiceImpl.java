@@ -146,4 +146,23 @@ public class ClubServiceImpl implements ClubService {
 
 	}
 
+	@Override
+	public Map<String, Object> getNewClubList(Criteria cri) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+
+		List<ClubVO> newclubList = clubDAO.selectNewClubList(cri);
+		
+		int totalCount = clubDAO.selectNewClubListCount(cri);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		
+		
+		dataMap.put("newclubList", newclubList);
+		dataMap.put("pageMaker", pageMaker);
+
+		return dataMap;
+	}
+
 }

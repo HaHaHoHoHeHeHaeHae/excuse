@@ -110,6 +110,7 @@
 													<th class="text-center" style="width:100px;">동호회명</th>
 													<th class="text-center" style="width:100px;">카테고리</th>
 													<th class="text-center" style="width:100px;">상태</th>
+													<th class="text-center" style="width:100px;">상세보기</th>
 												</tr>
 												<c:if test="${empty clubList }">
 												<tr>
@@ -121,12 +122,8 @@
 										<c:if test="${!empty clubList }">
 							  			<c:forEach items="${clubList }" var="club" >
 							  	<tr>
-							  		<td class="text-center" >
-									<a href="#" data-name="club" style="text-decoration: none; color:gray;" onclick="OpenWindow('detail?club_no=${club.club_no }','','850','800');">
-										${club.club_name }
-									</a>
-									</td>
-									<td class="text-center">${category.cate_name }</td>
+							  		<td class="text-center">${club.club_name }</td>
+									<td class="text-center">${club.cate_name }</td>
 									
 									<td class="text-center">
 									<c:if test= "${club.club_status==0 }" >
@@ -138,6 +135,11 @@
 									<c:if test= "${club.club_status==2 }" >
 									운영 중지
 									</c:if>
+									</td>
+									
+									<td class="text-center">
+									<button type="button" class="button special small" id="detailBtn" onclick="OpenWindow('detail?club_no=${club.club_no }','','850','800');">
+									상세보기</button>
 									</td>
 								</tr>
 							  </c:forEach>

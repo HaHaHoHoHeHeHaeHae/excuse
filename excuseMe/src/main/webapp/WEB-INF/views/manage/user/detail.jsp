@@ -62,8 +62,8 @@
 							<div class="form-group row" style="margin-top:15px;">
 							
 							    <label class="col-sm-3 control-label" style="margin-top:15px;">상태</label> 
-							    <input class="col-sm-5 form-control" type="text" id="nick" 
-							    readonly name="id" 
+							    <input class="col-sm-5 form-control" type="text" id="mem_status" 
+							    readonly name="mem_status" 
 							    value="<c:if test= "${member.mem_status==1 }" >활성</c:if>
 									<c:if test= "${member.mem_status==0 }" >비활성</c:if>">
 							</div>
@@ -140,7 +140,7 @@
 					</div><!--end card-body  -->
 					</div>
 					<div class="text-center" style="margin-left:50px; margin-top:35px; margin-bottom:30px;">
-					    
+					    <button type="button" class="button special small" id="closeBtn" onclick="OpenWindow('replyList?mem_id=${member.mem_id }&mem_name=${member.mem_name }','','650','500');">댓글내역</button>
 					    &nbsp; &nbsp; &nbsp;
 					    <button type="button" class="button special small" id="statusBtn" onclick="StatusStop();">
 					    <c:if test= "${member.mem_status==1 }" >활동중지</c:if>
@@ -182,10 +182,24 @@
 	</script>
 	
 	<script>
+	function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
+		winleft = (screen.width - WinWidth) / 2;
+		wintop = (screen.height - WinHeight) / 2;
+		var win = window.open(UrlStr , WinTitle , "scrollbars=yes,width="+ WinWidth 
+			                	+", height="+ WinHeight +", top="+ wintop +", left=" 
+			                	+ winleft + ", resizable=no, status=yes"  );
+	    win.focus() ; 
+	}
+	
+	
 	function StatusStop(){
 		var id= mem_id.value;
+		var status=mem_status.value;
 		alert(id);
-		if(confirm("활동중지 시키겠습니까?")){
+		alert(status);
+		if(status=='비활성'){
+		if(confirm("활동중지를 해제하겠습니까?")){
+			
 			$.ajax({
 				url:"<%=request.getContextPath() %>/manage/user/status",
 				type:"POST",
@@ -193,7 +207,7 @@
 				
 				success:function(result){
 					if(result=="SUCCESS"){
-						alert("활동중지 되었습니다.");
+						alert("해제되었습니다.");
 						location.reload();
 					}else{
 						alert("1234");
@@ -205,7 +219,26 @@
 				
 			}); 
 		}
-		
+		}else{
+			$.ajax({
+				url:"<%=request.getContextPath() %>/manage/user/status",
+				type:"POST",
+				data:{mem_id:id},
+				
+				success:function(result){
+					if(result=="SUCCESS"){
+						alert("해제되었습니다.");
+						location.reload();
+					}else{
+						alert("1234");
+					}
+				},
+				error:function(){
+					alert('실패했습니다.');
+				},
+				
+			}); 
+			}	
 		 
 	
 		

@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.controller.common.MemberCriteria;
 import com.blood.coding.controller.common.MemberPageMaker;
+import com.blood.coding.controller.common.PageMaker;
 import com.blood.coding.dto.member.MemberVO;
 import com.blood.coding.dto.reply.ReplyVO;
 import com.blood.coding.service.member.MemberService;
@@ -31,9 +33,9 @@ public class ManageUserController {
 	private MemberService service;
 	
 	
-	
+	//회원목록
 	@RequestMapping("/userlist")
-	public String memberSearchList(MemberCriteria cri,Model model)throws Exception{
+	public String memberList(MemberCriteria cri,Model model)throws Exception{
 		String url="manage/user/userlist";
 		
 		MemberPageMaker pageMaker = new MemberPageMaker();
@@ -46,8 +48,9 @@ public class ManageUserController {
 		return url;		
 	}
 	
+	//회원목록 페이지,서치
 	@RequestMapping("/list")
-	public String noticeSearchList(MemberCriteria cri,Model model)throws Exception{
+	public String memberSearchList(MemberCriteria cri,Model model)throws Exception{
 		System.out.println(123);
 		String url="manage/user/userlist";
 		
@@ -62,6 +65,7 @@ public class ManageUserController {
 		return url;		
 	}
 	
+	//상세보기
 	@RequestMapping("/detail")
 	public String detail(String mem_id, Model model)throws Exception{
 		System.out.println(mem_id);
@@ -74,7 +78,7 @@ public class ManageUserController {
 		
 	}
 	
-	
+	//활동중지및해제
 	@RequestMapping(value="/status",method=RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<String> update(@RequestParam("mem_id") String mem_id) throws Exception{
@@ -93,39 +97,44 @@ public class ManageUserController {
   }
 	
 	
-	/*@RequestMapping("/replyList")
-	public String  memberReplyList(String mem_id, Model model)throws Exception{
-		System.out.println(mem_id);
-		String url="manage/user/replyList";
-		ReplyVO reply = service.getReply(mem_id);
-		
-		model.addAttribute("reply", reply);
-		
-		return url;
-		
-	}
-	*/
+	
+	//멤버가 쓴 댓글 내역
 	@RequestMapping("/replyList")
-	public ModelAndView memberReplyList(MemberCriteria cri,String mem_id)throws Exception{
+	public ModelAndView memberReplyList(Criteria cri,String mem_id,String mem_name)throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
 		
 		String url="manage/user/replyList";
 		System.out.println(1234);
 		
-		MemberPageMaker pageMaker = new MemberPageMaker();
+		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		
 		List<ReplyVO> dataMap=service.getReply(mem_id);
 		mav.setViewName(url);
 		mav.addObject("dataMap",dataMap);
 		mav.addObject("pageMaker", pageMaker);
-		mav.addObject("mem_id", mem_id);
+		mav.addObject("mem_name", mem_name);
 		
 		return mav;		
 	}
 	
-	
+	/*//댓글내역 페이지
+	@RequestMapping("/rlist")
+	public String replyList(Criteria cri,Model model)throws Exception{
+		System.out.println(123);
+		String url="manage/user/replyListt";
+		
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		
+		Map<String,Object> dataMap=service.getReply(pageMaker);
+		
+		model.addAllAttributes(dataMap);
+		
+		return url;		
+	}*/
 	
 	
 

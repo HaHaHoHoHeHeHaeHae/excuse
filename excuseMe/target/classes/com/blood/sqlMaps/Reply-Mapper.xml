@@ -44,6 +44,6 @@
 	<select id="selectMemberReply" resultType="reply">
 		select c.club_name,r.reply_content,r.reply_regdate
 		from club c, reply r
-		where r.mem_id=#{mem_id}
+		where c.club_no = r.club_no and r.mem_id=#{mem_id}
 	</select>
 </mapper>

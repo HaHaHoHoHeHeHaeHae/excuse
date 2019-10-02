@@ -101,11 +101,11 @@
 					</div><!--end card-body  -->
 					</div>
 					<div class="text-center" style="margin-left:50px; margin-top:35px; margin-bottom:30px;">
-					    <button type="button" class="button special small" id="closeBtn" onclick="reply();">댓글내역</button>
-					    &nbsp; &nbsp; &nbsp;
+					    
 					    <button type="button" class="button special small" id="statusBtn" onclick="StatusStop();">
-					    <c:if test= "${member.mem_status==1 }" >활동중지</c:if>
-						<c:if test= "${member.mem_status==0 }" >활동중지 해제</c:if></button>
+					     <c:if test= "${club.club_status==0 }" >승인수락</c:if>
+					    <c:if test= "${club.club_status==1 }" >운영중지</c:if>
+						<c:if test= "${club.club_status==2 }" >운영중지 해제</c:if></button>
 						&nbsp; &nbsp; &nbsp;
 						<button type="button" class="button special small" id="closeBtn" onclick="CloseWindow();">닫기</button>
 						

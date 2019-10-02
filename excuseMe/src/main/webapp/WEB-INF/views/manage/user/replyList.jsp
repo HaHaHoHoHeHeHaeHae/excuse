@@ -44,10 +44,10 @@
 
 	<!-- Main -->
 	<section id="main" class="wrapper">
-		<h2 style="margin-left: 300px;">${mem_id }님의 댓글 목록</h2>
+		<h2 style="margin-left: 150px;">${mem_name }님의 댓글 목록</h2>
 		<div class="card-body">
 			<!-- Table -->
-			<div class="table-wrapper" style="margin-left: 80px;">
+			<div class="table-wrapper" style="margin-left: 5px;">
 				<table>
 					<tr>
 						<th class="text-center">동호회명</th>
@@ -56,8 +56,8 @@
 					</tr>
 					<c:if test="${empty replyList }">
 						<tr>
-							<td colspan="5" class="text-center"><strong>해당 내용이
-									없습니다.</strong></td>
+							<td colspan="5" class="text-center">
+							<strong>등록한 댓글이 없습니다.</strong></td>
 						</tr>
 					</c:if>
 					<c:if test="${!empty replyList }">
@@ -73,6 +73,47 @@
 					</c:if>
 				</table>
 			</div>
+			
+			<%-- <div class="text-center" style="margin-left: 200px;"  >
+																				
+						<ul class="pagination ">
+							<li class="page-item">
+								<a class="page-link" href="${pageMaker.makeQuery(1)}">&lt;&lt;</a>
+							<li class="page-item">
+								<a class="page-link" href="
+									<c:if test="${pageMaker.prev }">
+										${pageMaker.makeQuery(pageMaker.startPage-1) }
+									</c:if>
+								">&lt;</a>
+							</li>
+							<c:forEach begin="${pageMaker.startPage }" 
+							           end="${pageMaker.endPage }" var="pageNum">
+							<li class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
+								<a class="page-link" href="list${pageMaker.makeQuery(pageNum) }" >
+									${pageNum }
+								</a>
+							</li>
+							</c:forEach>	
+							
+							<li class="page-item">
+								<a class="page-link" href="list
+									<c:if test="${pageMaker.next }">
+										${pageMaker.makeQuery(pageMaker.endPage+1) }
+									</c:if>
+									<c:if test="${!pageMaker.next }">
+										${pageMaker.makeQuery(pageMaker.cri.page) }
+									</c:if>
+								">&gt;</a>
+							</li>			
+							
+							<li class="page-item">
+								<a class="page-link" href="list${pageMaker.makeQuery(pageMaker.realEndPage) }">
+									&gt;&gt;
+								</a>
+							</li>
+											
+						</ul>
+						</div> --%>
 
 
 

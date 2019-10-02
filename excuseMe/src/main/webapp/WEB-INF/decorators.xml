@@ -20,6 +20,7 @@
 		<pattern>*/common/regist*</pattern>
 		<pattern>*/common/search*</pattern>		
 		<pattern>*/detail*</pattern>
+		<pattern>*/newdetail*</pattern>
 		<pattern>*/replyList*</pattern>
 	</excludes>
 </decorators>
