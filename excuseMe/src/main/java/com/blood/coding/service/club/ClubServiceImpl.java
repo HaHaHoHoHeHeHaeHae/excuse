@@ -53,10 +53,10 @@ public class ClubServiceImpl implements ClubService {
 		this.categoryDAO=categoryDAO;
 	}
 	
-	private LocalDAO localDAO;
+/*	private LocalDAO localDAO;
 	public void setLocalDAO(LocalDAO localDAO) {
 		this.localDAO=localDAO;
-	}
+	}*/
 
 	
 	
@@ -86,15 +86,18 @@ public class ClubServiceImpl implements ClubService {
 		//cri.setLogin_local(memberVO.get....);
 		
 		//카테고리
-		List<CategoryVO> category = categoryDAO.selectCategoryList();
-		List<CategoryVO> subcategory = categoryDAO.selectSubCategoryList(cate_no);
+		List<CategoryVO> categoryList = categoryDAO.selectCategoryList();
+
+
+		//List<CategoryVO> subcategory = categoryDAO.selectSubCategoryList(cate_no);
+		
 		
 		// dataMap에 넣기
 		dataMap.put("clubList", clubList);
 		dataMap.put("pageMaker", pageMaker);
 		dataMap.put("recommendList", recommendList);
 		dataMap.put("member", memberVO);
-		dataMap.put("cateList", cateList);
+		dataMap.put("cateList", categoryList);
 		//dataMap.put("localList", localList);
 
 		return dataMap;

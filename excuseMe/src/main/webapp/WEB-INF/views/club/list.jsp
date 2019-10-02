@@ -3,7 +3,6 @@
 div.top {
 	height: 100px;
 }
-
 </style>
 
 
@@ -72,26 +71,23 @@ div.top {
 								<strong>카테고리:</strong>
 							</div>
 							<div class="select" style="float: left;">
-								<select class="form-control" style="width: 350px; float: left;">
+								<!-- category1 -->
+								<select id="category" class="form-control" style="width: 350px; float: left;">
 									<option value="" disabled selected>- 대분류 -</option>
-									<option>스포츠</option>
-									<option>취미</option>
-									<option>댄스</option>
-									<option>노래</option>
-									<option>악기</option>
+									<c:forEach var="cate1" items="${cateList}">
+										<c:if test="${!empty cateList }">
+											<option id="sub1" value="${cate1.cate_no }">${cate1.cate_name }</option>
+										</c:if>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
 
-						<div class="label"
-							style="float: left; margin-left: 20px; margin-right: 10px; width: 0px; height: 40px;">
+						<div class="label" style="float: left; margin-left: 20px; margin-right: 10px; width: 0px; height: 40px;">
 							<div class="select">
-								<select class="form-control" style="width: 500px; float: left;">
+								<!-- category2 -->
+								<select id="subCategory" class="form-control" style="width: 500px; float: left;">
 									<option value="" disabled selected>- 소분류 -</option>
-									<option>option 2</option>
-									<option>option 3</option>
-									<option>option 4</option>
-									<option>option 5</option>
 								</select>
 							</div>
 						</div>
@@ -131,12 +127,11 @@ div.top {
 					</div>
 				</div>
 				<div class="search3" style="height: 80px;">
-					<div class="select"
-						style="width: 800px, float:left; height: 80px;">
+					<div class="select" style="width: 800px, float:left; height: 80px;">
 						<input type="text" class="form-control"
 							placeholder="동호회를 검색할 단어를 입력하세요." style="width: 1000px;">
 					</div>
-					<ul class="actions" style="float:right;">
+					<ul class="actions" style="float: right;">
 						<li><a href="#" class="button special small">Small</a></li>
 					</ul>
 				</div>
