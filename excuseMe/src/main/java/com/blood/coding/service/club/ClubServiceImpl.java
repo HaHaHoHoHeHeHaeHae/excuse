@@ -31,16 +31,6 @@ public class ClubServiceImpl implements ClubService {
 	private ReplyDAO replyDAO;
 	public void setRelyDAO(ReplyDAO replyDAO) {
 		this.replyDAO = replyDAO;
-	}
-
-	private UpDAO upDAO;
-	public void setUpDAO(UpDAO upDAO) {
-		this.upDAO = upDAO;
-	}
-
-	private DownDAO downDAO;
-	public void setDownDAO(DownDAO downDAO) {
-		this.downDAO = downDAO;
 	}*/
 	
 	private MemberDAO memberDAO;

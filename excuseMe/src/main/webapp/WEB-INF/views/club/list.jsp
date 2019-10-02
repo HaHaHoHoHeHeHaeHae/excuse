@@ -52,16 +52,16 @@ div.top {
 <body class="subpage">
 	<!-- Main -->
 	<section id="main" class="wrapper">
-		<div class="inner">
+		<div class="club_inner" style="margin:0 auto; width:1126.66px; position:static;">
 
 			<!-- searchClubList Start-->
-			<header class="align-center">
+			<header class="align-center"">
 				<h1>동호회 리스트</h1>
 				<p>원하는 동호회를 검색하세요.</p>
 			</header>
 			<section class="search"
-				style="height: 300px; width: 1100px; align: center;">
-				<div class="search1" style="height: 50px;">
+				style="top:20px; height: 250px; margin-bottom:10px;position:relative;">
+				<div class="search1" style="height: 50px;position:relative;width:1000px;align:center;">
 					<div class="form-group"
 						style="float: left; displayh: inline-block;">
 						<div class="label"
@@ -96,7 +96,7 @@ div.top {
 						</div>
 					</div>
 				</div>
-				<div class="search2" style="height: 50px;">
+				<div class="search2" style="height: 50px;position:relative;">
 					<div class="form-group" style="float: left;">
 						<div class="label"
 							style="float: left; margin-left: 10px; margin-right: 20px; width: 450px;">
@@ -129,7 +129,7 @@ div.top {
 						</div>
 					</div>
 				</div>
-				<div class="search3" style="height: 80px;">
+				<div class="search3" style="height: 80px;position:relative;">
 					<div class="select" style="width: 800px, float:left; height: 80px;">
 						<input type="text" class="form-control"
 							placeholder="동호회를 검색할 단어를 입력하세요." style="width: 1000px;">
@@ -144,7 +144,7 @@ div.top {
 
 			<!-- clubList Start -->
 			<!-- alignment -->
-			<section class="alignment" style="height: 70px;">
+			<section class="alignment" style="top:50px; height: 70px; position:relative;">
 				<div class="listTitle" style="float: right;">
 					<a class="btn btn-app"><i class="fas fa-sort-numeric-down-alt"></i>역사가
 						깊은</a> <a class="btn btn-app"><i class="fas fa-sort-numeric-down"></i>갓
@@ -156,9 +156,9 @@ div.top {
 			</section>
 
 			<div class="divLine"
-				style="background: #f6755e; margin-bottom: 20px; height: 5px;"></div>
+				style="background: #f6755e; margin-bottom: 20px; height: 5px; position:relative;top:50px;"></div>
 
-			<section class="clublist" style="height: 633.62px; width: auto;">
+			<section class="clublist" style="height: 633.62px; position:relative;top:80px;">
 				<c:forEach var="club" items="${clubList }">
 					<c:if test="${empty clubList }">
 						<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
@@ -200,17 +200,17 @@ div.top {
 	<!-- clubList End -->
 
 
-	<ul class="action fit small">
+	<ul class="club action fit small" style="position:relative;top:100px;">
 		<li class="button alt fit big"
 			style="width: 1126.66px; margin: 0 auto; text-align: left;">[${member.mem_nick}]
-			님 근처에 인기많은 동호회를 찾아보세요.</li>
+			님 근처에 인기많은 동호회를 찾아보세요.!!!</li>
 	</ul>
 
 
 
 	<!-- recommendClub Start-->
 	<section class="joinclub_wrap"
-		style="width: 1126.66px; margin: 0 auto; height: 200px;">
+		style="width: 1126.66px; margin: 0 auto; height: 200px; position:relative; top:90px;">
 		<c:forEach var="recommend" items="${recommendList }">
 			<div class="joinclub card bg-light"
 				style="width: 350px; height: 200px; float: left; margin: 0 12.5px 0 12.5px;">
@@ -244,7 +244,7 @@ div.top {
 
 	<!-- pagination Start-->
 	<section class="pagination"
-		style="width: 1126.66px; margin: 0 auto; height: 68px;">
+		style="width: 1126.66px; margin: 0 auto; height: 68px;position:relative; top: 70px;">
 		<div class="card-footer clearfix"
 			style="align: center; width: 1126.66px;">
 			<div class="pagination justify-content-center m-0">
