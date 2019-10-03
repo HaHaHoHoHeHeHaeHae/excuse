@@ -14,8 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%@ include file="/WEB-INF/views/include/login_header.jsp"%>
 
-<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/adminLTE/plugins/daterangepicker/daterangepicker.css">
-  <style>
+<style>
 .register-box {
 	width: 950px;
 	margin-top: -80px;
@@ -59,10 +58,11 @@
 	font-size: 0.8em;
 }
 
-#mem_id_test, #mem_pwd_test, #mem_pwd_check_test, #mem_name_test, #mem_nick_test, #mem_phone_test{
-	margin-left:10px;
+#mem_id_test, #mem_pwd_test, #mem_pwd_check_test, #mem_name_test,
+	#mem_nick_test, #mem_phone_test,#mem_birthDate_test {
+	margin-left: 10px;
 	font-size: 0.8em;
-	color:red;
+	color: red;
 }
 </style>
 
@@ -83,20 +83,20 @@
 					<div>
 						<p>
 							이메일 &nbsp&nbsp&nbsp&nbsp&nbsp <input type="checkbox"
-								id="mem_id_check" name="mem_id_check" value="1"> <label for="mem_id_check"
-								id="mem_id_check_label">정보&nbsp비공개</label>
+								id="mem_id_check" name="mem_id_check" value="1"> <label
+								for="mem_id_check" id="mem_id_check_label">정보&nbsp비공개</label>
 						</p>
 					</div>
-					
+
 					<div class="row uniform" id="emailform">
 						<div class="3u 10u$(xsmall)">
 							<input type="text" name="mem_id" id="mem_id" value=""
-								placeholder="아이디" maxlength="20"/>
+								placeholder="아이디" maxlength="20" />
 						</div>
-						
+
 						<div class="3u$ 12u$(xsmall)">
 							<input type="text" name="email_add" id="email_add" value=""
-								 placeholder="@" maxlength="20"/>
+								placeholder="@" maxlength="20" />
 						</div>
 						<div class="3u$ 12u$(xsmall)">
 							<select name="email_address" id="email_address">
@@ -110,11 +110,15 @@
 							</select>
 						</div>
 						<div class="2u$ 12u$(xsmall)" id="checkbutton">
-							<span class="button alt small" id="jungbok" onclick="mem_id_jungbok()">중&nbsp복&nbsp체&nbsp크</span>
+							<span class="button alt small" id="jungbok"
+								onclick="mem_id_jungbok()">중&nbsp복&nbsp체&nbsp크</span>
 						</div>
 					</div>
 					<div>
-							<p id="mem_id_test"> </p><input type="hidden" id="mem_id_hidden1" value=""><input type="hidden" id="mem_id_hidden2" value=""><input type="hidden" id="mem_id_check_hidden" value="">
+						<p id="mem_id_test"></p>
+						<input type="hidden" id="mem_id_hidden1" value=""><input
+							type="hidden" id="mem_id_hidden2" value=""><input
+							type="hidden" id="mem_id_check_hidden" value="">
 					</div>
 
 					<div>
@@ -123,39 +127,42 @@
 					<div class="row uniform">
 						<div class="9u 12u$(xsmall)">
 							<input type="password" name="mem_pwd" id="mem_pwd" value=""
-								placeholder="비밀번호" maxlength="30"/>
+								placeholder="비밀번호" maxlength="30" />
 						</div>
 					</div>
 					<div>
-							<p id="mem_pwd_test"> </p><input type="hidden" id="mem_pwd_hidden" value="">
+						<p id="mem_pwd_test"></p>
+						<input type="hidden" id="mem_pwd_hidden" value="">
 					</div>
 					<div>
 						<p>비밀번호 확인</p>
 					</div>
 					<div class="row uniform">
 						<div class="9u 12u$(xsmall)">
-							<input type="password" name="mem_pwd_check" id="mem_pwd_check" value=""
-								placeholder="비밀번호 확인" maxlength="30"/>
+							<input type="password" name="mem_pwd_check" id="mem_pwd_check"
+								value="" placeholder="비밀번호 확인" maxlength="30" />
 						</div>
 					</div>
 					<div>
-							<p id="mem_pwd_check_test"> </p><input type="hidden" id="mem_pwd_check_hidden" value="">
+						<p id="mem_pwd_check_test"></p>
+						<input type="hidden" id="mem_pwd_check_hidden" value="">
 					</div>
 					<div>
 						<p>
 							이름&nbsp&nbsp&nbsp&nbsp&nbsp <input type="checkbox"
-								id="mem_name_check" name="mem_name_check" value="1"> <label for="mem_name_check"
-								id="mem_name_check_label">정보&nbsp비공개</label>
+								id="mem_name_check" name="mem_name_check" value="1"> <label
+								for="mem_name_check" id="mem_name_check_label">정보&nbsp비공개</label>
 						</p>
 					</div>
 					<div class="row uniform">
 						<div class="5u 12u$(xsmall)">
 							<input type="text" name="mem_name" id="mem_name" value=""
-								placeholder="이름" maxlength="8"/>
+								placeholder="이름" maxlength="8" />
 						</div>
 					</div>
 					<div>
-							<p id="mem_name_test"> </p><input type="hidden" id="mem_name_hidden" value="">
+						<p id="mem_name_test"></p>
+						<input type="hidden" id="mem_name_hidden" value="">
 					</div>
 					<div>
 						<p>닉네임</p>
@@ -163,26 +170,29 @@
 					<div class="row uniform">
 						<div class="5u 12u$(xsmall)">
 							<input type="text" name="mem_nick" id="mem_nick"
-								placeholder="닉네임" maxlength="20"/>
+								placeholder="닉네임" maxlength="20" />
 						</div>
 						<div class="2u$ 12u$(xsmall)" id="checkbutton">
-							<span class="button alt small" id="jungbok" onclick="mem_nick_jungbok()">중&nbsp복&nbsp체&nbsp크</span>
+							<span class="button alt small" id="jungbok"
+								onclick="mem_nick_jungbok()">중&nbsp복&nbsp체&nbsp크</span>
 						</div>
-						
+
 					</div>
 					<div>
-							<p id="mem_nick_test"> </p><input type="hidden" id="mem_nick_hidden" value=""><input type="hidden" id="mem_nick_check_hidden" value="">
+						<p id="mem_nick_test"></p>
+						<input type="hidden" id="mem_nick_hidden" value=""><input
+							type="hidden" id="mem_nick_check_hidden" value="">
 					</div>
 					<div>
 						<p>
 							전화번호&nbsp&nbsp&nbsp&nbsp&nbsp <input type="checkbox"
-								id="mem_phone_check" name="mem_phone_check" value="1"> <label for="mem_phone_check"
-								id="mem_phone_check_label">정보&nbsp비공개</label>
+								id="mem_phone_check" name="mem_phone_check" value="1"> <label
+								for="mem_phone_check" id="mem_phone_check_label">정보&nbsp비공개</label>
 						</p>
 					</div>
 					<div class="row uniform">
 						<div class="3u$ 12u$(xsmall)">
-							<select name="mem_phone1" id="mem_phone1" >
+							<select name="mem_phone1" id="mem_phone1">
 								<option value="fail" selected disabled>- 전화번호 -</option>
 								<option value="010">010</option>
 								<option value="02">02</option>
@@ -206,15 +216,16 @@
 						</div>
 						<div class="3u 12u$(xsmall)">
 							<input type="text" name="mem_phone2" id="mem_phone2" value=""
-								placeholder="" maxlength="4"/>
+								placeholder="" maxlength="4" />
 						</div>
 						<div class="3u 12u$(xsmall)">
 							<input type="text" name="mem_phone3" id="mem_phone3" value=""
-								placeholder="" maxlength="4"/>
+								placeholder="" maxlength="4" />
 						</div>
 					</div>
 					<div>
-							<p id="mem_phone_test"> </p><input type="hidden" id="mem_phone_hidden" value="">
+						<p id="mem_phone_test"></p>
+						<input type="hidden" id="mem_phone_hidden" value="">
 					</div>
 					<div>
 						<p>지역</p>
@@ -222,17 +233,18 @@
 					<div class="row uniform">
 						<div class="4u$ 12u$(xsmall)">
 							<select name="mem_local1" id="mem_local1" style="width: 100%;">
-								
+
 								<option value="fail" selected disabled>- 광역시, 도 -</option>
 								<c:forEach var="local" items="${localList.localList}">
 									<option value="${local.local_name }">${local.local_name }</option>
 								</c:forEach>
-								
+
 							</select>
 						</div>
 						<div class="4u$ 12u$(xsmall)">
-							<select name="mem_local2" id="mem_local2" >
-								<option value="" value="fail" selected disabled>- 시, 구 -</option>
+							<select name="mem_local2" id="mem_local2">
+								<option value="" value="fail" selected disabled>- 시, 구
+									-</option>
 							</select>
 						</div>
 					</div>
@@ -242,21 +254,27 @@
 					</div>
 					<div class="row uniform">
 						<div class="4u$ 9u$(xsmall)">
-							<p><input type="text" id="datepicker" name="mem_birthDate"></p>
-						</div>	
+							<p>
+								<input type="text" class="form-control" id="mem_birthDate"
+							name="mem_birthDate" placeholder="년-월-일 ex) 1993-02-18">
+							</p>
+						</div>
 					</div>
-					<br />
+					<div>
+						<p id="mem_birthDate_test"></p>
+						<input type="hidden" id="mem_birthDate_hidden" value="">
+					</div>
 					<div>
 						<p>성 별</p>
 					</div>
 					<div class="row uniform">
 						<div class="4u 12u$(small)">
-							<input type="radio" id="priority-low" name="mem_gender" checked value="남성">
-							<label for="priority-low">남&nbsp&nbsp&nbsp&nbsp성</label>
+							<input type="radio" id="priority-low" name="mem_gender" checked
+								value="남성"> <label for="priority-low">남&nbsp&nbsp&nbsp&nbsp성</label>
 						</div>
 						<div class="4u 12u$(small)">
-							<input type="radio" id="priority-normal" name="mem_gender" value="여성">
-							<label for="priority-normal">여&nbsp&nbsp&nbsp&nbsp성</label>
+							<input type="radio" id="priority-normal" name="mem_gender"
+								value="여성"> <label for="priority-normal">여&nbsp&nbsp&nbsp&nbsp성</label>
 						</div>
 					</div>
 				</form>
@@ -268,13 +286,14 @@
 						<span class="button special" id="signup">회원가입</span>
 					</div>
 					<div class="2u$ 12u$(small)">
-						<span class="button alt">취&nbsp&nbsp&nbsp&nbsp소</span>
+						<span class="button alt"
+							onclick="self.location='<%=request.getContextPath()%>/common/login'">취&nbsp&nbsp&nbsp&nbsp소</span>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-<script>
+	<script>
 function mem_nick_jungbok(){
 	var nick = mem_nick.value;
 	
@@ -464,7 +483,21 @@ $(document).ready(function(){
 			$("#mem_phone_hidden").val("");
 		}	
 	});
-
+	$("#mem_birthDate").keyup(function(){
+		var birthDate = $("#mem_birthDate").val();
+		if(birthDate != 0) {
+			if(chkBirthDate(birthDate)){
+				$("#mem_birthDate_test").html("");
+				$("#mem_birthDate_hidden").val("success");
+			}else{
+				$("#mem_birthDate_test").html("잘못된 형태입니다. ex)1993-01-01");
+				$("#mem_birthDate_hidden").val("");
+			}
+		}else{
+			$("#mem_birthDate_test").html("빈칸을 입력하실 수 없습니다.");
+			$("#mem_birthDate_hidden").val("");
+		}	
+	});
 });
 
 function chkId(mem_id){
@@ -490,6 +523,10 @@ function chkNick(nick){
 function chkPhone(phone){
 	var phone2= RegExp(/^[0-9]+$/);
 	return phone2.test(phone);
+}
+function chkBirthDate(birthDate){
+	var birthDate2= RegExp(/^(19|20)\d{2}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])$/);
+	return birthDate2.test(birthDate);
 }
 
 <%--지역 변경 --%>
@@ -537,7 +574,8 @@ $("#signup").click(function(){
 	var nick = mem_nick.value;
 	var phone = mem_phone1.value+"-"+mem_phone2.value+"-"+mem_phone3.value;
 	var local = mem_local1.value+"_"+mem_local2.value;
-	var birthDate = $("#datepicker").val();
+	var birthDate2 = mem_birthDate.value;
+	
 	var gender = $("input:radio[name='mem_gender']:checked").val();
 	if($("input:checkbox[name='mem_phone_check']").is(":checked")==true){
 		var phone_check = $('input:checkbox[id="mem_phone_check"]').val();
@@ -569,14 +607,14 @@ $("#signup").click(function(){
 				  mem_nick:nick,
 				  mem_phone:phone,
 				  mem_local:local,
-				  mem_birthDate:birthDate,
+				  birthDate:birthDate2,
 				  mem_phone_check:phone_check,
 				  mem_id_check:id_check,
 				  mem_name_chcek:name_check
 				  },
 			success:function(mem_id){
 				alert(mem_id+"님 회원가입 되었습니다");
-				self.location="<%=request.getContextPath()%>/common/login";
+				location.href="<%=request.getContextPath()%>/common/login";
 			},
 			error:function(){
 				alert("서버에 오류가 발생하였습니다. 다시 시도하세요.");
@@ -586,6 +624,23 @@ $("#signup").click(function(){
 	}
 });
 </script>
-
+	<!-- jQuery -->
+	<script
+		src="<%=request.getContextPath()%>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>
+	<!-- Bootstrap 4 -->
+	<script
+		src="<%=request.getContextPath()%>/resources/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
+	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
+<%@include file="/WEB-INF/views/include/login_footer.jsp" %>
 </body>
 </html>

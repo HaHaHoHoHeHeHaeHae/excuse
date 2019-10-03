@@ -111,6 +111,26 @@
 	    	club_status=#{club_status}
 	    	where club_no=#{club_no}
 	    </update>
+    
+	    
+	    <select id="recommendClubMain" resultType="club">
+	    	
+	    		select *
+		    	from
+		    	(select * from club_view where club_local like '%'||#{mem_local}||'%' order by abs(upcnt-downcnt) desc)
+		    <![CDATA[
+		    	where rownum <= 5
+	    	]]>
+	    	
+	    </select>
+	    <select id="recentClubMain" resultType="club">
+	    	<![CDATA[
+	    		select *
+	    		from
+	    		(select * from club order by club_regDate desc)
+	    		where rownum <= 6
+	    	]]>
+	    </select>
     </mapper>
     
 

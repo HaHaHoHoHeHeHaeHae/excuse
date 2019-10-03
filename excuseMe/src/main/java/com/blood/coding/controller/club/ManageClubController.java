@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.blood.coding.controller.common.Criteria;
-import com.blood.coding.controller.common.MemberCriteria;
-import com.blood.coding.controller.common.MemberPageMaker;
 import com.blood.coding.controller.common.PageMaker;
-import com.blood.coding.dto.club.ClubVO;
 import com.blood.coding.dto.member.MemberVO;
 import com.blood.coding.service.club.ClubService;
 
@@ -31,7 +28,9 @@ public class ManageClubController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		
-		Map<String,Object> dataMap=service.getClubList(cri);
+		//지선이가 확인해봐야할거
+		MemberVO member = new MemberVO();
+		Map<String,Object> dataMap=service.getClubList(cri,member);
 		
 		model.addAllAttributes(dataMap);
 		
@@ -47,7 +46,9 @@ public class ManageClubController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		
-		Map<String,Object> dataMap=service.getClubList(cri);
+		//지선이가 확인해봐야할거
+				MemberVO member = new MemberVO();
+		Map<String,Object> dataMap=service.getClubList(cri,member);
 		
 		model.addAllAttributes(dataMap);
 		

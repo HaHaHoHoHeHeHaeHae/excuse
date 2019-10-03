@@ -35,13 +35,22 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public NoticeVO noticeDetail(String not_no) throws SQLException {
+	public NoticeVO noticeDetailByAdmin(String not_no) throws SQLException {
 		NoticeVO vo = noticeDAO.selectNotice(not_no);
+		return vo;
+	}
+	
+	@Override
+	public NoticeVO noticeDetailByMember(String not_no) throws SQLException {
+		NoticeVO vo = noticeDAO.selectNotice(not_no);
+		noticeDAO.updateNoticeViewcnt(not_no);
 		return vo;
 	}
 
 	@Override
 	public void registNotice(NoticeVO noticeVO) throws SQLException {
+		String not_no = noticeDAO.selectNoticeSeq();
+		noticeVO.setNot_no(not_no);
 		noticeDAO.insertNotice(noticeVO);
 
 	}
@@ -56,6 +65,14 @@ public class NoticeServiceImpl implements NoticeService {
 	public void removeNotice(String not_no) throws SQLException {
 		noticeDAO.deleteNotice(not_no);
 
+	}
+
+	@Override
+	public Map<String, List<NoticeVO>> noticeRecentList() throws SQLException {
+		Map<String, List<NoticeVO>> map = new HashMap();
+		List<NoticeVO> list = noticeDAO.selectNoticeRecentList();
+		map.put("noticeList", list);
+		return map;
 	}
 
 }

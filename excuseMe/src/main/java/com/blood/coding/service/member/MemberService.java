@@ -20,6 +20,7 @@ public interface MemberService {
 	
 	//멤버상세보기
 	public MemberVO selectMember(String mem_id) throws SQLException;
+	public MemberVO selectMember2(String mem_nick) throws SQLException;
 	
 	//멤버 댓글내용 보기
 	public List<ReplyVO> getReply(String mem_id)throws SQLException;
