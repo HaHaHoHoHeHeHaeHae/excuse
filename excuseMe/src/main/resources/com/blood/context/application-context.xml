@@ -61,6 +61,7 @@
 	  	  class="com.blood.coding.service.club.ClubServiceImpl"
 	  	  p:clubDAO-ref="clubDAO" 
 	  	  p:memberDAO-ref="memberDAO"
-		  p:categoryDAO-ref="categoryDAO"/>
+		  p:categoryDAO-ref="categoryDAO"
+		  p:localDAO-ref="localDAO"/>
 	
 </beans>

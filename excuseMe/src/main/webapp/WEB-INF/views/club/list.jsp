@@ -18,7 +18,7 @@ div.top {
 <c:set var="clubList" value="${dataMap.clubList }" />
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 <c:set var="cateList" value="${dataMap.cateList }" />
-<!--<c:set var="localList" value="${dataMap.localList }" /> -->
+<c:set var="localList" value="${dataMap.localList }" />
 <c:set var="recommendList" value="${dataMap.recommendList }" />
 <c:set var="member" value="${dataMap.member }" />
 
@@ -52,7 +52,8 @@ div.top {
 <body class="subpage">
 	<!-- Main -->
 	<section id="main" class="wrapper">
-		<div class="club_inner" style="margin:0 auto; width:1126.66px; position:static;">
+		<div class="club_inner"
+			style="margin: 0 auto; width: 1126.66px; position: static;">
 
 			<!-- searchClubList Start-->
 			<header class="align-center"">
@@ -60,8 +61,9 @@ div.top {
 				<p>원하는 동호회를 검색하세요.</p>
 			</header>
 			<section class="search"
-				style="top:20px; height: 250px; margin-bottom:10px;position:relative;">
-				<div class="search1" style="height: 50px;position:relative;width:1000px;align:center;">
+				style="top: 20px; height: 250px; margin-bottom: 10px; position: relative;">
+				<div class="search1"
+					style="height: 50px; position: relative; width: 1000px; align: center;">
 					<div class="form-group"
 						style="float: left; displayh: inline-block;">
 						<div class="label"
@@ -96,7 +98,7 @@ div.top {
 						</div>
 					</div>
 				</div>
-				<div class="search2" style="height: 50px;position:relative;">
+				<div class="search2" style="height: 50px; position: relative;">
 					<div class="form-group" style="float: left;">
 						<div class="label"
 							style="float: left; margin-left: 10px; margin-right: 20px; width: 450px;">
@@ -105,12 +107,13 @@ div.top {
 								<strong>지역:</strong>
 							</div>
 							<div class="select" style="float: left;">
-								<select class="form-control" style="width: 350px; float: left;">
-									<option value="" disabled selected>-시 도 -</option>
-									<option>option 2</option>
-									<option>option 3</option>
-									<option>option 4</option>
-									<option>option 5</option>
+								<select id="local" class="form-control" style="width: 350px; float: left;">
+									<option disabled selected>-시 도 -</option>
+									<c:forEach var="local" items="${localList }">
+										<c:if test="${!empty localList }">
+											<option value="${local.local_no}">${local.local_name }</option>
+										</c:if>
+									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -118,24 +121,20 @@ div.top {
 						<div class="label"
 							style="float: left; margin-left: 20px; margin-right: 10px; width: 450px;">
 							<div class="select">
-								<select class="form-control" style="width: 500px; float: left;">
-									<option value="" disabled selected>- 구 군 -</option>
-									<option>option 2</option>
-									<option>option 3</option>
-									<option>option 4</option>
-									<option>option 5</option>
+								<select id="sublocal" class="form-control" style="width: 500px; float: left;">
+									<option disabled selected>- 구 군 -</option>
 								</select>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="search3" style="height: 80px;position:relative;">
+				<div class="search3" style="height: 80px; position: relative;">
 					<div class="select" style="width: 800px, float:left; height: 80px;">
-						<input type="text" class="form-control"
+						<input name="keyword" type="text" class="form-control"
 							placeholder="동호회를 검색할 단어를 입력하세요." style="width: 1000px;">
 					</div>
 					<ul class="actions" style="float: right;">
-						<li><a href="#" class="button special small">검색</a></li>
+						<li><a id="searchBtn" href="#" class="button special small">검색</a></li>
 					</ul>
 				</div>
 
@@ -144,7 +143,8 @@ div.top {
 
 			<!-- clubList Start -->
 			<!-- alignment -->
-			<section class="alignment" style="top:50px; height: 70px; position:relative;">
+			<section class="alignment"
+				style="top: 50px; height: 70px; position: relative;">
 				<div class="listTitle" style="float: right;">
 					<a class="btn btn-app"><i class="fas fa-sort-numeric-down-alt"></i>역사가
 						깊은</a> <a class="btn btn-app"><i class="fas fa-sort-numeric-down"></i>갓
@@ -156,9 +156,10 @@ div.top {
 			</section>
 
 			<div class="divLine"
-				style="background: #f6755e; margin-bottom: 20px; height: 5px; position:relative;top:50px;"></div>
+				style="background: #f6755e; margin-bottom: 20px; height: 5px; position: relative; top: 50px;"></div>
 
-			<section class="clublist" style="height: 633.62px; position:relative;top:80px;">
+			<section class="clublist"
+				style="height: 633.62px; position: relative; top: 80px;">
 				<c:forEach var="club" items="${clubList }">
 					<c:if test="${empty clubList }">
 						<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
@@ -200,7 +201,8 @@ div.top {
 	<!-- clubList End -->
 
 
-	<ul class="club action fit small" style="position:relative;top:100px;">
+	<ul class="club action fit small"
+		style="position: relative; top: 100px;">
 		<li class="button alt fit big"
 			style="width: 1126.66px; margin: 0 auto; text-align: left;">[${member.mem_nick}]
 			님 근처에 인기많은 동호회를 찾아보세요.!!!</li>
@@ -210,7 +212,7 @@ div.top {
 
 	<!-- recommendClub Start-->
 	<section class="joinclub_wrap"
-		style="width: 1126.66px; margin: 0 auto; height: 200px; position:relative; top:90px;">
+		style="width: 1126.66px; margin: 0 auto; height: 200px; position: relative; top: 90px;">
 		<c:forEach var="recommend" items="${recommendList }">
 			<div class="joinclub card bg-light"
 				style="width: 350px; height: 200px; float: left; margin: 0 12.5px 0 12.5px;">
@@ -244,7 +246,7 @@ div.top {
 
 	<!-- pagination Start-->
 	<section class="pagination"
-		style="width: 1126.66px; margin: 0 auto; height: 68px;position:relative; top: 70px;">
+		style="width: 1126.66px; margin: 0 auto; height: 68px; position: relative; top: 70px;">
 		<div class="card-footer clearfix"
 			style="align: center; width: 1126.66px;">
 			<div class="pagination justify-content-center m-0">
@@ -283,6 +285,13 @@ div.top {
 	</section>
 
 
+
+
+
+
+
+	<%--Script --%>
+
 	<%-- 	<script
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script> --%>
 	<script
@@ -290,11 +299,22 @@ div.top {
 	<%-- <script
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script> --%>
 	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-	<script
+	<%-- <script
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
-
+ --%>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
+
+
+
+
+
+
+
+
+	<%--Function --%>
+
+	<%--subCategory --%>
 	<script>
 	 $('#category').change(function() { 
 	      $.ajax({
@@ -302,21 +322,38 @@ div.top {
 	         contentType:"application/JSON",
 	         type: "POST",
 	         url: "<%=request.getContextPath()%>/club/subcategory",
-	         cache: false,
 	         success: function(data) {
-	            	  console.log(data);
 	                  $("#subCategory").html("");
 	                  for(var sub of data){
-	                  console.log(sub.cate_sub_name);
-	                  $("#subCategory").append("<option>"+sub.cate_sub_name+"</option>");
+	                  $("#subCategory").append("<option>"+ sub.cate_sub_name +"</option>");
 	                  }
-	         },
-	         error: function(data, textStatus){
-	        	 alert("이거 안됨.돌아가");
 	         }
 	      });
 	   });
 	</script>
-
+	
+	<%--subLocal --%>
+	<script>
+		$('#local').change(function(){
+			<%--alert("야호 성공이다");--%>
+			console.log(local);
+			$.ajax({
+				data:JSON.stringify({"local_no":$(this).val()}),
+				contentType:"application/JSON",
+				type: "POST",
+				url: "<%=request.getContextPath()%>/club/sublocal",
+				success: function(data){
+						$("#sublocal").html("");
+						for(var sublo of data){
+							$("#sublocal").append("<option>"+ sublo.local_sub_name +"</option>");
+				}
+				},
+				error: function(request,status,error){
+					alert("code="+request.status+"message="+request.responseText+"error="+error);
+				}
+				
+			});
+		});
+	</script>
 
 </body>

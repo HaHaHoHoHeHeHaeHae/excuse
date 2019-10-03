@@ -43,10 +43,10 @@ public class ClubServiceImpl implements ClubService {
 		this.categoryDAO=categoryDAO;
 	}
 	
-/*	private LocalDAO localDAO;
+	private LocalDAO localDAO;
 	public void setLocalDAO(LocalDAO localDAO) {
 		this.localDAO=localDAO;
-	}*/
+	}
 
 	
 	
@@ -73,12 +73,12 @@ public class ClubServiceImpl implements ClubService {
 
 		//추천리스트
 		List<ClubVO> recommendList = clubDAO.selectSearchClubList(cri);
-		//cri.setLogin_local(memberVO.get....);
 		
 		//카테고리
 		List<CategoryVO> categoryList = categoryDAO.selectCategoryList();
 
-		//List<CategoryVO> subcategory = categoryDAO.selectSubCategoryList(cate_no);
+		//지역
+		List<LocalVO> localList = localDAO.selectLocalList();
 		
 		
 		// dataMap에 넣기
@@ -87,7 +87,7 @@ public class ClubServiceImpl implements ClubService {
 		dataMap.put("recommendList", recommendList);
 		dataMap.put("member", memberVO);
 		dataMap.put("cateList", categoryList);
-		//dataMap.put("localList", localList);
+		dataMap.put("localList", localList);
 
 		return dataMap;
  	}
@@ -95,8 +95,9 @@ public class ClubServiceImpl implements ClubService {
 	//동호회 조회[디테일]:replycnt 있는거
 	//reply,attach,mem_nick이 나와야함
 	@Override
-	public Map readClub(String club_no) throws SQLException {
-		Map dataMap = new HashMap();
+	public Map<String, Object> readClub(String club_no) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		
 		ClubVO club = clubDAO.selectClub(club_no);
 		String mem_id = club.getMem_id();
 		MemberVO member = memberDAO.selectMember(mem_id);
@@ -131,23 +132,12 @@ public class ClubServiceImpl implements ClubService {
 	//수정하고 submit버튼을 클릭했을때
 	@Override
 	public void modify(ClubVO club) throws SQLException {
-//		테스트
-//		club.setMem_id("m_03");
-//		club.setClub_name("태극권동호회");
-//		club.setClub_content("허이짜 허이짜 몸과 마음을 단련해보세요");
-//		club.setClub_local("충남 논산시");
-//		club.setCate_name("운동");
-//		club.setClub_no("c_16");
-		
 		clubDAO.updateClub(club);
-		
-
 	}
 
 	@Override
 	public void remove(String club_no) throws SQLException {
 		clubDAO.deleteClub(club_no);
-
 	}
 
 }
