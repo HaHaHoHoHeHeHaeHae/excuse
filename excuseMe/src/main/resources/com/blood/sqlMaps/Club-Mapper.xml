@@ -3,4 +3,107 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-    <mapper namespace="club"></mapper>
+    <mapper namespace="Club">
+    
+    	<sql id="searchlocal">
+    		<if test="local != null"> 
+    		and club_local like '%'||#{local}||'%'
+    		</if>
+
+    	</sql>
+    		
+    	<sql id="searchcategory">
+    		<if test="category != null">
+    		and cate_name like '%'||#{category}||'%'
+    		</if>
+    	</sql>
+    	
+    	<sql id="searchclubname">
+    		<if test="keyword != null">
+    		and club_name like '%'||#{keyword}||'%'
+    		</if>    
+    	</sql>
+    	
+    	<sql id="alignment">
+    		<if test="alignment == 0">
+    		order by club_regDate desc
+    		</if>
+    		<if test="alignment == 1"> 
+    		order by club_regDate
+    		</if>
+    		<if test="alignment == 2"> 
+    		order by upcnt desc
+    		</if>
+    		<if test="alignment == 3"> 
+    		order by downcnt desc
+    		</if>
+    		<if test="alignment == 4"> 
+    		order by joincnt
+    		</if>
+    		<if test="alignment == 5"> 
+    		order by joincnt desc
+    		</if>
+    	</sql>
+
+	    <select id="selectSearchClubList" resultType="club">
+	    	select *
+	    	from club_view
+	    	where club_no is not null
+	    	<include refid="searchlocal" />
+	    	<include refid="searchcategory" />
+	    	<include refid="searchclubname" />
+	    	<include refid="alignment" />
+	    </select>
+	    
+	    <select id="selectSearchClubCount" resultType="int">
+	    	select count(*)
+	    	from club_view
+	    	where club_no is not null
+	    	<include refid="searchlocal" />
+	    	<include refid="searchcategory" />
+	    	<include refid="searchclubname" />
+	    </select>
+	    
+	    <select id="selectClub" resultType="club">
+	    	select *
+	    	from club
+	    	where club_no=#{club_no}
+	    </select>
+	    
+	    <select id="selectClubSeq" resultType="int">
+	    	select club_seq.nextval
+	    	<!-- as club_no -->
+	    	from dual
+	    </select>
+	    
+	    <update id="insertClub" parameterType="club">
+	    	insert into club(club_no, mem_id, cate_name, club_name, club_content, club_local)
+	    	values(#{club_no}, #{mem_id}, #{cate_name}, #{club_name}, #{club_content}, #{club_local})
+	    </update>
+	    	
+	    <update id="updateClub" parameterType="club">
+	    	update club
+	    	set
+	    	club_name=#{club_name}, club_content=#{club_content}, club_local=#{club_local}, cate_name=#{cate_name}
+	    	where club_no=#{club_no}
+	    </update>
+	    
+	    <update id="deleteClub" parameterType="club">
+	    	delete 
+	    	from club
+	    	where club_no=#{club_no}
+	    </update>
+	    
+	    <update id="updateClubStatus" parameterType="club">
+	    	update club
+	    	set
+	    	club_status=#{club_status}
+	    	where club_no=#{club_no}
+	    </update>
+    </mapper>
+    
+
+    <!--  지역:    [광역시도][시군구]
+		    카테고리: [대분류][소분류]
+		    동호회명: [] like 
+    -->

@@ -13,8 +13,6 @@
  			order by cate_name asc			
  			 			
     	</select>
-    	
-    	    	
     	<!-- 없어도 될듯 ㄱㄷ 
     	대분류 카테고리 하나 선택했을때
     	<select id="selectOneCategory" resultType="category">

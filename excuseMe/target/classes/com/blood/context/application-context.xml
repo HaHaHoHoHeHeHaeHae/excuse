@@ -34,9 +34,10 @@
     <bean id="clubDAO"
 		  class="com.blood.coding.dao.club.ClubDAOImpl"
 		  p:session-ref="sqlSession" />
-	<bean id="CategoryDAO"
+	<bean id="categoryDAO"
 		  class="com.blood.coding.dao.category.CategoryDAOImpl"
 	      p:session-ref="sqlSession"/>
+	
 		  	  
 	<!-- service -->	
 	<bean id="loginService"
@@ -59,6 +60,8 @@
 	<bean id="clubService"
 	  	  class="com.blood.coding.service.club.ClubServiceImpl"
 	  	  p:clubDAO-ref="clubDAO" 
-	  	  p:memberDAO-ref="memberDAO"/>
+	  	  p:memberDAO-ref="memberDAO"
+		  p:categoryDAO-ref="categoryDAO"
+		  p:localDAO-ref="localDAO"/>
 	
 </beans>

@@ -7,13 +7,13 @@ import java.util.Map;
 
 import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.controller.common.PageMaker;
-import com.blood.coding.dao.attach.AttachDAO;
+import com.blood.coding.dao.category.CategoryDAO;
 import com.blood.coding.dao.club.ClubDAO;
-import com.blood.coding.dao.down.DownDAO;
+import com.blood.coding.dao.local.LocalDAO;
 import com.blood.coding.dao.member.MemberDAO;
-import com.blood.coding.dao.reply.ReplyDAO;
-import com.blood.coding.dao.up.UpDAO;
+import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.dto.club.ClubVO;
+import com.blood.coding.dto.local.LocalVO;
 import com.blood.coding.dto.member.MemberVO;
 
 public class ClubServiceImpl implements ClubService {
@@ -31,16 +31,6 @@ public class ClubServiceImpl implements ClubService {
 	private ReplyDAO replyDAO;
 	public void setRelyDAO(ReplyDAO replyDAO) {
 		this.replyDAO = replyDAO;
-	}
-
-	private UpDAO upDAO;
-	public void setUpDAO(UpDAO upDAO) {
-		this.upDAO = upDAO;
-	}
-
-	private DownDAO downDAO;
-	public void setDownDAO(DownDAO downDAO) {
-		this.downDAO = downDAO;
 	}*/
 	
 	private MemberDAO memberDAO;
@@ -48,46 +38,60 @@ public class ClubServiceImpl implements ClubService {
 		this.memberDAO=memberDAO;
 	}
 	
-/*	private MemberVO memberVO;
-	public void setMemberVO(MemberVO memberVO) {
-		this.memberVO=memberVO;
-	}*/
+	private CategoryDAO categoryDAO;
+	public void setCategoryDAO(CategoryDAO categoryDAO) {
+		this.categoryDAO=categoryDAO;
+	}
 	
-	// wish랑 join은 나중에 협의해야함
-	
+	private LocalDAO localDAO;
+	public void setLocalDAO(LocalDAO localDAO) {
+		this.localDAO=localDAO;
+	}
 
 	
+	
+	
 	@Override
-	public Map<String, Object> getClubList(Criteria cri) throws SQLException {
+	public Map<String, Object> getClubList(Criteria cri,MemberVO memberVO) throws SQLException { //(매개변수에 memberVO추가)
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 
 		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
-		
+		//List<CategoryVO> cateList = categoryDAO.selectCategoryList();
+		//List<LocalVO> localList = localDAO.selectLocalList();
+	
 		int totalCount = clubDAO.selectSearchClubCount(cri);
 		
-		/*int cno = clubDAO.selectClubSeq();
-		System.out.println("+++++++++++++++++++++");
-		System.out.println("+++++++++++++++++++++");
-		System.out.println(cno);
-		System.out.println("+++++++++++++++++++++");
-		System.out.println("+++++++++++++++++++++");
-		String club_no = "c_" + cno;
-		for(ClubVO club : clubList) {
-			int replycnt = replyDAO.selectReplyListCount(club_no);
-			
-			club.setReplycnt(replycnt);
-		}
-*/
 		// pagination
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(totalCount);
 		
+
+		cri.setPerPageNum(3);
+		cri.setLocal(memberVO.getMem_local());
+		cri.setAlignment(2);
+		//검색창 돌릴때 추천동호회도 검색파라미터를 포함해서 가져오니까 강제 fix해주기
+		cri.setLocal("");
+		cri.setCategory("");
+		cri.setKeyword("");
+
+		//추천리스트
+		List<ClubVO> recommendList = clubDAO.selectSearchClubList(cri);
+		
+		//카테고리
+		List<CategoryVO> categoryList = categoryDAO.selectCategoryList();
+
+		//지역
+		List<LocalVO> localList = localDAO.selectLocalList();
 		
 		
 		// dataMap에 넣기
 		dataMap.put("clubList", clubList);
 		dataMap.put("pageMaker", pageMaker);
+		dataMap.put("recommendList", recommendList);
+		dataMap.put("member", memberVO);
+		dataMap.put("cateList", categoryList);
+		dataMap.put("localList", localList);
 
 		return dataMap;
  	}
@@ -95,8 +99,9 @@ public class ClubServiceImpl implements ClubService {
 	//동호회 조회[디테일]:replycnt 있는거
 	//reply,attach,mem_nick이 나와야함
 	@Override
-	public Map readClub(String club_no) throws SQLException {
-		Map dataMap = new HashMap();
+	public Map<String, Object> readClub(String club_no) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		
 		ClubVO club = clubDAO.selectClub(club_no);
 		String mem_id = club.getMem_id();
 		MemberVO member = memberDAO.selectMember(mem_id);
@@ -131,23 +136,12 @@ public class ClubServiceImpl implements ClubService {
 	//수정하고 submit버튼을 클릭했을때
 	@Override
 	public void modify(ClubVO club) throws SQLException {
-//		테스트
-//		club.setMem_id("m_03");
-//		club.setClub_name("태극권동호회");
-//		club.setClub_content("허이짜 허이짜 몸과 마음을 단련해보세요");
-//		club.setClub_local("충남 논산시");
-//		club.setCate_name("운동");
-//		club.setClub_no("c_16");
-		
 		clubDAO.updateClub(club);
-		
-
 	}
 
 	@Override
 	public void remove(String club_no) throws SQLException {
 		clubDAO.deleteClub(club_no);
-
 	}
 
 }
