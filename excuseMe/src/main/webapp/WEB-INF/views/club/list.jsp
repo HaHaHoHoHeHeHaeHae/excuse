@@ -190,7 +190,7 @@ div.top {
 								</ul>
 								<ul class="actions vertical small"
 									style="text-align: center; margin-bottom: -10px;">
-									<li><a class="button small" style="color: white;">Detail</a></li>
+									<li><a href="#" data-name="title" onclick="OpenWindow('detail?club_no=${club.club_no}','','800',650');" class="button small" style="color: white;">Detail</a></li>
 								</ul>
 							</div>
 						</div>
@@ -397,11 +397,24 @@ div.top {
 		self.location.href="<%=request.getContextPath() %>/club/list?alignment=5";
 	}
 	
-	/* window.onload =function(){
-	$('a[data-name-"ali"]').on('click',function(e){
-		e.preventDefault();
-	});
-	} */
+	window.onload =function(){
+		$('a[data-name="title"]').on('click',function(e){
+			e.preventDefault();
+		});
+	}
+
+	function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
+		winleft = (screen.width - WinWidth)/2;
+		widtop = (screen.height - WinHeight)/2;
+		var win = window.open(UrlStr, WinTitle, "scrollbars=yes, width="+WinWidth+",height="+WinHeight+",top="+wintop+",left="+winleft+", resizable=no, status=yes");
+		win.focus();
+	}
+	
+	function CloseWindow(){
+		if(conform("종료하시겠습니까?")){
+			window.close();
+		}
+	}
 
 	
 	</script>
