@@ -147,12 +147,12 @@ div.top {
 			<section class="alignment"
 				style="top: 50px; height: 70px; position: relative;">
 				<div class="listTitle" style="float: right;">
-					<a class="btn btn-app"><i class="fas fa-sort-numeric-down-alt"></i>역사가
-						깊은</a> <a class="btn btn-app"><i class="fas fa-sort-numeric-down"></i>갓
-						생긴</a> <a class="btn btn-app"><i class="fas fa-users"></i>사람많은</a> <a
-						class="btn btn-app"><i class="fas fa-user"></i>사람적은</a> <a
-						class="btn btn-app"><i class="fas fa-thumbs-up"></i>인기있는</a> <a
-						class="btn btn-app"><i class="fas fa-thumbs-down"></i>인기없는</a>
+					<a data-name="ali" class="btn btn-app" onclick="ali_1();"><i class="fas fa-sort-numeric-down-alt"></i>역사가 깊은</a> 
+					<a class="btn btn-app" onclick="ali_0();"><i class="fas fa-sort-numeric-down"></i>갓 생긴</a> 
+					<a class="btn btn-app" onclick="ali_5();"><i class="fas fa-users"></i>사람많은</a> 
+					<a class="btn btn-app" onclick="ali_4();"><i class="fas fa-user"></i>사람적은</a> 
+					<a class="btn btn-app" onclick="ali_2();"><i class="fas fa-thumbs-up"></i>인기있는</a> 
+					<a class="btn btn-app" onclick="ali_3();"><i class="fas fa-thumbs-down"></i>인기없는</a>
 				</div>
 			</section>
 
@@ -190,7 +190,7 @@ div.top {
 								</ul>
 								<ul class="actions vertical small"
 									style="text-align: center; margin-bottom: -10px;">
-									<li><a href="#" class="button small" style="color: white;">Detail</a></li>
+									<li><a class="button small" style="color: white;">Detail</a></li>
 								</ul>
 							</div>
 						</div>
@@ -375,6 +375,34 @@ div.top {
 	function searchList(categoryclub,category,local,keyword){
 		self.location="<%=request.getContextPath()%>/"+categoryclub+"/list?category="+category+"&local="+local+"&keyword="+keyword;
 	}
+	
+	<%--aligment --%>
+	function ali_0(){ //0:최신순
+		self.location.href="<%=request.getContextPath() %>/club/list?alignment=0";
+		//$('a#ali_1').click(function(e){e.preventDefault();window.open(this.href);});
+	}
+	function ali_1(){ //1:오래된순
+		self.location.href="<%=request.getContextPath() %>/club/list?alignment=1";
+	}
+	function ali_2(){ //2:업 많은 순
+		self.location.href="<%=request.getContextPath() %>/club/list?alignment=2";
+	}
+	function ali_3(){ //3:다운 많은 순
+		self.location.href="<%=request.getContextPath() %>/club/list?alignment=3";
+	}
+	function ali_4(){ //4:회원수 없는 순
+		self.location.href="<%=request.getContextPath() %>/club/list?alignment=4";
+	}
+	function ali_5(){ //5:회원수 많은 순
+		self.location.href="<%=request.getContextPath() %>/club/list?alignment=5";
+	}
+	
+	/* window.onload =function(){
+	$('a[data-name-"ali"]').on('click',function(e){
+		e.preventDefault();
+	});
+	} */
+
 	</script>
 
 
