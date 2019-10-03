@@ -50,12 +50,12 @@ div.top {
 </head>
 
 <body class="subpage">
-	<!-- Main -->
+<!-- Main -->
 	<section id="main" class="wrapper">
 		<div class="club_inner"
 			style="margin: 0 auto; width: 1126.66px; position: static;">
 
-			<!-- searchClubList Start-->
+<!-- searchClubList Start-->
 			<header class="align-center"">
 				<h1>동호회 리스트</h1>
 				<p>원하는 동호회를 검색하세요.</p>
@@ -76,10 +76,10 @@ div.top {
 								<!-- category1 -->
 								<select id="category" class="form-control"
 									style="width: 350px; float: left;">
-									<option disabled selected>- 대분류 -</option>
+									<option selected>전체</option>
 									<c:forEach var="cate1" items="${cateList}">
 										<c:if test="${!empty cateList }">
-											<option id="sub1" value="${cate1.cate_no }">${cate1.cate_name }</option>
+											<option value="${cate1.cate_no }">${cate1.cate_name }</option>
 										</c:if>
 									</c:forEach>
 								</select>
@@ -92,7 +92,7 @@ div.top {
 								<!-- category2 -->
 								<select id="subCategory" class="form-control"
 									style="width: 500px; float: left;">
-									<option disabled selected>- 소분류 -</option>
+									<option selected>전체</option>
 								</select>
 							</div>
 						</div>
@@ -108,7 +108,7 @@ div.top {
 							</div>
 							<div class="select" style="float: left;">
 								<select id="local" class="form-control" style="width: 350px; float: left;">
-									<option disabled selected>-시 도 -</option>
+									<option selected>전체</option>
 									<c:forEach var="local" items="${localList }">
 										<c:if test="${!empty localList }">
 											<option value="${local.local_no}">${local.local_name }</option>
@@ -121,8 +121,9 @@ div.top {
 						<div class="label"
 							style="float: left; margin-left: 20px; margin-right: 10px; width: 450px;">
 							<div class="select">
-								<select id="sublocal" class="form-control" style="width: 500px; float: left;">
-									<option disabled selected>- 구 군 -</option>
+								<select id="sublocal" class="form-control"
+									style="width: 500px; float: left;">
+									<option selected>전체</option>
 								</select>
 							</div>
 						</div>
@@ -139,10 +140,10 @@ div.top {
 				</div>
 
 			</section>
-			<!-- searchClubList End-->
+<!-- searchClubList End-->
 
-			<!-- clubList Start -->
-			<!-- alignment -->
+<!-- clubList Start -->
+<!-- alignment -->
 			<section class="alignment"
 				style="top: 50px; height: 70px; position: relative;">
 				<div class="listTitle" style="float: right;">
@@ -198,9 +199,10 @@ div.top {
 			</section>
 		</div>
 	</section>
-	<!-- clubList End -->
+<!-- clubList End -->
 
 
+<!-- recommendClub Start-->
 	<ul class="club action fit small"
 		style="position: relative; top: 100px;">
 		<li class="button alt fit big"
@@ -208,9 +210,6 @@ div.top {
 			님 근처에 인기많은 동호회를 찾아보세요.!!!</li>
 	</ul>
 
-
-
-	<!-- recommendClub Start-->
 	<section class="joinclub_wrap"
 		style="width: 1126.66px; margin: 0 auto; height: 200px; position: relative; top: 90px;">
 		<c:forEach var="recommend" items="${recommendList }">
@@ -241,10 +240,9 @@ div.top {
 	</section>
 	<br>
 	<br>
+<!-- recommendClub End-->
 
-	<!-- recommendClub End-->
-
-	<!-- pagination Start-->
+<!-- pagination Start-->
 	<section class="pagination"
 		style="width: 1126.66px; margin: 0 auto; height: 68px; position: relative; top: 70px;">
 		<div class="card-footer clearfix"
@@ -290,7 +288,7 @@ div.top {
 
 
 
-	<%--Script --%>
+<%--Script --%>
 
 	<%-- 	<script
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script> --%>
@@ -306,16 +304,9 @@ div.top {
 
 
 
-
-
-
-
-
-
-	<%--Function --%>
-
-	<%--subCategory --%>
+<%--Function --%>
 	<script>
+	<%--subCategory --%>
 	 $('#category').change(function() { 
 	      $.ajax({
 	         data:JSON.stringify({ "cate_no":$(this).val() }),
@@ -330,30 +321,61 @@ div.top {
 	         }
 	      });
 	   });
-	</script>
-	
-	<%--subLocal --%>
-	<script>
-		$('#local').change(function(){
-			<%--alert("야호 성공이다");--%>
-			console.log(local);
-			$.ajax({
-				data:JSON.stringify({"local_no":$(this).val()}),
-				contentType:"application/JSON",
-				type: "POST",
-				url: "<%=request.getContextPath()%>/club/sublocal",
-				success: function(data){
-						$("#sublocal").html("");
-						for(var sublo of data){
-							$("#sublocal").append("<option>"+ sublo.local_sub_name +"</option>");
-				}
-				},
-				error: function(request,status,error){
-					alert("code="+request.status+"message="+request.responseText+"error="+error);
-				}
+	 
+	 <%--subLocal --%>
+	$('#local').change(function(){
+		<%--alert("야호 성공이다");--%>
+		console.log(local);
+		$.ajax({
+			data:JSON.stringify({"local_no":$(this).val()}),
+			contentType:"application/JSON",
+			type: "POST",
+			url: "<%=request.getContextPath()%>/club/sublocal",
+			success: function(data){
+					$("#sublocal").html("");
+					for(var sublo of data){
+						$("#sublocal").append("<option>"+ sublo.local_sub_name +"</option>");
+			}
+			},
+			error: function(request,status,error){
+				alert("code="+request.status+"message="+request.responseText+"error="+error);
+			}
 				
-			});
 		});
+	});
+
+	<%--search --%>
+	$('a#searchBtn').click(function(){
+		alert("searchBtn");
+		//""(x), cate1.cate_name (x),
+		//var category = $('select#category').text();
+		//$("select option[value*='disabled']").prop('disabled',true);
+		//var category = $('select#category option selected').text();
+		//var category = $('select#category').children(":selected").attr("sub").text();
+		//var local = $('select#local option selected').text();
+		//$('select#category').removeAttr('disabled');
+		
+		var category = $('select#category option:selected' ).text();
+		var local = $('select#local option:selected').text();
+		var keyword = $('input[name="keyword"]').val(); 
+		
+		if(category=="전체"){
+			var category = "";
+		}
+		if(local=="전체"){
+			var local = "";
+		}
+		
+		alert("category="+category+"local="+local+"keyword="+keyword);
+		
+		searchList("${categoryclub }",category,local,keyword);
+	});
+	
+	
+	function searchList(categoryclub,category,local,keyword){
+		self.location="<%=request.getContextPath()%>/"+categoryclub+"/list?category="+category+"&local="+local+"&keyword="+keyword;
+	}
 	</script>
+
 
 </body>

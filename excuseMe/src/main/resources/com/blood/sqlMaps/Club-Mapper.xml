@@ -9,6 +9,7 @@
     		<if test="local != null"> 
     		and club_local like '%'||#{local}||'%'
     		</if>
+
     	</sql>
     		
     	<sql id="searchcategory">
