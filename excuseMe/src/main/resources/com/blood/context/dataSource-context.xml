@@ -9,14 +9,11 @@
 		class="org.apache.commons.dbcp2.BasicDataSource"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
 		p:url="jdbc:oracle:thin:@Localhost:1521:XE"
-		p:username="soso"
-		p:password="AAAAA" />
-	<bean id="sosososososooo"">
-			
-	</bean>
-	
-	
-	<bean id="dataSource"
+		p:username="bts"
+		p:password="12345" />
+		
+
+<bean id="dataSource"
 			class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
 			<constructor-arg ref="dataSourceSpied" />
 			<property name="logFormatter">

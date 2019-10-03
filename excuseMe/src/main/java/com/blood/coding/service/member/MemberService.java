@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.blood.coding.controller.common.MemberCriteria;
 import com.blood.coding.controller.common.MemberPageMaker;
+import com.blood.coding.controller.common.PageMaker;
 import com.blood.coding.dto.member.MemberVO;
 import com.blood.coding.dto.reply.ReplyVO;
 
@@ -22,9 +23,9 @@ public interface MemberService {
 	
 	//멤버 댓글내용 보기
 	public List<ReplyVO> getReply(String mem_id)throws SQLException;
-
 	//멤버 탈퇴시키기
-	public void updateMem(MemberVO memberVO) throws SQLException;
+	public void updateMem(String mem_id) throws SQLException;
+	
 	
 
 }

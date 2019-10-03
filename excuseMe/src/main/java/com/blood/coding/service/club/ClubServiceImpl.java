@@ -7,12 +7,8 @@ import java.util.Map;
 
 import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.controller.common.PageMaker;
-import com.blood.coding.dao.attach.AttachDAO;
 import com.blood.coding.dao.club.ClubDAO;
-import com.blood.coding.dao.down.DownDAO;
 import com.blood.coding.dao.member.MemberDAO;
-import com.blood.coding.dao.reply.ReplyDAO;
-import com.blood.coding.dao.up.UpDAO;
 import com.blood.coding.dto.club.ClubVO;
 import com.blood.coding.dto.member.MemberVO;
 
@@ -148,6 +144,25 @@ public class ClubServiceImpl implements ClubService {
 	public void remove(String club_no) throws SQLException {
 		clubDAO.deleteClub(club_no);
 
+	}
+
+	@Override
+	public Map<String, Object> getNewClubList(Criteria cri) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+
+		List<ClubVO> newclubList = clubDAO.selectNewClubList(cri);
+		
+		int totalCount = clubDAO.selectNewClubListCount(cri);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		
+		
+		dataMap.put("newclubList", newclubList);
+		dataMap.put("pageMaker", pageMaker);
+
+		return dataMap;
 	}
 
 }
