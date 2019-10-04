@@ -15,6 +15,11 @@
 		<level value="info" />
 	</logger>
 	
+	<logger name="jdbc.sqlonly">
+		<level value="debug" />
+		<appender-ref ref="console" />
+	</logger>
+	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />

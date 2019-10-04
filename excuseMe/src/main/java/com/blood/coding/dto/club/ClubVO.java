@@ -104,5 +104,5 @@ public class ClubVO {
 				+ ", downcnt=" + downcnt + ", joincnt=" + joincnt + ", mi=" + mi + "]";
 	}
 	
-	
+
 }

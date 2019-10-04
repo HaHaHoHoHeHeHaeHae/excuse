@@ -2,6 +2,7 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<<<<<<< HEAD
 
 <mapper namespace="Reply-Mapper">
 	<select id="selectReplyList" resultType="reply">
@@ -47,3 +48,7 @@
 		where c.club_no = r.club_no and r.mem_id=#{mem_id}
 	</select>
 </mapper>
+=======
+    
+    <mapper namespace="reply"></mapper>
+>>>>>>> refs/remotes/origin/kang
