@@ -11,6 +11,7 @@ import com.blood.coding.dao.category.CategoryDAO;
 import com.blood.coding.dao.club.ClubDAO;
 import com.blood.coding.dao.local.LocalDAO;
 import com.blood.coding.dao.member.MemberDAO;
+
 import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.dto.club.ClubVO;
 import com.blood.coding.dto.local.LocalVO;
@@ -31,6 +32,16 @@ public class ClubServiceImpl implements ClubService {
 	private ReplyDAO replyDAO;
 	public void setRelyDAO(ReplyDAO replyDAO) {
 		this.replyDAO = replyDAO;
+	}
+
+	private UpDAO upDAO;
+	public void setUpDAO(UpDAO upDAO) {
+		this.upDAO = upDAO;
+	}
+
+	private DownDAO downDAO;
+	public void setDownDAO(DownDAO downDAO) {
+		this.downDAO = downDAO;
 	}*/
 	
 	private MemberDAO memberDAO;
@@ -49,7 +60,9 @@ public class ClubServiceImpl implements ClubService {
 	}
 
 	
+	// wish랑 join은 나중에 협의해야함
 	
+
 	
 	@Override
 	public Map<String, Object> getClubList(Criteria cri,MemberVO memberVO) throws SQLException { //(매개변수에 memberVO추가)
@@ -58,8 +71,22 @@ public class ClubServiceImpl implements ClubService {
 		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
 		//List<CategoryVO> cateList = categoryDAO.selectCategoryList();
 		//List<LocalVO> localList = localDAO.selectLocalList();
-	
+		
 		int totalCount = clubDAO.selectSearchClubCount(cri);
+		
+		/*int cno = clubDAO.selectClubSeq();
+		System.out.println("+++++++++++++++++++++");
+		System.out.println("+++++++++++++++++++++");
+		System.out.println(cno);
+		System.out.println("+++++++++++++++++++++");
+		System.out.println("+++++++++++++++++++++");
+		String club_no = "c_" + cno;
+		for(ClubVO club : clubList) {
+			int replycnt = replyDAO.selectReplyListCount(club_no);
+			
+			club.setReplycnt(replycnt);
+		}
+*/
 		
 		// pagination
 		PageMaker pageMaker = new PageMaker();
@@ -84,7 +111,6 @@ public class ClubServiceImpl implements ClubService {
 
 		//지역
 		List<LocalVO> localList = localDAO.selectLocalList();
-		
 		
 		// dataMap에 넣기
 		dataMap.put("clubList", clubList);
@@ -138,11 +164,52 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public void modify(ClubVO club) throws SQLException {
 		clubDAO.updateClub(club);
+		
+
 	}
 
 	@Override
 	public void remove(String club_no) throws SQLException {
 		clubDAO.deleteClub(club_no);
+	}
+
+	@Override
+	public Map<String, Object> getNewClubList(Criteria cri) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+
+		List<ClubVO> newclubList = clubDAO.selectNewClubList(cri);
+		
+		int totalCount = clubDAO.selectNewClubListCount(cri);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		
+		
+		dataMap.put("newclubList", newclubList);
+		dataMap.put("pageMaker", pageMaker);
+
+		return dataMap;
+	}
+
+
+	@Override
+	public Map<String, List<ClubVO>> getClubListMain(String mem_local) throws SQLException {
+		Map<String, List<ClubVO>> map = new HashMap();
+		List<ClubVO> list = clubDAO.recommendClubMain(mem_local);
+		map.put("recommendClubList", list);
+		return map;
+	}
+
+
+
+
+	@Override
+	public Map<String, List<ClubVO>> getClubListMainRecent() throws SQLException {
+		Map<String, List<ClubVO>> map = new HashMap();
+		List<ClubVO> list = clubDAO.recentClubMain();
+		map.put("recentClubList", list);
+		return map;
 	}
 
 }

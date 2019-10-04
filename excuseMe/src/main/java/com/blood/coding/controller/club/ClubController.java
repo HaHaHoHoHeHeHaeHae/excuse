@@ -40,7 +40,7 @@ public class ClubController {
 	
 	@Autowired
 	private CategoryDAO categoryDAO;
-	
+		
 	@Autowired
 	private LocalDAO localDAO;
 	
@@ -53,7 +53,7 @@ public class ClubController {
 
 	@RequestMapping("/list") //동호회 리스트보기
 	public ModelAndView clubList(Criteria cri, ModelAndView modelnView, HttpServletRequest request) throws SQLException{ //session에서 멤버VO(local)가져올거기 떄문에 request 추가해줌.
-		String url = "/club/list";
+		String url = "/club/list";	
 		//로그인유저 정보
 		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginUser");
@@ -64,10 +64,10 @@ public class ClubController {
 		Map<String, Object> dataMap = clubService.getClubList(cri, memberVO);
 
 		modelnView.addObject("dataMap",dataMap);
+		
 		modelnView.setViewName(url);
 		return modelnView;
 	}
-	
 	
 	@RequestMapping("/detail") //동호회 상세보기
 	public ModelAndView clubDetail(String club_no, ModelAndView modelnView) throws SQLException {

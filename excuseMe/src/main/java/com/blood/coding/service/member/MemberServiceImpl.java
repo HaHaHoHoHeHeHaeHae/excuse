@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.blood.coding.controller.common.MemberCriteria;
 import com.blood.coding.controller.common.MemberPageMaker;
+import com.blood.coding.controller.common.PageMaker;
 import com.blood.coding.dao.member.MemberDAO;
 import com.blood.coding.dao.reply.ReplyDAO;
 import com.blood.coding.dto.member.MemberVO;
@@ -55,6 +56,11 @@ public class MemberServiceImpl implements MemberService {
 		return member;
 	}
 	@Override
+	public MemberVO selectMember2(String mem_nick) throws SQLException {
+		MemberVO member= memberDAO.selectMember2(mem_nick);
+		return member;
+	}
+	@Override
 	public List<ReplyVO> getReply(String mem_id) throws SQLException {
 		List<ReplyVO> replylist = replyDAO.selectMemberReply(mem_id);
 		return replylist;
@@ -62,8 +68,8 @@ public class MemberServiceImpl implements MemberService {
 
 
 	@Override
-	public void updateMem(MemberVO memberVO) throws SQLException {
-		memberDAO.updateMemberStatus(memberVO);
+	public void updateMem(String mem_id) throws SQLException {
+		memberDAO.updateMemberStatus(mem_id);
 	}
 
 
@@ -79,6 +85,12 @@ public class MemberServiceImpl implements MemberService {
 		List<MemberVO> memberList = memberDAO.selectMemberList(cri);
 		return memberList;
 	}
+
+	
+
+	
+
+	
 
 	
 }

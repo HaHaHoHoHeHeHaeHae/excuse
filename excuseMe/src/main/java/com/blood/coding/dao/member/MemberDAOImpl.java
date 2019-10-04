@@ -24,13 +24,18 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		RowBounds rowBounds = new RowBounds(offset,limit);
 		
-		List<MemberVO> list = session.selectList("Member.selectMemberList",cri,rowBounds);
-		return list;
+		List<MemberVO> memberList = session.selectList("Member.selectMemberList",null,rowBounds);
+		return memberList;
 	}
 
 	@Override
 	public MemberVO selectMember(String mem_id) throws SQLException {
 		MemberVO vo = session.selectOne("Member.selectMember",mem_id);
+		return vo;
+	}
+	@Override
+	public MemberVO selectMember2(String mem_nick) throws SQLException {
+		MemberVO vo = session.selectOne("Member.selectMember2",mem_nick);
 		return vo;
 	}
 
@@ -45,8 +50,12 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public void updateMemberStatus(MemberVO memberVO) throws SQLException {
-		session.update("Member.updateMemberStatus",memberVO);
+	public void updateMemberStatus(String mem_id) throws SQLException {
+		session.update("Member.updateMemberStatus",mem_id);
+		MemberVO member = new MemberVO();
+		int num = 0;
+		member.setMem_id(mem_id);
+		member.setMem_status(num);
 
 	}
 
@@ -71,8 +80,11 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public String findPwd(String mem_id) throws SQLException {
-		String pwd = session.selectOne("Member.findPwd",mem_id);
+	public String findPwd(String mem_id,String mem_name) throws SQLException {
+		MemberVO memberVO = new MemberVO();
+		memberVO.setMem_id(mem_id);
+		memberVO.setMem_name(mem_name);
+		String pwd = session.selectOne("Member.findPwd",memberVO);
 		return pwd;
 	}
 
@@ -117,4 +129,6 @@ public class MemberDAOImpl implements MemberDAO {
 		int count = session.selectOne("Member.selectMemberListCount");
 		return count;
 	}
+
+	
 }

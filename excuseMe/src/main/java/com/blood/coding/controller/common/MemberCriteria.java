@@ -7,7 +7,7 @@ public class MemberCriteria {
 	private String keyword; //검색어
 	
 	public MemberCriteria() {
-		this(1, 10, "", "");
+		this(1, 20, "", "");
 	}
 	
 

@@ -3,4 +3,42 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-    <mapper namespace="attach"></mapper>
+
+    <mapper namespace="Attach">
+    
+    
+    <!-- 게시판 구분자로 어테치리스트 조회  -->
+    	<select id="selectAttachesByAttachBoard" resultType="attach">
+    		select *
+    		from attach
+    		where attach_board = #{attach_board}
+    	</select>
+    	
+    	<!-- 어테치넘버로 첨부파일 하나의 정보 조회 -->
+    	<select id="selectAttachByAttachno" resultType="attach">
+    		select *
+    		from attach
+    		where attach_no = #{attach_no}    	
+    	</select>
+    	
+    	<update id="insertAttach">
+    		insert into
+    		attach
+    		values(attach_seq.nextval, #{attach_board}, #{attach_writer}, #{attach_path}, #{attach_name}, #{attach_uuid}, #{attach_type}, sysdate)
+    	</update> 
+    	
+    	<update id="deleteAttach">
+    		delete
+    		from
+    		attach
+    		where attach_no = #{attach_no}
+    	</update>
+    	
+    	<update id="deleteAllAttach">
+    		delete 
+    		from attach
+    		where attach_board = #{attach_board}
+    	</update>
+    
+    </mapper>
+
