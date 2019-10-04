@@ -33,28 +33,18 @@ public class ManageUserController {
 	private MemberService service;
 	
 	
+
 	//회원목록
 	@RequestMapping("/list")
 	public ModelAndView memberList(MemberCriteria cri)throws Exception{
 		String url="manage/member/list";
 		ModelAndView mav = new ModelAndView();
 		
-<<<<<<< HEAD
 		Map<String,Object> map=service.memberlistByAdmin(cri);
 		mav.addObject("dataMap",map);
 		mav.setViewName(url);
 		
 		return mav;		
-=======
-		MemberPageMaker pageMaker = new MemberPageMaker();
-		pageMaker.setCri(cri);
-		System.out.println("dd");
-		Map<String,Object> dataMap=service.memberlistByAdmin(pageMaker);
-		
-		model.addAllAttributes(dataMap);
-		
-		return url;		
->>>>>>> refs/heads/test_master
 	}
 	
 	

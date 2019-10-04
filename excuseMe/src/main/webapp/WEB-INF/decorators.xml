@@ -15,7 +15,11 @@
 		
 	<decorator name="mypage" page="mypage_decorator.jsp">
 		<pattern>/mypage/*</pattern>		
-	</decorator>			
+	</decorator>	
+	
+	<decorator name="mypage" page="decorator.jsp">
+		<pattern>/manage/*</pattern>		
+	</decorator>		
 	
 <!-- 	<decorator name="OpenWindow" page="open_decorator.jsp">
 		<pattern>/*</pattern>		
@@ -28,7 +32,6 @@
 		<pattern>*/common/regist*</pattern>
 		<pattern>*/common/search*</pattern>		
 		<pattern>*/detail*</pattern>
-		<pattern>*/newdetail*</pattern>
 		<pattern>*/replyList*</pattern>
 	</excludes>
 </decorators>

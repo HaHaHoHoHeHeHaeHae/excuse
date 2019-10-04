@@ -7,9 +7,15 @@ import java.util.Map;
 
 import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.controller.common.PageMaker;
+import com.blood.coding.dao.category.CategoryDAO;
 import com.blood.coding.dao.club.ClubDAO;
+import com.blood.coding.dao.down.DownDAO;
+import com.blood.coding.dao.local.LocalDAO;
 import com.blood.coding.dao.member.MemberDAO;
+import com.blood.coding.dao.up.UpDAO;
+import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.dto.club.ClubVO;
+import com.blood.coding.dto.local.LocalVO;
 import com.blood.coding.dto.member.MemberVO;
 
 public class ClubServiceImpl implements ClubService {
@@ -28,7 +34,7 @@ public class ClubServiceImpl implements ClubService {
 	public void setRelyDAO(ReplyDAO replyDAO) {
 		this.replyDAO = replyDAO;
 	}
-
+ */
 	private UpDAO upDAO;
 	public void setUpDAO(UpDAO upDAO) {
 		this.upDAO = upDAO;
@@ -37,7 +43,7 @@ public class ClubServiceImpl implements ClubService {
 	private DownDAO downDAO;
 	public void setDownDAO(DownDAO downDAO) {
 		this.downDAO = downDAO;
-	}*/
+	}
 	
 	private MemberDAO memberDAO;
 	public void setMemberDAO(MemberDAO memberDAO) {
@@ -166,25 +172,8 @@ public class ClubServiceImpl implements ClubService {
 		clubDAO.deleteClub(club_no);
 
 	}
-
-	@Override
-	public Map<String, Object> getNewClubList(Criteria cri) throws SQLException {
-		Map<String, Object> dataMap = new HashMap<String, Object>();
-
-		List<ClubVO> newclubList = clubDAO.selectNewClubList(cri);
-		
-		int totalCount = clubDAO.selectNewClubListCount(cri);
-		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(totalCount);
-		
-		
-		dataMap.put("newclubList", newclubList);
-		dataMap.put("pageMaker", pageMaker);
-
-		return dataMap;
-	}
+	
+	
 
 	@Override
 	public void updateClub(String club_no) throws SQLException {
@@ -214,6 +203,52 @@ public class ClubServiceImpl implements ClubService {
 		List<ClubVO> list = clubDAO.recentClubMain();
 		map.put("recentClubList", list);
 		return map;
+	}
+
+	
+	
+    // 관리자 동호회 리스트
+	@Override
+	public Map<String, Object> getClubListByAdmin(Criteria cri, MemberVO memberVO) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
+		
+		int totalCount = clubDAO.selectSearchClubCount(cri);
+		
+		PageMaker pageMaker = new PageMaker();
+		
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		
+		dataMap.put("clubList", clubList);
+		dataMap.put("pageMaker", pageMaker);
+
+		return dataMap;
+	}
+	
+	//관리자 신규동호회목록
+		@Override
+		public Map<String, Object> getNewClubList(Criteria cri) throws SQLException {
+			Map<String, Object> dataMap = new HashMap<String, Object>();
+			List<ClubVO> newclubList = clubDAO.selectNewClubList(cri);
+			
+			int totalCount = clubDAO.selectNewClubListCount(cri);
+			
+			PageMaker pageMaker = new PageMaker();
+			
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(totalCount);
+			
+			dataMap.put("newclubList", newclubList);
+			dataMap.put("pageMaker", pageMaker);
+
+			return dataMap;
+		}
+		
+	//관리자 블랙리스트
+	@Override
+	public Map<String, Object> getBlackList(Criteria cri) throws SQLException {
+		return null;
 	}
 
 }

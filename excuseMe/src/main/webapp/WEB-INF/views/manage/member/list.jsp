@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="memberList" value="${dataMap.memberList }" />
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 
-
 <head>
 <meta charset="utf-8">
 <title>회원관리</title>
-<!-- Tell the browser to be responsive to screen width -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+</style>
 
 <!-- Font Awesome -->
 <link rel="stylesheet"
@@ -37,15 +35,16 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
 	rel="stylesheet">
+
+
 </head>
 
-<style>
-</style>
+
 <body class="subpage">
 
 	<!-- Main -->
 	<section id="main" class="wrapper">
-		<div class="inner" style="margin-left: -3px;">
+		<div id="inner" style="margin-left: -3px;">
 
 			<div class="sidebar"
 				style="float: left; background: #4dacc4; width: 180px; height: 548px; z-index:">
@@ -65,55 +64,50 @@
 
 
 			</div>
-			<div class="arry">
-				<div class="row">
-					<select>
-						<option>가입최신순</option>
-						<option>가입오래된순</option>
-					</select> 
-						
-				</div>
-			</div>
 
 
-			<div class="float-right">
-				<div class="row">
-					<select class="form-control col-sm-4" name="searchType"
-						id="searchType">
-						<option value="in"
-							${pageMaker.cri.searchType eq 'in' ? 'selected':'' }>전 체</option>
-						<option value="i"
-							${pageMaker.cri.searchType eq 'i' ? 'selected':'' }>아이디</option>
-						<option value="n"
-							${pageMaker.cri.searchType eq 'n' ? 'selected':'' }>이름</option>
 
-					</select> <input class="form-control col-sm-6" type="text" name="keyword"
-						placeholder="검색어를 입력하세요." value="${param.keyword }" /> <span
-						class="input-group-btn col-sm-2">
-						<button class="btn btn-info" type="button" id="searchBtn"
-							onclick="onSearch();">
-							<i class="fa fa-fw fa-search"></i>
-						</button>
-					</span>
-				</div>
-			</div>
+
 
 
 
 
 			<!-- Elements -->
-			<h2 style="margin-left: 300px;">회원 목록</h2>
+
 			<div class="row 200%">
 				<div class="card-body">
+					<div>
+						<div class="row">
+							<h2 style="margin-left: 50px; margin-right: 50px;">회원 목록</h2>
+
+							<select style="width: 140px; margin-right: 30px;">
+								<option>가입최신순</option>
+								<option>가입오래된순</option>
+							</select> <select name="searchType" style="width: 100px;" id="searchType">
+								<option value="in"
+									${pageMaker.cri.searchType eq 'in' ? 'selected':'' }>전체</option>
+								<option value="i"
+									${pageMaker.cri.searchType eq 'i' ? 'selected':'' }>아이디</option>
+								<option value="n"
+									${pageMaker.cri.searchType eq 'n' ? 'selected':'' }>이름</option>
+
+							</select> <input style="width: 200px; margin-left: 2px;" type="text"
+								name="keyword" placeholder="검색어를 입력하세요."
+								value="${param.keyword }" /> <span>
+								<button class="button alt small" style="margin-top: 4px;"
+									type="button" id="searchBtn" onclick="onSearch();">검색</button>
+							</span>
+						</div>
+					</div>
 					<!-- Table -->
 					<div class="table-wrapper" style="margin-left: 80px;">
 						<table>
 							<tr>
-								<th class="text-center" style="width: 150px;">이름</th>
-								<th class="text-center" style="width: 300px;">아이디</th>
-								<th class="text-center" style="width: 300px;">가입일</th>
-								<th class="text-center" style="width: 300px;">회원상태</th>
-								<th class="text-center">상세보기</th>
+								<th class="text-center" style="width: 200px;">이름</th>
+								<th class="text-center" style="width: 250px;">아이디</th>
+								<th class="text-center" style="width: 150px;">가입일</th>
+								<th class="text-center" style="width: 250px;">회원상태</th>
+								<th class="text-center" style="width: 250px;">상세보기</th>
 							</tr>
 							<c:if test="${empty memberList }">
 								<tr>
@@ -199,40 +193,6 @@
 
 
 	<script>
-  /*  	window.onload=function(){
-   		$('a[data-name="member"]').on('click',function(event){
-   				event.preventDefault();
-   		});
-  } */
-   
-   	
-   	
-  <%--  function onSearch(){
-	  var id = $("#mem_id").val();
-	  var name = $("#mem_name").val();
-			$.ajax({
-				url:"<%=request.getContextPath() %>/manage/member/listSearch",
-				type:"POST",
-				data:{mem_id:id,
-					  mem_name:name	
-					  },
-				success:function(result){
-					if(result=="SUCCESS"){
-					
-					location.reload();
-				}else{
-					alert("1234");
-				}
-				},
-				error:function(){
-					alert("서버에 오류가 발생하였습니다. 다시 시도하세요.");
-				}
-				
-			}); 
-		
-	 
-	} 
-	 --%>
 	 function onSearch(){
 			//alert("fff");
 			var searchType=$('select#searchType').val();
@@ -241,13 +201,13 @@
 			//alert("searchType="+searchType+"\n"+"keyword="+keyword);
 			
 			searchList(searchType,keyword);
-				
-			
 		}
+	 
 	function searchList(searchType,keyword){
-		self.location="<%=request.getContextPath()%>/manage/member/list?page=1&perPageNum=20&searchType="+searchType+"&keyword="+keyword;
-	}
+		self.location="<%=request.getContextPath()%>/manage/member/list?searchType="+ searchType + "&keyword=" + keyword;
+		}
 	</script>
+
 
 
 

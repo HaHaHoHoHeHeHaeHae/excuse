@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.controller.common.PageMaker;
+import com.blood.coding.dto.member.MemberVO;
 import com.blood.coding.service.club.ClubService;
 
 @Controller
@@ -30,14 +31,15 @@ public class ManageClubController {
 		String url = "manage/club/list";
 
 		ModelAndView mav = new ModelAndView();
-
-		Map<String, Object> dataMap = service.getClubList(cri);
+		
+		MemberVO memberVO = new MemberVO();
+		Map<String, Object> dataMap = service.getClubListByAdmin(cri, memberVO);
 		mav.addObject("dataMap", dataMap);
 		mav.setViewName(url);
 
 		return mav;
 	}
-
+/*
 	@RequestMapping("/club/listSearch")
 	public String clubSearchList(Criteria cri, Model model) throws Exception {
 		System.out.println(123);
@@ -51,7 +53,7 @@ public class ManageClubController {
 		model.addAllAttributes(dataMap);
 
 		return url;
-	}
+	}*/
 
 	@RequestMapping("/club/detail") // 동호회 상세보기
 	public ModelAndView clubDetail(String club_no, ModelAndView modelnView) throws SQLException {

@@ -110,6 +110,7 @@
 												<tr>
 													<th class="text-center" style="width:100px;">동호회명</th>
 													<th class="text-center" style="width:100px;">카테고리</th>
+													<th class="text-center" style="width:100px;">UP-DOWN</th>
 													<th class="text-center" style="width:100px;">상태</th>
 													<th class="text-center" style="width:100px;">상세보기</th>
 												</tr>
@@ -125,11 +126,8 @@
 							  	<tr>
 							  		<td class="text-center">${club.club_name }</td>
 									<td class="text-center">${club.cate_name }</td>
-									
+									<td class="text-center">${club.mi }</td>
 									<td class="text-center">
-									<c:if test= "${club.club_status==0 }" >
-									승인 대기 
-									</c:if>
 									<c:if test= "${club.club_status==1 }" >
 									운영중
 									</c:if>

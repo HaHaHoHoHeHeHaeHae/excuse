@@ -82,15 +82,15 @@
 					<!-- Elements -->
 						<h2 style="margin-left: 300px;">신규 동호회 목록</h2>
 						<div class="row 200%">
-							<div class="card-body">
+							<div class="card-body"  >
 								<!-- Table -->
 									<div class="table-wrapper" style="margin-left: 80px;">
-										<table>
+										<table style="width:1000px;" >
 												<tr>
 													<th class="text-center" style="width:100px;">NO</th>
-													<th class="text-center" style="width:100px;">동호회명</th>
-													<th class="text-center" style="width:100px;">카테고리</th>
-													<th class="text-center" style="width:100px;">상태</th>
+													<th class="text-center" style="width:200px;">동호회명</th>
+													<th class="text-center" style="width:200px;">카테고리</th>
+													<th class="text-center" style="width:200px;">상태</th>
 													<th class="text-center" style="width:100px;">상세보기</th>
 													<th class="text-center" style="width:100px;">수락</th>
 													<th class="text-center" style="width:100px;">거부</th>
@@ -104,8 +104,8 @@
 											</c:if>
 										<c:if test="${!empty newclubList }">
 							  			<c:forEach items="${newclubList }" var="newclub" >
-							  	<tr>
-							  		<td class="text-center">${newclub.club_no }</td>
+							  	<tr id="clubno">
+							  		<td class="text-center" id="club_no" name="club_no">${newclub.club_no }</td>
 							  		<td class="text-center"><a href='#' style="text-decoration:none; text-color:gray;" onclick="OpenWindow('detail?club_no=${newclub.club_no }','','850','800');">
 							  		${newclub.club_name }</a></td>
 							  		
@@ -123,7 +123,7 @@
 									</c:if>
 									</td>
 									<td class="text-center">
-									<button style="width:29px; padding-left:-50px;" type="button" class="button special small" id="detailBtn" onclick="OpenWindow('detail?club_no=${newclub.club_no }','','850','800');">
+									<button style=" " type="button" class="button small" id="detailBtn" onclick="OpenWindow('detail?club_no=${newclub.club_no }','','850','800');">
 									상세보기</button>
 									</td>
 									<td class="text-center">
@@ -131,7 +131,7 @@
 									수락</button>
 									</td>
 									<td class="text-center">
-									<button type="button" class="button special small" id="detailBtn" id="statusBtn" onclick="Status();">
+									<button type="button" class="button special small" id="detailBtn" id="statusStopBtn" onclick="StatusStop();">
 									거부</button>
 									</td>
 									
@@ -206,12 +206,11 @@
    	
    	
    	function Status(){
-		var id = club_no.value;
-		var status = club_status.value;
-		//alert(id);
+   		var id= $("#clubno").children().eq(0).text();
+		//var status = $("#club_status").val();
+		alert(id);
 		//alert(status);
 		
-		if(confrim){
 			$.ajax({
 				url:"<%=request.getContextPath() %>/manage/club/status",
 				type:"POST",
@@ -231,7 +230,32 @@
 				
 			}); 
 		}
-	}
+	function StatusStop(){
+   		var id= $("#clubno").children().eq(0).text();
+		//var status = $("#club_status").val();
+		alert(id);
+		//alert(status);
+		
+			$.ajax({
+				url:"<%=request.getContextPath() %>/manage/club/stopstatus",
+				type:"POST",
+				data:{club_no:id},
+				
+				success:function(result){
+					if(result=="SUCCESS"){
+						alert("승인거부 되었습니다.");
+						location.reload();
+					}else{
+						alert("1234");
+					}
+				},
+				error:function(){
+					alert('실패했습니다.');
+				},
+				
+			}); 
+		}
+   	
    </script>
    
    
