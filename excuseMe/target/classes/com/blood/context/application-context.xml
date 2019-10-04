@@ -10,7 +10,7 @@
 	<!-- uploadPath -->
 	<bean id="uploadPath"
 	      class="java.lang.String">
-	      <constructor-arg value="d:\\upload"/>      
+	      <constructor-arg value="d:\upload"/>      
 	</bean>
 	<bean id="imgPath"
 	      class="java.lang.String">
@@ -37,8 +37,11 @@
 	<bean id="categoryDAO"
 		  class="com.blood.coding.dao.category.CategoryDAOImpl"
 	      p:session-ref="sqlSession"/>
+	<bean id="attachDAO"
+			class="com.blood.coding.dao.attach.AttachDAOImpl"
+			p:session-ref="sqlSession" />
 	
-		  	  
+			  	  
 	<!-- service -->	
 	<bean id="loginService"
 	  	  class="com.blood.coding.service.common.LoginServiceImpl"
@@ -63,5 +66,6 @@
 	  	  p:memberDAO-ref="memberDAO"
 		  p:categoryDAO-ref="categoryDAO"
 		  p:localDAO-ref="localDAO"/>
+
 	
 </beans>

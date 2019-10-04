@@ -4,13 +4,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 public class DownloadFileUtils {
-
+	//썸네일 가져올때, 첨부파일 받을때 사용된다.
 	public static ResponseEntity<byte[]> download(String filePath) throws Exception {
 		
 		InputStream input = null;
@@ -23,7 +24,7 @@ public class DownloadFileUtils {
 		
 		try {
 			input = new FileInputStream(filePath);
-			
+			//imgCheck가 널이아니면 이미지
 			if(imgCheck!=null) {
 				headers.setContentType(imgCheck);
 			}
@@ -33,6 +34,7 @@ public class DownloadFileUtils {
 				headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 				headers.add("Content-Disposition", "attachment;filename=\""+new String(fileName.getBytes("utf-8"),"ISO-8859-1")+"\"");
 			}
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(input), headers, HttpStatus.CREATED);
 		}
 		catch(IOException e) {
 			e.printStackTrace();

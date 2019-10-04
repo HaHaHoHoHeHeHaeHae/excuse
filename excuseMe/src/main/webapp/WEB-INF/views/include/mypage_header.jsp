@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>AdminLTE 3 | Log in</title>
+<title>마이페이지 - 가입한 동호회</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -69,7 +69,6 @@
 			border-left: 1mm solid rgb(179, 223, 242);
 			text-align:center;
 			cursor:pointer;
-			font-weight:900;
 	}
 	#hid1{
 	  	  height:40px;
@@ -114,10 +113,49 @@
 		}
 	}
 	
+			#subm {
+				top: 120px;
+				position: absolute;
+				height: 500px;
+				width: 240px;
+				z-index: 5;
+				background: #25A2C3;
+				left: 4px;
+				margin: 0px;
+				padding: 0px;
+				border-radius: 0px 10px 10px 0px;
+				
+			}
+			.atag {
+				font-size: 18px;
+				
+			}
 			
 			
+			#section_div {
+				position: relative;
+				left:  280px;
+				width: 1200px;
+			}
 			
-	
+			
+			#footer_div {
+				position: relative;
+				
+			}
+			#all_div {
+				position: relative;
+				width: 100%;
+			}
+			
+			#btag {
+				position: relative;
+				left: 0px;
+			}
+			
+			h3{
+				margin: 0;
+			}
 
 </style>
 </head>
@@ -130,29 +168,29 @@
 	            
 	            <div id="hmenu">
 	            	<!-- <ul class="nav nav-tabs" -->
-	            	<c:if test="${loginUser.mem_nick eq 'admin'}">
-		            	<div class="hmenu1" onclick="changeIframe('manage/club/clubList');">
-		            		관리페이지
-		            	</div>
+	            	<%-- <c:if test="mem_nick == 'admin'"> --%>
+	            	<div class="hmenu1" onclick="location.href='#'">
+	            		관리페이지
+	            	</div>
+	            	<%-- </c:if> --%>
+	            	<c:if test="mem_nick!='admin'">
+	            	<div class="hmenu1" onclick="location.href='#'">
+	            		마이페이지
+	            	</div>
 	            	</c:if>
-	            	<c:if test="${!loginUser.mem_nick eq 'admin'}">
-		            	<div class="hmenu1" onclick="changeIframe('notice');">
-		            		마이페이지
-		            	</div>
-	            	</c:if>
-	            	<div class="hmenu1" onclick="changeIframe('notice');">
+	            	<div class="hmenu1" onclick="location.href='#'">
 	            		동호회 찾기
 	            	</div>
-	            	<div class="hmenu1" onclick="changeIframe('notice');">
+	            	<div class="hmenu1" onclick="location.href='#'">
 	            		동호회 생성
 	            	</div>
-	            	<div class="hmenu1" onclick="changeIframe('notice');">
+	            	<div class="hmenu1" onclick="location.href='#'">
 	            		공지사항
 	            	</div>
 	            </div>
 				<div id="hid">
 					<div id="hid2">
-				        <a href="<c:url value='/logout'/>">[ 로그아웃 ]</a>
+				        <a href="#">[ 로그아웃 ]</a>
 				    </div>
 					<div id="hid1">
 						<p>${loginUser.mem_nick} 님 환영합니다</p>

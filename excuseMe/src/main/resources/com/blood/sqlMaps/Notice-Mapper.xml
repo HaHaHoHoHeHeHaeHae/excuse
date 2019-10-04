@@ -2,7 +2,6 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<<<<<<< HEAD
 
 <mapper namespace="Notice">
 	<select id="selectNoticeList" resultType="notice">
@@ -62,7 +61,3 @@
 		where not_no =#{not_no}
 	</update>
 </mapper>
-=======
-    
-    <mapper namespace="notice"></mapper>
->>>>>>> refs/remotes/origin/kang
