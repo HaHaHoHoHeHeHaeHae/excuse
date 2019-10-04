@@ -248,7 +248,7 @@ public class NoticeController {
 
 		try {
 			AttachVO attach = new AttachVO();
-
+			//파일등록
 			for (MultipartFile file : uploadFile) {
 				attach = UploadFileUtils.uploadFile("d:\\upload", file.getOriginalFilename(), "admin@naver.com",
 						file.getBytes());
