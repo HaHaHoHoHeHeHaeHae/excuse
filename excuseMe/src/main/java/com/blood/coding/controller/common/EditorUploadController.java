@@ -21,12 +21,12 @@ public class EditorUploadController {
 	private String imgPath;
 	
 //	섬머노트 iframe 사용하기위함
-	@RequestMapping("/summernote")
+/*	@RequestMapping("/summernote")
 	public String summernote() throws Exception{
 		
 		return "common/summernote";
 	}
-	
+	*/
 	
 	@RequestMapping("/uploadImg")
 	public ResponseEntity<String> uploadImg(MultipartFile file, String mem_id, HttpServletRequest request) throws Exception {

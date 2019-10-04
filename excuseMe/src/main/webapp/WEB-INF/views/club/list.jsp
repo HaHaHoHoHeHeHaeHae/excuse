@@ -1,3 +1,9 @@
+<style>
+div.top {
+	height: 100px;
+}
+</style>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
@@ -13,45 +19,6 @@
 <c:set var="localList" value="${dataMap.localList }" />
 <c:set var="recommendList" value="${dataMap.recommendList }" />
 <c:set var="member" value="${dataMap.member }" />
-=======
-<style>
-div.top {
-	height: 100px;
-}
-th {
-	text-align: center;
-}
-.listTitle {
-	height: 30px;
-	background: pink;
-}
-table {
-	font-size: 10px;
-}
-ul {
-	text-align: center;
-}
-li {
-	display: inline-block;
-	list-style: none;
-}
-</style> 
-
->>>>>>> refs/remotes/origin/park
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ page trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<head>
-
-<title>동호회 리스트 창</title>
-<c:set var="clubList" value="${dataMap.clubList }" />
-<c:set var="pageMaker" value="${dataMap.pageMaker }" />
-<!--<c:set var="cateList" value="${dataMap.cateList }" />
-<c:set var="localList" value="${dataMap.localList }" />-->
 
 <!-- Font Awesome -->
 <link rel="stylesheet"
