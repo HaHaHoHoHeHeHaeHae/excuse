@@ -20,8 +20,16 @@ public class NoticeVO {
 	private String not_endDate2;
     private MultipartFile[] uploadFile;
     private List<AttachVO> attachList;
+    private String attach_no;
     
-    
+	public String getAttach_no() {
+		return attach_no;
+	}
+
+	public void setAttach_no(String attach_no) {
+		this.attach_no = attach_no;
+	}
+
 	public List<AttachVO> getAttachList() {
 		return attachList;
 	}

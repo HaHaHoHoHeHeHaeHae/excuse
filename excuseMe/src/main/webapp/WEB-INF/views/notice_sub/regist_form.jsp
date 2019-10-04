@@ -65,7 +65,7 @@
 				</div>
 				<div>
 					<input type="text" class="form-control" id="not_title"
-						name="not_title" style="margin-left: 50px; width: 600px;" maxlength="80">
+						name="not_title" style="margin-left: 50px; width: 600px;" maxlength="80" />
 				</div>
 			</div>
 			<div class="row" style="margin-top: 10px; margin-left: 30px;">
@@ -81,6 +81,9 @@
 				<textarea class="summernote" id="not_content" name="not_content" ></textarea>
 
 			</div>
+			<div class="col-xs-12 text-right">
+      <span id="maxContentPost"></span>
+    </div>
 			<form id="notice_form" name="notice_form" enctype="multipart/form-data" method="post">
 			<div>
 			

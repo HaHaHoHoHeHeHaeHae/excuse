@@ -76,7 +76,7 @@
 			</div>
 		</div>
 		<div  style="margin-left: 50px;margin-right:20px;min-height:300px; background:#f0f5f7;">
-			<div style="margin-top:40px;">
+			<div style="margin-top:40px;word-wrap:break-word; padding:10px;">
 					${notice.not_content}
 			</div>
 

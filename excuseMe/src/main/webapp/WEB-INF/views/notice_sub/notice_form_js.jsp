@@ -50,7 +50,7 @@
 					date[0].replace(/\//gi, "-").trim());
 			$("#not_endDate").val(date[1].replace(/\//gi, "-").trim());
 		}
-		
+		 function registerSummernote(element, placeholder, max, callbackMax) {
 		 $('#not_content').summernote({
 		      height:410,
 		      placeholder:"",
@@ -96,10 +96,41 @@
 		              onMediaDelete : function(target) {
 		                 alert("delete image : " + target[0].src);
 		                 deleteFile(target[0].src);
-		              }
+		              },
+		              onKeydown: function(e) {
+		                  var t = e.currentTarget.innerText;
+		                  if (t.trim().length >= max) {
+		                    //delete key
+		                    if (e.keyCode != 8)
+		                      e.preventDefault();
+		                    // add other keys ...
+		                  }
+		                },
+		                onKeyup: function(e) {
+		                  var t = e.currentTarget.innerText;
+		                  if (typeof callbackMax == 'function') {
+		                    callbackMax(max - t.trim().length);
+		                  }
+		                },
+		                onPaste: function(e) {
+		                  var t = e.currentTarget.innerText;
+		                  var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+		                  e.preventDefault();
+		                  var all = t + bufferText;
+		                  document.execCommand('insertText', false, all.trim().substring(0, 400));
+		                  if (typeof callbackMax == 'function') {
+		                    callbackMax(max - t.length);
+		                  }
+		                }
 		           }
-		   });
+		 		
+		   });}
 		 
+		 $(function(){
+			  registerSummernote('#not_content', 'Leave a comment', 3000, function(max) {
+			    $('#maxContentPost').text(max+"/3000");
+			  });
+			});
 		   function onSubmit(form,url,method,no){
 				form.action="<%=request.getContextPath()%>/notice/"+url+"?not_no="+no;
 				form.method=method;

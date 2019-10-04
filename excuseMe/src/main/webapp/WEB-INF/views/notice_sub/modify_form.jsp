@@ -57,6 +57,8 @@
 				style="margin-left: 40px; margin-bottom: 20px; font-weight: 900; color: #4f9cc2;">공지사항
 				수정</h2>
 		</div>
+		<form id="modify_form" name="modify_form"
+			enctype="multipart/form-data" role="form">
 		<input type="hidden" id="not_no" name="not_no"
 			value="${notice.not_no }"> <input type="hidden"
 			id="not_startDate" name="not_startDate"
@@ -86,8 +88,10 @@
 			<textarea class="summernote" id="not_content" name="not_content">${notice.not_content }</textarea>
 
 		</div>
-		<form id="modify_form" name="modify_form"
-			enctype="multipart/form-data" role="form">
+		<div class="col-xs-12 text-right">
+      <span id="maxContentPost"></span>
+    </div>
+		
 			<div>
 				<div class="row uniform"
 					style="margin-top: 10px; margin-left: 30px;">
@@ -119,6 +123,7 @@
 								</div>
 							</div>
 						</c:forEach>
+						
 					</div>
 					<br />
 				</div>
@@ -181,7 +186,7 @@
 			}
 		}
 		
-		
+		var form2 =$("#modify_form[name='deleteFile']").val();
 		var no = not_no.value;
 		var id = "admin@naver.com";
 		var startDate = not_startDate.value;
@@ -202,11 +207,10 @@
 				not_content : content
 			},
 			success:function(no){
-				
-				onSubmit(document.modify_form,'removeAttach','post',no);
+				onSubmit(document.modify_form,'modifyAttach','post',no);
 				
 				alert("글이 수정되었습니다.");
-				onSubmit(document.modify_form,'registAttach','post',no);
+				
 				window.parent.location.href="<%=request.getContextPath()%>/notice/list";
 			},
 			error:function(){
@@ -236,6 +240,13 @@
 		
 		div.appendTo('.fileInput');
 		});
+	
+	$("input").on('keyup',function(e){
+		if($(this).val()!=""){
+			$(this).removeClass("is-invalid");
+		}
+	});
+	
 	$('.attached button').on('click',function(event){
 		event.stopPropagation();
 		
@@ -253,6 +264,7 @@
 		
 		parent.remove();
 	});
+	
 	</script>
 <%@include file="/WEB-INF/views/notice_sub/notice_form_js.jsp" %>
 </body>
