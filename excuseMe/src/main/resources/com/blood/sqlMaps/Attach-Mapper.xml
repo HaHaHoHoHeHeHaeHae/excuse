@@ -19,10 +19,24 @@
     		from attach
     		where attach_no = #{attach_no}    	
     	</select>
-    	
-    	<!-- <update id="insertAttach">
+ 
+    	<update id="insertAttach">
     		insert into
     		attach
-    	</update> -->
+    		values(attach_seq.nextval, #{attach_board}, #{attach_writer}, #{attach_path}, #{attach_name}, #{attach_uuid}, #{attach_type}, sysdate)
+    	</update> 
+    	
+    	<update id="deleteAttach">
+    		delete
+    		from
+    		attach
+    		where attach_no = #{attach_no}
+    	</update>
+    	
+    	<update id="deleteAllAttach">
+    		delete 
+    		from attach
+    		where attach_board = #{attach_board}
+    	</update>
     
     </mapper>

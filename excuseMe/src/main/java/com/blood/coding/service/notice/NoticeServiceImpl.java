@@ -49,12 +49,14 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public void registNotice(NoticeVO noticeVO) throws SQLException {
-		String not_no = noticeDAO.selectNoticeSeq();
-		noticeVO.setNot_no(not_no);
 		noticeDAO.insertNotice(noticeVO);
 
 	}
-
+	@Override
+	public String noticeSeq() throws SQLException {
+		String no = noticeDAO.selectNoticeSeq();
+		return no;
+	}
 	@Override
 	public void modifyNotice(NoticeVO noticeVO) throws SQLException {
 		noticeDAO.updateNotice(noticeVO);
@@ -74,5 +76,7 @@ public class NoticeServiceImpl implements NoticeService {
 		map.put("noticeList", list);
 		return map;
 	}
+
+
 
 }
