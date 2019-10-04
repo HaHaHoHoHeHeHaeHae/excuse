@@ -51,17 +51,17 @@ div.top {
 
 <body class="subpage">
 <!-- Main -->
-	<section id="main" class="wrapper">
+	<section id="main" class="wrapper" style="position:relative;">
 		<div class="club_inner"
-			style="margin: 0 auto; width: 1126.66px; position: static;">
+			style="margin: 0 auto; width: 1126.66px;position:absolute; left:50%; transform:translateX(-50%);">
 
 <!-- searchClubList Start-->
-			<header class="align-center"">
+			<header class="align-center" style="position:absolute; width:1126.66px;">
 				<h1>동호회 리스트</h1>
 				<p>원하는 동호회를 검색하세요.</p>
 			</header>
 			<section class="search"
-				style="top: 20px; height: 250px; margin-bottom: 10px; position: relative;">
+				style="top: 110px; width: 1126.66px; height: 250px; margin-bottom: 10px; position:absolute;">
 				<div class="search1"
 					style="height: 50px; position: relative; width: 1000px; align: center;">
 					<div class="form-group"
@@ -98,7 +98,7 @@ div.top {
 						</div>
 					</div>
 				</div>
-				<div class="search2" style="height: 50px; position: relative;">
+				<div class="search2" style="height: 50px;">
 					<div class="form-group" style="float: left;">
 						<div class="label"
 							style="float: left; margin-left: 10px; margin-right: 20px; width: 450px;">
@@ -129,7 +129,7 @@ div.top {
 						</div>
 					</div>
 				</div>
-				<div class="search3" style="height: 80px; position: relative;">
+				<div class="search3" style="height: 80px;">
 					<div class="select" style="width: 800px, float:left; height: 80px;">
 						<input name="keyword" type="text" class="form-control"
 							placeholder="동호회를 검색할 단어를 입력하세요." style="width: 1000px;">
@@ -145,8 +145,8 @@ div.top {
 <!-- clubList Start -->
 <!-- alignment -->
 			<section class="alignment"
-				style="top: 50px; height: 70px; position: relative;">
-				<div class="listTitle" style="float: right;">
+				style="top: 360px; height: 70px; position: absolute;width:1126.66px;">
+				<div class="listTitle" style="float:right;">
 					<a data-name="ali" class="btn btn-app" onclick="ali_1();"><i class="fas fa-sort-numeric-down-alt"></i>역사가 깊은</a> 
 					<a class="btn btn-app" onclick="ali_0();"><i class="fas fa-sort-numeric-down"></i>갓 생긴</a> 
 					<a class="btn btn-app" onclick="ali_5();"><i class="fas fa-users"></i>사람많은</a> 
@@ -157,10 +157,10 @@ div.top {
 			</section>
 
 			<div class="divLine"
-				style="background: #f6755e; margin-bottom: 20px; height: 5px; position: relative; top: 50px;"></div>
+				style="background: #f6755e; margin-bottom: 20px; height: 5px; top: 450px; position:absolute; width:1126.66px;"></div>
 
 			<section class="clublist"
-				style="height: 633.62px; position: relative; top: 80px;">
+				style="height: 633.62px; position: absolute; top: 500px; width:1126.66px; ">
 				<c:forEach var="club" items="${clubList }">
 					<c:if test="${empty clubList }">
 						<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
@@ -204,14 +204,14 @@ div.top {
 
 <!-- recommendClub Start-->
 	<ul class="club action fit small"
-		style="position: relative; top: 100px;">
+		style="position: absolute; top: 1400px; width:1126.66px; left:50%; transform:translateX(-50%);">
 		<li class="button alt fit big"
 			style="width: 1126.66px; margin: 0 auto; text-align: left;">[${member.mem_nick}]
 			님 근처에 인기많은 동호회를 찾아보세요.!!!</li>
 	</ul>
 
-	<section class="joinclub_wrap"
-		style="width: 1126.66px; margin: 0 auto; height: 200px; position: relative; top: 90px;">
+	<section class="joinclub_wrap1"
+		style="width: 1126.66px; margin: 0 auto; height: 200px; position: absolute; top: 1500px; left:50%; transform:translateX(-50%);">
 		<c:forEach var="recommend" items="${recommendList }">
 			<div class="joinclub card bg-light"
 				style="width: 350px; height: 200px; float: left; margin: 0 12.5px 0 12.5px;">
@@ -244,7 +244,7 @@ div.top {
 
 <!-- pagination Start-->
 	<section class="pagination"
-		style="width: 1126.66px; margin: 0 auto; height: 68px; position: relative; top: 70px;">
+		style="width: 1126.66px; margin: 0 auto; height: 68px; position:absolute; top:1750px; left:50%; transform:translateX(-50%);">
 		<div class="card-footer clearfix"
 			style="align: center; width: 1126.66px;">
 			<div class="pagination justify-content-center m-0">

@@ -68,7 +68,8 @@ public class ClubServiceImpl implements ClubService {
 		
 
 		cri.setPerPageNum(3);
-		cri.setLocal(memberVO.getMem_local());
+		//cri.setLocal(memberVO.getMem_local());
+		cri.setLocal("대전");
 		cri.setAlignment(2);
 		//검색창 돌릴때 추천동호회도 검색파라미터를 포함해서 가져오니까 강제 fix해주기
 		cri.setLocal("");

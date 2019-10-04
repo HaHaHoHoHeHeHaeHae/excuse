@@ -46,16 +46,12 @@
 
 </head>
 <body class="subpage">
-	<section id="main" class="wrapper" style="width:1126.66px; position:static;">
-		<div class="pic_demo">
-			<div class="pic">
-				<form>
-					<th>쨔쟌</th>
-					<tr>
-					<td>이거 나오나</td>
-					<td>나오면 인정</td>
-					<td>${clubList.club_name }</td>
-				</form>
+	<section id="main" class="wrapper" style="width:1126.66px; position:absolute;">
+		<div class="pic_demo_wqrp">
+			<div class="pic_warp">
+				<div class="pic">
+					<img src="<%=request.getContextPath()%>/resources/img/logo.jpg" />
+				</div>
 			</div>
 			
 			
