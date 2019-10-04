@@ -10,6 +10,7 @@ public interface ClubService {
 	
 	//리스트+페이지메이커
 	Map<String,Object> getClubList(Criteria cri) throws SQLException;
+	//Map<String,Object> getClubList(Criteria cri, MemberVO memberVO) throws SQLException;
 	
 	Map readClub(String club_no) throws SQLException;	
 	ClubVO getClub(String club_no) throws SQLException;
@@ -29,4 +30,8 @@ public interface ClubService {
 	//동호회 승인 및 운영중지
 	public void updateClub(String club_no) throws SQLException;
 	public void updateStopClub(String club_no) throws SQLException;
+	
+	//Made by minho
+	Map<String,List<ClubVO>> getClubListMain(String mem_local) throws SQLException;
+	Map<String,List<ClubVO>> getClubListMainRecent() throws SQLException;
 }

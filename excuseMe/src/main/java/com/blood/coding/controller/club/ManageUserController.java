@@ -39,11 +39,22 @@ public class ManageUserController {
 		String url="manage/member/list";
 		ModelAndView mav = new ModelAndView();
 		
+<<<<<<< HEAD
 		Map<String,Object> map=service.memberlistByAdmin(cri);
 		mav.addObject("dataMap",map);
 		mav.setViewName(url);
 		
 		return mav;		
+=======
+		MemberPageMaker pageMaker = new MemberPageMaker();
+		pageMaker.setCri(cri);
+		System.out.println("dd");
+		Map<String,Object> dataMap=service.memberlistByAdmin(pageMaker);
+		
+		model.addAllAttributes(dataMap);
+		
+		return url;		
+>>>>>>> refs/heads/test_master
 	}
 	
 	

@@ -12,12 +12,10 @@ public class Criteria {
 	private int alignment;
 	
 	
-	
-	
-	
 	public Criteria() {
 		this(1, 10, "", "", "", 0);
 	} 
+
 
 	public Criteria(int page, int perPageNum, String category, String keyword, String local, int alignment) {
 		super();
@@ -26,7 +24,6 @@ public class Criteria {
 		this.category = category;
 		this.keyword = keyword;
 		this.local = local;
-		this.alignment=alignment;
 	}
 
 	public int getPage() {
@@ -79,11 +76,6 @@ public class Criteria {
 		this.local = local;
 	}
 
-	@Override
-	public String toString() {
-		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", category=" + category + ", keyword="
-				+ keyword + ", local=" + local + "]";
-	}
 
 	public int getAlignment() {
 		return alignment;
@@ -93,5 +85,14 @@ public class Criteria {
 		this.alignment = alignment;
 	}
 
+	
+	@Override
+	public String toString() {
+		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", category=" + category + ", keyword="
+				+ keyword + ", local=" + local + ", alignment=" + alignment + "]";
+	}
+
+	
+	
 	
 }
