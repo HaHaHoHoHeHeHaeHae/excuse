@@ -17,7 +17,7 @@ public class CategoryServiceImpl {
 	
 	//대분류 카테고리 조회
 	public List<CategoryVO> getCategoryList() throws SQLException {
-		
+		//커밋때문에 수정함
 		return categoryDAO.selectCategoryList();
 	}
 	
