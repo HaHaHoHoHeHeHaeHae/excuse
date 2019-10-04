@@ -84,10 +84,17 @@ public class ClubDAOImpl implements ClubDAO {
 
 	}
 
-	@Override
-	public void updateClubStatus(ClubVO clubVO) throws SQLException {
-		session.update("Club.updateClubStatus",clubVO);
 
+
+	@Override
+	public void updateClubStatus(String club_no) throws SQLException {
+		session.update("Club.updateClubStatus",club_no);
+	}
+
+
+	@Override
+	public void updateStopClubStatus(String club_no) throws SQLException {
+		session.update("Club.updateStopClubStatus",club_no);
 	}
 
 

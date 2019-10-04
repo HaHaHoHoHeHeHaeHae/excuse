@@ -3,7 +3,8 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<c:set var="newclubList" value="${dataMap.newclubList }" />
+<c:set var="pageMaker" value="${dataMap.pageMaker }" />
 
 
 <head>
@@ -78,39 +79,21 @@
 			         
 					</div>
 					
-						 <%--  <div class="float-right">	
-						 	<div class="row">
-							 	<select class="form-control col-sm-4" name="searchType" id="searchType">
-									<option value="in"  ${pageMaker.cri.searchType eq 'in' ? 'selected':'' }>전 체</option>
-									<option value="i" ${pageMaker.cri.searchType eq 'i' ? 'selected':'' }>아이디</option>
-									<option value="n" ${pageMaker.cri.searchType eq 'n' ? 'selected':'' }>이름</option>
-													
-								</select>
-								<input  class="form-control col-sm-6" type="text" name="keyword" 
-									placeholder="검색어를 입력하세요." value="${param.keyword }"/>
-								<span class="input-group-btn col-sm-2">
-									<button class="btn btn-info" type="button" id="searchBtn" onclick="onSearch();">
-										<i class="fa fa-fw fa-search"></i>
-									</button>
-								</span>
-							</div>
-						</div> 
-							 --%>
-					
-					
-
 					<!-- Elements -->
-						<h2 style="margin-left: 300px;">동호회 목록</h2>
+						<h2 style="margin-left: 300px;">신규 동호회 목록</h2>
 						<div class="row 200%">
 							<div class="card-body">
 								<!-- Table -->
 									<div class="table-wrapper" style="margin-left: 80px;">
 										<table>
 												<tr>
+													<th class="text-center" style="width:100px;">NO</th>
 													<th class="text-center" style="width:100px;">동호회명</th>
 													<th class="text-center" style="width:100px;">카테고리</th>
 													<th class="text-center" style="width:100px;">상태</th>
 													<th class="text-center" style="width:100px;">상세보기</th>
+													<th class="text-center" style="width:100px;">수락</th>
+													<th class="text-center" style="width:100px;">거부</th>
 												</tr>
 												<c:if test="${empty newclubList }">
 												<tr>
@@ -122,12 +105,15 @@
 										<c:if test="${!empty newclubList }">
 							  			<c:forEach items="${newclubList }" var="newclub" >
 							  	<tr>
-							  		<td class="text-center">${newclub.club_name }</td>
+							  		<td class="text-center">${newclub.club_no }</td>
+							  		<td class="text-center"><a href='#' style="text-decoration:none; text-color:gray;" onclick="OpenWindow('detail?club_no=${newclub.club_no }','','850','800');">
+							  		${newclub.club_name }</a></td>
+							  		
 									<td class="text-center">${newclub.cate_name }</td>
 									
 									<td class="text-center">
 									<c:if test= "${newclub.club_status==0 }" >
-									승인 대기 
+									승인대기 
 									</c:if>
 									<c:if test= "${newclub.club_status==1 }" >
 									운영중
@@ -137,8 +123,16 @@
 									</c:if>
 									</td>
 									<td class="text-center">
-									<button type="button" class="button special small" id="newdetailBtn" onclick="OpenWindow('detail?club_no=${newclub.club_no }','','850','800');">
+									<button style="width:29px; padding-left:-50px;" type="button" class="button special small" id="detailBtn" onclick="OpenWindow('detail?club_no=${newclub.club_no }','','850','800');">
 									상세보기</button>
+									</td>
+									<td class="text-center">
+									<button type="button" class="button special small" id="statusBtn" onclick="Status();">
+									수락</button>
+									</td>
+									<td class="text-center">
+									<button type="button" class="button special small" id="detailBtn" id="statusBtn" onclick="Status();">
+									거부</button>
 									</td>
 									
 								</tr>
@@ -152,9 +146,9 @@
 																				
 						<ul class="pagination ">
 							<li class="page-item">
-								<a class="page-link" href="listSearch${pageMaker.makeQuery(1)}">&lt;&lt;</a>
+								<a class="page-link" href="list${pageMaker.makeQuery(1)}">&lt;&lt;</a>
 							<li class="page-item">
-								<a class="page-link" href="listSearch
+								<a class="page-link" href="list
 									<c:if test="${pageMaker.prev }">
 										${pageMaker.makeQuery(pageMaker.startPage-1) }
 									</c:if>
@@ -163,14 +157,14 @@
 							<c:forEach begin="${pageMaker.startPage }" 
 							           end="${pageMaker.endPage }" var="pageNum">
 							<li class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
-								<a class="page-link" href="listSearch${pageMaker.makeQuery(pageNum) }" >
+								<a class="page-link" href="list${pageMaker.makeQuery(pageNum) }" >
 									${pageNum }
 								</a>
 							</li>
 							</c:forEach>	
 							
 							<li class="page-item">
-								<a class="page-link" href="listSearch
+								<a class="page-link" href="list
 									<c:if test="${pageMaker.next }">
 										${pageMaker.makeQuery(pageMaker.endPage+1) }
 									</c:if>
@@ -181,7 +175,7 @@
 							</li>			
 							
 							<li class="page-item">
-								<a class="page-link" href="listSearch${pageMaker.makeQuery(pageMaker.realEndPage) }">
+								<a class="page-link" href="list${pageMaker.makeQuery(pageMaker.realEndPage) }">
 									&gt;&gt;
 								</a>
 							</li>
@@ -208,16 +202,36 @@
    		});
   }
    	
+   
    	
-   function onSearch(){	
-   		var searchType=$('select#searchType').val();
-   		var keyword=$('input[name="keyword"]').val();
-   		
-   		alert("searchType="+searchType+"\n"+"keyword="+keyword);
-   		
-   		location.href="<%=request.getContextPath() %>/manage/user/list";
-   		
-   	};
+   	
+   	function Status(){
+		var id = club_no.value;
+		var status = club_status.value;
+		//alert(id);
+		//alert(status);
+		
+		if(confrim){
+			$.ajax({
+				url:"<%=request.getContextPath() %>/manage/club/status",
+				type:"POST",
+				data:{club_no:id},
+				
+				success:function(result){
+					if(result=="SUCCESS"){
+						alert("승인수락 되었습니다.");
+						location.reload();
+					}else{
+						alert("1234");
+					}
+				},
+				error:function(){
+					alert('실패했습니다.');
+				},
+				
+			}); 
+		}
+	}
    </script>
    
    

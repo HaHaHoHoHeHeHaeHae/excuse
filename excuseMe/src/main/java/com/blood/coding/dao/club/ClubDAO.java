@@ -29,6 +29,6 @@ public interface ClubDAO {
 	   public void deleteClub(String club_no) throws SQLException;
 	   
 	//승인 ,운영중지
-	   public void updateClubStatus(ClubVO clubVO) throws SQLException;
-
+	   public void updateClubStatus(String club_no) throws SQLException;
+	   public void updateStopClubStatus(String club_no) throws SQLException;
 }

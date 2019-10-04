@@ -26,4 +26,7 @@ public interface ClubService {
 	//신규동호회리스트(관리자페이지에서만)
 	Map<String,Object> getNewClubList(Criteria cri) throws SQLException;
 	
+	//동호회 승인 및 운영중지
+	public void updateClub(String club_no) throws SQLException;
+	public void updateStopClub(String club_no) throws SQLException;
 }

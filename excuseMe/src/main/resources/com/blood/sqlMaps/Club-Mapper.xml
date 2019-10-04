@@ -105,10 +105,17 @@
 	    	where club_no=#{club_no}
 	    </update>
 	    
-	    <update id="updateClubStatus" parameterType="club">
+	    <update id="updateClubStatus">
 	    	update club
 	    	set
-	    	club_status=#{club_status}
+	    	club_status= 1
+	    	where club_no=#{club_no}
+	    </update>
+	    
+	    <update id="updateStopClubStatus">
+	    	update club
+	    	set
+	    	club_status= 2
 	    	where club_no=#{club_no}
 	    </update>
     </mapper>

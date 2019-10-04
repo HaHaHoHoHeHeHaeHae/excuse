@@ -165,4 +165,14 @@ public class ClubServiceImpl implements ClubService {
 		return dataMap;
 	}
 
+	@Override
+	public void updateClub(String club_no) throws SQLException {
+		clubDAO.updateClubStatus(club_no);
+	}
+
+	@Override
+	public void updateStopClub(String club_no) throws SQLException {
+		clubDAO.updateStopClubStatus(club_no);
+	}
+
 }

@@ -64,8 +64,8 @@
 							    <label class="col-sm-3 control-label" style="margin-top:15px;">상태</label> 
 							    <input class="col-sm-5 form-control" type="text" id="mem_status" 
 							    readonly name="mem_status" 
-							    value="<c:if test= "${member.mem_status==1 }" >활성</c:if>
-									<c:if test= "${member.mem_status==0 }" >비활성</c:if>">
+							    value="<c:if test= "${member.mem_status==0 }" >비활성</c:if>
+							    <c:if test= "${member.mem_status==1 }" >활성</c:if>">
 							</div>
 							
 							<div class="form-group row" style="margin-top:15px;">
@@ -120,7 +120,7 @@
 							    <input class="col-sm-5 form-control" type="text" id="nick" 
 							    readonly name="id" 
 							    value="<c:if test= "${member.mem_id_check==0 }" >공개</c:if>
-									<c:if test= "${member.mem_id_check==1 }" >비공개</c:if>">
+							    <c:if test= "${member.mem_id_check==1 }" >비공개</c:if>">
 							</div>	
 							
 							<div class="form-group row" style="margin-top:15px;">
@@ -195,22 +195,19 @@
 	function StatusStop(){
 		var id= mem_id.value;
 		var status=mem_status.value;
-		alert(id);
-		alert(status);
+		//alert(id);
+		//alert(status);
 		if(status=='비활성'){
-		if(confirm("활동중지를 해제하겠습니까?")){
-			
 			$.ajax({
-				url:"<%=request.getContextPath() %>/manage/user/status",
+				url:"<%=request.getContextPath() %>/manage/member/status",
 				type:"POST",
 				data:{mem_id:id},
-				
 				success:function(result){
 					if(result=="SUCCESS"){
-						alert("해제되었습니다.");
+						alert("활동중지 해제되었습니다.");
 						location.reload();
 					}else{
-						alert("1234");
+						alert("error");
 					}
 				},
 				error:function(){
@@ -218,19 +215,18 @@
 				},
 				
 			}); 
-		}
+		
 		}else{
 			$.ajax({
-				url:"<%=request.getContextPath() %>/manage/user/status",
+				url:"<%=request.getContextPath() %>/manage/member/stopstatus",
 				type:"POST",
 				data:{mem_id:id},
-				
 				success:function(result){
 					if(result=="SUCCESS"){
-						alert("해제되었습니다.");
+						alert("활동중지 되었습니다.");
 						location.reload();
 					}else{
-						alert("1234");
+						alert("error");
 					}
 				},
 				error:function(){
@@ -239,10 +235,6 @@
 				
 			}); 
 			}	
-		 
-	
-		
-	 
 	}
 	
 	function reply(){
