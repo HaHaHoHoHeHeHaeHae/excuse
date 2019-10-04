@@ -1,27 +1,8 @@
-
 <style>
 div.top {
 	height: 100px;
 }
-th {
-	text-align: center;
-}
-.listTitle {
-	height: 30px;
-	background: pink;
-}
-table {
-	font-size: 10px;
-}
-ul {
-	text-align: center;
-}
-li {
-	display: inline-block;
-	list-style: none;
-}
-</style> 
-
+</style>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -34,8 +15,10 @@ li {
 <title>동호회 리스트 창</title>
 <c:set var="clubList" value="${dataMap.clubList }" />
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
-<!--<c:set var="cateList" value="${dataMap.cateList }" />
-<c:set var="localList" value="${dataMap.localList }" />-->
+<c:set var="cateList" value="${dataMap.cateList }" />
+<c:set var="localList" value="${dataMap.localList }" />
+<c:set var="recommendList" value="${dataMap.recommendList }" />
+<c:set var="member" value="${dataMap.member }" />
 
 <!-- Font Awesome -->
 <link rel="stylesheet"
@@ -64,35 +47,126 @@ li {
 </head>
 
 <body class="subpage">
-	<!-- Main -->
+<!-- Main -->
 	<section id="main" class="wrapper">
-		<div class="inner">
+		<div class="club_inner"
+			style="margin: 0 auto; width: 1126.66px; position: static;">
 
-			<!-- searchClubList Start-->
-			<header class="align-center">
+
+
+<!-- searchClubList Start-->
+			<header class="align-center"">
 				<h1>동호회 리스트</h1>
 				<p>원하는 동호회를 검색하세요.</p>
 			</header>
-			<!-- searchClubList End-->
+			<section class="search"
+				style="top: 20px; height: 250px; margin-bottom: 10px; position: relative;">
+				<div class="search1"
+					style="height: 50px; position: relative; width: 1000px; align: center;">
+					<div class="form-group"
+						style="float: left; displayh: inline-block;">
+						<div class="label"
+							style="float: left; margin-left: 10px; margin-right: 20px; width: 450px; height: 40px;">
+							<div class="label_name"
+								style="float: left; margin-right: 10px; width: 75px;">
+								<strong>카테고리:</strong>
+							</div>
+							<div class="select" style="float: left;">
+								<!-- category1 -->
+								<select id="category" class="form-control"
+									style="width: 350px; float: left;">
+									<option selected>전체</option>
+									<c:forEach var="cate1" items="${cateList}">
+										<c:if test="${!empty cateList }">
+											<option value="${cate1.cate_no }">${cate1.cate_name }</option>
+										</c:if>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
 
-			<!-- clubList Start -->
-			<!-- alignment -->
-			<section class="alignment" style="height: 70px;">
+						<div class="label"
+							style="float: left; margin-left: 20px; margin-right: 10px; width: 0px; height: 40px;">
+							<div class="select">
+								<!-- category2 -->
+								<select id="subCategory" class="form-control"
+									style="width: 500px; float: left;">
+									<option selected>전체</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="search2" style="height: 50px; position: relative;">
+					<div class="form-group" style="float: left;">
+						<div class="label"
+							style="float: left; margin-left: 10px; margin-right: 20px; width: 450px;">
+							<div class="label_name"
+								style="float: left; margin-right: 10px; width: 75px;">
+								<strong>지역:</strong>
+							</div>
+							<div class="select" style="float: left;">
+								<select id="local" class="form-control" style="width: 350px; float: left;">
+									<option selected>전체</option>
+									<c:forEach var="local" items="${localList }">
+										<c:if test="${!empty localList }">
+											<option value="${local.local_no}">${local.local_name }</option>
+										</c:if>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+
+						<div class="label"
+							style="float: left; margin-left: 20px; margin-right: 10px; width: 450px;">
+							<div class="select">
+								<select id="sublocal" class="form-control"
+									style="width: 500px; float: left;">
+									<option selected>전체</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="search3" style="height: 80px; position: relative;">
+					<div class="select" style="width: 800px, float:left; height: 80px;">
+						<input name="keyword" type="text" class="form-control"
+							placeholder="동호회를 검색할 단어를 입력하세요." style="width: 1000px;">
+					</div>
+					<ul class="actions" style="float: right;">
+						<li><a id="searchBtn" href="#" class="button special small">검색</a></li>
+					</ul>
+				</div>
+
+			</section>
+<!-- searchClubList End-->
+
+<!-- clubList Start -->
+<!-- alignment -->
+			<section class="alignment"
+				style="top: 50px; height: 70px; position: relative;">
 				<div class="listTitle" style="float: right;">
-					<a class="btn btn-app"><i class="fas fa-users"></i> 인원수순</a> <a
-						class="btn btn-app"><i class="fas fa-thumbs-up"></i> 좋아요순</a> <a
-						class="btn btn-app"><i class="fas fa-thumbs-down"></i> 싫어요순</a>
+					<a data-name="ali" class="btn btn-app" onclick="ali_1();"><i class="fas fa-sort-numeric-down-alt"></i>역사가 깊은</a> 
+					<a class="btn btn-app" onclick="ali_0();"><i class="fas fa-sort-numeric-down"></i>갓 생긴</a> 
+					<a class="btn btn-app" onclick="ali_5();"><i class="fas fa-users"></i>사람많은</a> 
+					<a class="btn btn-app" onclick="ali_4();"><i class="fas fa-user"></i>사람적은</a> 
+					<a class="btn btn-app" onclick="ali_2();"><i class="fas fa-thumbs-up"></i>인기있는</a> 
+					<a class="btn btn-app" onclick="ali_3();"><i class="fas fa-thumbs-down"></i>인기없는</a>
 				</div>
 			</section>
 
-			<section class="clublist" style="height: 936px;width:auto;">
+			<div class="divLine"
+				style="background: #f6755e; margin-bottom: 20px; height: 5px; position: relative; top: 50px;"></div>
+
+			<section class="clublist"
+				style="height: 633.62px; position: relative; top: 80px;">
 				<c:forEach var="club" items="${clubList }">
 					<c:if test="${empty clubList }">
 						<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
 					</c:if>
 					<c:if test="${!empty clubList }">
 						<div class="clublist_body"
-							 style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin-left:3px; margin-right:3px;width:219px;">
+							style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin: 3px 3px 20px 3px; width: 219px;">
 							<div class="card-body box-profile">
 								<div class="text-center">
 									<img class="profile-user-img img-fluid img-circle"
@@ -100,17 +174,22 @@ li {
 										alt="User profile picture">
 								</div>
 								<h3 class="profile-username text-center">${club.club_name }</h3>
-								<div class="content1" style="margin:10px;">
-									<div class="text-muted text-center" style="max-height:3.6em; overflow:hidden; 
-																			   display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;">${club.club_content}</div>
-								</div>
+								<%-- <div class="content1" style="margin: 10px;">
+									<div class="text-muted text-center"
+										style="max-height: 3.6em; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${club.club_content}</div>
+								</div> --%>
 								<ul class="list-group list-group-unbordered mb-3">
-									<li class="list-group-item text-center" style="height: 40px;"><b>인원수&nbsp&nbsp&nbsp&nbsp</b><b>${club.joincnt }</b></li>
-									<li class="list-group-item text-center" style="height: 40px;"><b>좋아요&nbsp&nbsp&nbsp&nbsp</b><b>${club.upcnt }</b></li>
-									<li class="list-group-item text-center" style="height: 40px;"><b>싫어요&nbsp&nbsp&nbsp&nbsp</b><b>${club.downcnt }</b></li>
+									<li class="list-group-item text-center"
+										style="height: 60px; width: 198px; left: -10px;"><b
+										id="btag"> <i class="fas fa-user-alt"></i>&nbsp;&nbsp;${club.joincnt }
+											&nbsp;&nbsp; <i class="far fa-thumbs-up"></i>&nbsp;&nbsp;${club.upcnt }
+											&nbsp;&nbsp; <i class="fas fa-thumbs-down"></i>&nbsp;&nbsp;${club.downcnt }
+									</b></li>
+
 								</ul>
-								<ul class="actions vertical small" style="text-align: center;">
-									<li><a href="#" class="button small" style="color: white;">Follow</a></li>
+								<ul class="actions vertical small"
+									style="text-align: center; margin-bottom: -10px;">
+									<li><a class="button small" style="color: white;">Detail</a></li>
 								</ul>
 							</div>
 						</div>
@@ -118,66 +197,55 @@ li {
 				</c:forEach>
 			</section>
 		</div>
-
+	</section>
+<!-- clubList End -->
 		<br> <br> <br>
 		<!-- clubList End -->
+<!-- recommendClub Start-->
+	<ul class="club action fit small"
+		style="position: relative; top: 100px;">
+		<li class="button alt fit big"
+			style="width: 1126.66px; margin: 0 auto; text-align: left;">[${member.mem_nick}]
+			님 근처에 인기많은 동호회를 찾아보세요.!!!</li>
+	</ul>
 
-		<!-- joinClub Start-->
-		<section class="joinclub_title">
-			<div class="join_wrap"
-				style="width: 953.33px; margin-left: auto; margin-right: auto;">
-				<h3>추천동호회</h3>
-				<div class="card card-solid">
-					<div class="card-body" style="padding-bottom: 0">
-						<div class="row d-flex align-items-stretch">
-							<div class="d-flex align-items-stretch" style="width: 20%;">
-								<div class="card bg-light">
-									<div class="card-header text-muted border-bottom-0">카테고리</div>
-									<div class="card-body pt-0">
-										<div class="row">
-											<div class="col-7">
-												<h2 class="lead">
-													<b>동호회명</b>
-												</h2>
-												<p class="text-muted text-sm">
-													<b>About: </b> 동호회 설명
-												</p>
-												<!-- <ul class="ml-4 mb-0 fa-ul text-muted">
-												<li class="small"><span class="fa-li"><i
-														class="fas fa-lg fa-building"></i></span> Address: Demo Street
-													123, Demo City 04312, NJ</li>
-												<li class="small"><span class="fa-li"><i
-														class="fas fa-lg fa-phone"></i></span> Phone #: + 800 - 12 12 23
-													52</li>
-											</ul> -->
-											</div>
-											<div class="col-5 text-center">
-												<img src="../../dist/img/user1-128x128.jpg" alt=""
-													class="img-circle img-fluid">
-											</div>
-										</div>
-									</div>
-									<div class="card-footer">
-										<div class="text-right">
-											<a href="#" class="btn btn-sm bg-teal"> <i
-												class="fas fa-comments"></i>
-											</a> <a href="#" class="btn btn-sm btn-primary"> <i
-												class="fas fa-user"></i> View Profile
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
+	<section class="joinclub_wrap"
+		style="width: 1126.66px; margin: 0 auto; height: 200px; position: relative; top: 90px;">
+		<c:forEach var="recommend" items="${recommendList }">
+			<div class="joinclub card bg-light"
+				style="width: 350px; height: 200px; float: left; margin: 0 12.5px 0 12.5px;">
+				<div class="joinclub_sub text-muted border-bottom-0">&nbsp;${recommend.cate_name }</div>
+				<div class="joinclub_sub_body" style="width: 350px; height: 172px;">
+					<div class="sub_body" style="width: 350px; height: 172px;">
+						<div class="1" style="width: 190px; height: 172px; float: left;">
+							<h3 class="1_title" style="text-align: center; padding-top: 8px;">
+								<b>${recommend.club_name }</b>
+							</h3>
+							<ul class="actions vertical small"
+								style="text-align: center; margin-bottom: -10px;">
+								<li><a href="#" class="button alt icon fa-search">Detail</a></li>
+								<li><a href="#" class="button alt icon fa-check">가입하기</a></li>
+							</ul>
+						</div>
+						<div class="2"
+							style="width: 160px; height: 160px; align: center; float: left; padding-right: 20px;">
+							<img src="<%=request.getContextPath()%>/resources/img/logo.png"
+								alt="" class="img-circle img-fluid">
 						</div>
 					</div>
-					<!-- /.card-body -->
 				</div>
 			</div>
-		</section>
-		<!-- joinClub End-->
+		</c:forEach>
+	</section>
+	<br>
+	<br>
+<!-- recommendClub End-->
 
-		<!-- pagination Start-->
-		<div class="card-footer clearfix">
+<!-- pagination Start-->
+	<section class="pagination"
+		style="width: 1126.66px; margin: 0 auto; height: 68px; position: relative; top: 70px;">
+		<div class="card-footer clearfix"
+			style="align: center; width: 1126.66px;">
 			<div class="pagination justify-content-center m-0">
 				<ul class="pagination ">
 					<li class="page-item"><a class="page-link"
@@ -211,46 +279,130 @@ li {
 				</ul>
 			</div>
 		</div>
-
 	</section>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
+
+
+
+
+
+
+
+<%--Script --%>
+
+	<%-- 	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script> --%>
 	<script
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
+	<%-- <script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script> --%>
 	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-	<script
+	<%-- <script
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
+ --%>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
+
+
+<%--Function --%>
 	<script>
-   $('#category').change(function() { 
-      
-      <%-- self.location="<%=request.getContextPath()%>/subcategory" --%>
-      
-      /* alert(go); */
-      $.ajax({
-         data:JSON.stringify({ "
-							cate_no":$(this).val() }),
-         contentType:"application/JSON",
-         type: "POST",
-         url: "<%=request.getContextPath()%>/subcategory",
-         cache:
-							false,
-         success:
-							function(data) {
-            console.log(data);
-            $("#subCategory").html("");
-            for(var
-							sub ofdata){
-               console.log(sub.cate_sub_name);
-               $("#subCategory").append("<option>"+sub.cate_sub_name+"</option>");
-            }
-         }
-      });
-   
-   });
+	<%--subCategory --%>
+	 $('#category').change(function() { 
+	      $.ajax({
+	         data:JSON.stringify({ "cate_no":$(this).val() }),
+	         contentType:"application/JSON",
+	         type: "POST",
+	         url: "<%=request.getContextPath()%>/club/subcategory",
+	         success: function(data) {
+	                  $("#subCategory").html("");
+	                  for(var sub of data){
+	                  $("#subCategory").append("<option>"+ sub.cate_sub_name +"</option>");
+	                  }
+	         }
+	      });
+	   });
+	 
+	 <%--subLocal --%>
+	$('#local').change(function(){
+		<%--alert("야호 성공이다");--%>
+		console.log(local);
+		$.ajax({
+			data:JSON.stringify({"local_no":$(this).val()}),
+			contentType:"application/JSON",
+			type: "POST",
+			url: "<%=request.getContextPath()%>/club/sublocal",
+			success: function(data){
+					$("#sublocal").html("");
+					for(var sublo of data){
+						$("#sublocal").append("<option>"+ sublo.local_sub_name +"</option>");
+			}
+			},
+			error: function(request,status,error){
+				alert("code="+request.status+"message="+request.responseText+"error="+error);
+			}
+				
+		});
+	});
+
+	<%--search --%>
+	$('a#searchBtn').click(function(){
+		alert("searchBtn");
+		//""(x), cate1.cate_name (x),
+		//var category = $('select#category').text();
+		//$("select option[value*='disabled']").prop('disabled',true);
+		//var category = $('select#category option selected').text();
+		//var category = $('select#category').children(":selected").attr("sub").text();
+		//var local = $('select#local option selected').text();
+		//$('select#category').removeAttr('disabled');
+		
+		var category = $('select#category option:selected' ).text();
+		var local = $('select#local option:selected').text();
+		var keyword = $('input[name="keyword"]').val(); 
+		
+		if(category=="전체"){
+			var category = "";
+		}
+		if(local=="전체"){
+			var local = "";
+		}
+		
+		alert("category="+category+"local="+local+"keyword="+keyword);
+		
+		searchList("${categoryclub }",category,local,keyword);
+	});
 	
-							
-</script>
+	
+	function searchList(categoryclub,category,local,keyword){
+		self.location="<%=request.getContextPath()%>/"+categoryclub+"/list?category="+category+"&local="+local+"&keyword="+keyword;
+	}
+	
+	<%--aligment --%>
+	function ali_0(){ //0:최신순
+		self.location.href="<%=request.getContextPath() %>/club/list?alignment=0";
+		//$('a#ali_1').click(function(e){e.preventDefault();window.open(this.href);});
+	}
+	function ali_1(){ //1:오래된순
+		self.location.href="<%=request.getContextPath() %>/club/list?alignment=1";
+	}
+	function ali_2(){ //2:업 많은 순
+		self.location.href="<%=request.getContextPath() %>/club/list?alignment=2";
+	}
+	function ali_3(){ //3:다운 많은 순
+		self.location.href="<%=request.getContextPath() %>/club/list?alignment=3";
+	}
+	function ali_4(){ //4:회원수 없는 순
+		self.location.href="<%=request.getContextPath() %>/club/list?alignment=4";
+	}
+	function ali_5(){ //5:회원수 많은 순
+		self.location.href="<%=request.getContextPath() %>/club/list?alignment=5";
+	}
+	
+	/* window.onload =function(){
+	$('a[data-name-"ali"]').on('click',function(e){
+		e.preventDefault();
+	});
+	} */
+
+	
+	</script>
+
 </body>

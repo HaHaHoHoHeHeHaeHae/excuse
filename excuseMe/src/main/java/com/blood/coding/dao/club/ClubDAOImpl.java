@@ -28,12 +28,31 @@ public class ClubDAOImpl implements ClubDAO {
 		
 		return clubList;
 	}
-
+	
 	@Override
 	public int selectSearchClubCount(Criteria cri) throws SQLException {
 		int clubCnt = session.selectOne("Club.selectSearchClubCount",cri);
 		return clubCnt;
 	}
+	
+	@Override
+	public List<ClubVO> selectNewClubList(Criteria cri) throws SQLException {
+		int startRowNum = cri.getPageStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(startRowNum,limit);
+		
+		List<ClubVO> newclubList = session.selectList("Club.selectNewClubList",cri,rowBounds);
+		return newclubList;
+	}
+	
+	@Override
+	public int selectNewClubListCount(Criteria cri) throws SQLException {
+		int newcount = session.selectOne("Club.selectNewClubCount",cri);
+		return newcount;
+	}
+
+
+	
 
 	@Override
 	public ClubVO selectClub(String club_no) throws SQLException {
@@ -69,6 +88,22 @@ public class ClubDAOImpl implements ClubDAO {
 	public void updateClubStatus(ClubVO clubVO) throws SQLException {
 		session.update("Club.updateClubStatus",clubVO);
 
+	}
+
+
+	@Override
+	public List<ClubVO> recommendClubMain(String mem_local) throws SQLException {
+		List<ClubVO> list = session.selectList("Club.recommendClubMain",mem_local);
+		return list;
+		
+	}
+
+
+	@Override
+	public List<ClubVO> recentClubMain() throws SQLException {
+		List<ClubVO> list = session.selectList("Club.recentClubMain");
+		
+		return list;
 	}
 
 }

@@ -39,8 +39,9 @@
 	      p:session-ref="sqlSession"/>
 	<bean id="attachDAO"
 			class="com.blood.coding.dao.attach.AttachDAOImpl"
-			p:session-ref="sqlSession"	/>
-		  	  
+			p:session-ref="sqlSession" />
+	
+			  	  
 	<!-- service -->	
 	<bean id="loginService"
 	  	  class="com.blood.coding.service.common.LoginServiceImpl"
@@ -62,7 +63,9 @@
 	<bean id="clubService"
 	  	  class="com.blood.coding.service.club.ClubServiceImpl"
 	  	  p:clubDAO-ref="clubDAO" 
-	  	  p:memberDAO-ref="memberDAO"/>
-	  	  
+	  	  p:memberDAO-ref="memberDAO"
+		  p:categoryDAO-ref="categoryDAO"
+		  p:localDAO-ref="localDAO"/>
+
 	
 </beans>

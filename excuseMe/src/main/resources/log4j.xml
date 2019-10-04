@@ -14,7 +14,7 @@
 	<logger name="com.blood.coding">
 		<level value="info" />
 	</logger>
-	
+
 	<!-- sql보는 로그 -->
 	<logger name="jdbc.sqlonly">
 		<level value="debug" />

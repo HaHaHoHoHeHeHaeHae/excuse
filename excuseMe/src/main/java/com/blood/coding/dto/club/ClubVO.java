@@ -103,9 +103,5 @@ public class ClubVO {
 				+ club_local + ", club_regDate=" + club_regDate + ", replycnt=" + replycnt + ", upcnt=" + upcnt
 				+ ", downcnt=" + downcnt + ", joincnt=" + joincnt + ", mi=" + mi + "]";
 	}
-	
-	
 
-	
-	
 }

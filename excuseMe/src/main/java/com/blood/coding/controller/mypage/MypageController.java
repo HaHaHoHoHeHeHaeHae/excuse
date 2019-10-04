@@ -18,6 +18,7 @@ import com.blood.coding.controller.common.DeleteFileUtils;
 import com.blood.coding.controller.common.UploadFileUtils;
 import com.blood.coding.dao.attach.AttachDAO;
 import com.blood.coding.dto.attach.AttachVO;
+import com.blood.coding.dto.member.MemberVO;
 import com.blood.coding.service.club.ClubService;
 
 @Controller
@@ -36,8 +37,12 @@ public class MypageController {
 	@RequestMapping("joinclub")
 	public ModelAndView mypagejoinclub(Criteria cri, ModelAndView modelnView) throws Exception {
 		
+		//서비스가 수정되서 멤버VO 로그인한 유저받아와야함
+		MemberVO member = new MemberVO();
+		
+		
 		String url = "mypage/joinclub";
-		Map<String, Object> dataMap = clubService.getClubList(cri);
+		Map<String, Object> dataMap = clubService.getClubList(cri, member);
 		modelnView.addObject("dataMap",dataMap);
 		modelnView.setViewName(url);
 		return modelnView;
