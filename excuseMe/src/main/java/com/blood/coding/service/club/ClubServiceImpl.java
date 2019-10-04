@@ -11,7 +11,6 @@ import com.blood.coding.dao.category.CategoryDAO;
 import com.blood.coding.dao.club.ClubDAO;
 import com.blood.coding.dao.local.LocalDAO;
 import com.blood.coding.dao.member.MemberDAO;
-
 import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.dto.club.ClubVO;
 import com.blood.coding.dto.local.LocalVO;
@@ -62,37 +61,11 @@ public class ClubServiceImpl implements ClubService {
 	
 	// wish랑 join은 나중에 협의해야함
 	
-
+	
 	
 	@Override
 	public Map<String, Object> getClubList(Criteria cri,MemberVO memberVO) throws SQLException { //(매개변수에 memberVO추가)
 		Map<String, Object> dataMap = new HashMap<String, Object>();
-
-		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
-		//List<CategoryVO> cateList = categoryDAO.selectCategoryList();
-		//List<LocalVO> localList = localDAO.selectLocalList();
-		
-		int totalCount = clubDAO.selectSearchClubCount(cri);
-		
-		/*int cno = clubDAO.selectClubSeq();
-		System.out.println("+++++++++++++++++++++");
-		System.out.println("+++++++++++++++++++++");
-		System.out.println(cno);
-		System.out.println("+++++++++++++++++++++");
-		System.out.println("+++++++++++++++++++++");
-		String club_no = "c_" + cno;
-		for(ClubVO club : clubList) {
-			int replycnt = replyDAO.selectReplyListCount(club_no);
-			
-			club.setReplycnt(replycnt);
-		}
-*/
-		
-		// pagination
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(totalCount);
-		
 
 		cri.setPerPageNum(3);
 		cri.setLocal(memberVO.getMem_local());
@@ -101,9 +74,26 @@ public class ClubServiceImpl implements ClubService {
 		cri.setLocal("");
 		cri.setCategory("");
 		cri.setKeyword("");
-
+		
 		//추천리스트
 		List<ClubVO> recommendList = clubDAO.selectSearchClubList(cri);
+
+		cri.setPerPageNum(10);
+		cri.setAlignment(0);
+		
+		
+		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
+		//List<CategoryVO> cateList = categoryDAO.selectCategoryList();
+		//List<LocalVO> localList = localDAO.selectLocalList();
+		
+		int totalCount = clubDAO.selectSearchClubCount(cri);
+		
+			
+		// pagination
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		
 		
 		//카테고리
 		List<CategoryVO> categoryList = categoryDAO.selectCategoryList();
@@ -210,5 +200,17 @@ public class ClubServiceImpl implements ClubService {
 		map.put("recentClubList", list);
 		return map;
 	}
+	
+	//메이드 바이 우철 / 내가만든 클럽을 리스트 검색
+	@Override
+	public List<ClubVO> getMyClub(String mem_id) throws SQLException {
+	
+		List<ClubVO> myClubList = clubDAO.myClub(mem_id);
+		
+		return myClubList;
+	}
+	
+	
+	
 
 }

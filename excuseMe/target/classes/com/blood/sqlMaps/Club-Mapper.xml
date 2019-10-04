@@ -131,6 +131,14 @@
 	    		where rownum <= 6
 	    	]]>
 	    </select>
+	    
+	    <!-- 내가 만든 클럽 조회 -->
+	    <select id="selectMyClub" resultType="club">
+	    	select *
+	    	from club
+	    	where mem_id = #{mem_id}
+	    </select>
+	    
     </mapper>
     
 
