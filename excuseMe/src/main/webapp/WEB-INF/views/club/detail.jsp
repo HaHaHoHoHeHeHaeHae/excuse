@@ -73,9 +73,8 @@ div.top {
 
 <body>
 	<div class="top"></div>
-	<section id="main1" class="wrapper" style="width:800px; position:relative;">
-	<div class="pic_demo_wqrp"
-		style="position: absolute; width: 800px;; height: 300px; top: 0px;">
+	<section id="main1" class="wrapper" style="width:800px; position:relative; height:700px;">
+	<div class="pic_demo_wqrp" style="position: absolute; width: 800px;; height: 300px; top: 0px;">
 		<div class="pic_warp" style="width: 300px; height: 300px; float: left; position: absolute;">
 			<div class="pic" style="width: 300px; height: 300px;">
 				<img src="<%=request.getContextPath()%>/resources/img/logo.png"
@@ -119,11 +118,11 @@ div.top {
 			</tbody>
 		</table>
 	</div>
+</section>
 
-	<div class="attach"
-		style="position: absolute; width: 800px; top: 700px;">
-		<table class="alt"
-			style="margin-bottom: 0px; margin: auto; text-align: center; font-size: 18px;">
+<section id="main2" class="wrapper" style="width:800px; position:absolute;">
+	<div class="attach" style="position: relative; width: 800px; top: 700px;">
+		<table class="alt" style="margin-bottom: 0px; margin: auto; text-align: center; font-size: 18px;">
 			<tbody>
 				<tr>
 					<td style="width: 156px;"><b>첨부파일</b></td>
@@ -153,17 +152,15 @@ div.top {
 		</table>
 	</div>
 
-	
-
 	<div class="buttons"
-		style="position: absolute; top: 1000px; width: 800px; text-align: center;">
+		style="position: relative; top: 1000px; width: 800px; text-align: center;">
 		<a href="#" class="button special" id="wishBtn" onclick="onWish();">관심동호회등록</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="#" class="button" id="joinBtn" onclick="onJoin();">가입하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="#" class="button alt" id="closeBtn" onclick="onClose();">나가기</a>&nbsp;&nbsp;&nbsp;&nbsp;
 	</div>
 
 	<div class="updown"
-		style="position: absolute; top: 1380px; width: 800px;">
+		style="position: relative; top: 1380px; width: 800px;">
 		<ul class="list-group list-group-unbordered mb-3">
 			<li class="list-group-item text-center"
 				style="height: 60px; width: 198px; left: 35%; float: left;"><b
@@ -174,7 +171,7 @@ div.top {
 	</div>
 
 	<div class="reply"
-		style="position: absolute; top: 1500px; width: 800px;">
+		style="position:relative; top: 1500px; width: 800px;">
 		<!-- Reply 부분 -->
 		<div class="card">
 			<div class="card-header">
