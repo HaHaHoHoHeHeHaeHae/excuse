@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import com.blood.coding.controller.common.Criteria;
+import com.blood.coding.dto.attach.AttachVO;
 import com.blood.coding.dto.notice.NoticeVO;
 
 public class NoticeDAOImpl implements NoticeDAO {

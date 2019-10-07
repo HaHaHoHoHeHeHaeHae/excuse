@@ -18,6 +18,7 @@ public interface NoticeService {
 	
 	//등록, 수정, 삭제
 	public void registNotice(NoticeVO noticeVO) throws SQLException;
+	public String noticeSeq() throws SQLException;
 	public void modifyNotice(NoticeVO noticeVO) throws SQLException;
 	public void removeNotice(String not_no) throws SQLException;
 

@@ -55,6 +55,7 @@
   	<bean id="noticeService"
   		  class="com.blood.coding.service.notice.NoticeServiceImpl"
   		  p:noticeDAO-ref="noticeDAO"
+  		  p:attachDAO-ref="attachDAO"
   		  />
   	<bean id="localService"
   		  class="com.blood.coding.service.common.LocalServiceImpl"

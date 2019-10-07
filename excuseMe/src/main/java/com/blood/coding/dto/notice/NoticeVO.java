@@ -1,6 +1,11 @@
 package com.blood.coding.dto.notice;
 
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import com.blood.coding.dto.attach.AttachVO;
 
 public class NoticeVO {
 	private String not_no;
@@ -13,7 +18,33 @@ public class NoticeVO {
 	private Date not_regDate;
 	private String not_startDate2;
 	private String not_endDate2;
+    private MultipartFile[] uploadFile;
+    private List<AttachVO> attachList;
+    private String attach_no;
     
+	public String getAttach_no() {
+		return attach_no;
+	}
+
+	public void setAttach_no(String attach_no) {
+		this.attach_no = attach_no;
+	}
+
+	public List<AttachVO> getAttachList() {
+		return attachList;
+	}
+
+	public void setAttachList(List<AttachVO> attachList) {
+		this.attachList = attachList;
+	}
+
+	public MultipartFile[] getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(MultipartFile[] uploadFile) {
+		this.uploadFile = uploadFile;
+	}
 
 	public String getNot_startDate2() {
 		return not_startDate2;

@@ -75,7 +75,7 @@
 								<c:if test="${!empty noticeList }">
 									<c:forEach var="notice" items="${noticeList}">
 										<tr>
-											<td style="cursor:pointer;" onclick="self.location='<%=request.getContextPath()%>/notice/detail?not_no=${notice.not_no }&page=1'">${notice.not_title }</td>
+											<td style="cursor:pointer;text-overflow: ellipsis; overflow: hidden;display: block;width:250px;" onclick="self.location='<%=request.getContextPath()%>/notice/detail?not_no=${notice.not_no }&page=1'">${notice.not_title }</td>
 											<td><fmt:formatDate value="${notice.not_regDate }" pattern="yyyy-MM-dd"/></td>
 										</tr>
 									</c:forEach>
@@ -93,7 +93,7 @@
 					</div>
 					<ul style="width:100%;list-style:none; padding:0; margin:0;">
 						<c:forEach var="recentClub" items="${recentClubList}">
-							<li style="width:27%;font-weight:bold;border-left:1.5px solid gray; float:left; padding:0;font-size:1em;margin-top:10px;margin-left:10px;cursor:pointer;" onclick="OpenWindow()">
+							<li style="width:27%;font-weight:bold;border-left:1.5px solid gray; float:left; padding:0;font-size:1em;margin-top:10px;margin-left:10px;cursor:pointer;text-overflow: ellipsis; overflow: hidden;display: block;" onclick="OpenWindow()">
 								&nbsp&nbsp&nbsp
 								${recentClub.club_name}
 							</li>
