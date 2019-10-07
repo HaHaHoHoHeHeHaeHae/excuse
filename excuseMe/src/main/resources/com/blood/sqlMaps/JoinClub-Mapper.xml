@@ -3,4 +3,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-    <mapper namespace="joinClub"></mapper>
+    <mapper namespace="joinClub">
+    	<update id="insertJoinClub" parameterType="join">
+    		insert into joinClub
+    		values(join_no, #{mem_id}, #{club_no})
+    		
+    	</update>
+    
+    </mapper>
