@@ -28,7 +28,7 @@
 				<h2 id="elements">공지사항</h2>
 				<c:if test="${loginUser.mem_nick eq 'admin'}">
 				<div class="nav nav-pills ml-auto p-2">
-					<span class="button alt small" onclick="self.location='<%=request.getContextPath()%>/notice/list_admin'">모든 공지사항 보기</span>
+					<span class="button alt small" onclick="self.location='<%=request.getContextPath()%>/notice/list'">기간 내 공지사항 보기</span>
 				</div>
 				<div class="nav nav-pills ml-auto p-2">
 					<span class="button small" onclick="self.location='<%=request.getContextPath()%>/notice/regist'">글 쓰기</span>
