@@ -63,10 +63,10 @@
 					<div id="sidebar">
 				
 				<a href="#" id="subtoplist">ADMINISTRATOR </a>
-				<a href="#" id="sublist">동호회 리스트 </a>
-				<a href="#" id="sublist">블랙 리스트 </a>
-				<a href="#" id="sublist">신규동호회 승인 </a>
-				<a href="#" id="sublist">회원 관리</a>
+				<a href="<%=request.getContextPath()%>/manage/club/list" id="sublist">동호회 리스트 </a>
+				<a href="<%=request.getContextPath()%>/manage/blacklist/list" id="sublist">블랙 리스트 </a>
+				<a href="<%=request.getContextPath()%>/manage/newclub/list" id="sublist">신규동호회 승인 </a>
+				<a href="<%=request.getContextPath()%>/manage/member/list" id="sublist">회원 관리</a>
 
 
 			</div>
@@ -76,16 +76,13 @@
 						<div class="row 200%">
 							<div class="card-body"  >
 								<!-- Table -->
-									<div class="table-wrapper" style="margin-left: 80px; width:1300px;">
+									<div class="table-wrapper" style="margin-left: 80px; ">
 										<table >
 												<tr>
 													<th class="text-center" style="width:100px;">NO</th>
 													<th class="text-center" style="width:300px;">동호회명</th>
 													<th class="text-center" style="width:300px;">카테고리</th>
 													<th class="text-center" style="width:200px;">상태</th>
-													<th class="text-center" style="width:100px;">상세보기</th>
-													<th class="text-center" style="width:100px;">수락</th>
-													<th class="text-center" style="width:100px;">거부</th>
 												</tr>
 												<c:if test="${empty newclubList }">
 												<tr>
@@ -98,7 +95,7 @@
 							  			<c:forEach items="${newclubList }" var="newclub" >
 							  	<tr id="clubno">
 							  		<td class="text-center" id="club_no" name="club_no">${newclub.club_no }</td>
-							  		<td class="text-center">${newclub.club_name }</td>
+							  		<td class="text-center"><a href="#" onclick="OpenWindow('detail?club_no=${newclub.club_no}','','850','800')"> ${newclub.club_name }</a></td>
 							  		
 									<td class="text-center">${newclub.cate_name }</td>
 									
@@ -113,19 +110,6 @@
 									운영 중지
 									</c:if>
 									</td>
-									<td class="text-center">
-									<button style=" " type="button" class="button small" id="detailBtn" onclick="OpenWindow('detail?club_no=${newclub.club_no }','','850','800');">
-									상세보기</button>
-									</td>
-									<td class="text-center">
-									<button type="button" class="button special small" id="statusBtn" onclick="Status();">
-									수락</button>
-									</td>
-									<td class="text-center">
-									<button type="button" class="button special small" id="detailBtn" id="statusStopBtn" onclick="StatusStop();">
-									거부</button>
-									</td>
-									
 								</tr>
 							  </c:forEach>
 							</c:if>
@@ -199,57 +183,7 @@ function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
    
    	
    	
-   	function Status(){
-   		var id= $("#clubno").children().eq(0).text();
-		//var status = $("#club_status").val();
-		alert(id);
-		//alert(status);
-		
-			$.ajax({
-				url:"<%=request.getContextPath() %>/manage/club/status",
-				type:"POST",
-				data:{club_no:id},
-				
-				success:function(result){
-					if(result=="SUCCESS"){
-						alert("승인수락 되었습니다.");
-						location.reload();
-					}else{
-						alert("1234");
-					}
-				},
-				error:function(){
-					alert('실패했습니다.');
-				},
-				
-			}); 
-		}
-	function StatusStop(){
-   		var id= $("#clubno").children().eq(0).text();
-		//var status = $("#club_status").val();
-		alert(id);
-		//alert(status);
-		
-			$.ajax({
-				url:"<%=request.getContextPath() %>/manage/club/stopstatus",
-				type:"POST",
-				data:{club_no:id},
-				
-				success:function(result){
-					if(result=="SUCCESS"){
-						alert("승인거부 되었습니다.");
-						location.reload();
-					}else{
-						alert("1234");
-					}
-				},
-				error:function(){
-					alert('실패했습니다.');
-				},
-				
-			}); 
-		}
-   	
+   
    </script>
    
    

@@ -55,6 +55,11 @@
 					<div style="margin-left:200px;">
 					<div class="card-body">
 						<form role="form" method="post" action="detail" name="detailForm">
+							<div class="form-group row" style="margin-top:15px;">
+							    <label class="col-sm-3 control-label" style="margin-top:15px;">NO</label> 
+							    <input class="col-sm-4 form-control" type="text" id="clubno" 
+							    readonly name="clubno" value="${club.club_no }">
+							</div>	
 							<div class="form-group row" >
 							    <label class="col-sm-3 control-label" style="margin-top:15px;">동호회 이름</label> 
 							    <input class="col-sm-4 form-control" type="text" id="club_name" 
@@ -63,7 +68,7 @@
 							<div class="form-group row" style="margin-top:15px;">
 							    <label class="col-sm-3 control-label"style="margin-top:15px;">대표자 닉네임</label> 
 							    <input class="col-sm-4 form-control" type="text" id="mem_nick" 
-							    readonly name="mem_id" value="${member.mem_nick }">
+							    readonly name="mem_id" value="${member.mem_nick }" onclick="OpenWindow('detail?mem_id=${member.mem_id }','','850','800');">
 							</div>
 							
 							<div class="form-group row" style="margin-top:15px;">
@@ -102,32 +107,17 @@
 					</div>
 					<div class="text-center" style="margin-left:50px; margin-top:35px; margin-bottom:30px;">
 					    
-					  <%--   <button type="button" class="button special small" id="statusBtn" onclick="StatusStop();">
-					     <c:if test= "${club.club_status==0 }" >승인수락</c:if>
-					    <c:if test= "${club.club_status==1 }" >운영중지</c:if>
-						<c:if test= "${club.club_status==2 }" >운영중지 해제</c:if></button>
-						&nbsp; &nbsp; &nbsp; --%>
+					    <button type="button" class="button small" id="statusBtn" onclick="Status();">
+					    수락</button>
+					    <button type="button" class="button small" id="statusStopBtn" onclick="StatusStop();">
+					    거부</button>
+						&nbsp; &nbsp; &nbsp;
 						<button type="button" class="button special small" id="closeBtn" onclick="CloseWindow();">닫기</button>
 						
 					</div><!--end card-footer  -->
 				</div><!-- end card -->				
 
-				<%-- <div id="replyList">
-					<div class="form-group row">
-							    <label>동호회 명 </label> 
-							    <input value="${club.club_name }">
-							</div>
-							<div class="form-group row">
-							    <label> 아이디</label> 
-							    <input value="${reply.reply_content }">
-							</div>
-							
-							<div class="form-group row">
-							    <label>등록날짜</label> 
-							    <input value="${reply.reply_regDate }">
-							</div>	
 				
-				</div> --%>
 
 <script>
 /* 	window.onload=function(){
@@ -143,18 +133,20 @@
 	</script>
 	
 	<script>
-	function StatusStop(){
-		var id= mem_id.value;
-		alert(id);
-		if(confirm("활동중지 시키겠습니까?")){
+	function Status(){
+		var id= clubno.value;
+		//var status = $("#club_status").val();
+		//alert(id);
+		//alert(status);
+		
 			$.ajax({
-				url:"<%=request.getContextPath() %>/manage/user/status",
+				url:"<%=request.getContextPath() %>/manage/club/status",
 				type:"POST",
-				data:{mem_id:id},
+				data:{club_no:id},
 				
 				success:function(result){
 					if(result=="SUCCESS"){
-						alert("활동중지 되었습니다.");
+						alert("승인수락 되었습니다.");
 						location.reload();
 					}else{
 						alert("1234");
@@ -166,30 +158,34 @@
 				
 			}); 
 		}
-		
-		 
-	
-		
-	 
-	}
-	
-	function reply(){
-		var id= mem_id.value;
-		alert(id);
+	function StatusStop(){
+		var id= clubno.value;
+		//var status = $("#club_status").val();
+		//alert(id);
+		//alert(status);
 		
 			$.ajax({
-				url:"<%=request.getContextPath() %>/manage/user/replyList",
+				url:"<%=request.getContextPath() %>/manage/club/stopstatus",
 				type:"POST",
-				data:{mem_id:id},
+				data:{club_no:id},
+				
 				success:function(result){
-					$('#replyList').append(data);
-					location.reload();
-				}
+					if(result=="SUCCESS"){
+						alert("승인거부 되었습니다.");
+						location.reload();
+					}else{
+						alert("1234");
+					}
+				},
+				error:function(){
+					alert('실패했습니다.');
+				},
 				
 			}); 
-		
-	 
-	}
+		}
+   	
+	
+	
 	</script>
 	
 	</body>

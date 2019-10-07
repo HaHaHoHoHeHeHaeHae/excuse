@@ -63,10 +63,10 @@
 					<div id="sidebar">
 				
 				<a href="#" id="subtoplist">ADMINISTRATOR </a>
-				<a href="#" id="sublist">동호회 리스트 </a>
-				<a href="#" id="sublist">블랙 리스트 </a>
-				<a href="#" id="sublist">신규동호회 승인 </a>
-				<a href="#" id="sublist">회원 관리</a>
+				<a href="<%=request.getContextPath()%>/manage/club/list" id="sublist">동호회 리스트 </a>
+				<a href="<%=request.getContextPath()%>/manage/blacklist/list" id="sublist">블랙 리스트 </a>
+				<a href="<%=request.getContextPath()%>/manage/newclub/list" id="sublist">신규동호회 승인 </a>
+				<a href="<%=request.getContextPath()%>/manage/member/list" id="sublist">회원 관리</a>
 
 
 			</div>
@@ -106,15 +106,17 @@
 													<th class="text-center" style="width:100px;">상태</th>
 													<th class="text-center" style="width:100px;">상세보기</th>
 												</tr>
-												<c:if test="${empty clubList }">
+												<%-- <c:if test="${empty clubList }">
 												<tr>
 													<td colspan="5" class="text-center">
 														<strong>해당 내용이 없습니다.</strong>
 													</td>
 												</tr>
-											</c:if>
-										<c:if test="${!empty clubList }">
+											</c:if> --%>
+										<%-- <c:if test="${}"> --%>
+										<c:if test= "${club.mi>0 }" >
 							  			<c:forEach items="${clubList }" var="club" >
+							  			
 							  	<tr>
 							  		<td class="text-center">${club.club_name }</td>
 									<td class="text-center">${club.cate_name }</td>
@@ -133,8 +135,10 @@
 									상세보기</button>
 									</td>
 								</tr>
+								
 							  </c:forEach>
-							</c:if>
+							  </c:if>
+							<%-- </c:if> --%>
 						</table>
 									</div>
 									

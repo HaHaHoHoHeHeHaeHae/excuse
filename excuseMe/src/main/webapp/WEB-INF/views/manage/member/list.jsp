@@ -66,11 +66,10 @@
 			<div id="sidebar">
 				
 				<a href="#" id="subtoplist">ADMINISTRATOR </a>
-				<a href="#" id="sublist">동호회 리스트 </a>
-				<a href="#" id="sublist">블랙 리스트 </a>
-				<a href="#" id="sublist">신규동호회 승인 </a>
-				<a href="#" id="sublist">회원 관리</a>
-
+				<a href="<%=request.getContextPath()%>/manage/club/list" id="sublist">동호회 리스트 </a>
+				<a href="<%=request.getContextPath()%>/manage/blacklist/list" id="sublist">블랙 리스트 </a>
+				<a href="<%=request.getContextPath()%>/manage/newclub/list" id="sublist">신규동호회 승인 </a>
+				<a href="<%=request.getContextPath()%>/manage/member/list" id="sublist">회원 관리</a>
 
 			</div>
 

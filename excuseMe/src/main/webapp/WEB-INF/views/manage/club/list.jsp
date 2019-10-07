@@ -64,54 +64,25 @@ width:250px;
 
 		<!-- Main -->
 			<section id="main" class="wrapper" >
-				<div class="inner" style="margin-left:-3px;"> 
+				<div class="inner" style="margin-left:-3px; "> 
 					
 					<div id="sidebar">
 				
 				<a href="#" id="subtoplist">ADMINISTRATOR </a>
-				<a href="#" id="sublist">동호회 리스트 </a>
-				<a href="#" id="sublist">블랙 리스트 </a>
-				<a href="#" id="sublist">신규동호회 승인 </a>
-				<a href="#" id="sublist">회원 관리</a>
+				<a href="<%=request.getContextPath()%>/manage/club/list" id="sublist">동호회 리스트 </a>
+				<a href="<%=request.getContextPath()%>/manage/blacklist/list" id="sublist">블랙 리스트 </a>
+				<a href="<%=request.getContextPath()%>/manage/newclub/list" id="sublist">신규동호회 승인 </a>
+				<a href="<%=request.getContextPath()%>/manage/member/list" id="sublist">회원 관리</a>
 
 
 			</div>
 					<div class="row">
-						<h2 style="margin-left:10px; margin-right:150px; ">동호회 목록</h2>
-						<div class="row">
-			
-			<section class="sort">
-								<div class="listTitle" >
-									<div name="aliType"  id="aliType">
-									<button class="button alt small" 
-									style="margin-top: 30px; "
-									type="button" id="ali1" onclick="ali1();">생성 오래된순</button> 
-									<button class="button alt small" style="margin-top: 4px; width:180px;"
-									type="button" id="ali2" onclick="ali2();">생성 최신순</button>
-									</div>
-									<div name="sortType"  id="sortType">
-									<button class="button alt small" 
-									style="margin-top: 4px; width :180px; "
-									type="button" id="sort1" onclick="sort1();" >운영중 동호회</button> 
-									<button class="button alt small" style="margin-top: 4px; width :180px;"
-									type="button" id="sort2" onclick="sort2();" >운영중지 동호회</button>
-									</div>
-								</div>
-							</section>
-							
-
-							
-							</div>
+						<h2 style="margin-left:330px;  ">동호회 목록</h2>
 			</div>
-			<div class="card-body" >
-						<div class="row " style="margin-top:20px;">
-							<section class="search">
-						<div class="search1">
-						<div class="form-group">
-						<div class="label">
-							<div class="label_name">
+			
+			<section class="search">
+						<div class="row" style="margin-left:300px;  ">
 								<strong>카테고리</strong>
-							</div>
 							<div class="select" >
 								<!-- category1 -->
 								<select id="category" class="form-control">
@@ -123,8 +94,7 @@ width:250px;
 									</c:forEach>
 								</select>
 							</div>
-						</div>
-
+							
 						<div class="label">
 							<div class="select">
 								<!-- category2 -->
@@ -134,13 +104,8 @@ width:250px;
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="search2">
-					<div class="form-group">
-						<div class="label">
-							<div class="label_name">
-								<strong style="text-align:center;">지역</strong>
-							</div>
+					<div class="row" style="margin-top:10px; margin-left:300px;">
+								<strong style="text-align:center;">&nbsp;&nbsp;&nbsp;&nbsp;지역&nbsp;&nbsp;&nbsp;&nbsp;</strong>
 							<div class="select">
 								<select id="local" class="form-control">
 									<option selected>전체</option>
@@ -151,33 +116,51 @@ width:250px;
 									</c:forEach>
 								</select>
 							</div>
-						</div>
 
 						<div class="label">
 							<div class="select">
-								<select id="sublocal" class="form-control"
-									>
+								<select id="sublocal" class="form-control">
 									<option selected>전체</option>
 								</select>
 							</div>
 						</div>
 					</div>
-				</div>
 				<div class="search3" >
 					<div class="select">
-						<input name="keyword" type="text" class="form-control" style="width:250px;"
+						<input name="keyword" type="text" class="form-control" style="width:520px; margin-top:10px; margin-left:445px;"
 							placeholder="검색어를 입력하세요">
 					</div>
 					<ul class="actions" >
-						<li><a id="searchBtn" href="#" class="button special small" style="width:250px; margin-top:10px;" 
+						<li><a id="searchBtn" href="#" class="button small" style="width:520px; margin-top:10px; margin-left:245px; " 
 						onclick="onSearch();">검색</a></li>
 					</ul>
 				</div>
-				
+				</section>
+				<section class="sort">
+				<div class="row"  style="margin-left:270px;" >
+									<div name="aliType"  id="aliType">
+									<button class="button alt small" 
+									style="margin-top: 20px; "
+									type="button" id="ali1" name="ali1" onclick="ali1();">생성 오래된순</button> 
+									<button class="button alt small" style="margin-top: 20px; width:180px;"
+									type="button" id="ali2" name="ali2" onclick="ali2();">생성 최신순</button>
+									</div>
+									
+									<div name="sortType"  id="sortType">
+									<button class="button alt small" 
+									style="margin-top: 20px; width :180px; "
+									type="button" id="sort1" name="sort1" onclick="sort1();" >운영중 동호회</button> 
+									<button class="button alt small" style="margin-top:20px; width :180px;"
+									type="button" id="sort2" name="sort2" onclick="sort2();" >운영중지 동호회</button>
+									</div>
+								</div>
+							</section>
 
-			</section>
+			<div class="card-body" >
+						<div class="row " style="margin-top:20px; ">
+							
 								<!-- Table -->
-									<div class="table-wrapper" style="float:right;" >
+									<div class="table-wrapper">
 										<table>
 												<tr>
 													<th class="text-center" style="width:300px;">동호회명</th>
@@ -220,7 +203,7 @@ width:250px;
 								</div>	
 								</div>
 									
-					<div class="text-center" style="margin-left: 200px;"  >
+					<div class="text-center" style="margin-left: 480px;"  >
 																				
 						<ul class="pagination ">
 							<li class="page-item">
@@ -321,7 +304,7 @@ $('#local').change(function(){
 
 <%--search --%>
 	function onSearch(){
-	alert("searchBtn");
+	//alert("searchBtn");
 	//""(x), cate1.cate_name (x),
 	//var category = $('select#category').text();
 	//$("select option[value*='disabled']").prop('disabled',true);
@@ -341,7 +324,7 @@ $('#local').change(function(){
 		var local = "";
 	}
 	
-	alert("category="+category+"local="+local+"keyword="+keyword);
+	//alert("category="+category+"local="+local+"keyword="+keyword);
 	
 	searchList("${categoryclub }",category,local,keyword);
 }
@@ -353,31 +336,19 @@ function searchList(categoryclub,category,local,keyword){
 
 
 
-<%-- //검색
-function onSearch(){
-		//alert("fff");
-		//var category=$('select#category').val();
-		//var local=$('select#local').val();
-		var keyword=$('input[name="keyword"]').val();
-		
-		
-		searchList(keyword);
-	}
-
-function searchList(keyword){
-	self.location="<%=request.getContextPath()%>/manage/club/list?category="+ category + "&local="+ local +"&keyword=" + keyword;
-	self.location="<%=request.getContextPath()%>/manage/club/list?keyword=" + keyword;
-	} --%>
-
-<%-- 
-//동호회 생성날짜 정렬
+ 
+ //동호회 생성날짜 정렬
 function ali1(){ 
-	var searchType=$('select#searchType').val();
-	var keyword=$('input[name="keyword"]').val();
+	var category = $('select#category option:selected' ).text();
+	var local = $('select#local option:selected').text();
+	var keyword = $('input[name="keyword"]').val();
 	var sortType=$('div#sortType').val();
-	self.location.href="<%=request.getContextPath() %>/manage/club/list?alignment=1&sortType="+ sortType +"&searchType="+ searchType + "&keyword=" + keyword;
+	self.location.href="<%=request.getContextPath() %>/manage/club/list?alignment=1&sortType="+ sortType +"&category="+category+"&local="+local+"&keyword=" + keyword;
 }
 function ali2(){ 
+	var category = $('select#category option:selected' ).text();
+	var local = $('select#local option:selected').text();
+	var keyword = $('input[name="keyword"]').val();
 	var searchType=$('select#searchType').val();
 	var keyword=$('input[name="keyword"]').val();
 	var sortType=$('div#sortType').val();
@@ -397,8 +368,8 @@ function sort2(){
 	var keyword=$('input[name="keyword"]').val();
 	var aliType=$('div#aliType').val();
 	self.location.href="<%=request.getContextPath() %>/manage/club/list?sort=2&aliType="+ aliType +"&searchType="+ searchType + "&keyword=" + keyword;
-} --%>
-
+} 
+ 
    	
    	
    </script>
