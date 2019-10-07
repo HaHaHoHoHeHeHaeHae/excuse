@@ -10,5 +10,8 @@ function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
 		                	+ winleft + ", resizable=no, status=yes"  );
     win.focus() ; 
 }
+function changeIframe(name){
+	document.getElementById("if_list").src="<%=request.getContextPath()%>/"+name+"/list";
+}
 </script>
 

@@ -10,7 +10,6 @@ public class Criteria {
 	private String keyword;     //검색어
 	private String local;
 	private int alignment;
-
 	
 	
 	public Criteria() {
@@ -25,7 +24,6 @@ public class Criteria {
 		this.category = category;
 		this.keyword = keyword;
 		this.local = local;
-
 	}
 
 	public int getPage() {
@@ -87,11 +85,11 @@ public class Criteria {
 		this.alignment = alignment;
 	}
 
-
+	
 	@Override
 	public String toString() {
 		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", category=" + category + ", keyword="
-				+ keyword + ", local=" + local + ", alignment=" + alignment+ "]";
+				+ keyword + ", local=" + local + ", alignment=" + alignment + "]";
 	}
 
 	

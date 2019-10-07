@@ -1,6 +1,9 @@
 package com.blood.coding.dto.club;
 
 import java.util.Date;
+import java.util.List;
+
+import com.blood.coding.dto.attach.AttachVO;
 
 public class ClubVO {
 	private String club_no;
@@ -16,6 +19,8 @@ public class ClubVO {
 	private int downcnt;
 	private int joincnt;
 	private int mi;
+	private List<AttachVO> attachList;
+	
 	
 	
 	public String getClub_no() {
@@ -96,16 +101,19 @@ public class ClubVO {
 	public void setMi(int mi) {
 		this.mi = mi;
 	}
+	public List<AttachVO> getAttachList() {
+		return attachList;
+	}
+	public void setAttachList(List<AttachVO> attachList) {
+		this.attachList = attachList;
+	}
 	@Override
 	public String toString() {
 		return "ClubVO [club_no=" + club_no + ", mem_id=" + mem_id + ", cate_name=" + cate_name + ", club_name="
 				+ club_name + ", club_content=" + club_content + ", club_status=" + club_status + ", club_local="
 				+ club_local + ", club_regDate=" + club_regDate + ", replycnt=" + replycnt + ", upcnt=" + upcnt
-				+ ", downcnt=" + downcnt + ", joincnt=" + joincnt + ", mi=" + mi + "]";
+				+ ", downcnt=" + downcnt + ", joincnt=" + joincnt + ", mi=" + mi + ", attachList=" + attachList + "]";
 	}
 	
-	
 
-	
-	
 }

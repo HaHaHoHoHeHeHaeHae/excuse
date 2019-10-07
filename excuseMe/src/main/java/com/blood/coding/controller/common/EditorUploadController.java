@@ -8,24 +8,32 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 
 /*섬머노트 본문에 이미지 추가할때 쓰이는 컨트롤러*/
-@RestController
+@Controller
 public class EditorUploadController {
 	
 	@Resource(name="imgPath")
 	private String imgPath;
 	
-	@RequestMapping("/uploadImg")
-	public ResponseEntity<String> uploadImg(MultipartFile file, String id, HttpServletRequest request) throws Exception {
+//	섬머노트 iframe 사용하기위함
+/*	@RequestMapping("/summernote")
+	public String summernote() throws Exception{
 		
+		return "common/summernote";
+	}
+	*/
+	
+	@RequestMapping("/uploadImg")
+	public ResponseEntity<String> uploadImg(MultipartFile file, String mem_id, HttpServletRequest request) throws Exception {
+
 		ResponseEntity<String> result = null;
 		
-		String savePath = request.getServletContext().getRealPath(imgPath + id + "/"); 
+		String savePath = request.getServletContext().getRealPath(imgPath + mem_id + "/"); 
 		String uuidName = UUID.randomUUID().toString().replace("-", "");
 		String fileFormat = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
 		
@@ -39,7 +47,7 @@ public class EditorUploadController {
 		
 		try {
 			file.transferTo(saveFile);
-			result = new ResponseEntity<String>(request.getContextPath() + imgPath + id + "/" + fileName, HttpStatus.OK);
+			result = new ResponseEntity<String>(request.getContextPath() + imgPath + mem_id + "/" + fileName, HttpStatus.OK);
 		} 
 		catch(Exception e){
 			result = new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -50,11 +58,11 @@ public class EditorUploadController {
 	
 	
 	@RequestMapping("/deleteImg")
-	public ResponseEntity<String> deleteImg(String fileName, String id, HttpServletRequest request) throws Exception {
+	public ResponseEntity<String> deleteImg(String fileName, String mem_id, HttpServletRequest request) throws Exception {
 		
 		ResponseEntity<String> result = null;
 		
-		String savePath = request.getServletContext().getRealPath(imgPath + "/" + id + "/" );
+		String savePath = request.getServletContext().getRealPath(imgPath + "/" + mem_id + "/" );
 		
 		File delFile = new File(savePath + fileName);
 		
