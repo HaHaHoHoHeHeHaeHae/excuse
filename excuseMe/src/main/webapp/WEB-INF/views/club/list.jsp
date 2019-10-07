@@ -51,6 +51,7 @@ div.top {
 
 <body class="subpage">
 <!-- Main -->
+	<div class="top"></div>
 	<section id="main" class="wrapper" style="position:relative;">
 		<div class="club_inner"
 			style="margin: 0 auto; width: 1126.66px;position:absolute; left:50%; transform:translateX(-50%);">
@@ -190,7 +191,7 @@ div.top {
 								</ul>
 								<ul class="actions vertical small"
 									style="text-align: center; margin-bottom: -10px;">
-									<li><a href="#" data-name="title" onclick="OpenWindow('detail?club_no=${club.club_no}','','800',650');" class="button small" style="color: white;">Detail</a></li>
+									<li><a href="#" data-name="title" onclick="OpenWindow('detail?club_no=${club.club_no}','','800','650');" class="button small" style="color: white;">Detail</a></li>
 								</ul>
 							</div>
 						</div>
@@ -204,14 +205,14 @@ div.top {
 
 <!-- recommendClub Start-->
 	<ul class="club action fit small"
-		style="position: absolute; top: 1400px; width:1126.66px; left:50%; transform:translateX(-50%);">
+		style="position: absolute; top: 1450px; width:1126.66px; left:50%; transform:translateX(-50%);">
 		<li class="button alt fit big"
 			style="width: 1126.66px; margin: 0 auto; text-align: left;">[${member.mem_nick}]
 			님 근처에 인기많은 동호회를 찾아보세요.!!!</li>
 	</ul>
 
 	<section class="joinclub_wrap1"
-		style="width: 1126.66px; margin: 0 auto; height: 200px; position: absolute; top: 1500px; left:50%; transform:translateX(-50%);">
+		style="width: 1126.66px; margin: 0 auto; height: 200px; position: absolute; top: 1550px; left:50%; transform:translateX(-50%);">
 		<c:forEach var="recommend" items="${recommendList }">
 			<div class="joinclub card bg-light"
 				style="width: 350px; height: 200px; float: left; margin: 0 12.5px 0 12.5px;">
@@ -224,7 +225,7 @@ div.top {
 							</h3>
 							<ul class="actions vertical small"
 								style="text-align: center; margin-bottom: -10px;">
-								<li><a href="#" class="button alt icon fa-search">Detail</a></li>
+								<li><a href="#" data-name="title" onclick="OpenWindow('detail?club_no=${recommend.club_no}','','800','650');" class="button alt icon fa-search">Detail</a></li>
 								<li><a href="#" class="button alt icon fa-check">가입하기</a></li>
 							</ul>
 						</div>
@@ -244,7 +245,7 @@ div.top {
 
 <!-- pagination Start-->
 	<section class="pagination"
-		style="width: 1126.66px; margin: 0 auto; height: 68px; position:absolute; top:1750px; left:50%; transform:translateX(-50%);">
+		style="width: 1126.66px; margin: 0 auto; height: 68px; position:absolute; top:1800px; left:50%; transform:translateX(-50%);">
 		<div class="card-footer clearfix"
 			style="align: center; width: 1126.66px;">
 			<div class="pagination justify-content-center m-0">
@@ -404,9 +405,9 @@ div.top {
 	}
 
 	function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
-		winleft = (screen.width - WinWidth)/2;
-		widtop = (screen.height - WinHeight)/2;
-		var win = window.open(UrlStr, WinTitle, "scrollbars=yes, width="+WinWidth+",height="+WinHeight+",top="+wintop+",left="+winleft+", resizable=no, status=yes");
+		winleft = (screen.width - WinWidth) /2;
+		wintop = (screen.height - WinHeight) /2;
+		var win = window.open(UrlStr, WinTitle, "scrollbars=no, width="+WinWidth+",height="+WinHeight+",top="+wintop+",left="+winleft+", resizable=no, status=yes");
 		win.focus();
 	}
 	

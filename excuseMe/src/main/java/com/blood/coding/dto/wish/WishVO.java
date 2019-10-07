@@ -4,6 +4,8 @@ public class WishVO {
 	private int wish_no;
 	private String mem_id;
 	private String club_no;
+	
+	
 	@Override
 	public String toString() {
 		return "wishVO [wish_no=" + wish_no + ", mem_id=" + mem_id + ", club_no=" + club_no + "]";
