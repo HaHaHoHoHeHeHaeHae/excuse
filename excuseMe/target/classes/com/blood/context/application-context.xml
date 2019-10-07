@@ -37,7 +37,10 @@
 	<bean id="CategoryDAO"
 		  class="com.blood.coding.dao.category.CategoryDAOImpl"
 	      p:session-ref="sqlSession"/>
-		  	  
+	<bean id="attachDAO"
+		  class="com.blood.coding.dao.attach.AttachDAOImpl"
+		  p:session-ref="sqlSession"
+		  />	  	  
 	<!-- service -->	
 	<bean id="loginService"
 	  	  class="com.blood.coding.service.common.LoginServiceImpl"
@@ -51,6 +54,7 @@
   	<bean id="noticeService"
   		  class="com.blood.coding.service.notice.NoticeServiceImpl"
   		  p:noticeDAO-ref="noticeDAO"
+  		  p:attachDAO-ref="attachDAO"
   		  />
   	<bean id="localService"
   		  class="com.blood.coding.service.common.LocalServiceImpl"
