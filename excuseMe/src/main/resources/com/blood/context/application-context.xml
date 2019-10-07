@@ -39,6 +39,12 @@
 	<bean id="attachDAO"
 			class="com.blood.coding.dao.attach.AttachDAOImpl"
 			p:session-ref="sqlSession" />
+	<bean id="upDAO"
+			class="com.blood.coding.dao.up.UpDAOImpl"
+			p:session-ref="sqlSession" />
+	<bean id="downDAO"
+			class="com.blood.coding.dao.down.DownDAOImpl"
+			p:sesssion-ref="sqlSession" />
 	
 			  	  
 	<!-- service -->	
@@ -68,6 +74,10 @@
 		  p:localDAO-ref="localDAO"
 		  p:attachDAO-ref="attachDAO"
 		 />
+	<bean id="upnDownService"
+			class="com.blood.coding.service.upndown.UpnDownService"
+			p:downDAO-ref="downDAO"
+			p:upDAO-ref="upDAO" />
 
 	
 </beans>

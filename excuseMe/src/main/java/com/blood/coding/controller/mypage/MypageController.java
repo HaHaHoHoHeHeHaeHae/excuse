@@ -1,10 +1,13 @@
 package com.blood.coding.controller.mypage;
 
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,7 @@ import com.blood.coding.controller.common.DeleteFileUtils;
 import com.blood.coding.controller.common.UploadFileUtils;
 import com.blood.coding.dao.attach.AttachDAO;
 import com.blood.coding.dto.attach.AttachVO;
+import com.blood.coding.dto.club.ClubVO;
 import com.blood.coding.dto.member.MemberVO;
 import com.blood.coding.service.club.ClubService;
 
@@ -35,12 +39,13 @@ public class MypageController {
 	private String uploadPath;
 	
 	@RequestMapping("joinclub")
-	public ModelAndView mypagejoinclub(Criteria cri, ModelAndView modelnView) throws Exception {
+	public ModelAndView mypagejoinclub(Criteria cri, ModelAndView modelnView, HttpServletRequest request) throws Exception {
 		
-		//서비스가 수정되서 멤버VO 로그인한 유저받아와야함
-		MemberVO member = new MemberVO();
+		//세션에서 로그인한 유저 정보 가져오기
+		HttpSession session = request.getSession();
 		
-		
+		MemberVO member = (MemberVO) session.getAttribute("loginUser");
+				
 		String url = "mypage/joinclub";
 		Map<String, Object> dataMap = clubService.getClubList(cri, member);
 		modelnView.addObject("dataMap",dataMap);
@@ -48,6 +53,55 @@ public class MypageController {
 		return modelnView;
 		
 	}
+	
+	@RequestMapping("myclub")
+	public ModelAndView myClub(Criteria cir, ModelAndView modelnView, HttpServletRequest request) throws Exception {
+		
+		//세션에서 로그인한 유저 정보 가져온다.
+		HttpSession session = request.getSession();
+		
+		MemberVO member = (MemberVO) session.getAttribute("loginUser");
+		
+		List<ClubVO> myClubList = clubService.getMyClub(member.getMem_id()); 
+		
+		String url = "mypage/myclub";
+		
+		modelnView.addObject("myClubList",myClubList);
+		modelnView.addObject("member",member);
+		modelnView.setViewName(url);
+		
+		return modelnView;
+	}
+	
+	@RequestMapping("wishclub")
+	public ModelAndView wishClub(Criteria cir, ModelAndView modelnView, HttpServletRequest request) throws Exception {
+		
+		//세션에서 로그인한 유저 정보 가져온다.
+		HttpSession session = request.getSession();
+		
+		MemberVO member = (MemberVO) session.getAttribute("loginUser");
+		
+		List<ClubVO> myClubList = clubService.getMyClub(member.getMem_id()); 
+		
+		String url = "mypage/myclub";
+		
+		modelnView.addObject("myClubList",myClubList);
+		modelnView.addObject("member",member);
+		modelnView.setViewName(url);
+		
+		return modelnView;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value="testRegist", method=RequestMethod.GET)
 	public String testRegistget() throws Exception {

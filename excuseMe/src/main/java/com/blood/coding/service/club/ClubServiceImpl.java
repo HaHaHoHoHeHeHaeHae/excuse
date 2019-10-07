@@ -63,11 +63,10 @@ public class ClubServiceImpl implements ClubService {
 	}
 
 	
-
-	
 	@Override
 	public Map<String, Object> getClubList(Criteria cri,MemberVO memberVO) throws SQLException { //(매개변수에 memberVO추가)
 		Map<String, Object> dataMap = new HashMap<String, Object>();
+
 
 		cri.setPerPageNum(3);
 		//cri.setLocal(memberVO.getMem_local());
@@ -77,9 +76,26 @@ public class ClubServiceImpl implements ClubService {
 		cri.setLocal("");
 		cri.setCategory("");
 		cri.setKeyword("");
-
+		
 		//추천리스트
 		List<ClubVO> recommendList = clubDAO.selectSearchClubList(cri);
+
+		cri.setPerPageNum(10);
+		cri.setAlignment(0);
+		
+		
+		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
+		//List<CategoryVO> cateList = categoryDAO.selectCategoryList();
+		//List<LocalVO> localList = localDAO.selectLocalList();
+		
+		int totalCount = clubDAO.selectSearchClubCount(cri);
+		
+			
+		// pagination
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		
 		
 		//카테고리
 		List<CategoryVO> categoryList = categoryDAO.selectCategoryList();
@@ -87,26 +103,6 @@ public class ClubServiceImpl implements ClubService {
 		//지역
 		List<LocalVO> localList = localDAO.selectLocalList();
 
-		cri.setPerPageNum(10);
-		//cri.setLocal(memberVO.getMem_local());
-		cri.setLocal("대전");
-		cri.setAlignment(0);
-		//검색창 돌릴때 추천동호회도 검색파라미터를 포함해서 가져오니까 강제 fix해주기
-		cri.setLocal("");
-		cri.setCategory("");
-		cri.setKeyword("");
-		
-		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
-		//List<CategoryVO> cateList = categoryDAO.selectCategoryList();
-		//List<LocalVO> localList = localDAO.selectLocalList();
-		
-		int totalCount = clubDAO.selectSearchClubCount(cri);
-
-		// pagination
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(totalCount);
-		
 		// dataMap에 넣기
 		dataMap.put("clubList", clubList);
 		dataMap.put("pageMaker", pageMaker);
@@ -217,6 +213,7 @@ public class ClubServiceImpl implements ClubService {
 		return map;
 	}
 	
+
 	@Override
 	public void updateClub(String club_no) throws SQLException {
 		clubDAO.updateClubStatus(club_no);
@@ -244,5 +241,15 @@ public class ClubServiceImpl implements ClubService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	//메이드 바이 우철 / 내가만든 클럽을 리스트 검색
+	@Override
+	public List<ClubVO> getMyClub(String mem_id) throws SQLException {
+	
+		List<ClubVO> myClubList = clubDAO.myClub(mem_id);
+		
+		return myClubList;
+	}
+	
 
 }
