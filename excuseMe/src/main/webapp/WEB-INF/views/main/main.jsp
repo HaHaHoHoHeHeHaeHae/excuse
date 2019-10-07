@@ -83,7 +83,7 @@
 							</tbody>
 						</table>
 					</div>
-					<div id="recommend" style="width:48%; height:400px;background:red;">
+					<div id="recommend" style="width:48%; height:400px;">
 				
 					</div>
 				</div>

@@ -28,6 +28,17 @@ public class NoticeDAOImpl implements NoticeDAO {
 		
 		return list;
 	}
+	
+	@Override
+	public List<NoticeVO> selectNoticeListAll(Criteria cri) throws SQLException {
+		int offset = cri.getPageStartRowNum();
+		int limit = cri.getPerPageNum();
+		
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		List<NoticeVO> list = session.selectList("Notice.selectNoticeListAll",cri,rowBounds);
+		
+		return list;
+	}
 
 	@Override
 	public int selectNoticeCount() throws SQLException {
