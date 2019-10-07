@@ -9,7 +9,7 @@ import com.blood.coding.dto.notice.NoticeVO;
 public interface NoticeDAO {
 	//리스트
 	public List<NoticeVO> selectNoticeList(Criteria cri) throws SQLException;
-	
+	public List<NoticeVO> selectNoticeRecentList() throws SQLException;
 	//페이지 카운트
 	public int selectNoticeCount() throws SQLException;
 	

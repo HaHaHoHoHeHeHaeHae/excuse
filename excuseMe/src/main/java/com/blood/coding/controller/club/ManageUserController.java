@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.controller.common.MemberCriteria;
-import com.blood.coding.controller.common.MemberPageMaker;
 import com.blood.coding.controller.common.PageMaker;
 import com.blood.coding.dto.member.MemberVO;
 import com.blood.coding.dto.reply.ReplyVO;
@@ -25,7 +24,7 @@ import com.blood.coding.service.member.MemberService;
 
 
 @Controller
-@RequestMapping("/manage/user")
+@RequestMapping("/manage/member")
 public class ManageUserController {
 	
 	
@@ -33,43 +32,26 @@ public class ManageUserController {
 	private MemberService service;
 	
 	
+
 	//회원목록
-	@RequestMapping("/userlist")
-	public String memberList(MemberCriteria cri,Model model)throws Exception{
-		String url="manage/user/userlist";
+	@RequestMapping("/list")
+	public ModelAndView memberList(MemberCriteria cri)throws Exception{
+		String url="manage/member/list";
+		ModelAndView mav = new ModelAndView();
 		
-		MemberPageMaker pageMaker = new MemberPageMaker();
-		pageMaker.setCri(cri);
+		Map<String,Object> map=service.memberlistByAdmin(cri);
+		mav.addObject("dataMap",map);
+		mav.setViewName(url);
 		
-		Map<String,Object> dataMap=service.memberlistByAdmin(pageMaker);
-		
-		model.addAllAttributes(dataMap);
-		
-		return url;		
+		return mav;		
 	}
 	
-	//회원목록 페이지,서치
-	@RequestMapping("/list")
-	public String memberSearchList(MemberCriteria cri,Model model)throws Exception{
-		System.out.println(123);
-		String url="manage/user/userlist";
-		
-		
-		MemberPageMaker pageMaker = new MemberPageMaker();
-		pageMaker.setCri(cri);
-		
-		Map<String,Object> dataMap=service.memberlistByAdmin(pageMaker);
-		
-		model.addAllAttributes(dataMap);
-		
-		return url;		
-	}
 	
 	//상세보기
 	@RequestMapping("/detail")
 	public String detail(String mem_id, Model model)throws Exception{
 		System.out.println(mem_id);
-		String url="manage/user/detail";
+		String url="manage/member/detail";
 		MemberVO member = service.selectMember(mem_id);
 		
 		model.addAttribute("member", member);
@@ -78,16 +60,14 @@ public class ManageUserController {
 		
 	}
 	
-	//활동중지및해제
-	@RequestMapping(value="/status",method=RequestMethod.POST)
+	//활동중지
+	@RequestMapping(value="/stopstatus",method=RequestMethod.POST)
 	@ResponseBody
-	public ResponseEntity<String> update(@RequestParam("mem_id") String mem_id) throws Exception{
-		  System.out.println(123);
+	public ResponseEntity<String> updateStop(@RequestParam("mem_id") String mem_id) throws Exception{
 		  ResponseEntity<String> entity = null;
 		  
-		 
 		  try {
-		  service.updateMem(mem_id);
+			  service.updateStopMem(mem_id);
 		  entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
 		  }catch(SQLException e) {
 		  e.printStackTrace();
@@ -95,6 +75,21 @@ public class ManageUserController {
 		  }
 		  return entity;
   }
+	//활동중지 해제
+		@RequestMapping(value="/status",method=RequestMethod.POST)
+		@ResponseBody
+		public ResponseEntity<String> update(@RequestParam("mem_id") String mem_id) throws Exception{
+			  ResponseEntity<String> entity = null;
+			  
+			  try {
+				  service.updateMem(mem_id);
+			  entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
+			  }catch(SQLException e) {
+			  e.printStackTrace();
+			  entity = new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+			  }
+			  return entity;
+	  }
 	
 	
 	
@@ -104,7 +99,7 @@ public class ManageUserController {
 		
 		ModelAndView mav = new ModelAndView();
 		
-		String url="manage/user/replyList";
+		String url="manage/member/replyList";
 		System.out.println(1234);
 		
 		PageMaker pageMaker = new PageMaker();
@@ -119,23 +114,5 @@ public class ManageUserController {
 		return mav;		
 	}
 	
-	/*//댓글내역 페이지
-	@RequestMapping("/rlist")
-	public String replyList(Criteria cri,Model model)throws Exception{
-		System.out.println(123);
-		String url="manage/user/replyListt";
-		
-		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		
-		Map<String,Object> dataMap=service.getReply(pageMaker);
-		
-		model.addAllAttributes(dataMap);
-		
-		return url;		
-	}*/
 	
-	
-
 }

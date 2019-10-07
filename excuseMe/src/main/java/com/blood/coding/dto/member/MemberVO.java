@@ -16,9 +16,21 @@ public class MemberVO {
 	private int mem_phone_check;
 	private int mem_id_check;
 	private int mem_name_check;
+	private String birthDate;
 
 
 
+
+
+	public String getBirthDate() {
+		return birthDate;
+	}
+
+
+
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
 
 
 

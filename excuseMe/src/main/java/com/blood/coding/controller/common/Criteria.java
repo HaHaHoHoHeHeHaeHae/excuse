@@ -10,23 +10,31 @@ public class Criteria {
 	private String keyword;     //검색어
 	private String local;
 	private int alignment;
-	
-	
-	
+	private int sort;
 	
 	
 	public Criteria() {
-		this(1, 10, "", "", "", 0);
+		this(1, 10, "", "", "", 0,0);
 	} 
 
-	public Criteria(int page, int perPageNum, String category, String keyword, String local, int alignment) {
+
+	public int getSort() {
+		return sort;
+	}
+
+
+	public void setSort(int sort) {
+		this.sort = sort;
+	}
+
+
+	public Criteria(int page, int perPageNum, String category, String keyword, String local, int alignment,int sort) {
 		super();
 		this.page = page;
 		this.perPageNum = perPageNum;
 		this.category = category;
 		this.keyword = keyword;
 		this.local = local;
-		this.alignment=alignment;
 	}
 
 	public int getPage() {
@@ -79,11 +87,6 @@ public class Criteria {
 		this.local = local;
 	}
 
-	@Override
-	public String toString() {
-		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", category=" + category + ", keyword="
-				+ keyword + ", local=" + local + "]";
-	}
 
 	public int getAlignment() {
 		return alignment;
@@ -93,5 +96,16 @@ public class Criteria {
 		this.alignment = alignment;
 	}
 
+
+	@Override
+	public String toString() {
+		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", category=" + category + ", keyword="
+				+ keyword + ", local=" + local + ", alignment=" + alignment + ", sort=" + sort + "]";
+	}
+
+	
+	
+	
+	
 	
 }

@@ -11,8 +11,25 @@ public class NoticeVO {
 	private String not_title;
 	private int not_viewCnt;
 	private Date not_regDate;
-	
+	private String not_startDate2;
+	private String not_endDate2;
     
+
+	public String getNot_startDate2() {
+		return not_startDate2;
+	}
+
+	public void setNot_startDate2(String not_startDate2) {
+		this.not_startDate2 = not_startDate2;
+	}
+
+	public String getNot_endDate2() {
+		return not_endDate2;
+	}
+
+	public void setNot_endDate2(String not_endDate2) {
+		this.not_endDate2 = not_endDate2;
+	}
 
 	public NoticeVO(String not_no, String mem_id, Date not_startDate, Date not_endDate, String not_content,
 			String not_title, int not_viewCnt, Date not_regDate) {

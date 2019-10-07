@@ -21,16 +21,25 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<MemberVO> selectMemberList(MemberCriteria cri) throws SQLException {
 		int offset = cri.getPageStartRowNum();
 		int limit = cri.getPerPageNum();
+		int alignment = cri.getAlignment();
+		int sort = cri.getSort();
 		
 		RowBounds rowBounds = new RowBounds(offset,limit);
-		
-		List<MemberVO> memberList = session.selectList("Member.selectMemberList",null,rowBounds);
+	    cri.setAlignment(alignment);
+	    cri.setSort(sort);
+	    
+		List<MemberVO> memberList = session.selectList("Member.selectMemberList",cri,rowBounds);
 		return memberList;
 	}
 
 	@Override
 	public MemberVO selectMember(String mem_id) throws SQLException {
 		MemberVO vo = session.selectOne("Member.selectMember",mem_id);
+		return vo;
+	}
+	@Override
+	public MemberVO selectMember2(String mem_nick) throws SQLException {
+		MemberVO vo = session.selectOne("Member.selectMember2",mem_nick);
 		return vo;
 	}
 
@@ -43,15 +52,20 @@ public class MemberDAOImpl implements MemberDAO {
 	public void updateMember(MemberVO memberVO) throws SQLException {
 		session.update("Member.updateMember",memberVO);
 	}
-
+	
+	@Override
+	public void updateStopMemberStatus(String mem_id) throws SQLException {
+		session.update("Member.updateStopMemberStatus",mem_id);
+	}
+	
 	@Override
 	public void updateMemberStatus(String mem_id) throws SQLException {
 		session.update("Member.updateMemberStatus",mem_id);
-		MemberVO member = new MemberVO();
-		int num = 0;
-		member.setMem_id(mem_id);
-		member.setMem_status(num);
-
+		
+		/*
+		 * int num = 0; member.setMem_id(mem_id); member.setMem_status(num); if(num==0){
+		 * member.setMem_status(1); }else { member.setMem_status(0);
+		 */
 	}
 
 	@Override
@@ -75,8 +89,11 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public String findPwd(String mem_id) throws SQLException {
-		String pwd = session.selectOne("Member.findPwd",mem_id);
+	public String findPwd(String mem_id,String mem_name) throws SQLException {
+		MemberVO memberVO = new MemberVO();
+		memberVO.setMem_id(mem_id);
+		memberVO.setMem_name(mem_name);
+		String pwd = session.selectOne("Member.findPwd",memberVO);
 		return pwd;
 	}
 
@@ -121,6 +138,10 @@ public class MemberDAOImpl implements MemberDAO {
 		int count = session.selectOne("Member.selectMemberListCount");
 		return count;
 	}
+
+	
+
+	
 
 	
 }

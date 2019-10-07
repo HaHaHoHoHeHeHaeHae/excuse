@@ -23,6 +23,7 @@
     		</if>    
     	</sql>
     	
+    	
     	<sql id="alignment">
     		<if test="alignment == 0">
     		order by club_regDate desc
@@ -43,11 +44,23 @@
     		order by joincnt desc
     		</if>
     	</sql>
+    	
+    	
+	
+	 <sql id="sort">
+    	<if test="sort ==1">
+    	and club_status = 1
+    	</if>
+    	<if test="sort ==2">
+    	and club_status = 2
+    	</if>
+    </sql>
 
 	    <select id="selectSearchClubList" resultType="club">
 	    	select *
 	    	from club_view
 	    	where club_no is not null and club_status='1' or club_status='2'
+	    	<include refid="sort" />
 	    	<include refid="searchlocal" />
 	    	<include refid="searchcategory" />
 	    	<include refid="searchclubname" />
@@ -105,12 +118,39 @@
 	    	where club_no=#{club_no}
 	    </update>
 	    
-	    <update id="updateClubStatus" parameterType="club">
+	    <update id="updateClubStatus">
 	    	update club
 	    	set
-	    	club_status=#{club_status}
+	    	club_status= 1
 	    	where club_no=#{club_no}
 	    </update>
+	    
+	    <update id="updateStopClubStatus">
+	    	update club
+	    	set
+	    	club_status= 2
+	    	where club_no=#{club_no}
+	    </update>
+    
+	    
+	    <select id="recommendClubMain" resultType="club">
+	    	
+	    		select *
+		    	from
+		    	(select * from club_view where club_local like '%'||#{mem_local}||'%' order by abs(upcnt-downcnt) desc)
+		    <![CDATA[
+		    	where rownum <= 5
+	    	]]>
+	    	
+	    </select>
+	    <select id="recentClubMain" resultType="club">
+	    	<![CDATA[
+	    		select *
+	    		from
+	    		(select * from club order by club_regDate desc)
+	    		where rownum <= 6
+	    	]]>
+	    </select>
     </mapper>
     
 

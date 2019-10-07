@@ -5,6 +5,8 @@ public class LocalVO {
 	private String local_name;
 	private int local_sub_no;
 	private String local_sub_name;
+	
+	
 	public int getLocal_no() {
 		return local_no;
 	}
