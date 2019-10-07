@@ -7,7 +7,6 @@ import java.util.Map;
 
 import com.blood.coding.controller.common.MemberCriteria;
 import com.blood.coding.controller.common.MemberPageMaker;
-import com.blood.coding.controller.common.PageMaker;
 import com.blood.coding.dao.member.MemberDAO;
 import com.blood.coding.dao.reply.ReplyDAO;
 import com.blood.coding.dto.member.MemberVO;
@@ -36,18 +35,23 @@ public class MemberServiceImpl implements MemberService {
 		return member;
 	}
 	
+	
 	@Override
-	public Map<String, Object> memberlistByAdmin(MemberPageMaker pageMaker) throws SQLException {
+	public Map<String, Object> memberlistByAdmin(MemberCriteria cri) throws SQLException {
+		Map<String,Object> map = new HashMap<String,Object>();
+		List<MemberVO> memberList = memberDAO.selectMemberList(cri);
 		
-		List<MemberVO> memberList = memberDAO.selectMemberList(pageMaker.getCri());	
-		int totalCount = memberDAO.selectMemberListCount();
-		pageMaker.setTotalCount(totalCount);
+		MemberPageMaker page = new MemberPageMaker();
 		
-		Map<String,Object> dataMap = new HashMap<String,Object>();
-		dataMap.put("memberList", memberList);
-		dataMap.put("pageMaker", pageMaker);
+		int totalCount = memberDAO.selectMemberListCount(cri);
+		page.setCri(cri);
+		page.setTotalCount(totalCount);
 		
-		return dataMap;
+		
+		//System.out.println(cri+"/"+totalCount);
+		map.put("pageMaker", page);
+		map.put("memberList",memberList);
+		return map;
 	}
 	
 	@Override
@@ -65,11 +69,17 @@ public class MemberServiceImpl implements MemberService {
 		List<ReplyVO> replylist = replyDAO.selectMemberReply(mem_id);
 		return replylist;
 	}
+	
+	@Override
+	public void updateStopMem(String mem_id) throws SQLException {
+		memberDAO.updateStopMemberStatus(mem_id);
+	}
 
 
 	@Override
 	public void updateMem(String mem_id) throws SQLException {
 		memberDAO.updateMemberStatus(mem_id);
+		
 	}
 
 
@@ -79,12 +89,12 @@ public class MemberServiceImpl implements MemberService {
 		return memberList;
 	}
 
+	
 
-	@Override
-	public List<MemberVO> memberlistByAdmin(MemberCriteria cri) throws SQLException {
-		List<MemberVO> memberList = memberDAO.selectMemberList(cri);
-		return memberList;
-	}
+	
+
+
+	
 
 	
 

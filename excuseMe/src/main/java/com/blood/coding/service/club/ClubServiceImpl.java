@@ -13,6 +13,7 @@ import com.blood.coding.dao.club.ClubDAO;
 import com.blood.coding.dao.joinClub.JoinClubDAO;
 import com.blood.coding.dao.local.LocalDAO;
 import com.blood.coding.dao.member.MemberDAO;
+import com.blood.coding.dao.up.UpDAO;
 import com.blood.coding.dto.attach.AttachVO;
 import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.dto.club.ClubVO;
@@ -35,7 +36,7 @@ public class ClubServiceImpl implements ClubService {
 	public void setRelyDAO(ReplyDAO replyDAO) {
 		this.replyDAO = replyDAO;
 	}
-
+ */
 	private UpDAO upDAO;
 	public void setUpDAO(UpDAO upDAO) {
 		this.upDAO = upDAO;
@@ -44,7 +45,7 @@ public class ClubServiceImpl implements ClubService {
 	private DownDAO downDAO;
 	public void setDownDAO(DownDAO downDAO) {
 		this.downDAO = downDAO;
-	}*/
+	}
 	
 	private MemberDAO memberDAO;
 	public void setMemberDAO(MemberDAO memberDAO) {
@@ -70,35 +71,29 @@ public class ClubServiceImpl implements ClubService {
 
 	
 	@Override
-	public Map<String, Object> getClubList(Criteria cri,MemberVO memberVO) throws SQLException { //(ë§¤ê°œë³€ìˆ˜ì— memberVOì¶”ê°€)
+	public Map<String, Object> getClubList(Criteria cri,MemberVO memberVO) throws SQLException { //(ë§¤ê°œë³??ˆ˜?— memberVOì¶”ê?)
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 
 		cri.setPerPageNum(3);
 		//cri.setLocal(memberVO.getMem_local());
-		cri.setLocal("ëŒ€ì „");
+		cri.setLocal("??? „");
 		cri.setAlignment(2);
-		//ê²€ìƒ‰ì°½ ëŒë¦´ë•Œ ì¶”ì²œë™í˜¸íšŒë„ ê²€ìƒ‰íŒŒë¼ë¯¸í„°ë¥¼ í¬í•¨í•´ì„œ ê°€ì ¸ì˜¤ë‹ˆê¹Œ ê°•ì œ fixí•´ì£¼ê¸°
+		//ê²??ƒ‰ì°? ?Œë¦´ë•Œ ì¶”ì²œ?™?˜¸?šŒ?„ ê²??ƒ‰?ŒŒ?¼ë¯¸í„°ë¥? ?¬?•¨?•´?„œ ê°?? ¸?˜¤?‹ˆê¹? ê°•ì œ fix?•´ì£¼ê¸°
 		cri.setLocal("");
 		cri.setCategory("");
 		cri.setKeyword("");
 
-		//ì¶”ì²œë¦¬ìŠ¤íŠ¸
+		//ì¶”ì²œë¦¬ìŠ¤?Š¸
 		List<ClubVO> recommendList = clubDAO.selectSearchClubList(cri);
 		
 		//ì¹´í…Œê³ ë¦¬
 		List<CategoryVO> categoryList = categoryDAO.selectCategoryList();
 
-		//ì§€ì—­
+		//ì§??—­
 		List<LocalVO> localList = localDAO.selectLocalList();
 
 		cri.setPerPageNum(10);
-		//cri.setLocal(memberVO.getMem_local());
-		cri.setLocal("ëŒ€ì „");
 		cri.setAlignment(0);
-		//ê²€ìƒ‰ì°½ ëŒë¦´ë•Œ ì¶”ì²œë™í˜¸íšŒë„ ê²€ìƒ‰íŒŒë¼ë¯¸í„°ë¥¼ í¬í•¨í•´ì„œ ê°€ì ¸ì˜¤ë‹ˆê¹Œ ê°•ì œ fixí•´ì£¼ê¸°
-		cri.setLocal("");
-		cri.setCategory("");
-		cri.setKeyword("");
 		
 		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
 		//List<CategoryVO> cateList = categoryDAO.selectCategoryList();
@@ -111,7 +106,7 @@ public class ClubServiceImpl implements ClubService {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(totalCount);
 		
-		// dataMapì— ë„£ê¸°
+		// dataMap?— ?„£ê¸?
 		dataMap.put("clubList", clubList);
 		dataMap.put("pageMaker", pageMaker);
 		dataMap.put("recommendList", recommendList);
@@ -122,20 +117,20 @@ public class ClubServiceImpl implements ClubService {
 		return dataMap;
  	}
 
-	//ë™í˜¸íšŒ ì¡°íšŒ[ë””í…Œì¼]:replycnt ìˆëŠ”ê±°
+	//?™?˜¸?šŒ ì¡°íšŒ[?””?…Œ?¼]:replycnt ?ˆ?Š”ê±?
 	@Override
 	public Map<String, Object> readClub(String club_no) throws SQLException {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		
-		//ë™í˜¸íšŒ í•œê°œ 
+		//?™?˜¸?šŒ ?•œê°? 
 		ClubVO club = clubDAO.selectClub(club_no);
 		
-		//ë‹‰ë„¤ì„
+		//?‹‰?„¤?„
 		String memberId = club.getMem_id();
 		MemberVO member = memberDAO.selectMember(memberId);
 		String memberNick = member.getMem_nick();
 
-		//ì²¨ë¶€íŒŒì¼
+		//ì²¨ë??ŒŒ?¼
 		AttachVO attachVO = new AttachVO();
 		String attach_board = attachVO.getAttach_board();
 		attach_board=club_no;
@@ -153,7 +148,7 @@ public class ClubServiceImpl implements ClubService {
 		return dataMap;
 	}
 
-	// ê·¸ëƒ¥ í•˜ë‚˜ ê°€ì ¸ì˜¤ëŠ”ê±°-ìˆ˜ì •í•˜ê¸° ì „ ë‹¨ê³„(ìˆ˜ì •ë²„íŠ¼ì„ í´ë¦­í–ˆì„ë•Œ)
+	// ê·¸ëƒ¥ ?•˜?‚˜ ê°?? ¸?˜¤?Š”ê±?-?ˆ˜? •?•˜ê¸? ? „ ?‹¨ê³?(?ˆ˜? •ë²„íŠ¼?„ ?´ë¦??–ˆ?„?•Œ)
 	@Override
 	public ClubVO getClub(String club_no) throws SQLException {
 		ClubVO club = clubDAO.selectClub(club_no);
@@ -169,7 +164,7 @@ public class ClubServiceImpl implements ClubService {
 		clubDAO.insertClub(club);
 	}
 
-	//ìˆ˜ì •í•˜ê³  submitë²„íŠ¼ì„ í´ë¦­í–ˆì„ë•Œ
+	//?ˆ˜? •?•˜ê³? submitë²„íŠ¼?„ ?´ë¦??–ˆ?„?•Œ
 	@Override
 	public void modify(ClubVO club) throws SQLException {
 		clubDAO.updateClub(club);

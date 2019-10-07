@@ -2,5 +2,19 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
     
-    <mapper namespace="up"></mapper>
+    <mapper namespace="Up">
+   		<select id="selectCheck" resultType="up">
+			select *
+			from up
+			where 
+				CLUB_NO = #{club_no} 
+           		and MEM_ID = #{mem_id}
+		</select>
+		
+		<update id="insertUp" parameterType="up">
+			insert into up
+			values(up_seq.nextval, #{mem_id}, #{club_no})
+		</update>
+    </mapper>

@@ -28,8 +28,12 @@
 				<h2 id="elements">공지사항</h2>
 				<c:if test="${loginUser.mem_nick eq 'admin'}">
 				<div class="nav nav-pills ml-auto p-2">
+					<span class="button alt small" onclick="self.location='<%=request.getContextPath()%>/notice/list_admin'">모든 공지사항 보기</span>
+				</div>
+				<div class="nav nav-pills ml-auto p-2">
 					<span class="button small" onclick="self.location='<%=request.getContextPath()%>/notice/regist'">글 쓰기</span>
 				</div>
+				
 				</c:if>
 			</div>
 			<div class="row 200%">
@@ -71,17 +75,17 @@
 										<tr>
 											<td>${notice.not_no.substring(1) }</td>
 											<td>
-												<a href="#" data-name="title" onclick="self.location='<%=request.getContextPath()%>/notice/detail?not_no=${notice.not_no }&page=${pageMaker.cri.page }'">${notice.not_title }</a>
+												<a href="#" data-name="title" style="text-overflow: ellipsis; overflow: hidden;display: block;width:350px;" onclick="self.location='<%=request.getContextPath()%>/notice/detail?not_no=${notice.not_no }&page=${pageMaker.cri.page }&mem_nick=${loginUser.mem_nick}'">${notice.not_title }</a>
 											</td>
 											<td><fmt:formatDate value="${notice.not_regDate }" pattern="yyyy-MM-dd"/></td>
 											<td>${notice.not_viewCnt }</td>
-											<%-- <c:if test="${!empty notice.attach_no}">
+											<c:if test="${empty notice.attachList}">
 												<td>&nbsp</td>
 											</c:if>
-											<c:if test="${!empty notice.attach_no}">
+											<c:if test="${!empty notice.attachList}">
 												<td><ion-icon name="document"></ion-icon></td>
-											</c:if> --%>
-											<td><ion-icon name="document"></ion-icon></td>
+											</c:if>
+											
 											<c:if test="${loginUser.mem_nick eq 'admin'}">
 												<td><div style="cursor:pointer;" onclick="self.location='<%=request.getContextPath()%>/notice/modify?not_no=${notice.not_no }'"><ion-icon name="build"  ></ion-icon></div></td>
 												<td><div style="cursor:pointer;" onclick="deleteNotice('${notice.not_no}');"><ion-icon name="trash"></ion-icon></div></td>

@@ -3,4 +3,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
-    <mapper namespace="down"></mapper>
+ 
+    <mapper namespace="Down">
+    	<select id="selectCheck" resultType="down">
+			select *
+			from down
+			where 
+				CLUB_NO = #{club_no} 
+           		and MEM_ID = #{mem_id}
+		</select>
+		
+		<update id="insertDown" parameterType="down">
+			insert into down
+			values(down_seq.nextval, #{mem_id}, #{club_no})
+		</update>
+    </mapper>

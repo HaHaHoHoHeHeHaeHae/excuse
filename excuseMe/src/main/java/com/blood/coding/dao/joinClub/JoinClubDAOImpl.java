@@ -23,8 +23,8 @@ public class JoinClubDAOImpl implements JoinClubDAO {
 	
 
 	@Override
-	public void deleteJoinClub(String mem_id) throws SQLException {
-		session.update("JoinClub-Mapper.deleteJoinClub",mem_id);
+	public void deleteJoinClub(JoinClubVO joinclub) throws SQLException {
+		session.update("JoinClub-Mapper.deleteJoinClub",joinclub);
 	}
 
 	@Override

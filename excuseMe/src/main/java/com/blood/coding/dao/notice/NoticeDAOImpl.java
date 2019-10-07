@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import com.blood.coding.controller.common.Criteria;
+import com.blood.coding.dto.attach.AttachVO;
 import com.blood.coding.dto.notice.NoticeVO;
 
 public class NoticeDAOImpl implements NoticeDAO {
@@ -24,6 +25,17 @@ public class NoticeDAOImpl implements NoticeDAO {
 		
 		RowBounds rowBounds = new RowBounds(offset,limit);
 		List<NoticeVO> list = session.selectList("Notice.selectNoticeList",cri,rowBounds);
+		
+		return list;
+	}
+	
+	@Override
+	public List<NoticeVO> selectNoticeListAll(Criteria cri) throws SQLException {
+		int offset = cri.getPageStartRowNum();
+		int limit = cri.getPerPageNum();
+		
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		List<NoticeVO> list = session.selectList("Notice.selectNoticeListAll",cri,rowBounds);
 		
 		return list;
 	}
