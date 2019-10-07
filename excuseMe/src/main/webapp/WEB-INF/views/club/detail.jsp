@@ -295,7 +295,7 @@ div.top {
 	
 	getPage("<%=request.getContextPath() %>/replies/${club.club_no}/"+replyPage);
 	
-	var printPaging = function(pageMaker, target){
+	var printPaging = function(pageMaker, target){ 
 		var str = "";
 		if(pageMaker.prev){
 			str += "<li class='page-item'><a href='"+(pageMaker.startPage-1)+"'class='page-link'> << </a></li>";
@@ -432,7 +432,6 @@ div.top {
 	});
  		
 	</script>
-
 
 
 	<!-- AdminLTE App -->
