@@ -215,6 +215,9 @@ public class ClubServiceImpl implements ClubService {
 		
 		int totalCount = clubDAO.selectSearchClubCount(cri);
 		
+		List<CategoryVO> categoryList = categoryDAO.selectCategoryList();
+		List<LocalVO> localList = localDAO.selectLocalList();
+		
 		PageMaker pageMaker = new PageMaker();
 		
 		pageMaker.setCri(cri);
@@ -222,6 +225,8 @@ public class ClubServiceImpl implements ClubService {
 		
 		dataMap.put("clubList", clubList);
 		dataMap.put("pageMaker", pageMaker);
+		dataMap.put("cateList", categoryList);
+		dataMap.put("localList", localList);
 
 		return dataMap;
 	}

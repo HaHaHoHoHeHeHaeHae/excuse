@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +26,11 @@ public class ManageClubController {
 
 	@Autowired
 	private ClubService service;
+	
+	@ModelAttribute("categoryclub")
+	public String category() throws Exception{
+		return "manage/club";
+	}
 
 	@RequestMapping("/club/list")
 	public ModelAndView clubList(Criteria cri) throws Exception {
@@ -39,21 +45,20 @@ public class ManageClubController {
 
 		return mav;
 	}
-/*
-	@RequestMapping("/club/listSearch")
-	public String clubSearchList(Criteria cri, Model model) throws Exception {
-		System.out.println(123);
-		String url = "manage/club/clublist";
+	
+	@RequestMapping("/blacklist/list")
+	public ModelAndView blackList(Criteria cri) throws Exception {
+		String url = "manage/blacklist/list";
 
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
+		ModelAndView mav = new ModelAndView();
+		
+		MemberVO memberVO = new MemberVO();
+		Map<String, Object> dataMap = service.getClubListByAdmin(cri, memberVO);
+		mav.addObject("dataMap", dataMap);
+		mav.setViewName(url);
 
-		Map<String, Object> dataMap = service.getClubList(cri);
-
-		model.addAllAttributes(dataMap);
-
-		return url;
-	}*/
+		return mav;
+	}
 
 	@RequestMapping("/club/detail") // 동호회 상세보기
 	public ModelAndView clubDetail(String club_no, ModelAndView modelnView) throws SQLException {
@@ -113,7 +118,7 @@ public class ManageClubController {
 	@RequestMapping("/newclub/detail") // 동호회 상세보기
 	public ModelAndView newDetail(String club_no, ModelAndView modelnView) throws SQLException {
 		String url = "manage/newclub/detail";
-		Map dataMap = service.readClub(club_no);// 디테일에 댓글보여야 되니까 readClub.(replycnt가 있음)
+		Map dataMap = service.readClub(club_no);
 
 		modelnView.addObject("dataMap", dataMap);
 		modelnView.setViewName(url);

@@ -47,6 +47,7 @@ public class MemberServiceImpl implements MemberService {
 		page.setCri(cri);
 		page.setTotalCount(totalCount);
 		
+		
 		//System.out.println(cri+"/"+totalCount);
 		map.put("pageMaker", page);
 		map.put("memberList",memberList);
@@ -87,6 +88,8 @@ public class MemberServiceImpl implements MemberService {
 		List<MemberVO> memberList = memberDAO.selectMemberList();
 		return memberList;
 	}
+
+	
 
 	
 

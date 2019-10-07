@@ -23,6 +23,7 @@
     		</if>    
     	</sql>
     	
+    	
     	<sql id="alignment">
     		<if test="alignment == 0">
     		order by club_regDate desc
@@ -43,11 +44,23 @@
     		order by joincnt desc
     		</if>
     	</sql>
+    	
+    	
+	
+	 <sql id="sort">
+    	<if test="sort ==1">
+    	and club_status = 1
+    	</if>
+    	<if test="sort ==2">
+    	and club_status = 2
+    	</if>
+    </sql>
 
 	    <select id="selectSearchClubList" resultType="club">
 	    	select *
 	    	from club_view
 	    	where club_no is not null and club_status='1' or club_status='2'
+	    	<include refid="sort" />
 	    	<include refid="searchlocal" />
 	    	<include refid="searchcategory" />
 	    	<include refid="searchclubname" />

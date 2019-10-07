@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.controller.common.MemberCriteria;
-import com.blood.coding.controller.common.MemberPageMaker;
 import com.blood.coding.controller.common.PageMaker;
 import com.blood.coding.dto.member.MemberVO;
 import com.blood.coding.dto.reply.ReplyVO;
@@ -114,4 +113,6 @@ public class ManageUserController {
 		
 		return mav;		
 	}
+	
+	
 }

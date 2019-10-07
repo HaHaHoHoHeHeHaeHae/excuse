@@ -21,9 +21,13 @@ public class MemberDAOImpl implements MemberDAO {
 	public List<MemberVO> selectMemberList(MemberCriteria cri) throws SQLException {
 		int offset = cri.getPageStartRowNum();
 		int limit = cri.getPerPageNum();
+		int alignment = cri.getAlignment();
+		int sort = cri.getSort();
 		
 		RowBounds rowBounds = new RowBounds(offset,limit);
-		
+	    cri.setAlignment(alignment);
+	    cri.setSort(sort);
+	    
 		List<MemberVO> memberList = session.selectList("Member.selectMemberList",cri,rowBounds);
 		return memberList;
 	}
@@ -134,6 +138,8 @@ public class MemberDAOImpl implements MemberDAO {
 		int count = session.selectOne("Member.selectMemberListCount");
 		return count;
 	}
+
+	
 
 	
 

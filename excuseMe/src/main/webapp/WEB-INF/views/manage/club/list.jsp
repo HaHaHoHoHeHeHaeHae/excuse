@@ -5,114 +5,186 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="clubList" value="${dataMap.clubList }" />
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
+<c:set var="cateList" value="${dataMap.cateList }" />
+<c:set var="localList" value="${dataMap.localList }" />
 
 
 <head>
 <meta charset="utf-8">
 <title>동호회 목록</title>
-<!-- Tell the browser to be responsive to screen width -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/templated/assets/css/font-awesome.min.css">
-	
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
-<!-- icheck bootstrap -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-	
-<!-- Theme style -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/dist/css/adminlte.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/templated/assets/css/main.css">	
-
-<!-- Google Font: Source Sans Pro -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
-</head>
-
 <style>
+#sidebar {
+	margin-top:70px;
+	float: left;
+	background: #25a1c3;
+	width: 200px;
+	height: 500px;
+    text-align: center;
+	border-radius: 8px;
+	 display: inline-block;
+  	vertical-align: middle;
+ 	 height: 100%;
+ 	 font-family: 'Nanum Gothic Coding', monospace;
+}
 
+#sublist{
+	text-decoration: none;
+	color: white;
+	display: block;
+	height: 80px;
+	line-height: 40px;
+	text-indent: 20px;
+	padding:-5px;
+	vertical-aling:middle;
+	
+}
+#subtoplist{
+	background:#0489B1;
+	text-decoration: none;
+	color: white;
+	display: block;
+	height: 70px;
+	line-height: 40px;
+	text-indent: 20px;
+	padding-top:-5x;
+	border-radius: 0px 0px 8px 0px;
+}
+#sidebar>a:hover, #sidebar>a.on{
+    background:#0489B1;
+    border: none;
+    border-radius: 0px 0px 0px 8px;
+        }
+        
+#category,#local,#sublocal,#subCategory{
+width:250px;
+}
 </style>
+</head>
 <body class="subpage">
 
 		<!-- Main -->
 			<section id="main" class="wrapper" >
 				<div class="inner" style="margin-left:-3px;"> 
 					
-					<div class="sidebar" style="float:left; background:#4dacc4;  width: 180px; height:548px; z-index: ">
-								
-								<li style="list-style: none; margin-top:50px;">
-								<a style="text-decoration: none; text-color:black; display: block;
-           								 height: 40px;
-							             line-height: 40px;
-							             text-indent: 20px;
-							             font-size: 1.1em;
-           								  color: black;"  href="#">동호회 리스트 </a></li>
-			         			<li style="list-style: none; margin-top:30px;"><a style="text-decoration: none; text-color:black; display: block;
-           								 height: 40px;
-							             line-height: 40px;
-							             text-indent: 20px;
-							             font-size: 1.1em;
-           								  color: black;"  href="#">블랙 리스트 </a></li>
-			         			<li style="list-style: none; margin-top:30px;"><a style="text-decoration: none; text-color:black; display: block;
-           								 height: 40px;
-							             line-height: 40px;
-							             text-indent: 20px;
-							             font-size: 1.1em;
-           								  color: black;"  href="#">신규동호회 승인 </a></li>
-			         			<li style="list-style: none; margin-top:30px;"><a style="text-decoration: none; text-color:black; display: block;
-           								 height: 40px;
-							             line-height: 40px;
-							             text-indent: 20px;
-							             font-size: 1.1em;
-           								  color: black;"  href="#">회원 관리</a></li>
-			          
-			         
-					</div>
-					
-						 <%--  <div class="float-right">	
-						 	<div class="row">
-							 	<select class="form-control col-sm-4" name="searchType" id="searchType">
-									<option value="in"  ${pageMaker.cri.searchType eq 'in' ? 'selected':'' }>전 체</option>
-									<option value="i" ${pageMaker.cri.searchType eq 'i' ? 'selected':'' }>아이디</option>
-									<option value="n" ${pageMaker.cri.searchType eq 'n' ? 'selected':'' }>이름</option>
-													
-								</select>
-								<input  class="form-control col-sm-6" type="text" name="keyword" 
-									placeholder="검색어를 입력하세요." value="${param.keyword }"/>
-								<span class="input-group-btn col-sm-2">
-									<button class="btn btn-info" type="button" id="searchBtn" onclick="onSearch();">
-										<i class="fa fa-fw fa-search"></i>
-									</button>
-								</span>
-							</div>
-						</div> 
-							 --%>
-					
-					
+					<div id="sidebar">
+				
+				<a href="#" id="subtoplist">ADMINISTRATOR </a>
+				<a href="#" id="sublist">동호회 리스트 </a>
+				<a href="#" id="sublist">블랙 리스트 </a>
+				<a href="#" id="sublist">신규동호회 승인 </a>
+				<a href="#" id="sublist">회원 관리</a>
 
-					<!-- Elements -->
-						<h2 style="margin-left: 300px;">동호회 목록</h2>
-						<div class="row 200%">
-							<div class="card-body">
+
+			</div>
+					<div class="row">
+						<h2 style="margin-left:10px; margin-right:150px; ">동호회 목록</h2>
+						<div class="row">
+			
+			<section class="sort">
+								<div class="listTitle" >
+									<div name="aliType"  id="aliType">
+									<button class="button alt small" 
+									style="margin-top: 30px; "
+									type="button" id="ali1" onclick="ali1();">생성 오래된순</button> 
+									<button class="button alt small" style="margin-top: 4px; width:180px;"
+									type="button" id="ali2" onclick="ali2();">생성 최신순</button>
+									</div>
+									<div name="sortType"  id="sortType">
+									<button class="button alt small" 
+									style="margin-top: 4px; width :180px; "
+									type="button" id="sort1" onclick="sort1();" >운영중 동호회</button> 
+									<button class="button alt small" style="margin-top: 4px; width :180px;"
+									type="button" id="sort2" onclick="sort2();" >운영중지 동호회</button>
+									</div>
+								</div>
+							</section>
+							
+
+							
+							</div>
+			</div>
+			<div class="card-body" >
+						<div class="row " style="margin-top:20px;">
+							<section class="search">
+						<div class="search1">
+						<div class="form-group">
+						<div class="label">
+							<div class="label_name">
+								<strong>카테고리</strong>
+							</div>
+							<div class="select" >
+								<!-- category1 -->
+								<select id="category" class="form-control">
+									<option selected>전체</option>
+									<c:forEach var="cate1" items="${cateList}">
+										<c:if test="${!empty cateList }">
+											<option value="${cate1.cate_no }">${cate1.cate_name }</option>
+										</c:if>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+
+						<div class="label">
+							<div class="select">
+								<!-- category2 -->
+								<select id="subCategory" class="form-control">
+									<option selected>전체</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="search2">
+					<div class="form-group">
+						<div class="label">
+							<div class="label_name">
+								<strong style="text-align:center;">지역</strong>
+							</div>
+							<div class="select">
+								<select id="local" class="form-control">
+									<option selected>전체</option>
+									<c:forEach var="local" items="${localList }">
+										<c:if test="${!empty localList }">
+											<option value="${local.local_no}">${local.local_name }</option>
+										</c:if>
+									</c:forEach>
+								</select>
+							</div>
+						</div>
+
+						<div class="label">
+							<div class="select">
+								<select id="sublocal" class="form-control"
+									>
+									<option selected>전체</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="search3" >
+					<div class="select">
+						<input name="keyword" type="text" class="form-control" style="width:250px;"
+							placeholder="검색어를 입력하세요">
+					</div>
+					<ul class="actions" >
+						<li><a id="searchBtn" href="#" class="button special small" style="width:250px; margin-top:10px;" 
+						onclick="onSearch();">검색</a></li>
+					</ul>
+				</div>
+				
+
+			</section>
 								<!-- Table -->
-									<div class="table-wrapper" style="margin-left: 80px;">
+									<div class="table-wrapper" style="float:right;" >
 										<table>
 												<tr>
-													<th class="text-center" style="width:100px;">동호회명</th>
-													<th class="text-center" style="width:100px;">카테고리</th>
-													<th class="text-center" style="width:100px;">UP-DOWN</th>
-													<th class="text-center" style="width:100px;">상태</th>
-													<th class="text-center" style="width:100px;">상세보기</th>
+													<th class="text-center" style="width:300px;">동호회명</th>
+													<th class="text-center" style="width:300px;">카테고리</th>
+													<th class="text-center" style="width:200px;">UP-DOWN</th>
+													<th class="text-center" style="width:200px;">상태</th>
+													<th class="text-center" style="width:200px;">상세보기</th>
 												</tr>
 												<c:if test="${empty clubList }">
 												<tr>
@@ -145,7 +217,8 @@
 							</c:if>
 						</table>
 									</div>
-									
+								</div>	
+								</div>
 									
 					<div class="text-center" style="margin-left: 200px;"  >
 																				
@@ -188,11 +261,9 @@
 						</ul>
 						</div>
 					</div>	
-				</div>
 				
 						
 
-				</div>
 			</section>
 
 	
@@ -201,22 +272,133 @@
 
 	
 <script>
-   <%-- 	window.onload=function(){
-   		$('a[data-name="member"]').on('click',function(event){
-   				event.preventDefault();
-   		});
-  }
-   	
-   	
-   function onSearch(){	
-   		var searchType=$('select#searchType').val();
-   		var keyword=$('input[name="keyword"]').val();
-   		
-   		alert("searchType="+searchType+"\n"+"keyword="+keyword);
-   		
-   		location.href="<%=request.getContextPath() %>/manage/user/list";
-   		
-   	}; --%>
+function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
+	winleft = (screen.width - WinWidth) / 2;
+	wintop = (screen.height - WinHeight) / 2;
+	var win = window.open(UrlStr , WinTitle , "scrollbars=yes,width="+ WinWidth 
+		                	+", height="+ WinHeight +", top="+ wintop +", left=" 
+		                	+ winleft + ", resizable=no, status=yes"  );
+    win.focus() ; 
+}
+
+
+$('#category').change(function() { 
+    $.ajax({
+       data:JSON.stringify({ "cate_no":$(this).val() }),
+       contentType:"application/JSON",
+       type: "POST",
+       url: "<%=request.getContextPath()%>/club/subcategory",
+       success: function(data) {
+                $("#subCategory").html("");
+                for(var sub of data){
+                $("#subCategory").append("<option>"+ sub.cate_sub_name +"</option>");
+                }
+       }
+    });
+ });
+
+<%--subLocal --%>
+$('#local').change(function(){
+	<%--alert("야호 성공이다");--%>
+	console.log(local);
+	$.ajax({
+		data:JSON.stringify({"local_no":$(this).val()}),
+		contentType:"application/JSON",
+		type: "POST",
+		url: "<%=request.getContextPath()%>/club/sublocal",
+		success: function(data){
+				$("#sublocal").html("");
+				for(var sublo of data){
+					$("#sublocal").append("<option>"+ sublo.local_sub_name +"</option>");
+		}
+		},
+		error: function(request,status,error){
+			alert("code="+request.status+"message="+request.responseText+"error="+error);
+		}
+			
+	});
+});
+
+<%--search --%>
+	function onSearch(){
+	alert("searchBtn");
+	//""(x), cate1.cate_name (x),
+	//var category = $('select#category').text();
+	//$("select option[value*='disabled']").prop('disabled',true);
+	//var category = $('select#category option selected').text();
+	//var category = $('select#category').children(":selected").attr("sub").text();
+	//var local = $('select#local option selected').text();
+	//$('select#category').removeAttr('disabled');
+	
+	var category = $('select#category option:selected' ).text();
+	var local = $('select#local option:selected').text();
+	var keyword = $('input[name="keyword"]').val(); 
+	
+	if(category=="전체"){
+		var category = "";
+	}
+	if(local=="전체"){
+		var local = "";
+	}
+	
+	alert("category="+category+"local="+local+"keyword="+keyword);
+	
+	searchList("${categoryclub }",category,local,keyword);
+}
+
+
+function searchList(categoryclub,category,local,keyword){
+	self.location="<%=request.getContextPath()%>/"+categoryclub+"/list?category="+category+"&local="+local+"&keyword="+keyword;
+}
+
+
+
+<%-- //검색
+function onSearch(){
+		//alert("fff");
+		//var category=$('select#category').val();
+		//var local=$('select#local').val();
+		var keyword=$('input[name="keyword"]').val();
+		
+		
+		searchList(keyword);
+	}
+
+function searchList(keyword){
+	self.location="<%=request.getContextPath()%>/manage/club/list?category="+ category + "&local="+ local +"&keyword=" + keyword;
+	self.location="<%=request.getContextPath()%>/manage/club/list?keyword=" + keyword;
+	} --%>
+
+<%-- 
+//동호회 생성날짜 정렬
+function ali1(){ 
+	var searchType=$('select#searchType').val();
+	var keyword=$('input[name="keyword"]').val();
+	var sortType=$('div#sortType').val();
+	self.location.href="<%=request.getContextPath() %>/manage/club/list?alignment=1&sortType="+ sortType +"&searchType="+ searchType + "&keyword=" + keyword;
+}
+function ali2(){ 
+	var searchType=$('select#searchType').val();
+	var keyword=$('input[name="keyword"]').val();
+	var sortType=$('div#sortType').val();
+	self.location.href="<%=request.getContextPath() %>/manage/club/list?alignment=2&sortType="+ sortType +"&searchType="+ searchType + "&keyword=" + keyword;
+}
+
+
+//동호회 운영상태 정렬
+function sort1(){ 
+	var searchType=$('select#searchType').val();
+	var keyword=$('input[name="keyword"]').val();
+	var aliType=$('div#aliType').val();
+	self.location.href="<%=request.getContextPath() %>/manage/club/list?sort=1&aliType="+ aliType +"&searchType="+ searchType + "&keyword=" + keyword;
+}
+function sort2(){ 
+	var searchType=$('select#searchType').val();
+	var keyword=$('input[name="keyword"]').val();
+	var aliType=$('div#aliType').val();
+	self.location.href="<%=request.getContextPath() %>/manage/club/list?sort=2&aliType="+ aliType +"&searchType="+ searchType + "&keyword=" + keyword;
+} --%>
+
    	
    	
    </script>

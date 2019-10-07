@@ -5,25 +5,45 @@
 
 <mapper namespace="Member">
 	<sql id="search">
-		<if test="searchType =='i'.toString()">
-			and mem_id like '%'||#{keyword}||'%'
+		<if test="searchType =='k'.toString()">
+			and mem_nick like '%'||#{keyword}||'%'
 		</if>
 		<if test="searchType =='n'.toString()">
 			and mem_name like '%'||#{keyword}||'%'
 		</if>
-		<if test="searchType =='in'.toString()">
-			and (mem_name like '%'||#{keyword}||'%'
-			or mem_id like
+		<if test="searchType =='kn'.toString()">
+			and (mem_nick like '%'||#{keyword}||'%'
+			or mem_name like
 			'%'||#{keyword}||'%')
 		</if>
 	</sql>
+	
+	<sql id="alignment">
+    		<if test="alignment == 1">
+    		order by mem_regDate asc
+    		</if>
+    		<if test="alignment == 2"> 
+    		order by mem_regDate desc
+    		</if>
+    		
+    	</sql>
+    	
+    <sql id="sort">
+    	<if test="sort ==1">
+    	and mem_status = 1
+    	</if>
+    	<if test="sort ==2">
+    	and mem_status = 0
+    	</if>
+    </sql>	
 
 	<select id="selectMemberList" resultType="member">
 		select *
 		from member
 		where mem_id is not null
 		<include refid="search" />
-		order by mem_regDate
+		<include refid="sort" />
+		<include refid="alignment" />
 	</select>
 
 	<select id="selectMemberListCount" resultType="int">
@@ -32,8 +52,10 @@
 		from member
 		where mem_id is not null
 		<include refid="search" />
-		order by mem_regDate
+		<include refid="alignment" />
 	</select>
+	
+	
 	
 
 	<select id="selectMember" resultType="member">

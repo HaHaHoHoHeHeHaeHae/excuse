@@ -22,7 +22,11 @@ public class ClubDAOImpl implements ClubDAO {
 		
 		int startRowNum = cri.getPageStartRowNum();
 		int limit = cri.getPerPageNum();
+		int alignment = cri.getAlignment();
+		int sort = cri.getSort();
 		RowBounds rowBounds = new RowBounds(startRowNum,limit);
+		cri.setAlignment(alignment);
+		cri.setSort(sort);
 		
 		List<ClubVO> clubList = session.selectList("Club.selectSearchClubList",cri,rowBounds);
 		

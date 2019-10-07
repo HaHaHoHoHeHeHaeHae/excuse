@@ -3,13 +3,13 @@
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="newclubList" value="${dataMap.newclubList }" />
+<c:set var="clubList" value="${dataMap.clubList }" />
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 
 
 <head>
 <meta charset="utf-8">
-<title>신규 동호회 목록</title>
+<title>동호회 목록</title>
 <style>
 #sidebar {
 	margin-top:70px;
@@ -71,61 +71,67 @@
 
 			</div>
 					
+						 <%--  <div class="float-right">	
+						 	<div class="row">
+							 	<select class="form-control col-sm-4" name="searchType" id="searchType">
+									<option value="in"  ${pageMaker.cri.searchType eq 'in' ? 'selected':'' }>전 체</option>
+									<option value="i" ${pageMaker.cri.searchType eq 'i' ? 'selected':'' }>아이디</option>
+									<option value="n" ${pageMaker.cri.searchType eq 'n' ? 'selected':'' }>이름</option>
+													
+								</select>
+								<input  class="form-control col-sm-6" type="text" name="keyword" 
+									placeholder="검색어를 입력하세요." value="${param.keyword }"/>
+								<span class="input-group-btn col-sm-2">
+									<button class="btn btn-info" type="button" id="searchBtn" onclick="onSearch();">
+										<i class="fa fa-fw fa-search"></i>
+									</button>
+								</span>
+							</div>
+						</div> 
+							 --%>
+					
+					
+
 					<!-- Elements -->
-						<h2 style="margin-left: 400px;">신규 동호회 목록</h2>
+						<h2 style="margin-left: 300px;">블랙리스트</h2>
 						<div class="row 200%">
-							<div class="card-body"  >
+							<div class="card-body">
 								<!-- Table -->
-									<div class="table-wrapper" style="margin-left: 80px; width:1300px;">
-										<table >
+									<div class="table-wrapper" style="margin-left: 80px;">
+										<table>
 												<tr>
-													<th class="text-center" style="width:100px;">NO</th>
-													<th class="text-center" style="width:300px;">동호회명</th>
-													<th class="text-center" style="width:300px;">카테고리</th>
-													<th class="text-center" style="width:200px;">상태</th>
+													<th class="text-center" style="width:100px;">동호회명</th>
+													<th class="text-center" style="width:100px;">카테고리</th>
+													<th class="text-center" style="width:100px;">UP-DOWN</th>
+													<th class="text-center" style="width:100px;">상태</th>
 													<th class="text-center" style="width:100px;">상세보기</th>
-													<th class="text-center" style="width:100px;">수락</th>
-													<th class="text-center" style="width:100px;">거부</th>
 												</tr>
-												<c:if test="${empty newclubList }">
+												<c:if test="${empty clubList }">
 												<tr>
 													<td colspan="5" class="text-center">
 														<strong>해당 내용이 없습니다.</strong>
 													</td>
 												</tr>
 											</c:if>
-										<c:if test="${!empty newclubList }">
-							  			<c:forEach items="${newclubList }" var="newclub" >
-							  	<tr id="clubno">
-							  		<td class="text-center" id="club_no" name="club_no">${newclub.club_no }</td>
-							  		<td class="text-center">${newclub.club_name }</td>
-							  		
-									<td class="text-center">${newclub.cate_name }</td>
-									
+										<c:if test="${!empty clubList }">
+							  			<c:forEach items="${clubList }" var="club" >
+							  	<tr>
+							  		<td class="text-center">${club.club_name }</td>
+									<td class="text-center">${club.cate_name }</td>
+									<td class="text-center">${club.mi }</td>
 									<td class="text-center">
-									<c:if test= "${newclub.club_status==0 }" >
-									승인대기 
-									</c:if>
-									<c:if test= "${newclub.club_status==1 }" >
+									<c:if test= "${club.club_status==1 }" >
 									운영중
 									</c:if>
-									<c:if test= "${newclub.club_status==2 }" >
+									<c:if test= "${club.club_status==2 }" >
 									운영 중지
 									</c:if>
 									</td>
+									
 									<td class="text-center">
-									<button style=" " type="button" class="button small" id="detailBtn" onclick="OpenWindow('detail?club_no=${newclub.club_no }','','850','800');">
+									<button type="button" class="button special small" id="detailBtn" onclick="OpenWindow('detail?club_no=${club.club_no }','','850','800');">
 									상세보기</button>
 									</td>
-									<td class="text-center">
-									<button type="button" class="button special small" id="statusBtn" onclick="Status();">
-									수락</button>
-									</td>
-									<td class="text-center">
-									<button type="button" class="button special small" id="detailBtn" id="statusStopBtn" onclick="StatusStop();">
-									거부</button>
-									</td>
-									
 								</tr>
 							  </c:forEach>
 							</c:if>
@@ -133,7 +139,7 @@
 									</div>
 									
 									
-					<div class="text-center" style="margin-left: 500px;"  >
+					<div class="text-center" style="margin-left: 200px;"  >
 																				
 						<ul class="pagination ">
 							<li class="page-item">
@@ -196,59 +202,6 @@ function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
     win.focus() ; 
 }
    	
-   
-   	
-   	
-   	function Status(){
-   		var id= $("#clubno").children().eq(0).text();
-		//var status = $("#club_status").val();
-		alert(id);
-		//alert(status);
-		
-			$.ajax({
-				url:"<%=request.getContextPath() %>/manage/club/status",
-				type:"POST",
-				data:{club_no:id},
-				
-				success:function(result){
-					if(result=="SUCCESS"){
-						alert("승인수락 되었습니다.");
-						location.reload();
-					}else{
-						alert("1234");
-					}
-				},
-				error:function(){
-					alert('실패했습니다.');
-				},
-				
-			}); 
-		}
-	function StatusStop(){
-   		var id= $("#clubno").children().eq(0).text();
-		//var status = $("#club_status").val();
-		alert(id);
-		//alert(status);
-		
-			$.ajax({
-				url:"<%=request.getContextPath() %>/manage/club/stopstatus",
-				type:"POST",
-				data:{club_no:id},
-				
-				success:function(result){
-					if(result=="SUCCESS"){
-						alert("승인거부 되었습니다.");
-						location.reload();
-					}else{
-						alert("1234");
-					}
-				},
-				error:function(){
-					alert('실패했습니다.');
-				},
-				
-			}); 
-		}
    	
    </script>
    

@@ -13,6 +13,7 @@ public interface MemberService {
 	public List<MemberVO> memberlistByAdmin()throws SQLException;
 	public Map<String,Object> memberlistByAdmin(MemberCriteria cri)throws SQLException;
 	
+	
 	public MemberVO loginMember(String mem_id) throws SQLException;
 	
 	//멤버상세보기
