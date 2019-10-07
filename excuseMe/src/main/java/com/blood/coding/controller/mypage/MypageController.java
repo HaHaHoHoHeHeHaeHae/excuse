@@ -67,10 +67,41 @@ public class MypageController {
 		String url = "mypage/myclub";
 		
 		modelnView.addObject("myClubList",myClubList);
+		modelnView.addObject("member",member);
 		modelnView.setViewName(url);
 		
 		return modelnView;
 	}
+	
+	@RequestMapping("wishclub")
+	public ModelAndView wishClub(Criteria cir, ModelAndView modelnView, HttpServletRequest request) throws Exception {
+		
+		//세션에서 로그인한 유저 정보 가져온다.
+		HttpSession session = request.getSession();
+		
+		MemberVO member = (MemberVO) session.getAttribute("loginUser");
+		
+		List<ClubVO> myClubList = clubService.getMyClub(member.getMem_id()); 
+		
+		String url = "mypage/myclub";
+		
+		modelnView.addObject("myClubList",myClubList);
+		modelnView.addObject("member",member);
+		modelnView.setViewName(url);
+		
+		return modelnView;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@RequestMapping(value="testRegist", method=RequestMethod.GET)
 	public String testRegistget() throws Exception {

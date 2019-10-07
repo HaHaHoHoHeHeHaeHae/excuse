@@ -135,8 +135,9 @@
 	    <!-- 내가 만든 클럽 조회 -->
 	    <select id="selectMyClub" resultType="club">
 	    	select *
-	    	from club
+	    	from club_view
 	    	where mem_id = #{mem_id}
+	    	order by club_name
 	    </select>
 	    
     </mapper>

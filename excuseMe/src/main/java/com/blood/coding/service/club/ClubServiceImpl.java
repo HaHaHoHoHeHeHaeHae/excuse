@@ -67,6 +67,10 @@ public class ClubServiceImpl implements ClubService {
 	public Map<String, Object> getClubList(Criteria cri,MemberVO memberVO) throws SQLException { //(매개변수에 memberVO추가)
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 
+		System.out.println("gngng후후히이ㅣㅚㅎ");
+		System.out.println(memberVO);
+		System.out.println("gngng후후히이ㅣㅚㅎ");
+		
 		cri.setPerPageNum(3);
 		cri.setLocal(memberVO.getMem_local());
 		cri.setAlignment(2);
