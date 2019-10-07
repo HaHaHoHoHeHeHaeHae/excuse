@@ -31,7 +31,7 @@ public class MailController extends Authenticator{
 	
 	@RequestMapping(value="/sendPwd", method=RequestMethod.POST)
 	@ResponseBody
-    public ResponseEntity<Object> MailSend(@RequestParam("mem_id") String mem_id, @RequestParam("mem_name") String mem_name) throws Exception{
+    public ResponseEntity<Object> mailSend(@RequestParam("mem_id") String mem_id, @RequestParam("mem_name") String mem_name) throws Exception{
 		ResponseEntity<Object> mailSend = null;
 		
         Properties prop = System.getProperties();
