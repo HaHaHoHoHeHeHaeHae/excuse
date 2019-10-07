@@ -72,11 +72,12 @@
 
 	<div id="subm">
 		
-		<br><br><br><a href="#" class="atag" style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가입한 동호회</a><br><br>
-		<a href="#" class="atag" style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;생성한 동호회</a><br><br>
-		<a href="#" class="atag" style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;관심 동호회</a><br><br>
-		<a href="#" class="atag" style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;내가 쓴 댓글</a><br><br>
-		<a href="#" class="atag" style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;개인정보수정</a><br>
+		<br><br><br>
+		<a href="<%=request.getContextPath()%>/mypage/joinclub" class="atag" style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가입한 동호회</a><br><br>
+		<a href="<%=request.getContextPath()%>/mypage/myclub" class="atag" style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;생성한 동호회</a><br><br>
+		<a href="<%=request.getContextPath()%>/mypage/" class="atag" style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;관심 동호회</a><br><br>
+		<a href="<%=request.getContextPath()%>/mypage/" class="atag" style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;내가 쓴 댓글</a><br><br>
+		<a href="<%=request.getContextPath()%>/mypage/" class="atag" style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;개인정보수정</a><br>
 		
 	
 	</div>
@@ -102,12 +103,13 @@
 					<div class="row 200%">
 						<div class="12u">
 							<!-- Table -->
-		
-							<c:forEach var="club" items="${clubList }">
 						<c:if test="${empty clubList }">
 							<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
 						</c:if>
+							
+						
 						<c:if test="${!empty clubList }">
+						<c:forEach var="club" items="${clubList }">
 							<div class="clublist_body"
 								 style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin-left:3px; margin-right:3px;width:219px;">
 								<div class="card-body box-profile">
@@ -145,8 +147,9 @@
 									</ul>
 								</div>
 							</div>
+							</c:forEach>
 						</c:if>
-					</c:forEach>
+					
 					
 					
 				</section>

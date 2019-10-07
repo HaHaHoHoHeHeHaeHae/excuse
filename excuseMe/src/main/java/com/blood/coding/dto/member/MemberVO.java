@@ -1,8 +1,13 @@
 package com.blood.coding.dto.member;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class MemberVO {
+public class MemberVO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4312962694783580909L;
 	private String mem_id;
 	private String mem_pwd;
 	private String mem_gender;

@@ -20,8 +20,7 @@
 	<!-- dao -->
 	<bean id="memberDAO" 
 		  class="com.blood.coding.dao.member.MemberDAOImpl"
-		  p:session-ref="sqlSession" 
-		  />
+		  p:session-ref="sqlSession"/>
 	<bean id="noticeDAO"
 		  class="com.blood.coding.dao.notice.NoticeDAOImpl"
 		  p:session-ref="sqlSession"/>
@@ -40,6 +39,12 @@
 	<bean id="attachDAO"
 			class="com.blood.coding.dao.attach.AttachDAOImpl"
 			p:session-ref="sqlSession" />
+	<bean id="upDAO"
+			class="com.blood.coding.dao.up.UpDAOImpl"
+			p:session-ref="sqlSession" />
+	<bean id="downDAO"
+			class="com.blood.coding.dao.down.DownDAOImpl"
+			p:sesssion-ref="sqlSession" />
 	
 			  	  
 	<!-- service -->	
@@ -55,6 +60,7 @@
   	<bean id="noticeService"
   		  class="com.blood.coding.service.notice.NoticeServiceImpl"
   		  p:noticeDAO-ref="noticeDAO"
+  		  p:attachDAO-ref="attachDAO"
   		  />
   	<bean id="localService"
   		  class="com.blood.coding.service.common.LocalServiceImpl"
@@ -65,7 +71,13 @@
 	  	  p:clubDAO-ref="clubDAO" 
 	  	  p:memberDAO-ref="memberDAO"
 		  p:categoryDAO-ref="categoryDAO"
-		  p:localDAO-ref="localDAO"/>
+		  p:localDAO-ref="localDAO"
+		  p:attachDAO-ref="attachDAO"
+		 />
+	<bean id="upnDownService"
+			class="com.blood.coding.service.upndown.UpnDownService"
+			p:downDAO-ref="downDAO"
+			p:upDAO-ref="upDAO" />
 
 	
 </beans>

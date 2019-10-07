@@ -15,6 +15,7 @@ public class ImgCheck {
 		mediaMap.put("GIF", MediaType.IMAGE_GIF);
 		mediaMap.put("PNG", MediaType.IMAGE_PNG);
 		mediaMap.put("JPEG", MediaType.IMAGE_JPEG);
+		
 	}
 	
 	public static MediaType getImgCheck(String type) {

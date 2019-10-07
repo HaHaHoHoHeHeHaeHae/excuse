@@ -1,41 +1,293 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="com.blood.coding.controller.common.ImgCheck"%>
+<%@ page import="com.blood.coding.controller.common.FileFormat"%>
 
 
 <c:set var="club" value="${dataMap.club }" />
-<c:set var="member" value="${dataMap.member }" />
+<c:set var="mem_nick" value="${dataMap.memberNick }" />
+<c:set var="attach" value="${dataMap.attachList }" />
 
 <head>
-<title>디테일</title>
+
+<title>동호회 디테일</title>
+
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">
+
+<!-- Ionicons -->
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+<!-- icheck bootstrap -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+
+<!-- Theme style -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/dist/css/adminlte.min.css">
+
+<!-- Google Font: Source Sans Pro -->
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+	rel="stylesheet">
+
+<!-- daterange picker -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/daterangepicker/daterangepicker.css">
+
+<!-- summernote -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/summernote/summernote-bs4.css">
+
+<!-- jQuery -->
+<script
+	src="<%=request.getContextPath()%>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/adminLTE/plugins/summernote/summernote-bs4.min.js"></script>
+
+<!-- Time Line -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/build/scss/_timeline.scss">
+
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/templated/assets/css/main.css" />
+
+
+
 <style>
-	form{
-		border:1px;
-	}
+div.top {
+	height: 100px;
+}
+
 </style>
 
-
 </head>
+
+
 <body>
-	<h4>동호회 상세보기</h4>
-	<form name="detailForm" role="form" method="post" action="detail">
-		<div id="club_no"></div>
-		<label for="clubName">동호회명</label> 
-		<input type="text" value="${club.club_name }" /> <br> 
-		<label for="clubLocal">지역</label>
-		<input type="text" value="${club.club_local }" /> <br> 
-		<label for="clubCategory">카테고리</label> 
-		<input type="text" value="${club.cate_name }" /> <br> 
-		<label for="memberNick">닉네임</label><!-- mem_nick으로 바꿔야됨. -->
-		<input type="text" value="${member.mem_nick }" /> <br>
-		상세설명:<div id="clubContent">${club.club_content }</div>
-		첨부파일: <input type="text" /><input type="button" value="다운로드">
-		<br>
-		<br>
-		<br>
-		<button type="button" id="wishBtn">관심등록</button> 
-		<button type="button" id="signInBtn">가입하기</button> 
-		<button type="button" id="cancelBtn">취소</button> 
-	</form>
+	<div class="top"></div>
+	<section id="main1" class="wrapper" style="width:800px; position:relative; height:700px;">
+	<div class="pic_demo_wqrp" style="position: absolute; width: 800px;; height: 300px; top: 0px;">
+		<div class="pic_warp" style="width: 300px; height: 300px; float: left; position: absolute;">
+			<div class="pic" style="width: 300px; height: 300px;">
+				<img src="<%=request.getContextPath()%>/resources/img/logo.png"
+					style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; padding: 2px;" />
+			</div>
+		</div>
+		<div class="demo_wrap" style="width: 500px; height: 300px; float: left; position: absolute; left: 300px;">
+			<div style="height: 300px;">
+				<table class="alt" style="height: 300px; margin-bottom: 0px; margin: auto; text-align: center; font-size: 18px;">
+					<tbody>
+						<tr>
+							<td><b>동호회명</b></td>
+							<td>${club.club_name }</td>
+						</tr>
+						<tr>
+							<td><b>지역</b></td>
+							<td>${club.club_local }</td>
+						</tr>
+						<tr>
+							<td><b>카테고리</b></td>
+							<td>${club.cate_name }</td>
+
+						</tr>
+						<tr>
+							<td><b>대표자명</b></td>
+							<td>${mem_nick }</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<div class="summernote" style="position: absolute; width: 800px; top: 300px;">
+		<table class="alt" style="margin-bottom: 0px; margin: auto; text-align: center; font-size: 18px; height: 400px;">
+			<tbody>
+				<tr valign=middle>
+					<td style="width:156px;"><b>내용</b></td>
+					<td>${club.club_content }</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</section>
+
+<section id="main2" class="wrapper" style="width:800px; position:absolute;">
+	<div class="attach" style="position: relative; width: 800px; top: 700px;">
+		<table class="alt" style="margin-bottom: 0px; margin: auto; text-align: center; font-size: 18px;">
+			<tbody>
+				<tr>
+					<td style="width: 156px;"><b>첨부파일</b></td>
+					<td class="attach_wrap" style="width:644px;margin-right:-50px;">
+						<c:forEach var="attach" items="${attach }">
+							<div class="col-md-4 col-md-12" style="cursor: pointer;" onclick="location.href='<%=request.getContextPath() %>/attach/get?attach_no=${attach.attach_no }';">
+								<div class="img info-box uploadedlist">
+									<span class="info-box-icon"> 
+										<c:if test="${!empty ImgCheck.getImgCheck(attach.attach_type) }">
+											<img src="<%=request.getContextPath() %>/attach/thum?attach_no=${attach.attach_no }"/>
+										</c:if> 
+										<c:if test="${empty ImgCheck.getImgCheck(attach.attach_type) }">
+											<img src="<%=request.getContextPath() %>/resources/img/icon/${FileFormat.generate(attach.attach_type)}.png" />
+										</c:if>
+									</span>
+									<div class="text info-box-content">
+									<span class="subtext1 info-box-text"><fmt:formatDate value="${attach.attach_regDate }" pattern="yyyy-MM-dd" /></span> 
+									<span class="subtext2 info-box-number text-overflow" style="width:460px; overflow:hidden; text-overflow:ellipsis;white-space:nowrap;">${attach.attach_name }</span>
+								</div>
+								</div>
+								
+							</div>
+						</c:forEach>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="buttons"
+		style="position: relative; top: 1000px; width: 800px; text-align: center;">
+		<a href="#" class="button special" id="wishBtn" onclick="onWish();">관심동호회등록</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#" class="button" id="joinBtn" onclick="onJoin();">가입하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="#" class="button alt" id="closeBtn" onclick="onClose();">나가기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	</div>
+
+	<div class="updown"
+		style="position: relative; top: 1380px; width: 800px;">
+		<ul class="list-group list-group-unbordered mb-3">
+			<li class="list-group-item text-center"
+				style="height: 60px; width: 198px; left: 35%; float: left;"><b
+				id="btag"> <i class="far fa-thumbs-up"></i>&nbsp;&nbsp;${club.upcnt }&nbsp;&nbsp;
+					<i class="fas fa-thumbs-down"></i>&nbsp;&nbsp;${club.downcnt }
+			</b></li>
+		</ul>
+	</div>
+
+	<div class="reply"
+		style="position:relative; top: 1500px; width: 800px;">
+		<!-- Reply 부분 -->
+		<div class="card">
+			<div class="card-header">
+				<!-- 리플 작성하는 부분 -->
+				<div class="box box-success">
+					<!-- <div class="box-header">
+						<h3 class="box-title">Add new Reply</h3>
+					</div>-->
+					<div class="box-body">
+						<input class="form-control" type="hidden" id="newReplyWriter"
+							readonly value="${mem_nick }" /> <input class="form-control"
+							type="text" placeholder="댓글을 입력하세요." id="newReplyText" />
+					</div>
+					<div class="box-footer" style="float: right;">
+						<button type="button" class="button alt small" id="replyAddBtn">등&nbsp;&nbsp;록</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="card-body">
+				<!-- 리플라이 목록 -->
+				<ul class="timeline color-palette-set">
+					<li class="bg-green color-palette row" id="repliesDiv"><span
+						class="col-sm-12">Replies List</span></li>
+				</ul>
+			</div>
+
+			<div class="card-footer">
+				<!-- 리플라이 페이지네이션 -->
+				<div class="text-center">
+					<ul id="pagination" class="pagination pagination-sm no-margin">
+
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Modal -->
+	<div id="modifyModal" class="modal modal-default fade" role="dialog">
+		<!-- modal-default 는 색상배합  -->
+		<div class="modal-dialog">
+			<!-- Modal content -->
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" style="display: none;"></h4>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body" data-rno>
+					<p>
+						<input type="text" id="replytext" class="form-control">
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-info" id="replyModBtn">Modify</button>
+					<button type="button" class="btn btn-danger" id="replyDelBtn">Delete</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	</section>
+
+
+	<script>
+	function onWish(){}
+	
+	<%-- function onJoin(){
+		self.location.href="<%request.getContextPath()%>/club/joinToClub?mem_id=${}"
+	} --%>
+	
+	
+	function onClose(){
+		window.close();
+	}
+	
+	</script>
+
+
+
+	<!-- AdminLTE App -->
+	<script
+		src="<%=request.getContextPath()%>/resources/adminLTE/dist/js/adminlte.min.js"></script>
+
+	<script
+		src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"
+		defer></script>
+
+	<!-- Bootstrap 4 -->
+	<script
+		src="<%=request.getContextPath()%>/resources/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<%--<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />--%>
+
+	<!-- templated Scripts -->
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
+
+
+
+
 </body>

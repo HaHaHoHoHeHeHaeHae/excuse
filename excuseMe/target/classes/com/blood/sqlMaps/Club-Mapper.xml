@@ -151,10 +151,14 @@
 	    		where rownum <= 6
 	    	]]>
 	    </select>
+	    
+	    <!-- 내가 만든 클럽 조회 -->
+	    <select id="selectMyClub" resultType="club">
+	    	select *
+	    	from club_view
+	    	where mem_id = #{mem_id}
+	    	order by club_name
+	    </select>
+	    
     </mapper>
     
-
-    <!--  지역:    [광역시도][시군구]
-		    카테고리: [대분류][소분류]
-		    동호회명: [] like 
-    -->

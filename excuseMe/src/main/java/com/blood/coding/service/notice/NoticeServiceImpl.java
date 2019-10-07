@@ -7,7 +7,9 @@ import java.util.Map;
 
 import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.controller.common.PageMaker;
+import com.blood.coding.dao.attach.AttachDAO;
 import com.blood.coding.dao.notice.NoticeDAO;
+import com.blood.coding.dto.attach.AttachVO;
 import com.blood.coding.dto.notice.NoticeVO;
 
 public class NoticeServiceImpl implements NoticeService {
@@ -16,12 +18,43 @@ public class NoticeServiceImpl implements NoticeService {
 	public void setNoticeDAO(NoticeDAO noticeDAO) {
 		this.noticeDAO = noticeDAO;
 	}
+	private AttachDAO attachDAO;
+	public void setAttachDAO(AttachDAO attachDAO) {
+		this.attachDAO = attachDAO;
+	}
 	
 	@Override
 	public Map<String, Object> noticeList(Criteria cri) throws SQLException {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<NoticeVO> list = noticeDAO.selectNoticeList(cri);
+		for(NoticeVO vo : list) {
+			String not_no = vo.getNot_no();
+			List<AttachVO> attachList = attachDAO.selectAttachesByAttachBoard(not_no);	
+			vo.setAttachList(attachList);
+			
+		}
+		PageMaker page = new PageMaker();
 		
+		int count = noticeDAO.selectNoticeCount();
+		page.setCri(cri);
+		page.setTotalCount(count);
+		
+		map.put("pageMaker",page);
+		map.put("noticeList", list);
+		
+		return map;
+	}
+	
+	@Override
+	public Map<String, Object> noticeListAll(Criteria cri) throws SQLException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<NoticeVO> list = noticeDAO.selectNoticeListAll(cri);
+		for(NoticeVO vo : list) {
+			String not_no = vo.getNot_no();
+			List<AttachVO> attachList = attachDAO.selectAttachesByAttachBoard(not_no);	
+			vo.setAttachList(attachList);
+			
+		}
 		PageMaker page = new PageMaker();
 		
 		int count = noticeDAO.selectNoticeCount();
@@ -49,12 +82,14 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public void registNotice(NoticeVO noticeVO) throws SQLException {
-		String not_no = noticeDAO.selectNoticeSeq();
-		noticeVO.setNot_no(not_no);
 		noticeDAO.insertNotice(noticeVO);
 
 	}
-
+	@Override
+	public String noticeSeq() throws SQLException {
+		String no = noticeDAO.selectNoticeSeq();
+		return no;
+	}
 	@Override
 	public void modifyNotice(NoticeVO noticeVO) throws SQLException {
 		noticeDAO.updateNotice(noticeVO);
@@ -74,5 +109,7 @@ public class NoticeServiceImpl implements NoticeService {
 		map.put("noticeList", list);
 		return map;
 	}
+
+
 
 }

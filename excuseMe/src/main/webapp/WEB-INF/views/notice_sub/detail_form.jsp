@@ -76,7 +76,7 @@
 			</div>
 		</div>
 		<div  style="margin-left: 50px;margin-right:20px;min-height:300px; background:#f0f5f7;">
-			<div style="margin-top:40px;">
+			<div style="margin-top:40px;word-wrap:break-word; padding:10px;">
 					${notice.not_content}
 			</div>
 
@@ -84,9 +84,33 @@
 		<div>
 			<div class="row uniform" style="margin-top:10px; margin-left:30px;">
 				<h5 style="font-weight:bold;margin-top:5px;color:#768d99;">첨부파일</h5>
-				<button type="button" id="addFileBtn" class ="btn btn-block btn-default btn-sm"style="margin-left:25px;width:50px;padding-top:5px;">추가</button>
+				
 			</div>
-			<div class="box-footer fileInput"></div>
+			<div class="box-footer fileInput">
+					<div class="attached row">	
+					
+						<c:forEach items="${notice.attachList}" var="attach">
+							<div class="col-sm-4 attached-inputRow" attach-name="${attach.attach_name }" attach-no="${attach.attach_no }" style="cursor: pointer;" onclick="location.href='<%=request.getContextPath()%>/attach/get?attach_no=${attach.attach_no}';">
+
+								<div class="info-box uploadedList">
+									<span class="info-box-icon">
+											<img src="<%=request.getContextPath() %>/attach/thum?attach_no=${attach.attach_no }" />
+									</span>
+									<div class="info-box-content">
+										<span class="info-box-text"> 
+											${attach.attach_regDate }
+										</span>
+										<span class="info-box-number text-overflow">
+											${attach.attach_name } 
+										</span>
+									</div>
+
+								</div>
+							</div>
+						</c:forEach>
+					</div>
+					<br />
+				</div>
 		</div>
 		
 		<div class="text-center" style="margin-left:420px;">
@@ -224,7 +248,7 @@
 			$("#not_endDate").val(date[1].replace(/\//gi, "-").trim());
 		}
 	</script>
-	<script>
+	
   
 </body>
 </html>

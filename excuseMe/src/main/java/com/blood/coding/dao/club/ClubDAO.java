@@ -36,4 +36,7 @@ public interface ClubDAO {
 	//Made by minho
 	   public List<ClubVO> recommendClubMain(String mem_local) throws SQLException;
 	   public List<ClubVO> recentClubMain() throws SQLException;
+	
+	//메이드 바이 우철 / 내가만든 클럽을 리스트 검색
+	   public List<ClubVO> myClub(String mem_id) throws SQLException;
 }

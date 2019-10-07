@@ -24,9 +24,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.dao.category.CategoryDAO;
+import com.blood.coding.dao.joinClub.JoinClubDAO;
 import com.blood.coding.dao.local.LocalDAO;
 import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.dto.club.ClubVO;
+import com.blood.coding.dto.joinClub.JoinClubVO;
 import com.blood.coding.dto.local.LocalVO;
 import com.blood.coding.dto.member.MemberVO;
 import com.blood.coding.service.club.ClubService;
@@ -44,6 +46,9 @@ public class ClubController {
 	@Autowired
 	private LocalDAO localDAO;
 	
+	/*@Autowired
+	private JoinClubDAO joinClubDAO;
+	*/
 	@ModelAttribute("categoryclub")
 	public String category() throws Exception{
 		return "club";
@@ -58,9 +63,6 @@ public class ClubController {
 		HttpSession session = request.getSession();
 		MemberVO memberVO = (MemberVO) session.getAttribute("loginUser");
 	
-		
-		
-		
 		Map<String, Object> dataMap = clubService.getClubList(cri, memberVO);
 
 		modelnView.addObject("dataMap",dataMap);
@@ -85,6 +87,7 @@ public class ClubController {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script>");//브라우저로 바로 넘겨버림. opener는 list.jsp입니다.
+		out.println("alert('등록신청이 완료되었습니다. 관리자의 승인을 기다려주세요.')");
 		out.println("window.opener.location.href='/club/list';window.close();");
 		out.println("</script>");
 	}
@@ -152,8 +155,25 @@ public class ClubController {
 	    	  entity = new ResponseEntity<List<LocalVO>>(HttpStatus.INTERNAL_SERVER_ERROR);
 	      }
 	      return entity;
-		
 	}
+	
+	/*@RequestMapping("/joinToClub")
+	public void joinToClub(JoinClubVO joinclub, HttpServletResponse response) throws SQLException{
+		joinClubDAO.insertJoinClub(joinclub);;
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out;
+		try {
+			out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('등록신청이 완료되었습니다. 관리자의 승인을 기다려주세요.')");
+			out.println("window.opener.location.href='/club/detail';window.close();");
+			out.println("</script>");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	} */
 }
 
 
