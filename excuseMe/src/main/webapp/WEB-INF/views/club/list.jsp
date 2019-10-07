@@ -148,12 +148,12 @@ div.top {
 			<section class="alignment"
 				style="top: 360px; height: 70px; position: absolute;width:1126.66px;">
 				<div class="listTitle" style="float:right;">
-					<a data-name="ali" class="btn btn-app" onclick="ali_1();"><i class="fas fa-sort-numeric-down-alt"></i>역사가 깊은</a> 
-					<a class="btn btn-app" onclick="ali_0();"><i class="fas fa-sort-numeric-down"></i>갓 생긴</a> 
-					<a class="btn btn-app" onclick="ali_5();"><i class="fas fa-users"></i>사람많은</a> 
-					<a class="btn btn-app" onclick="ali_4();"><i class="fas fa-user"></i>사람적은</a> 
-					<a class="btn btn-app" onclick="ali_2();"><i class="fas fa-thumbs-up"></i>인기있는</a> 
-					<a class="btn btn-app" onclick="ali_3();"><i class="fas fa-thumbs-down"></i>인기없는</a>
+					<a data-name="ali" class="btn btn-app" onclick="ali_1();"><i class="fas fa-sort-numeric-down-alt"></i>오래된순</a> 
+					<a class="btn btn-app" onclick="ali_0();"><i class="fas fa-sort-numeric-down"></i>최신순</a> 
+					<a class="btn btn-app" onclick="ali_5();"><i class="fas fa-users"></i>인원많은순</a> 
+					<a class="btn btn-app" onclick="ali_4();"><i class="fas fa-user"></i>인원적은순</a> 
+					<a class="btn btn-app" onclick="ali_2();"><i class="fas fa-thumbs-up"></i>인기순</a> 
+					<a class="btn btn-app" onclick="ali_3();"><i class="fas fa-thumbs-down"></i>비인기순</a>
 				</div>
 			</section>
 
@@ -164,7 +164,7 @@ div.top {
 				style="height: 633.62px; position: absolute; top: 500px; width:1126.66px; ">
 				<c:forEach var="club" items="${clubList }">
 					<c:if test="${empty clubList }">
-						<b><strong>해당되는 동호회가 없어오. 다시 검색해주새오 </strong></b>
+						<b><strong>해당되는 동호회가 없습니다. 다시 검색해주세요. </strong></b>
 					</c:if>
 					<c:if test="${!empty clubList }">
 						<div class="clublist_body"
@@ -207,8 +207,8 @@ div.top {
 	<ul class="club action fit small"
 		style="position: absolute; top: 1450px; width:1126.66px; left:50%; transform:translateX(-50%);">
 		<li class="button alt fit big"
-			style="width: 1126.66px; margin: 0 auto; text-align: left;">[${member.mem_nick}]
-			님 근처에 인기많은 동호회를 찾아보세요.!!!</li>
+			style="width: 1126.66px; margin: 0 auto; text-align: left;">${member.mem_nick} 
+			님 지역의 인기많은 동호회 리스트입니다.</li>
 	</ul>
 
 	<section class="joinclub_wrap1"
@@ -347,7 +347,7 @@ div.top {
 
 	<%--search --%>
 	$('a#searchBtn').click(function(){
-		alert("searchBtn");
+		//alert("searchBtn");
 		//""(x), cate1.cate_name (x),
 		//var category = $('select#category').text();
 		//$("select option[value*='disabled']").prop('disabled',true);
@@ -367,7 +367,7 @@ div.top {
 			var local = "";
 		}
 		
-		alert("category="+category+"local="+local+"keyword="+keyword);
+		//alert("category="+category+"local="+local+"keyword="+keyword);
 		
 		searchList("${categoryclub }",category,local,keyword);
 	});

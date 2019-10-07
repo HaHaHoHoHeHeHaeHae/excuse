@@ -47,8 +47,8 @@ public class ClubController {
 	private LocalDAO localDAO;
 	
 	/*@Autowired
-	private JoinClubDAO joinClubDAO;
-	*/
+	private JoinClubDAO joinClubDAO;*/
+	
 	@ModelAttribute("categoryclub")
 	public String category() throws Exception{
 		return "club";
@@ -158,14 +158,22 @@ public class ClubController {
 	}
 	
 	/*@RequestMapping("/joinToClub")
-	public void joinToClub(JoinClubVO joinclub, HttpServletResponse response) throws SQLException{
-		joinClubDAO.insertJoinClub(joinclub);;
+	public void joinToClub(JoinClubVO joinclub, HttpServletResponse response, HttpServletRequest request) throws SQLException{
+		
+		String url = "/club/joinToClub";	
+		//로그인한 유저
+		HttpSession session = request.getSession();
+		String mem_id= (String) session.getAttribute("loginUser");
+		//현재 보고있는 클럽넘버
+		System.out.println(club_no);
+		
+		joinClubDAO.insertJoinClub(joinclub);
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out;
 		try {
 			out = response.getWriter();
 			out.println("<script>");
-			out.println("alert('등록신청이 완료되었습니다. 관리자의 승인을 기다려주세요.')");
+			out.println("alert('가입신청이 완료되었습니다. 관리자의 승인을 기다려주세요.')");
 			out.println("window.opener.location.href='/club/detail';window.close();");
 			out.println("</script>");
 		} catch (IOException e) {
@@ -173,7 +181,7 @@ public class ClubController {
 			e.printStackTrace();
 		}
 		
-	} */
+	}*/
 }
 
 

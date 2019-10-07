@@ -4,7 +4,7 @@ public class JoinClubVO {
 	private int join_no;
 	private String mem_id;
 	private String club_no;
-	
+
 	
 	public int getJoin_no() {
 		return join_no;

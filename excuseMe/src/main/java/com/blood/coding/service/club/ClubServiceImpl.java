@@ -10,6 +10,7 @@ import com.blood.coding.controller.common.PageMaker;
 import com.blood.coding.dao.attach.AttachDAO;
 import com.blood.coding.dao.category.CategoryDAO;
 import com.blood.coding.dao.club.ClubDAO;
+import com.blood.coding.dao.joinClub.JoinClubDAO;
 import com.blood.coding.dao.local.LocalDAO;
 import com.blood.coding.dao.member.MemberDAO;
 import com.blood.coding.dto.attach.AttachVO;
@@ -59,6 +60,11 @@ public class ClubServiceImpl implements ClubService {
 	public void setLocalDAO(LocalDAO localDAO) {
 		this.localDAO=localDAO;
 	}
+	
+	/*private JoinClubDAO joinClubDAO;
+	public void setJoinClubDAO(JoinClubDAO joinClubDAO) {
+		this.joinClubDAO=joinClubDAO;
+	}*/
 
 	
 

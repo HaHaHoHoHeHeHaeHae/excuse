@@ -23,7 +23,6 @@ public class ReplyDAOImpl implements ReplyDAO {
 		
 		RowBounds rowBounds = new RowBounds(offset,limit);
 		
-		
 		List<ReplyVO> replyList = session.selectList("Reply-Mapper.selectReplyList",club_no,rowBounds);
 		
 		return replyList;
