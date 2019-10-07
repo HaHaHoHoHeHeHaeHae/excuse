@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>AdminLTE 3 | Log in</title>
+<title>Excuse Me</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -130,7 +130,7 @@
 		            		관리페이지
 		            	</div>
 	            	</c:if>
-	            	<c:if test="${!loginUser.mem_nick eq 'admin'}">
+	            	<c:if test="${loginUser.mem_nick ne 'admin'}">
 		            	<div class="hmenu1" onclick="changeIframe('notice');">
 		            		마이페이지
 		            	</div>

@@ -8,6 +8,7 @@
 	<decorator name="notice" page="notice_decorator.jsp">
 		<pattern>/notice/regist</pattern>
 		<pattern>/notice/list</pattern>
+		<pattern>/notice/list_admin</pattern>
 		<pattern>/notice/detail</pattern>	
 		<pattern>/notice/modify</pattern>	
 	</decorator>		

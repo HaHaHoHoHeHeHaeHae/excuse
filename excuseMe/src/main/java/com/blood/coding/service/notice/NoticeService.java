@@ -11,6 +11,7 @@ public interface NoticeService {
 	
 	//리스트
 	public Map<String, Object> noticeList(Criteria cri) throws SQLException;
+	public Map<String, Object> noticeListAll(Criteria cri) throws SQLException;
 	public Map<String, List<NoticeVO>> noticeRecentList() throws SQLException;
 	//상세보기
 	public NoticeVO noticeDetailByAdmin(String not_no) throws SQLException;

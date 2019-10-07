@@ -75,7 +75,7 @@
 								<c:if test="${!empty noticeList }">
 									<c:forEach var="notice" items="${noticeList}">
 										<tr>
-											<td style="cursor:pointer;text-overflow: ellipsis; overflow: hidden;display: block;width:250px;" onclick="self.location='<%=request.getContextPath()%>/notice/detail?not_no=${notice.not_no }&page=1'">${notice.not_title }</td>
+											<td style="cursor:pointer;text-overflow: ellipsis; overflow: hidden;display: block;width:250px;" onclick="self.location='<%=request.getContextPath()%>/notice/detail?not_no=${notice.not_no }&page=1&mem_nick=${loginUser.mem_nick}'">${notice.not_title }</td>
 											<td><fmt:formatDate value="${notice.not_regDate }" pattern="yyyy-MM-dd"/></td>
 										</tr>
 									</c:forEach>
@@ -83,7 +83,7 @@
 							</tbody>
 						</table>
 					</div>
-					<div id="recommend" style="width:48%; height:400px;background:red;">
+					<div id="recommend" style="width:48%; height:400px;">
 				
 					</div>
 				</div>

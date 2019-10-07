@@ -53,26 +53,46 @@ public class NoticeController {
 
 		return mav;
 	}
+	
+	@RequestMapping("/list_admin")
+	public ModelAndView ListNoticeAdmin(Criteria cri) throws Exception {
+		String url = "/notice/listAll";
+		ModelAndView mav = new ModelAndView();
+
+		Map<String, Object> map = service.noticeListAll(cri);
+
+		mav.addObject("dataMap", map);
+		mav.setViewName(url);
+
+		return mav;
+	}
 
 	// 상세보기
 
 	@RequestMapping("/detail")
-	public ModelAndView DetailNoticer(String not_no, String page) throws Exception {
+	public ModelAndView DetailNoticer(String not_no, String page, String mem_nick) throws Exception {
 		String url = "/notice/detail";
 
 		ModelAndView mav = new ModelAndView();
 		NoticeVO vo = service.noticeDetailByMember(not_no);
-
+		
 		mav.addObject("page", page);
 		mav.addObject("notice", vo);
+		mav.addObject("mem_nick", mem_nick);
 		mav.setViewName(url);
 
 		return mav;
 	}
 
 	@RequestMapping("/noticeDetail")
-	public ModelAndView DetailNotice(String not_no, String page) throws Exception {
-		String url = "/notice_sub/detail_form";
+	public ModelAndView DetailNotice(String not_no, String page, String mem_nick) throws Exception {
+		String url = null;
+		if(mem_nick.equals("admin")) {
+			url = "/notice_sub/detail_admin_form";
+		}else {
+			url = "/notice_sub/detail_form";
+		}
+		
 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("page", page);
@@ -244,7 +264,7 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "/registAttach", method = RequestMethod.POST)
-	public void registpost(MultipartFile[] uploadFile, String not_no) throws Exception {
+	public void registAttach(MultipartFile[] uploadFile, String not_no) throws Exception {
 
 		try {
 			AttachVO attach = new AttachVO();

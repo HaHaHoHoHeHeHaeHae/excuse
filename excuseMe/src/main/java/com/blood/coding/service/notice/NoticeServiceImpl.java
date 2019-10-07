@@ -44,6 +44,28 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		return map;
 	}
+	
+	@Override
+	public Map<String, Object> noticeListAll(Criteria cri) throws SQLException {
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<NoticeVO> list = noticeDAO.selectNoticeListAll(cri);
+		for(NoticeVO vo : list) {
+			String not_no = vo.getNot_no();
+			List<AttachVO> attachList = attachDAO.selectAttachesByAttachBoard(not_no);	
+			vo.setAttachList(attachList);
+			
+		}
+		PageMaker page = new PageMaker();
+		
+		int count = noticeDAO.selectNoticeCount();
+		page.setCri(cri);
+		page.setTotalCount(count);
+		
+		map.put("pageMaker",page);
+		map.put("noticeList", list);
+		
+		return map;
+	}
 
 	@Override
 	public NoticeVO noticeDetailByAdmin(String not_no) throws SQLException {
