@@ -12,7 +12,6 @@
 		p:username="ABC"
 		p:password="123" />
 
-
 	
 	
 	<bean id="dataSource"

@@ -10,8 +10,10 @@ import com.blood.coding.controller.common.PageMaker;
 import com.blood.coding.dao.attach.AttachDAO;
 import com.blood.coding.dao.category.CategoryDAO;
 import com.blood.coding.dao.club.ClubDAO;
+import com.blood.coding.dao.down.DownDAO;
 import com.blood.coding.dao.local.LocalDAO;
 import com.blood.coding.dao.member.MemberDAO;
+import com.blood.coding.dao.up.UpDAO;
 import com.blood.coding.dto.attach.AttachVO;
 import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.dto.club.ClubVO;
@@ -34,7 +36,7 @@ public class ClubServiceImpl implements ClubService {
 	public void setRelyDAO(ReplyDAO replyDAO) {
 		this.replyDAO = replyDAO;
 	}
-
+ */
 	private UpDAO upDAO;
 	public void setUpDAO(UpDAO upDAO) {
 		this.upDAO = upDAO;
@@ -43,7 +45,7 @@ public class ClubServiceImpl implements ClubService {
 	private DownDAO downDAO;
 	public void setDownDAO(DownDAO downDAO) {
 		this.downDAO = downDAO;
-	}*/
+	}
 	
 	private MemberDAO memberDAO;
 	public void setMemberDAO(MemberDAO memberDAO) {
@@ -213,6 +215,34 @@ public class ClubServiceImpl implements ClubService {
 		List<ClubVO> list = clubDAO.recentClubMain();
 		map.put("recentClubList", list);
 		return map;
+	}
+	
+	@Override
+	public void updateClub(String club_no) throws SQLException {
+		clubDAO.updateClubStatus(club_no);
+	}
+
+	@Override
+	public void updateStopClub(String club_no) throws SQLException {
+		clubDAO.updateStopClubStatus(club_no);
+	}
+
+
+
+
+	@Override
+	public Map<String, Object> getClubListByAdmin(Criteria cri, MemberVO memberVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public Map<String, Object> getBlackList(Criteria cri) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

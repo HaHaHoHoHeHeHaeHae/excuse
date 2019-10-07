@@ -2,5 +2,12 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
-    <mapper namespace="up"></mapper>
+
+<mapper namespace="Up">
+	<select id="selectUpCount" resultType="int">
+		select count(*)
+		from up
+		where club_no=#{club_no}
+	</select>
+
+</mapper>
