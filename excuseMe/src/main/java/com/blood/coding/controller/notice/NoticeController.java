@@ -244,7 +244,7 @@ public class NoticeController {
 	}
 
 	@RequestMapping(value = "/registAttach", method = RequestMethod.POST)
-	public void registpost(MultipartFile[] uploadFile, String not_no) throws Exception {
+	public void registAttach(MultipartFile[] uploadFile, String not_no) throws Exception {
 
 		try {
 			AttachVO attach = new AttachVO();
