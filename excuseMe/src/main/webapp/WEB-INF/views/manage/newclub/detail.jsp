@@ -67,8 +67,9 @@
 							</div>
 							<div class="form-group row" style="margin-top:15px;">
 							    <label class="col-sm-3 control-label"style="margin-top:15px;">대표자 닉네임</label> 
-							    <input class="col-sm-4 form-control" type="text" id="mem_nick" 
-							    readonly name="mem_id" value="${member.mem_nick }" onclick="OpenWindow('detail?mem_id=${member.mem_id }','','850','800');">
+							    <input class="col-sm-4 form-control" type="text" id="mem_id" 
+							    readonly name="mem_id" value="${member.mem_id }">
+							    <button class="button small"  onclick="memdetail();">대표자 정보</button>
 							</div>
 							
 							<div class="form-group row" style="margin-top:15px;">
@@ -120,11 +121,14 @@
 				
 
 <script>
-/* 	window.onload=function(){
-		
-		$('#contentDiv').attr("contentEditable",false);
-		$(':radio:not(:checked)').attr('disabled',true);
-	} */
+function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
+	winleft = (screen.width - WinWidth) / 2;
+	wintop = (screen.height - WinHeight) / 2;
+	var win = window.open(UrlStr , WinTitle , "scrollbars=yes,width="+ WinWidth 
+		                	+", height="+ WinHeight +", top="+ wintop +", left=" 
+		                	+ winleft + ", resizable=no, status=yes"  );
+    win.focus() ; 
+}
 	function CloseWindow(){
 		window.close();
 	
@@ -183,6 +187,12 @@
 				
 			}); 
 		}
+	
+	function memdetail(){
+		var mem_id= mem_id.value;
+		self.location.href="<%=request.getContextPath() %>/manage/member/detail?mem_id="+mem_id;
+	
+	}
    	
 	
 	

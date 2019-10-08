@@ -71,24 +71,6 @@
 
 			</div>
 					
-						 <%--  <div class="float-right">	
-						 	<div class="row">
-							 	<select class="form-control col-sm-4" name="searchType" id="searchType">
-									<option value="in"  ${pageMaker.cri.searchType eq 'in' ? 'selected':'' }>전 체</option>
-									<option value="i" ${pageMaker.cri.searchType eq 'i' ? 'selected':'' }>아이디</option>
-									<option value="n" ${pageMaker.cri.searchType eq 'n' ? 'selected':'' }>이름</option>
-													
-								</select>
-								<input  class="form-control col-sm-6" type="text" name="keyword" 
-									placeholder="검색어를 입력하세요." value="${param.keyword }"/>
-								<span class="input-group-btn col-sm-2">
-									<button class="btn btn-info" type="button" id="searchBtn" onclick="onSearch();">
-										<i class="fa fa-fw fa-search"></i>
-									</button>
-								</span>
-							</div>
-						</div> 
-							 --%>
 					
 					
 
@@ -113,37 +95,33 @@
 													</td>
 												</tr>
 											</c:if> --%>
-										<%-- <c:if test="${}"> --%>
-										<c:if test= "${club.mi>0 }" >
-							  			<c:forEach items="${clubList }" var="club" >
-							  			
-							  	<tr>
-							  		<td class="text-center">${club.club_name }</td>
-									<td class="text-center">${club.cate_name }</td>
-									<td class="text-center">${club.mi }</td>
-									<td class="text-center">
-									<c:if test= "${club.club_status==1 }" >
-									운영중
-									</c:if>
-									<c:if test= "${club.club_status==2 }" >
-									운영 중지
-									</c:if>
-									</td>
-									
-									<td class="text-center">
-									<button type="button" class="button special small" id="detailBtn" onclick="OpenWindow('detail?club_no=${club.club_no }','','850','800');">
-									상세보기</button>
-									</td>
-								</tr>
+										
+							  			 <c:forEach items="${clubList }" var="club" >
+										  	<tr>
+										  		<td class="text-center">${club.club_name }</td>
+												<td class="text-center">${club.cate_name }</td>
+												<td class="text-center">${club.mi }</td>
+												<td class="text-center">
+												<c:if test= "${club.club_status==1 }" >
+												운영중
+												</c:if>
+												<c:if test= "${club.club_status==2 }" >
+												운영 중지
+												</c:if>
+												</td>
+												
+												<td class="text-center">
+												<button type="button" class="button special small" id="detailBtn" onclick="OpenWindow('detail?club_no=${club.club_no }','','850','800');">
+												상세보기</button>
+												</td>
+											</tr>
 								
-							  </c:forEach>
-							  </c:if>
-							<%-- </c:if> --%>
+									   </c:forEach>
 						</table>
 									</div>
 									
 									
-					<div class="text-center" style="margin-left: 200px;"  >
+					 <div class="text-center" style="margin-left: 200px;"  >
 																				
 						<ul class="pagination ">
 							<li class="page-item">
@@ -182,7 +160,7 @@
 							</li>
 											
 						</ul>
-						</div>
+						</div> 
 					</div>	
 				</div>
 				

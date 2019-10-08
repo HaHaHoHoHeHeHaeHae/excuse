@@ -99,10 +99,11 @@ public class ClubServiceImpl implements ClubService {
 		/*cri.setPerPageNum(3);
 		cri.setLocal(memberVO.getMem_local());
 		//cri.setAlignment(2);
-		//검색창 돌릴때 추천동호회도 검색파라미터를 포함해서 가져오니까 강제 fix해주기
+		//검색창 돌릴때 추천동호회도 검색파라미터를 포함해서 가져오니까 강제 fix해주기*/
+		
 		cri.setLocal("");
 		cri.setCategory("");
-		cri.setKeyword("");*/
+		cri.setKeyword("");
 
 		//추천리스트
 		List<ClubVO> recommendList = clubDAO.selectSearchClubList(cri);
@@ -234,6 +235,7 @@ public class ClubServiceImpl implements ClubService {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(totalCount);
 		
+		
 		dataMap.put("clubList", clubList);
 		dataMap.put("pageMaker", pageMaker);
 		dataMap.put("cateList", categoryList);
@@ -244,7 +246,7 @@ public class ClubServiceImpl implements ClubService {
 	
 	//관리자 신규동호회목록
 		@Override
-		public Map<String, Object> getNewClubList(Criteria cri) throws SQLException {
+		public Map<String, Object> getNewClubList(Criteria cri,MemberVO memberVO) throws SQLException {
 			Map<String, Object> dataMap = new HashMap<String, Object>();
 			List<ClubVO> newclubList = clubDAO.selectNewClubList(cri);
 			
@@ -263,8 +265,24 @@ public class ClubServiceImpl implements ClubService {
 		
 	//관리자 블랙리스트
 	@Override
-	public Map<String, Object> getBlackList(Criteria cri) throws SQLException {
-		return null;
+	public Map<String, Object> getBlackList(Criteria cri,MemberVO memberVO) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		ClubVO clubVO = new ClubVO();
+		
+		
+		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
+		int totalCount = clubDAO.selectSearchClubCount(cri);
+		
+		PageMaker pageMaker = new PageMaker();
+		
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		
+		dataMap.put("clubList", clubList);
+		dataMap.put("pageMaker", pageMaker);
+		
+		return dataMap;
+		
 	}
 
 	//메이드 바이 우철 / 내가만든 클럽을 리스트 검색

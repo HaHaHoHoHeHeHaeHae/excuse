@@ -161,8 +161,7 @@
 										</c:if>
 									</td>
 										<td>
-											<button type="button" class="button special small"
-												id="detailBtn"
+											<button type="button" class="button special small" id="detailBtn"
 												onclick="OpenWindow('detail?mem_id=${member.mem_id }','','850','800');">
 												상세보기</button>
 										</td>

@@ -19,7 +19,7 @@
 		<!-- clubList End -->
 		
 	</div>
-
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<!-- jQuery -->
 	<script
 		src="<%=request.getContextPath()%>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>

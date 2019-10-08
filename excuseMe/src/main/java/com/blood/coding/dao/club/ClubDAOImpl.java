@@ -24,9 +24,16 @@ public class ClubDAOImpl implements ClubDAO {
 		int limit = cri.getPerPageNum();
 		int alignment = cri.getAlignment();
 		int sort = cri.getSort();
+		String local = cri.getLocal();
+		String category = cri.getCategory();
+		String keyword = cri.getKeyword();
+		
 		RowBounds rowBounds = new RowBounds(startRowNum,limit);
 		cri.setAlignment(alignment);
 		cri.setSort(sort);
+		cri.setLocal(local);
+		cri.setCategory(category);
+		cri.setKeyword(keyword);
 		
 		List<ClubVO> clubList = session.selectList("Club.selectSearchClubList",cri,rowBounds);
 		

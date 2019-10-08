@@ -55,6 +55,7 @@
     	and club_status = 2
     	</if>
     </sql>
+   
 
 	    <select id="selectSearchClubList" resultType="club">
 	    	select *
@@ -72,6 +73,7 @@
 	    	from club_view
 	    	where club_no is not null and club_status='0'
 	    </select>
+	    
 	    
 	     <select id="selectNewClubCount" resultType="int">
 	    	select count(*)

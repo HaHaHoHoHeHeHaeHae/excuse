@@ -253,7 +253,8 @@ width:250px;
 
 	
 
-	
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
 <script>
 function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
 	winleft = (screen.width - WinWidth) / 2;
@@ -265,20 +266,21 @@ function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
 }
 
 
+<%--subCategory --%>
 $('#category').change(function() { 
-    $.ajax({
-       data:JSON.stringify({ "cate_no":$(this).val() }),
-       contentType:"application/JSON",
-       type: "POST",
-       url: "<%=request.getContextPath()%>/club/subcategory",
-       success: function(data) {
-                $("#subCategory").html("");
-                for(var sub of data){
-                $("#subCategory").append("<option>"+ sub.cate_sub_name +"</option>");
-                }
-       }
-    });
- });
+     $.ajax({
+        data:JSON.stringify({ "cate_no":$(this).val() }),
+        contentType:"application/JSON",
+        type: "POST",
+        url: "<%=request.getContextPath()%>/club/subcategory",
+        success: function(data) {
+                 $("#subCategory").html("");
+                 for(var sub of data){
+                 $("#subCategory").append("<option>"+ sub.cate_sub_name +"</option>");
+                 }
+        }
+     });
+  });
 
 <%--subLocal --%>
 $('#local').change(function(){
@@ -326,48 +328,48 @@ $('#local').change(function(){
 	
 	//alert("category="+category+"local="+local+"keyword="+keyword);
 	
-	searchList("${categoryclub }",category,local,keyword);
+	searchList(category,local,keyword);
 }
 
 
-function searchList(categoryclub,category,local,keyword){
-	self.location="<%=request.getContextPath()%>/"+categoryclub+"/list?category="+category+"&local="+local+"&keyword="+keyword;
+function searchList(category,local,keyword){
+	self.location="<%=request.getContextPath()%>/manage/club/list?category="+category+"&local="+local+"&keyword="+keyword;
 }
 
 
 
  
- //동호회 생성날짜 정렬
+ <%-- //동호회 생성날짜 정렬
 function ali1(){ 
 	var category = $('select#category option:selected' ).text();
 	var local = $('select#local option:selected').text();
 	var keyword = $('input[name="keyword"]').val();
 	var sortType=$('div#sortType').val();
-	self.location.href="<%=request.getContextPath() %>/manage/club/list?alignment=1&sortType="+ sortType +"&category="+category+"&local="+local+"&keyword=" + keyword;
+	self.location="<%=request.getContextPath()%>/manage/club/list?alignment=2&sortType="+ sortType+"&category="+category+"&local="+local+"&keyword="+keyword;
 }
+ 
 function ali2(){ 
 	var category = $('select#category option:selected' ).text();
 	var local = $('select#local option:selected').text();
 	var keyword = $('input[name="keyword"]').val();
-	var searchType=$('select#searchType').val();
-	var keyword=$('input[name="keyword"]').val();
 	var sortType=$('div#sortType').val();
-	self.location.href="<%=request.getContextPath() %>/manage/club/list?alignment=2&sortType="+ sortType +"&searchType="+ searchType + "&keyword=" + keyword;
-}
+	self.location="<%=request.getContextPath()%>/manage/club/list?alignment=3&sortType="+ sortType+"&category="+category+"&local="+local+"&keyword="+keyword;
+} --%>
 
 
 //동호회 운영상태 정렬
 function sort1(){ 
-	var searchType=$('select#searchType').val();
+	var category = $('select#category option:selected').text();
+	var local = $('select#local option:selected').text();
 	var keyword=$('input[name="keyword"]').val();
-	var aliType=$('div#aliType').val();
-	self.location.href="<%=request.getContextPath() %>/manage/club/list?sort=1&aliType="+ aliType +"&searchType="+ searchType + "&keyword=" + keyword;
+	self.location.href="<%=request.getContextPath() %>/manage/club/list?sort=1&category="+ category + "&local="+local+"&keyword=" + keyword;
 }
+
 function sort2(){ 
-	var searchType=$('select#searchType').val();
+	var category = $('select#category option:selected').val();
+	var local = $('select#local option:selected').val();
 	var keyword=$('input[name="keyword"]').val();
-	var aliType=$('div#aliType').val();
-	self.location.href="<%=request.getContextPath() %>/manage/club/list?sort=2&aliType="+ aliType +"&searchType="+ searchType + "&keyword=" + keyword;
+	self.location.href="<%=request.getContextPath() %>/manage/club/list?sort=2&category="+ category + "&local="+local+"&keyword=" + keyword;
 } 
  
    	
