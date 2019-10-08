@@ -39,4 +39,6 @@ public interface ClubDAO {
 	
 	//메이드 바이 우철 / 내가만든 클럽을 리스트 검색
 	   public List<ClubVO> myClub(String mem_id) throws SQLException;
+	   
+	   public int selectClubCount(String club_name) throws SQLException;
 }

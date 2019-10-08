@@ -177,7 +177,23 @@ public class ClubController {
 	      }
 	      return entity;
 	}
-	
+	@RequestMapping("/findName")
+	public ResponseEntity <String> findName(String club_name) throws Exception{
+		ResponseEntity <String> entity = null;
+		try {
+			int count = clubService.countClub(club_name);
+			if(count>=1) {
+				entity = new ResponseEntity <String>(HttpStatus.INTERNAL_SERVER_ERROR);
+			}else {
+				entity = new ResponseEntity<String>(club_name,HttpStatus.OK);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity <String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return entity;
+	}
 	/*@RequestMapping("/joinToClub")
 	public void joinToClub(JoinClubVO joinclub, HttpServletResponse response) throws SQLException{
 		joinClubDAO.insertJoinClub(joinclub);;

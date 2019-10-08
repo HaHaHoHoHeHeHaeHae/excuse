@@ -82,8 +82,11 @@
 				<div  class="col-md-3">
 					<h5 style="font-weight: bold; margin-top: 7px;margin-left:40px; color: #768d99;">동&nbsp&nbsp호&nbsp&nbsp회&nbsp&nbsp명</h5>
 				</div>
-				<div  class="col-md-9">
+				<div  class="col-md-6">
 					<input type="text" id="club_name" name="club_name" class="form-control" maxlength="9">
+				</div>
+				<div class="col-md-3">
+					<button type="button" class="btn btn-block btn-default" onclick="findName()">중복체크</button>
 				</div>
 			</div>
 			<div>
@@ -353,7 +356,7 @@
 		 
 		 var input=$('<input>').attr({"type":"file", "name":"uploadFile"}).css({"dispaly":"inline", "margin-left":"50px","margin-top":"10px"});
 		 
-		 var div = $('<div>').addClass("inputRow");
+		 var div = $('<div>').addClass("inputRow").css("width","600px");
 		 
 		 div.append(input).append("<button style='border:0;outline:0;width:40px;' class='badge bg-red' type='button'>X</button>");
 		 
@@ -439,6 +442,25 @@
 			var chkName = new RegExp(/^[가-힣a-zA-Z]{1,10}$/);
 			return chkName.test(name);
 		}
+	 function findName(){
+		 var name = club_name.value;
+		 
+		 $.ajax({
+			url : "<%=request.getContextPath()%>/club/findName",
+			data : {
+				club_name:name
+			},
+			type:"GET",
+			success:function(name){
+				alert(name + "은(는) 사용 가능한 이름입니다.");
+				$("#club_name").css("disable",true);
+			},
+			error:function(){
+				alert("이미 존재하는 이름입니다.");
+				$("#club_name").val("");
+			}
+		 });
+	 }
 	</script>
 	
 </body>

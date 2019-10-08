@@ -42,9 +42,9 @@ public interface ClubService {
 	Map<String,List<ClubVO>> getClubListMain(String mem_local) throws SQLException;
 	Map<String,List<ClubVO>> getClubListMainRecent() throws SQLException;
 	String getClubSeq() throws SQLException;
-	
+	//클럽 이름 중복성 검사
+	public int countClub(String club_name) throws SQLException;
 	//메이드 바이 우철 / 내가만든 클럽을 리스트 검색
 	public List<ClubVO> getMyClub(String mem_id) throws SQLException;
-	
 	
 }

@@ -254,6 +254,13 @@ public class ClubServiceImpl implements ClubService {
 		String club_no = "c" + cno;
 		return club_no;
 	}
+
+
+	@Override
+	public int countClub(String club_name) throws SQLException {
+		int count = clubDAO.selectClubCount(club_name);
+		return count;
+	}
 	
 
 }
