@@ -140,10 +140,10 @@
 		            		마이페이지
 		            	</div>
 	            	</c:if>
-	            	<div class="hmenu1" onclick="changeIframe('notice');">
+	            	<div class="hmenu1" onclick="changeIfram('club')">
 	            		동호회 찾기
 	            	</div>
-	            	<div class="hmenu1" onclick="changeIframe('notice');">
+	            	<div class="hmenu1" onclick="OpenWindow('<%=request.getContextPath() %>/club/regist', '동호회 생성', 850, 900)">
 	            		동호회 생성
 	            	</div>
 	            	<div class="hmenu1" onclick="changeIframe('notice');">

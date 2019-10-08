@@ -95,8 +95,7 @@
 	    </select>
 	    
 	    <select id="selectClubSeq" resultType="int">
-	    	select club_seq.nextval
-	    	<!-- as club_no -->
+	    	select club_seq.nextval as club_seq
 	    	from dual
 	    </select>
 	    
