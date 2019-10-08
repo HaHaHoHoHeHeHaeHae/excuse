@@ -42,7 +42,7 @@ public class MypageController {
 	@RequestMapping("joinclub")
 	public ModelAndView mypagejoinclub(Criteria cri, ModelAndView modelnView, HttpServletRequest request) throws Exception {
 		
-		//?„¸?…˜?—?„œ ë¡œê·¸?¸?•œ ?œ ?? ? •ë³? ê°?? ¸?˜¤ê¸?
+		//?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë¡œê·¸?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?? ?ï¿½ï¿½ï¿½? ï¿½??ï¿½ï¿½?ï¿½ï¿½ï¿½?
 		HttpSession session = request.getSession();
 		
 		MemberVO member = (MemberVO) session.getAttribute("loginUser");
@@ -58,7 +58,7 @@ public class MypageController {
 	@RequestMapping("myclub")
 	public ModelAndView myClub(Criteria cir, ModelAndView modelnView, HttpServletRequest request) throws Exception {
 		
-		//?„¸?…˜?—?„œ ë¡œê·¸?¸?•œ ?œ ?? ? •ë³? ê°?? ¸?˜¨?‹¤.
+		//?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë¡œê·¸?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?? ?ï¿½ï¿½ï¿½? ï¿½??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½.
 		HttpSession session = request.getSession();
 		
 		MemberVO member = (MemberVO) session.getAttribute("loginUser");
@@ -77,7 +77,7 @@ public class MypageController {
 	@RequestMapping("wishclub")
 	public ModelAndView wishClub(Criteria cir, ModelAndView modelnView, HttpServletRequest request) throws Exception {
 		
-		//?„¸?…˜?—?„œ ë¡œê·¸?¸?•œ ?œ ?? ? •ë³? ê°?? ¸?˜¨?‹¤.
+		//?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë¡œê·¸?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?? ?ï¿½ï¿½ï¿½? ï¿½??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½.
 		HttpSession session = request.getSession();
 		
 		MemberVO member = (MemberVO) session.getAttribute("loginUser");
@@ -92,17 +92,7 @@ public class MypageController {
 		
 		return modelnView;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	@RequestMapping(value="testRegist", method=RequestMethod.GET)
 	public String testRegistget() throws Exception {
@@ -111,7 +101,7 @@ public class MypageController {
 	
 	@RequestMapping(value="testRegist", method=RequestMethod.POST)
 	public void testRegistpost(MultipartFile[] uploadFile, HttpServletResponse response) throws Exception {
-		System.out.println("? ?´? œ ?—…ë¡œë“œ ?•œ?‹¤??");
+		System.out.println("?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ë¡œë“œ ?ï¿½ï¿½?ï¿½ï¿½??");
 		AttachVO attach=null;
 		
 		for(MultipartFile file : uploadFile) {
@@ -125,7 +115,7 @@ public class MypageController {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
-		out.println("alert('ì»¨íŠ¸ë¡¤ëŸ¬ ??‚˜ê³? ?™•?¸?•¨')");
+		out.println("alert('ì»¨íŠ¸ë¡¤ëŸ¬ ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½')");
 		out.println("</script>");
 			
 	}
@@ -139,7 +129,7 @@ public class MypageController {
 		
 		/*attachDAO.deleteAllAttach(attach_board);*/
 		attachDAO.deleteAttach(attach_no);
-		System.out.println("dk ?‚­? œ?•¨ ?””ë¹„ê??„œ ?™•?¸?•´ë´?");
+		System.out.println("dk ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ë¹„ï¿½??ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½?");
 		
 		
 		

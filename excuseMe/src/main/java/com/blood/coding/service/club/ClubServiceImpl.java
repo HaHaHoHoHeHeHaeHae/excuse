@@ -10,6 +10,7 @@ import com.blood.coding.controller.common.PageMaker;
 import com.blood.coding.dao.attach.AttachDAO;
 import com.blood.coding.dao.category.CategoryDAO;
 import com.blood.coding.dao.club.ClubDAO;
+import com.blood.coding.dao.down.DownDAO;
 import com.blood.coding.dao.joinClub.JoinClubDAO;
 import com.blood.coding.dao.local.LocalDAO;
 import com.blood.coding.dao.member.MemberDAO;
@@ -71,25 +72,25 @@ public class ClubServiceImpl implements ClubService {
 
 	
 	@Override
-	public Map<String, Object> getClubList(Criteria cri,MemberVO memberVO) throws SQLException { //(ë§¤ê°œë³??ˆ˜?— memberVOì¶”ê?)
+	public Map<String, Object> getClubList(Criteria cri,MemberVO memberVO) throws SQLException { //(ë§¤ê°œï¿½??ï¿½ï¿½?ï¿½ï¿½ memberVOì¶”ï¿½?)
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 
 		cri.setPerPageNum(3);
 		//cri.setLocal(memberVO.getMem_local());
-		cri.setLocal("??? „");
+		cri.setLocal("???ï¿½ï¿½");
 		cri.setAlignment(2);
-		//ê²??ƒ‰ì°? ?Œë¦´ë•Œ ì¶”ì²œ?™?˜¸?šŒ?„ ê²??ƒ‰?ŒŒ?¼ë¯¸í„°ë¥? ?¬?•¨?•´?„œ ê°?? ¸?˜¤?‹ˆê¹? ê°•ì œ fix?•´ì£¼ê¸°
+		//ï¿½??ï¿½ï¿½ï¿½? ?ï¿½ï¿½ë¦´ë•Œ ì¶”ì²œ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ï¿½??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ë¯¸í„°ï¿½? ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ï¿½??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? ê°•ì œ fix?ï¿½ï¿½ì£¼ê¸°
 		cri.setLocal("");
 		cri.setCategory("");
 		cri.setKeyword("");
 
-		//ì¶”ì²œë¦¬ìŠ¤?Š¸
+		//ì¶”ì²œë¦¬ìŠ¤?ï¿½ï¿½
 		List<ClubVO> recommendList = clubDAO.selectSearchClubList(cri);
 		
 		//ì¹´í…Œê³ ë¦¬
 		List<CategoryVO> categoryList = categoryDAO.selectCategoryList();
 
-		//ì§??—­
+		//ï¿½??ï¿½ï¿½
 		List<LocalVO> localList = localDAO.selectLocalList();
 
 		cri.setPerPageNum(10);
@@ -106,7 +107,7 @@ public class ClubServiceImpl implements ClubService {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(totalCount);
 		
-		// dataMap?— ?„£ê¸?
+		// dataMap?ï¿½ï¿½ ?ï¿½ï¿½ï¿½?
 		dataMap.put("clubList", clubList);
 		dataMap.put("pageMaker", pageMaker);
 		dataMap.put("recommendList", recommendList);
@@ -117,20 +118,20 @@ public class ClubServiceImpl implements ClubService {
 		return dataMap;
  	}
 
-	//?™?˜¸?šŒ ì¡°íšŒ[?””?…Œ?¼]:replycnt ?ˆ?Š”ê±?
+	//?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ì¡°íšŒ[?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½]:replycnt ?ï¿½ï¿½?ï¿½ï¿½ï¿½?
 	@Override
 	public Map<String, Object> readClub(String club_no) throws SQLException {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		
-		//?™?˜¸?šŒ ?•œê°? 
+		//?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ï¿½? 
 		ClubVO club = clubDAO.selectClub(club_no);
 		
-		//?‹‰?„¤?„
+		//?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½
 		String memberId = club.getMem_id();
 		MemberVO member = memberDAO.selectMember(memberId);
 		String memberNick = member.getMem_nick();
 
-		//ì²¨ë??ŒŒ?¼
+		//ì²¨ï¿½??ï¿½ï¿½?ï¿½ï¿½
 		AttachVO attachVO = new AttachVO();
 		String attach_board = attachVO.getAttach_board();
 		attach_board=club_no;
@@ -148,7 +149,7 @@ public class ClubServiceImpl implements ClubService {
 		return dataMap;
 	}
 
-	// ê·¸ëƒ¥ ?•˜?‚˜ ê°?? ¸?˜¤?Š”ê±?-?ˆ˜? •?•˜ê¸? ? „ ?‹¨ê³?(?ˆ˜? •ë²„íŠ¼?„ ?´ë¦??–ˆ?„?•Œ)
+	// ê·¸ëƒ¥ ?ï¿½ï¿½?ï¿½ï¿½ ï¿½??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½?-?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? ?ï¿½ï¿½ ?ï¿½ï¿½ï¿½?(?ï¿½ï¿½?ï¿½ï¿½ë²„íŠ¼?ï¿½ï¿½ ?ï¿½ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½)
 	@Override
 	public ClubVO getClub(String club_no) throws SQLException {
 		ClubVO club = clubDAO.selectClub(club_no);
@@ -164,7 +165,7 @@ public class ClubServiceImpl implements ClubService {
 		clubDAO.insertClub(club);
 	}
 
-	//?ˆ˜? •?•˜ê³? submitë²„íŠ¼?„ ?´ë¦??–ˆ?„?•Œ
+	//?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ï¿½? submitë²„íŠ¼?ï¿½ï¿½ ?ï¿½ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½
 	@Override
 	public void modify(ClubVO club) throws SQLException {
 		clubDAO.updateClub(club);
@@ -176,7 +177,9 @@ public class ClubServiceImpl implements ClubService {
 	public void remove(String club_no) throws SQLException {
 		clubDAO.deleteClub(club_no);
 	}
-
+	
+	
+//ê´€ë¦¬ì
 	@Override
 	public Map<String, Object> getNewClubList(Criteria cri) throws SQLException {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
@@ -206,14 +209,42 @@ public class ClubServiceImpl implements ClubService {
 	}
 
 
-
-
 	@Override
 	public Map<String, List<ClubVO>> getClubListMainRecent() throws SQLException {
 		Map<String, List<ClubVO>> map = new HashMap();
 		List<ClubVO> list = clubDAO.recentClubMain();
 		map.put("recentClubList", list);
 		return map;
+	}
+
+	@Override
+	public Map<String, Object> getClubListByAdmin(Criteria cri, MemberVO memberVO) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<String, Object> getBlackList(Criteria cri) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateClub(String club_no) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateStopClub(String club_no) throws SQLException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<ClubVO> getMyClub(String mem_id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

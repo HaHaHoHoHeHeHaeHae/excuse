@@ -367,6 +367,8 @@ div.top {
 			var local = "";
 		}
 		
+		var subcategory = $()
+		
 		//alert("category="+category+"local="+local+"keyword="+keyword);
 		
 		searchList("${categoryclub }",category,local,keyword);

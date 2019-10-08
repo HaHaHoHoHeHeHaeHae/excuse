@@ -76,7 +76,7 @@
 		  />
 		  
 	<bean id="replyService"
-		  class="com.blood.coding.service.common.ReplyServiceImpl"
+		  class="com.blood.coding.service.reply.ReplyServiceImpl"
 		  p:replyDAO-ref="replyDAO"
 		  />
 	<bean id="upnDownService"
