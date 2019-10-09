@@ -1,5 +1,7 @@
 package com.blood.coding.controller.club;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -56,6 +58,7 @@ public class ClubController {
 	
 	@Autowired
 	private AttachDAO attachDAO;
+
 	/*@Autowired
 	private JoinClubDAO joinClubDAO;
 	*/
@@ -125,16 +128,51 @@ public class ClubController {
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.GET) //디테일에서 수정버튼 누를때(수정하기 위해 가져온다)
-	public void modifyClubForm(String club_no, Model model) throws SQLException{
+	public ModelAndView modifyClubForm(String club_no) throws Exception{
+		
+		ModelAndView mav = new ModelAndView();
+		String url = "/club/modify";
 		ClubVO club = clubService.getClub(club_no);
-		model.addAttribute("club",club);
+		String club_noForThum = club_no + "c";
+		AttachVO attachThum = attachDAO.selectAttachesByAttachBoardOne(club_noForThum);
+		List<AttachVO> attach = attachDAO.selectAttachesByAttachBoard(club_no);
+		
+		String local = club.getClub_local();
+		int local_count = local.indexOf("_");
+		String sub_local = local.substring(local_count+1);
+	    String main_local = local.substring(0,local_count);
+	    System.out.println(sub_local+main_local);
+	    
+	    List <LocalVO> localList = localDAO.selectLocalList();
+	    
+	    int main_local_no= localDAO.selectLocalNo(main_local);
+	    
+	    List <LocalVO> subLocalList = localDAO.selectSubLocalList(main_local_no);
+	
+	    mav.addObject("main_local",main_local);
+	    mav.addObject("sub_local",sub_local);
+	    mav.addObject("localList",localList);
+	    mav.addObject("subLocalList",subLocalList);
+		mav.addObject("attachThum",attachThum);
+		mav.addObject("attach",attach);
+		mav.addObject("club", club);
+		mav.setViewName(url);
+
+		return mav;
 	}
 	
 	@RequestMapping(value="/modify", method=RequestMethod.POST) //수정하고 submit버튼 누를때
-	public void modifyClubUpdate(ClubVO club, HttpServletResponse response) throws SQLException, IOException{
-		clubService.modify(club);
-
-		
+	public ResponseEntity <String> modifyClubUpdate(ClubVO club, HttpServletResponse response) throws SQLException, IOException{
+		ResponseEntity<String> entity = null;
+		try {
+			clubService.modify(club);
+			String club_no = club.getClub_no();
+			entity = new ResponseEntity<String>(club_no,HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return entity;
 	}
 	
 	@RequestMapping(value="/remove", method=RequestMethod.GET)
@@ -166,7 +204,6 @@ public class ClubController {
 	public ResponseEntity<List<LocalVO>> subLocalList(@RequestBody LocalVO localVO) throws SQLException{
 		ResponseEntity<List<LocalVO>> entity = null;
 
-	      
 	      try {
 	    	  List<LocalVO> subLocalList = localDAO.selectSubLocalList(localVO.getLocal_no());
 	    	  entity = new ResponseEntity<List<LocalVO>>(subLocalList,HttpStatus.OK);
@@ -267,15 +304,15 @@ public class ClubController {
 	
 	@RequestMapping(value = "/registAttachThum", method = RequestMethod.POST)
 	public void registAttachThum(MultipartFile[] uploadThum, String club_no) throws Exception {
-		System.out.println(2222222);
+		
 		try {
 			ClubVO clubVO = clubService.getClub(club_no);
 			AttachVO attach = new AttachVO();
 			//파일등록
 			String mem_id = clubVO.getMem_id();
-			System.out.println(mem_id);
+	
 			club_no = club_no + "c";
-			System.out.println(club_no);
+	
 			if(uploadThum != null) {
 				for (MultipartFile file : uploadThum) {
 					
@@ -286,8 +323,6 @@ public class ClubController {
 					
 					attachDAO.insertAttach(attach);
 				}
-			}else {
-				System.out.println(1234);
 			}
 
 		} catch (Exception e) {
@@ -308,7 +343,7 @@ public class ClubController {
 
 				attachDAO.deleteAttach(attach_no);
 			}
-		}
+		}else {System.out.println("아아아");}
 		List<AttachVO> attachList = new ArrayList<AttachVO>();
 		
 		if(uploadFile!=null) {
@@ -330,27 +365,39 @@ public class ClubController {
 	}
 	
 	@RequestMapping(value = "/modifyAttachThum", method = RequestMethod.POST)
-	public void attachModifyThum(String club_no, MultipartFile uploadFile) throws Exception {
-		ClubVO clubVO = clubService.getClub(club_no);
-		List <AttachVO> attachList = attachDAO.selectAttachesByAttachBoard(club_no);
+	public void attachModifyThum(MultipartFile[] uploadThum, String club_no) throws Exception {
+		try {
+			ClubVO clubVO = clubService.getClub(club_no);
+			AttachVO attach = new AttachVO();
+			//파일등록
+			String mem_id = clubVO.getMem_id();
+			
+			club_no = club_no + "c";
+			int count = attachDAO.selectAttachThumCount(club_no);
+			if(uploadThum != null) {
+				for (MultipartFile file : uploadThum) {
+					String fileName = file.getOriginalFilename();
+					System.out.println(fileName);
+					
+					if(fileName!="") {
+						if(count >=1) {
+							attachDAO.deleteAllAttach(club_no);
+							DeleteFileUtils.delete(uploadPath, attach);
+						}
+						attach.setAttach_writer(mem_id);
+						attach = UploadFileUtils.uploadFile("d:\\upload", file.getOriginalFilename(), mem_id,
+								file.getBytes());
+						attach.setAttach_board(club_no);
+						
+						attachDAO.insertAttach(attach);
+					}
+				}
+				
+			}
 
-		for(AttachVO attach : attachList) {
-			int attach_no = attach.getAttach_no();
-			DeleteFileUtils.delete(uploadPath, attach);
-			attachDAO.deleteAttach(attach_no);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		
-		if(uploadFile!=null) {
-			 AttachVO attach = UploadFileUtils.uploadFile(uploadPath, uploadFile.getOriginalFilename(), "admin@naver.com", uploadFile.getBytes());
-			 
-			 attach.setAttach_board(club_no);
-			 attachList.add(attach);
-			 attachDAO.insertAttach(attach);
-			 clubVO.setAttachList(attachList);;
-		}
-		clubService.modify(clubVO);
-		 
 	}
 	
 	

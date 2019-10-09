@@ -20,7 +20,12 @@
     		from attach
     		where attach_no = #{attach_no}    	
     	</select>
-
+    	
+    	<select id ="selectAttachThumCount" resultType="int">
+    		select count(*)
+    		from attach
+    		where attach_board = #{attach_board}
+    	</select>
     	<update id="insertAttach">
     		insert into
     		attach

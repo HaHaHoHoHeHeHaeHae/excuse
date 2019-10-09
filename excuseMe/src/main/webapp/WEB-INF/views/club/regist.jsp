@@ -461,6 +461,11 @@
 			}
 		 });
 	 }
+	 $('div.fileInput').on('click','div.inputRow > button', function(event){
+			
+			$(this).parent('div.inputRow').remove();
+			
+		});
 	</script>
 	
 </body>

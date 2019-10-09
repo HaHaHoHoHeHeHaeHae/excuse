@@ -25,7 +25,7 @@
 		<script>
 		
 		$('div.fileInput').on('click','div.inputRow > button', function(event){
-			//alert("X btn click;");
+			
 			$(this).parent('div.inputRow').remove();
 			
 		});

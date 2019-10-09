@@ -107,7 +107,7 @@
 	    <update id="updateClub" parameterType="club">
 	    	update club
 	    	set
-	    	club_name=#{club_name}, club_content=#{club_content}, club_local=#{club_local}, cate_name=#{cate_name}
+	    	club_content=#{club_content}, club_local=#{club_local}
 	    	where club_no=#{club_no}
 	    </update>
 	    

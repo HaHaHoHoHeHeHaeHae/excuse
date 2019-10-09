@@ -39,4 +39,16 @@ public class AttachDAOImpl implements AttachDAO {
 	    public void deleteAllAttach(String attach_board) throws SQLException{
 	    	session.update("Attach.deleteAllAttach", attach_board);
 	    }
+
+		@Override
+		public int selectAttachThumCount(String attach_board) throws SQLException {
+			int count = session.selectOne("Attach.selectAttachThumCount", attach_board);
+			return count;
+		}
+
+		@Override
+		public AttachVO selectAttachesByAttachBoardOne(String attach_board) throws SQLException {
+			AttachVO list = session.selectOne("Attach.selectAttachesByAttachBoard",attach_board);
+			return list;
+		}
 }

@@ -63,5 +63,19 @@ public class AttachController {
 		
 		return DownloadFileUtils.download(filePath);
 	}
+	//대표사진 들고오는 메서드
+	@RequestMapping("/img")
+	public ResponseEntity<byte[]> getImg(int attach_no)throws Exception{
+		
+		ResponseEntity<byte[]> entity = null;
+		
+		AttachVO attach=attachDAO.selectAttachByAttachno(attach_no);
+		String fileName=attach.getAttach_uuid()+"$$"+attach.getAttach_name();
+		String filePath=attach.getAttach_path();
+		
+		filePath = uploadPath+filePath+File.separator+fileName;
+		
+		return DownloadFileUtils.download(filePath);
+	}
 	
 }
