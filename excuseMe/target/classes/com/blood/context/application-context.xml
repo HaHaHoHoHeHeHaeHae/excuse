@@ -72,13 +72,13 @@
 	  	  p:memberDAO-ref="memberDAO"
 		  p:categoryDAO-ref="categoryDAO"
 		  p:localDAO-ref="localDAO"
-		  p:attachDAO-ref="attachDAO"
-		  />
+		  p:attachDAO-ref="attachDAO" />
 		  
 	<bean id="replyService"
 		  class="com.blood.coding.service.reply.ReplyServiceImpl"
 		  p:replyDAO-ref="replyDAO"
-		  />
+		  p:memberDAO-ref="memberDAO" />
+		  
 	<bean id="upnDownService"
 			class="com.blood.coding.service.upndown.UpnDownService"
 			p:downDAO-ref="downDAO"

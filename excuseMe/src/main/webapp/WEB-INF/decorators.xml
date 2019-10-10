@@ -12,7 +12,6 @@
 		<pattern>/notice/detail</pattern>	
 		<pattern>/notice/modify</pattern>	
 	</decorator>		
-
 		
 	<decorator name="mypage" page="mypage_decorator.jsp">
 		<pattern>/mypage/*</pattern>		
@@ -20,7 +19,9 @@
 	
 	<decorator name="manage" page="manage_decorator.jsp">
 		<pattern>/manage/*</pattern>		
-	</decorator>		
+	</decorator>	
+	
+
 	
 <!-- 	<decorator name="OpenWindow" page="open_decorator.jsp">
 		<pattern>/*</pattern>		

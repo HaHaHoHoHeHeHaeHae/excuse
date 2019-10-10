@@ -22,7 +22,7 @@ public class UpnDownController {
 	private UpnDownService service;
 	
 	//매핑의 예
-	//http://localhost/coding/upndown/upcheck?mem_id=momo&club_no=c12
+	//	
 	
 	@RequestMapping("upcheck")
 	public ResponseEntity upCheck(UpVO up, HttpServletResponse response) throws Exception {

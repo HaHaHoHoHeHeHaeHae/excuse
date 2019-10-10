@@ -17,6 +17,7 @@ public class ReplyDAOImpl implements ReplyDAO {
 	}
 
 	@Override
+	//댓글리스트
 	public List<ReplyVO> selectReplyList(Criteria cri, String club_no) throws SQLException {
 		int offset = cri.getPageStartRowNum();
 		int limit = cri.getPerPageNum();
@@ -29,19 +30,20 @@ public class ReplyDAOImpl implements ReplyDAO {
 	}
 
 	@Override
+	//댓글수
 	public int selectReplyListCount(Criteria cri, String club_no) throws SQLException {
 		int count = session.selectOne("Reply-Mapper.ReplyListCount",club_no);
 		return count;
 	}
 
 	@Override
-	public void insertReply(ReplyVO replyVO) throws SQLException {
-		session.update("Reply-Mapper.insertReply",replyVO);
+	public void insertReply(ReplyVO reply) throws SQLException {
+		session.update("Reply-Mapper.insertReply",reply);
 	}
 
 	@Override
-	public void updateReply(ReplyVO replyVO) throws SQLException {
-		session.update("Reply-Mapper.updateReply",replyVO);
+	public void updateReply(ReplyVO reply) throws SQLException {
+		session.update("Reply-Mapper.updateReply",reply);
 
 
 	}

@@ -182,7 +182,7 @@ width:250px;
 			<c:if test="mem_nick!='admin'">
 				<div class="hmenu1" onclick="location.href='#'">마이페이지</div>
 			</c:if>
-			<div class="hmenu1" onclick="location.href='#'">동호회 찾기</div>
+			<div class="hmenu1" onclick="location.href='<%=request.getContextPath()%>/club/list'">동호회 찾기</div>
 			<div class="hmenu1" onclick="location.href='#'">동호회 생성</div>
 			<div class="hmenu1" onclick="location.href='#'">공지사항</div>
 		</div>

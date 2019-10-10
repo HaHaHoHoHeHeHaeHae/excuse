@@ -11,57 +11,49 @@
 <c:set var="club" value="${dataMap.club }" />
 <c:set var="mem_nick" value="${dataMap.memberNick }" />
 <c:set var="member" value="${dataMap.member }" />
+<%--<c:set var="ReplyMember" value="${dataMap.ReplyMember }" />--%>
 <c:set var="attach" value="${dataMap.attachList }" />
-
+<c:set var="reply" value="${dataMap.replyList }" />
 <head>
 
 <title>동호회 디테일</title>
 
-
 <!-- Font Awesome -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">
 
 <!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
 <!-- icheck bootstrap -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/adminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 
 <!-- Theme style -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/dist/css/adminlte.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/adminLTE/dist/css/adminlte.min.css">
 
 <!-- Google Font: Source Sans Pro -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
 <!-- daterange picker -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/daterangepicker/daterangepicker.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/adminLTE/plugins/daterangepicker/daterangepicker.css">
 
 <!-- summernote -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/summernote/summernote-bs4.css">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/adminLTE/plugins/summernote/summernote-bs4.css">
 
 <!-- jQuery -->
-<script
-	src="<%=request.getContextPath()%>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>
-<script
-	src="<%=request.getContextPath()%>/resources/adminLTE/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="<%=request.getContextPath()%>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>
 
-<!-- Time Line -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/build/scss/_timeline.scss">
-
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/templated/assets/css/main.css" />
+<!-- Bootstrap 4 -->
+	<script src="<%=request.getContextPath()%>/resources/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+		
+	<script src="<%=request.getContextPath() %>/resources/adminLTE/plugins/bootstrap/js/bootstrap.min.js"></script>
 	
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js">
-</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+
+
+<!-- modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
 
 <script id="reply-list-template" type="text/x-handlebars-template">
 {{#each .}}
@@ -69,16 +61,21 @@
 <i class="fa fa-comments bg-blue"></i>
  <div class="timeline-item" >
   <span class="time">
-    <i class="fa fa-clock-o"></i>{{prettifyDate regdate}}
-    <a class="btn btn-primary btn-xs" id="modifyReplyBtn"
-       data-replyer={{mem_id}} data-toggle="modal" data-target="#modifyModal">Modify</a>
+    <i class="fa fa-clock-o"></i>{{prettifyDate reply_regDate}}
+    <a class="button special small" style="margin-top: -15px;" id="modifyReplyBtn"
+       data-replyer={{mem_id}} data-toggle="modal" data-target="#modifyModal">수&nbsp;&nbsp;정</a>
      </span>
-     <h3 class="timeline-header"><strong style="display:none;">{{reply_no}}</strong>{{mem_id}}</h3>
+     <h3 class="timeline-header"><strong style="display:none;">{{reply_no}}</strong>{{mem_nick}}</h3>
     <div class="timeline-body">{{reply_content}} </div>
    </li>
 {{/each}}   
-
 </script>
+<!-- Time Line -->
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/adminLTE/build/scss/_timeline.scss">
+
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/templated/assets/css/main.css" />
+	
+
 
 <style>
 div.top {
@@ -183,11 +180,13 @@ div.top {
 
 		<div class="updown" style="position: relative; width: 800px; margin-bottom: 50px;">
 			<ul class="list-group list-group-unbordered mb-3">
-				<li class="list-group-item text-center"
-					style="height: 60px; width: 198px; left: 35%; float: left;"><b
-					id="btag"> <i class="far fa-thumbs-up"></i>&nbsp;&nbsp;${club.upcnt }&nbsp;&nbsp;
-						<i class="fas fa-thumbs-down"></i>&nbsp;&nbsp;${club.downcnt }
-				</b></li>
+				<li class="list-group-item text-center" style="height: 60px; width: 198px; left: 35%; float: left;">
+				<b id="btag"> 
+					<a href="#" style="text-decoration:none;" onclick="club_upndown('up','${club.club_no}');"><i class="far fa-thumbs-up"></i>&nbsp;&nbsp;${club.upcnt }&nbsp;&nbsp;</a>
+					 
+					<a href="#" style="text-decoration:none;" onclick="club_upndown('down','${club.club_no}');"><i class="fas fa-thumbs-down"></i>&nbsp;&nbsp;${club.downcnt }</a>
+				</b>
+				</li>
 			</ul>
 		</div>
 
@@ -201,7 +200,7 @@ div.top {
 						<h3 class="box-title">Add new Reply</h3>
 					</div>-->
 						<div class="box-body">
-							<input class="form-control" type="hidden" id="newReplyWriter" readonly value="${mem_nick }" /> 
+							<input class="form-control" type="hidden" id="newReplyWriter" readonly value="${loginUser.mem_id }" /> 
 							<input class="form-control" type="text" placeholder="댓글을 입력하세요." id="newReplyText" />
 						</div>
 						<div class="box-footer" style="float: right;">
@@ -242,13 +241,13 @@ div.top {
 					</div>
 					<div class="modal-body" data-reply_no>
 						<p>
-							<input type="text" id="replytext" class="form-control">
+							<input type="text" id="reply_content" class="form-control">
 						</p>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-info" id="replyModBtn">Modify</button>
-						<button type="button" class="btn btn-danger" id="replyDelBtn">Delete</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-info" id="replyModBtn">수정</button>
+						<button type="button" class="btn btn-danger" id="replyDelBtn">삭제</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
 					</div>
 				</div>
 			</div>
@@ -269,6 +268,38 @@ div.top {
 		window.close();
 	}
 	
+	
+	<%-- up&down --%>
+	function club_upndown(upndown,club_no){
+		$.ajax({
+			contentType:"application/JSON",
+			type:"POST",
+			url:"<%=request.getContextPath()%>/"+upndown+"check?mem_id=${member.mem_id}&club_no="+club_no,
+			cache:false,
+			success:function(bool){
+				if(upndown=="up"){
+					if(bool==false)
+						alert('이미 추천하신 동호회입니다.');
+					else
+						alert('추천되었습니다.')
+				
+				location.reload();
+				}
+				
+				else if(upndown=="down"){
+					if(bool==false)
+						alert('이미 비추천하신 동호회입니다.');	
+					else
+						alert('비추천되었습니다.');
+				location.reload();	
+				}
+			}
+		});
+	}
+	
+	
+	
+	
 	<%--reply--%>
 	Handlebars.registerHelper("prettifyDate", function(timeValue){
 		var dateObj = new Date(timeValue);
@@ -278,7 +309,7 @@ div.top {
 		return year+"/"+month+"/"+date;
 	});
 	
-	var printDate = function(replyArr, target, templateObject){
+	var printData = function(replyArr, target, templateObject){
 		var template = Handlebars.compile(templateObject.html());
 		var html = template(replyArr);
 		$('.replyLi').remove();
@@ -286,10 +317,11 @@ div.top {
 	};
 	
 	var replyPage=1;
+	
 	function getPage(pageInfo){
 		$.getJSON(pageInfo,function(data){
 			printData(data.replyList, $('#repliesDiv'), $('#reply-list-template'));
-			printPaging(data.pageMaker, $('.pagination');
+			printPaging(data.pageMaker, $('.pagination'));
 		  });
 		}
 	
@@ -300,9 +332,10 @@ div.top {
 		if(pageMaker.prev){
 			str += "<li class='page-item'><a href='"+(pageMaker.startPage-1)+"'class='page-link'> << </a></li>";
 		}
+		
 		for(var i = pageMaker.startPage, len=pageMaker.endPage; i<= len; i++){
 			var strClass = pageMaker.cri.page == i?'active':'';
-			str += "<li class='page-item'"+strClass"><a class='page-link' href='"+i+"'>"+i+"</a></li>";
+			str += "<li class='page-item'" + strClass + "><a class='page-link' href='" + i + "'>" + i + "</a></li>";
 		}
 		if(pageMaker.next){
 	        str+="<li class='page-item'><a class='page-link' href='"+(pageMaker.endPage+1)+"'> >> </a></li>";
@@ -321,7 +354,7 @@ div.top {
 		var mem_id = $('#newReplyWriter').val();
 		var reply_content = $('#newReplyText').val();
 
-		alert("mem_id= " + mem_id + "\nreply_content= "+ reply_content);
+		//alert("mem_id= " + mem_id + "\nreply_content= "+ reply_content);
 
 		if(reply_content ==""){
 			alert('댓글 내용은 필수입니다.');
@@ -330,10 +363,11 @@ div.top {
 		}
 
 		var data = {
-			"club_no":"${club.club_no}",
-			"mem_id":mem_id,
-			"reply_content":reply_content
+			"club_no": "${club.club_no}",
+			"mem_id": "${loginUser.mem_id}",
+			"reply_content": reply_content
 		}
+		
 		$.ajax({
 			url:"<%=request.getContextPath()%>/replies",
 			type:"POST",
@@ -355,18 +389,19 @@ div.top {
 		});
 	});
 	
-	$('ul.timeline').on('click', '#modifyReplBtn', function(event){
-		var mem_id = $(event.target).attr("data-replyer");
-		if(mem_id!=$"{loginUser.id}"){
+	$('ul.timeline').on('click', '#modifyReplyBtn', function(event){
+		var replyer = $(event.target).attr("data-replyer");
+		if(replyer!="${loginUser.mem_id}"){
 			alert("수정이 불가합니다.");
 			$(this).attr("data-toggle","");
 		}
 	});
 	
 	$('.timeline').on('click','.replyLi', function(event){
-		var reaply = $(this);
+		var reply = $(this);
 		$('#reply_content').val(reply.find('.timeline-body').text());
 		$('.modal-title').html(reply.attr('data-reply_no'));
+
 	});
 
 	
@@ -379,12 +414,15 @@ div.top {
 				reply_content:reply_content
 		}
 		
+		console.log(reply_no);
+		console.log(reply_content);
+		
 		$.ajax({
 			url:"<%=request.getContextPath()%>/replies/"+reply_no,
 			type:"put",
 			data:JSON.stringify(sendData),
 			headers:{
-				"Context-Type":"application/json",
+				"Content-Type":"application/json",
 				"X-HTTP-Method-Override":"PUT"
 			},
 			success:function(result){
@@ -404,7 +442,9 @@ div.top {
 	
 	$('#replyDelBtn').on('click', function(event){
 		var reply_no = $('.modal-title').html();
-		var sendDate={
+		alert(reply_no);
+		
+		var sendData={
 				reply_no:reply_no
 		}
 		$.ajax({
@@ -413,7 +453,7 @@ div.top {
 			data:JSON.stringify(sendData),
 			headers:{
 				"Content-Type":"application/json",
-				"X-HTTP-Override":"delete"
+				"X-HTTP-Method-Override":"DELETE"
 			},
 			success:function(result){
 				if(result=="SUCCESS"){
@@ -423,7 +463,7 @@ div.top {
 			},
 			error:function(error){
 				alert('삭제 실패했습니다.');
-				<%--getPage("<%=request.getContextPath()%>/replies/${club.club_no}/"+replyPage);--%>
+				
 			},
 			complete:function(){
 				$('#modifyModal').modal('hide');
@@ -435,30 +475,13 @@ div.top {
 
 
 	<!-- AdminLTE App -->
-	<script
-		src="<%=request.getContextPath()%>/resources/adminLTE/dist/js/adminlte.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/adminLTE/dist/js/adminlte.min.js"></script>
 
-	<script
-		src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"
-		defer></script>
-
-	<!-- Bootstrap 4 -->
-	<script
-		src="<%=request.getContextPath()%>/resources/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-
-	<script type="text/javascript"
-		src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-	<script type="text/javascript"
-		src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-	<%--<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />--%>
+	
+	
 
 	<!-- templated Scripts -->
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.min.js"></script>
+	<!-- <script src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.min.js"></script> -->
 	<script
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
 	<script

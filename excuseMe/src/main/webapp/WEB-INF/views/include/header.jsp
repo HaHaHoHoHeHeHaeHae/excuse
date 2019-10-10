@@ -140,7 +140,7 @@
 		            		마이페이지
 		            	</div>
 	            	</c:if>
-	            	<div class="hmenu1" onclick="changeIframe('notice');">
+	            	<div class="hmenu1" onclick="changeIframe('club');">
 	            		동호회 찾기
 	            	</div>
 	            	<div class="hmenu1" onclick="changeIframe('notice');">

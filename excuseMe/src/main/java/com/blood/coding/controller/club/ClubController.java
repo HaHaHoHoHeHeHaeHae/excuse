@@ -58,6 +58,7 @@ public class ClubController {
 
 	@RequestMapping("/list") //동호회 리스트보기
 	public ModelAndView clubList(Criteria cri, ModelAndView modelnView, HttpServletRequest request) throws SQLException{ //session에서 멤버VO(local)가져올거기 떄문에 request 추가해줌.
+		
 		String url = "/club/list";	
 		//로그인유저 정보
 		HttpSession session = request.getSession();
@@ -65,8 +66,23 @@ public class ClubController {
 	
 		Map<String, Object> dataMap = clubService.getClubList(cri, memberVO);
 
-		modelnView.addObject("dataMap",dataMap);
+		if(cri.getCategory().length()>0) {
+			String[] split = cri.getCategory().split("_");
+			dataMap.put("split", split);
+		}
 		
+		if(cri.getLocal().length()>0) {
+			String[] split_sub = cri.getLocal().split("_");
+			//System.out.println("$$$$$$$$$$");
+			//System.out.println(split_sub[1]);
+			//System.out.println("$$$$$$$$$$");
+			dataMap.put("split_sub", split_sub);
+		}
+		
+		
+		
+		
+		modelnView.addObject("dataMap",dataMap);
 		modelnView.setViewName(url);
 		return modelnView;
 	}

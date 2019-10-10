@@ -6,19 +6,19 @@
     <mapper namespace="Club">
     
     	<sql id="searchlocal">
-    		<if test="local != null"> 
+    		<if test="local.length() > 0"> 
     		and club_local like '%'||#{local}||'%'
     		</if>
     	</sql>
     		
     	<sql id="searchcategory">
-    		<if test="category != null">
+    		<if test="category.length() > 0">
     		and cate_name like '%'||#{category}||'%'
     		</if>
     	</sql>
     	
     	<sql id="searchclubname">
-    		<if test="keyword != null">
+    		<if test="keyword.length() > 0">
     		and club_name like '%'||#{keyword}||'%'
     		</if>    
     	</sql>
@@ -90,7 +90,7 @@
 	    
 	    <select id="selectClub" resultType="club">
 	    	select *
-	    	from club
+	    	from club_view
 	    	where club_no=#{club_no}
 	    </select>
 	    

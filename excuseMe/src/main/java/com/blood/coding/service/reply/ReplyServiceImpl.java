@@ -7,7 +7,10 @@ import java.util.Map;
 
 import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.controller.common.PageMaker;
+import com.blood.coding.dao.member.MemberDAO;
 import com.blood.coding.dao.reply.ReplyDAO;
+import com.blood.coding.dto.club.ClubVO;
+import com.blood.coding.dto.member.MemberVO;
 import com.blood.coding.dto.reply.ReplyVO;
 
 public class ReplyServiceImpl implements ReplyService {
@@ -15,6 +18,11 @@ public class ReplyServiceImpl implements ReplyService {
 	private ReplyDAO replyDAO;
 	public void setReplyDAO (ReplyDAO replyDAO){
 		this.replyDAO=replyDAO;
+	}
+	
+	private MemberDAO memberDAO;
+	public void setMemberDAO(MemberDAO memberDAO) {
+		this.memberDAO=memberDAO;
 	}
 
 	@Override
@@ -25,13 +33,22 @@ public class ReplyServiceImpl implements ReplyService {
 
 		int count = replyDAO.selectReplyListCount(cri, club_no);
 
+		if(replyList != null) {
+			for(ReplyVO reply : replyList) {
+				String memberID = reply.getMem_id();
+				MemberVO member = memberDAO.selectMember(memberID);
+				String mem_nick = member.getMem_nick();
+				reply.setMem_nick(mem_nick);
+			}
+		}
+		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(count);
 
 		dataMap.put("replyList", replyList);
 		dataMap.put("pageMaker",pageMaker);
-
+		
 		return dataMap;
 
 	}

@@ -144,18 +144,13 @@
 									<ul class="actions vertical small" style="text-align: center;">
 										<li>
 											<div class="btn_g" style="position: relative;">
-												<div class="btn-group"
-													style="position: absolute; left: -18px; top: -10px;">
-													<a href="#" class="button small"
-														style="color: white; width: 108px; height: 35px; position: relative;">
-														<p
-															style="position: relative; left: -12px; font-size: 15px;"
-															onclick="club_upndown('up','${club.club_no}');">상세보기</p>
-													</a> &nbsp; <a href="#" class="button special small"
-														style="color: white; width: 102px; height: 35px; position: relative;">
-														<p
-															style="position: relative; left: -12px; font-size: 15px;"
-															onclick="club_upndown('down','${club.club_no}');" >회원보기</p>
+												<div class="btn-group" style="position: absolute; left: -18px; top: -10px;">
+													<a href="#" class="button small" style="color: white; width: 108px; height: 35px; position: relative;">
+														<p style="position: relative; left: -12px; font-size: 15px;"
+														   onclick="club_upndown('up','${club.club_no}');">상세보기</p>
+													</a> &nbsp; <a href="#" class="button special small" style="color: white; width: 102px; height: 35px; position: relative;">
+														<p style="position: relative; left: -12px; font-size: 15px;"
+														   onclick="club_upndown('down','${club.club_no}');" >회원보기</p>
 													</a>
 												</div>
 											</div>
