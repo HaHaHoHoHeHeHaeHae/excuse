@@ -20,9 +20,9 @@
 		<div class="inner" style="margin-left: -3px;">
 			<!-- Elements -->
 			
-			<div class="row" style="margin-left:40%;margin-top:-100px;">
+			<div class="row" style="margin-left:40%; margin-top:-100px;">
 					<div>
-						<select name="searchType"  id="searchType" style="height:45px;margin-top:10px;">
+						<select name="searchType"  id="searchType" style="height:45px;margin-top:10px; ">
 							<option value="kn" ${pageMaker.cri.searchType eq 'kn' ? 'selected':'' }>전체</option>
 							<option value="k" ${pageMaker.cri.searchType eq 'k' ? 'selected':'' }>닉네임</option>
 							<option value="n" ${pageMaker.cri.searchType eq 'n' ? 'selected':'' }>이름</option>
@@ -32,7 +32,7 @@
 						<input name="keyword" type="text" class="form-control" style="height:45px;width:280px; margin-top:10px;" placeholder="검색어를 입력하세요">
 					</div>
 					<ul class="actions" >
-	   					<li><a id="searchBtn" href="#" class="btn btn-block btn-secondary" style="height:45px; margin-top:10px; margin-left:15px; text-decoration:none;padding-top:10px;"  onclick="onSearch();">검색</a></li>
+	   					<li><a id="searchBtn" href="#" class="btn btn-block btn-secondary" style="height:45px; margin-top:10px; margin-left:15px; text-decoration:none; padding-top:10px;"  onclick="onSearch();">검색</a></li>
 	   				</ul>
 			</div>
 			<div class="row" style="margin-left:400px; "  >
@@ -42,7 +42,8 @@
 									</div>
 									
 									
-									<select name="sortType"  id="sortType" style="width:100px; margin-left:20px; height:45px;">
+									<select name="sortType"  id="sortType" style="width:120px;  height:43px; text-align:center; padding-right:-50px;">
+									
 										<option value="sort0">전체</option>
 										<option value="sort1">활성멤버</option>
 										<option value="sort2">비활성멤버</option>

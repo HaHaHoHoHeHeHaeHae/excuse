@@ -1,6 +1,6 @@
 package com.blood.coding.controller.common;
 
-public class MemberPageMaker {
+public class ReplyPageMaker {
 
 	private int totalCount; // 전체 board 개수
 	private int startPage; // 시작 페이지 번호
@@ -14,7 +14,7 @@ public class MemberPageMaker {
 	private MemberCriteria cri; // 현재 페이지 정보
 	
 	
-	public MemberPageMaker() {
+	public ReplyPageMaker() {
 		super();
 	}
 
@@ -110,28 +110,20 @@ public class MemberPageMaker {
 	public String makeQuery(){	
 		String query="?page="+cri.getPage()
 				    +"&perPageNum="+cri.getPerPageNum()
-				    +"&sort="+((MemberCriteria)cri).getSort()
-					+"&alignment="+((MemberCriteria)cri).getAlignment()
-					+"&mem_id="+((MemberCriteria)cri).getMem_id()
-					+"&mem_name="+((MemberCriteria)cri).getMem_name();
+				    +"&mem_id="+((MemberCriteria)cri).getSort()
+					+"&mem_name"+((MemberCriteria)cri).getAlignment();
 				    
-		if (((MemberCriteria) cri).getSearchType() != null) {
-			query = query + "&searchType=" + ((MemberCriteria) cri).getSearchType() + "&keyword="+((MemberCriteria) cri).getKeyword();
-		}
+		
 		return query;
 	}
 	
 	public String makeQuery(int page){	
 		String query="?page="+page
 				    +"&perPageNum="+cri.getPerPageNum()
-				    +"&sort="+((MemberCriteria)cri).getSort()
-				    +"&alignment="+((MemberCriteria)cri).getAlignment()
-				    +"&mem_id="+((MemberCriteria)cri).getMem_id()
-					+"&mem_name="+((MemberCriteria)cri).getMem_name();
+				    +"&mem_id="+((MemberCriteria)cri).getSort()
+					+"&mem_name"+((MemberCriteria)cri).getAlignment();
 		
-	    if (((MemberCriteria) cri).getSearchType() != null) {
-			query = query + "&searchType=" + ((MemberCriteria) cri).getSearchType() + "&keyword="+((MemberCriteria) cri).getKeyword();
-		}
+	   
 		return query;
 	}
 

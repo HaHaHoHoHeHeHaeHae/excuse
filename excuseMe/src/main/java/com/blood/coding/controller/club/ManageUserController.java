@@ -105,22 +105,18 @@ public class ManageUserController {
 	
 	//멤버가 쓴 댓글 내역
 	@RequestMapping("/replyList")
-	public ModelAndView memberReplyList(Criteria cri,String mem_id,String mem_name)throws Exception{
+	public ModelAndView memberReplyList(MemberCriteria cri,String mem_id,String mem_name)throws Exception{
 		
 		ModelAndView mav = new ModelAndView();
 		
 		String url="manage/member/replyList";
 		System.out.println(1234);
 		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		
-		List<ReplyVO> dataMap=service.getReply(mem_id);
+		Map<String,Object> dataMap=service.getReply(mem_id, cri);
 		mav.setViewName(url);
 		mav.addObject("dataMap",dataMap);
-		mav.addObject("pageMaker", pageMaker);
 		mav.addObject("mem_name", mem_name);
-		
+		mav.addObject("mem_id", mem_id);
 		return mav;		
 	}
 	

@@ -24,8 +24,8 @@
         <!-- Elements -->
 		<div class="row 200%" style="margin-left:50%;margin-top:-80px;">
 			<div class="row" style="margin-bottom:20px;" >
-			<select name="sortType"  id="sortType" style="width:80px; margin-left:20px; margin-right:10px; margin-top:10px; height:45px; padding:-10px; ">
-								<option value="0">전체</option>
+			<select name="sortType"  id="sortType" style="width:100px; text-align:center; margin-left:20px; margin-right:10px; margin-top:10px; height:45px;">
+								<option value="0" >전체</option>
 								<option value="1">운영중</option>
 								<option value="2">운영중지</option>
 

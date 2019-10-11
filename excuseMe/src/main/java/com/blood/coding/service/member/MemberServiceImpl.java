@@ -5,8 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.controller.common.MemberCriteria;
 import com.blood.coding.controller.common.MemberPageMaker;
+import com.blood.coding.controller.common.PageMaker;
 import com.blood.coding.dao.member.MemberDAO;
 import com.blood.coding.dao.reply.ReplyDAO;
 import com.blood.coding.dto.member.MemberVO;
@@ -65,9 +67,21 @@ public class MemberServiceImpl implements MemberService {
 		return member;
 	}
 	@Override
-	public List<ReplyVO> getReply(String mem_id) throws SQLException {
-		List<ReplyVO> replylist = replyDAO.selectMemberReply(mem_id);
-		return replylist;
+	public Map<String, Object> getReply(String mem_id, MemberCriteria cri) throws SQLException {
+		Map<String,Object> map = new HashMap<String,Object>();
+		List<ReplyVO> replyList = replyDAO.selectMemberReply(cri,mem_id);
+		
+		MemberPageMaker page = new MemberPageMaker();
+		int totalCount = replyDAO.selectMemberReplyCount(cri, mem_id);
+		
+		page.setCri(cri);
+		page.setTotalCount(totalCount);
+		
+		System.out.println(cri+"/"+totalCount+"/"+page);
+		map.put("pageMaker", page);
+		map.put("replyList",replyList);
+		
+		return map;
 	}
 	
 	@Override

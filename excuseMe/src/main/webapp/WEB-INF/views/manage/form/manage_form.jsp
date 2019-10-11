@@ -9,6 +9,8 @@
 <style>
 
 </style>
+
+
 </head>
 <body class="subpage">
 
@@ -20,16 +22,16 @@
 			<div style="height:50px;background:#306170;">
 				<p style=" padding-top:6px;font-size:1.3em; color:white; font-weight:bold;">관리자 페이지</p>
 			</div>
-			<div onclick="changeIframe2('club/clubList');" style="cursor:pointer;height:50px;margin-top: 20px;width:230px;margin-left:10px; border-bottom:1px solid #cce3de;">
+			<div class="subButton" onclick="changeIframe2('club/clubList');" style="cursor:pointer;height:50px;margin-top: 20px;width:230px;margin-left:10px; border-bottom:1px solid #cce3de;">
 				<p style="padding-top:10px;color: white; font-size:1.1em; text-align:left; padding-left:20px;">동호회 리스트</p>
 			</div>
-			<div onclick="changeIframe2('blacklist/list');" style="cursor:pointer;height:50px;margin-top: 20px;width:230px;margin-left:10px; border-bottom:1px solid #cce3de;">
+			<div class="subButton" onclick="changeIframe2('blacklist/list');" style="cursor:pointer;height:50px;margin-top: 20px;width:230px;margin-left:10px; border-bottom:1px solid #cce3de;">
 				<p style="padding-top:10px;color: white; font-size:1.1em; text-align:left; padding-left:20px;">동호회 블랙 리스트</p>
 			</div>
-			<div onclick="changeIframe2('newclub/list');" style="cursor:pointer;height:50px;margin-top: 20px;width:230px;margin-left:10px; border-bottom:1px solid #cce3de;">
+			<div class="subButton"  onclick="changeIframe2('newclub/list');" style="cursor:pointer;height:50px;margin-top: 20px;width:230px;margin-left:10px; border-bottom:1px solid #cce3de;">
 				<p style="padding-top:10px;color: white; font-size:1.1em; text-align:left; padding-left:20px;">신규 동호회 관리</p>
 			</div>
-			<div onclick="changeIframe2('member/list');" style="cursor:pointer;height:50px;margin-top: 20px;width:230px;margin-left:10px; border-bottom:1px solid #cce3de;">
+			<div class="subButton" onclick="changeIframe2('member/list');" style="cursor:pointer;height:50px;margin-top: 20px;width:230px;margin-left:10px; border-bottom:1px solid #cce3de;">
 				<p style="padding-top:10px;color: white; font-size:1.1em; text-align:left; padding-left:20px;">회원 관리</p>
 			</div>
 			
@@ -78,19 +80,11 @@
 		
 	}
 	
-	/* function change1(obj){
-        obj.style.background = '#306170';
-        obj.style.color = 'white';
-    }
-     
-    function change2(obj){
-        obj.style.background = '#25a1c3';
-        obj.style.color = 'black';
-    } */
-    
-    
-   
-
+	$('.subButton').click(function(){
+	      $('.subButton').css("background","");
+	      $(this).css("background","linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 55%,rgba(0,0,0,0) 61%,rgba(0,0,0,0.16) 100%)");
+	   });
+	
 
 	</script>
 </body>

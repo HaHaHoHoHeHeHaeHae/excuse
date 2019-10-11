@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.blood.coding.controller.common.Criteria;
+import com.blood.coding.controller.common.MemberCriteria;
 import com.blood.coding.dto.reply.ReplyVO;
 
 public interface ReplyDAO {
@@ -22,5 +23,6 @@ public interface ReplyDAO {
 	public int selectReplySeq() throws SQLException;
 	
 	//유저가 쓴 댓글
-	public List<ReplyVO> selectMemberReply(String mem_id) throws SQLException;
+	public List<ReplyVO> selectMemberReply(MemberCriteria cri,String mem_id) throws SQLException;
+	public int selectMemberReplyCount(MemberCriteria cri, String mem_id)throws SQLException;
 }

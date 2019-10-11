@@ -41,7 +41,7 @@
 								<c:forEach items="${memberList }" var="member">
 									<tr>
 										<td class="text-center">${member.mem_name }</td>
-										<td class="text-center" style="cursor:pointer;" onclick="OpenWindow('detail?mem_id=${member.mem_id }','','850','800');">${member.mem_id }</td>
+										<td class="text-center" style="cursor:pointer;" onclick="OpenWindow('detail?mem_id=${member.mem_id }','','430','680');">${member.mem_id }</td>
 										<td class="text-center"><fmt:formatDate value="${member.mem_regDate }" pattern="yyyy-MM-dd" /></td>
 										<td class="text-center">
 											<c:if test="${member.mem_status==1 }">

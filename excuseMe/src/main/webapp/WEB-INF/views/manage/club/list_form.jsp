@@ -44,7 +44,7 @@
 						  	<tr>
 						  		<td class="text-center" style="cursor:pointer;"onclick="OpenWindow('detail?club_no=${club.club_no }','','850','800');">${club.club_name }</td>
 								<td class="text-center">${club.cate_name }</td>
-								<td class="text-center"></td>
+								<td class="text-center">${club.joincnt }</td>
 								<td class="text-center">${club.mi }</td>
 								<td class="text-center">
 									<c:if test= "${club.club_status==1 }" >

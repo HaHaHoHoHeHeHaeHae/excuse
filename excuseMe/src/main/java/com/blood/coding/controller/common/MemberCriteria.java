@@ -7,9 +7,40 @@ public class MemberCriteria {
 	private String keyword; //검색어
 	private int alignment; //가입순정렬
 	private int sort; //활성 비활성 정렬
+	private String mem_id;
+	private String mem_name;
 	
+	
+	public String getMem_id() {
+		return mem_id;
+	}
+
+
+
+
+	public void setMem_id(String mem_id) {
+		this.mem_id = mem_id;
+	}
+
+
+
+
+	public String getMem_name() {
+		return mem_name;
+	}
+
+
+
+
+	public void setMem_name(String mem_name) {
+		this.mem_name = mem_name;
+	}
+
+
+
+
 	public MemberCriteria() {
-		this(1, 10, "", "",0,0);
+		this(1, 10, "", "",0,0,"","");
 	}
 	
 
@@ -35,7 +66,7 @@ public class MemberCriteria {
 	}
 
 
-	public MemberCriteria(int page, int perPageNum, String searchType, String keyword,int alignment,int sort) {
+	public MemberCriteria(int page, int perPageNum, String searchType, String keyword,int alignment,int sort,String mem_id, String mem_name) {
 		super();
 		this.page = page;
 		this.perPageNum = perPageNum;
@@ -81,11 +112,17 @@ public class MemberCriteria {
 		this.keyword = keyword;
 	}
 
+
+
+
 	@Override
 	public String toString() {
 		return "MemberCriteria [page=" + page + ", perPageNum=" + perPageNum + ", searchType=" + searchType
-				+ ", keyword=" + keyword + ", alignment=" + alignment + ", sort=" + sort + "]";
+				+ ", keyword=" + keyword + ", alignment=" + alignment + ", sort=" + sort + ", mem_id=" + mem_id
+				+ ", mem_name=" + mem_name + "]";
 	}
+
+	
 
 	
 	
