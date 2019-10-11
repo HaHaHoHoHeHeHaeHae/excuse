@@ -31,8 +31,8 @@
 	<excludes>
 		<pattern>*/common/login*</pattern>
 		<pattern>*/common/regist*</pattern>
-		<pattern>*/common/search*</pattern>		
-		<pattern>*/detail*</pattern>
+		<pattern>*/common/search*</pattern>
+		<pattern>*/club/detail</pattern>		
 		<pattern>*/replyList*</pattern>
 	</excludes>
 </decorators>

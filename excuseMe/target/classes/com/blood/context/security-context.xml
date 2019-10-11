@@ -60,7 +60,7 @@
 				
 	<beans:bean id="loginFailureHandler"
 				class="com.blood.coding.security.LoginFailureHandler"
-				p:defaultFailureUrl="/login_fail"
+				p:defaultFailureUrl="/common/login"
 				/>
 				
 	

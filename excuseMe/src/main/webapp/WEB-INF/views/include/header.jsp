@@ -71,6 +71,16 @@
 			cursor:pointer;
 			font-weight:900;
 	}
+	.hmenu2{
+			height:40px;
+			width:150px;
+			float:right;
+			position:absoulte;
+			border-left: 1mm solid rgb(179, 223, 242);
+			text-align:center;
+			cursor:pointer;
+			font-weight:900;
+	}
 	#hid1{
 	  	  height:40px;
 		  width:400px;
@@ -100,9 +110,37 @@
 				text-align:center;
 				line-height: 44px;
 		}
+		.hmenu2{
+				
+				text-align:center;
+				line-height: 44px;
+		}
 	}
 	@media screen and (max-width:1920px){
 		.hmenu1{
+				
+				text-align:center;
+				line-height: 44px;
+		}
+		.hmenu2{
+				
+				text-align:center;
+				line-height: 44px;
+		}
+		#hid{
+				
+				text-align:center;
+				line-height: 44px;
+		}
+	}
+	
+	@media screen and (max-width:1924px){
+		.hmenu1{
+				
+				text-align:center;
+				line-height: 44px;
+		}
+		.hmenu2{
 				
 				text-align:center;
 				line-height: 44px;
@@ -124,14 +162,14 @@
 <body>
 	<header id="header">
 	            <div id="hleft">
-	            	<a href="<%=request.getContextPath() %>/main/main_frame" class="logo left">Excuse Me</a>
+	            	<a href="<%=request.getContextPath()%>/main/main_frame" class="logo left">Excuse Me</a>
 	            </div>
 	            
 	            
 	            <div id="hmenu">
 	            	<!-- <ul class="nav nav-tabs" -->
 	            	<c:if test="${loginUser.mem_nick eq 'admin'}">
-		            	<div class="hmenu1" onclick="changeIframe('manage/club/clubList');">
+		            	<div class="hmenu1" onclick="changeIframe('manage/club/list');">
 		            		관리페이지
 		            	</div>
 	            	</c:if>
@@ -140,10 +178,10 @@
 		            		마이페이지
 		            	</div>
 	            	</c:if>
-	            	<div class="hmenu1" onclick="changeIframe('club/list')">
+	            	<div class="hmenu1" onclick="changeIframe('club/list');">
 	            		동호회 찾기
 	            	</div>
-	            	<div class="hmenu1" onclick="OpenWindow('<%=request.getContextPath() %>/club/regist', '동호회 생성', 850, 900)">
+	            	<div class="hmenu2" onclick="OpenWindow('<%=request.getContextPath() %>/club/regist', '동호회 생성', 850, 900)">
 	            		동호회 생성
 	            	</div>
 	            	<div class="hmenu1" onclick="changeIframe('notice/list');">
