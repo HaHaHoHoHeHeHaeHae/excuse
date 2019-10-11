@@ -9,7 +9,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>AdminLTE 3 | Log in</title>
+<title>Excuse Me</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%@ include file="/WEB-INF/views/include/login_header.jsp" %>
@@ -28,11 +28,15 @@
 }
 #newclub h1{
 			font-family: 'Gamja Flower', cursive;
+			color:black;
 			font-size:2.7em;
 }
 </style>
 </head>
 <body class="hold-transition login-page">
+<div style="width:100%;height:100%;position:absolute;margin:0;padding:0;z-index:-10;">
+	<img src="<%=request.getContextPath()%>/resources/img/brushes.jpg" style="max-width:100%;max-height:100%;opacity:0.8;width:1902px;height:1080px;margin-top:-200px;">
+</div>
 <div class="login-box">
   <div class="login-logo">
     <img src="<%=request.getContextPath()%>/resources/img/logo.png">

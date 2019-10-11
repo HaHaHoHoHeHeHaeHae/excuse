@@ -11,7 +11,7 @@ function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
     win.focus() ; 
 }
 function changeIframe(name){
-	document.getElementById("if_list").src="<%=request.getContextPath()%>/"+name+"/list";
+	document.getElementById("if_list").src="<%=request.getContextPath()%>/"+name;
 }
 </script>
 

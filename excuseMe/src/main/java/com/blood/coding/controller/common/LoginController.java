@@ -116,11 +116,12 @@ public class LoginController {
 			String birthDate = memberVO.getBirthDate();
 
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-			System.out.println(birthDate);
 			Date mem_birthDate = transFormat.parse(birthDate);
 			memberVO.setMem_birthDate(mem_birthDate);
+			int check = memberVO.getMem_name_check();
+			System.out.println(check);
 			String id = memberVO.getMem_id();
-			System.out.println(id);
+
 			service.signUp(memberVO);
 			entity = new ResponseEntity<Object>(id,HttpStatus.OK);
 			

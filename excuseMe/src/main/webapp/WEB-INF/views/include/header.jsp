@@ -124,7 +124,7 @@
 <body>
 	<header id="header">
 	            <div id="hleft">
-	            	<a href="<%=request.getContextPath() %>/main/test" class="logo left">Excuse Me</a>
+	            	<a href="<%=request.getContextPath() %>/main/main_frame" class="logo left">Excuse Me</a>
 	            </div>
 	            
 	            
@@ -140,13 +140,13 @@
 		            		마이페이지
 		            	</div>
 	            	</c:if>
-	            	<div class="hmenu1" onclick="changeIfram('club')">
+	            	<div class="hmenu1" onclick="changeIframe('club/list')">
 	            		동호회 찾기
 	            	</div>
 	            	<div class="hmenu1" onclick="OpenWindow('<%=request.getContextPath() %>/club/regist', '동호회 생성', 850, 900)">
 	            		동호회 생성
 	            	</div>
-	            	<div class="hmenu1" onclick="changeIframe('notice');">
+	            	<div class="hmenu1" onclick="changeIframe('notice/list');">
 	            		공지사항
 	            	</div>
 	            </div>

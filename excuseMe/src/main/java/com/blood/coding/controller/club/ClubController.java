@@ -1,10 +1,6 @@
 package com.blood.coding.controller.club;
 
-import static org.hamcrest.CoreMatchers.nullValue;
-
-import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +25,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.controller.common.DeleteFileUtils;
-import com.blood.coding.controller.common.DownloadFileUtils;
 import com.blood.coding.controller.common.UploadFileUtils;
 import com.blood.coding.dao.attach.AttachDAO;
 import com.blood.coding.dao.category.CategoryDAO;
@@ -40,7 +34,6 @@ import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.dto.club.ClubVO;
 import com.blood.coding.dto.local.LocalVO;
 import com.blood.coding.dto.member.MemberVO;
-import com.blood.coding.dto.notice.NoticeVO;
 import com.blood.coding.service.club.ClubService;
 
 @Controller
@@ -277,13 +270,13 @@ public class ClubController {
 
 	@RequestMapping(value = "/registAttach", method = RequestMethod.POST)
 	public void registAttach(MultipartFile[] uploadFile, String club_no) throws Exception {
-		System.out.println(12321323);
+	
 		try {
 			ClubVO clubVO = clubService.getClub(club_no);
 			AttachVO attach = new AttachVO();
 			//파일등록
 			String mem_id = clubVO.getMem_id();
-			System.out.println(mem_id);
+		
 			if(uploadFile != null) {
 				for (MultipartFile file : uploadFile) {
 					
