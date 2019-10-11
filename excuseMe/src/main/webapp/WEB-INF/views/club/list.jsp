@@ -25,6 +25,7 @@ div.top {
 <c:set var="split_sub" value="${dataMap.split_sub }" />
 
 
+
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">
@@ -176,7 +177,6 @@ div.top {
 
 			<section class="clublist"
 				style="height: 633.62px; position: absolute; top: 500px; width: 1126.66px;">
-
 				<c:if test="${empty clubList }">
 					<div class="empty" style="text-align: center;">
 						<h2>
@@ -190,9 +190,7 @@ div.top {
 							style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin: 3px 3px 20px 3px; width: 219px;">
 							<div class="card-body box-profile">
 								<div class="text-center">
-									<img class="profile-user-img img-fluid img-circle"
-										src="<%=request.getContextPath()%>/resources/img/logo.png"
-										alt="User profile picture">
+										<img class="profile-user-img img-fluid img-circle" id="thum" src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}" alt="<%=request.getContextPath()%>/resources/img/logo.png">	
 								</div>
 
 								<h3 class="profile-username text-center"
@@ -260,8 +258,7 @@ div.top {
 						</div>
 						<div class="2"
 							style="width: 160px; height: 160px; align: center; float: left; padding-right: 20px;">
-							<img src="<%=request.getContextPath()%>/resources/img/logo.png"
-								alt="" class="img-circle img-fluid">
+							<img class="profile-user-img img-fluid img-circle" id="thum" src="<%=request.getContextPath()%>/attach/img?attach_no=${recommend.attachThum_no}" alt="<%=request.getContextPath()%>/resources/img/logo.png">
 						</div>
 					</div>
 				</div>

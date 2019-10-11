@@ -94,8 +94,10 @@ div.top {
 		<div class="pic_demo_wqrp" style="position: absolute; width: 800px;; height: 300px; top: 0px;">
 			<div class="pic_warp" style="width: 300px; height: 300px; float: left; position: absolute;">
 				<div class="pic" style="width: 300px; height: 300px;">
-					<img src="<%=request.getContextPath()%>/resources/img/logo.png"
-						style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; padding: 2px;" />
+					<img class="profile-user-img" 
+						 id="thum" src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}" 
+						 alt="<%=request.getContextPath()%>/resources/img/logo.png"
+						 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; padding: 2px;" />
 				</div>
 			</div>
 			<div class="demo_wrap" style="width: 500px; height: 300px; float: left; position: absolute; left: 300px;">
@@ -442,7 +444,7 @@ div.top {
 	
 	$('#replyDelBtn').on('click', function(event){
 		var reply_no = $('.modal-title').html();
-		alert(reply_no);
+		//alert(reply_no);
 		
 		var sendData={
 				reply_no:reply_no
