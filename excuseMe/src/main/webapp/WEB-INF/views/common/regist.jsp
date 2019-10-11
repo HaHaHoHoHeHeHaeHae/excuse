@@ -540,7 +540,7 @@ $("#mem_local1").change(function(){
 		url:"<%=request.getContextPath()%>/common/registLocal",
 		success:function(data){
 			$("#mem_local2").html("");
-			$("#mem_local2").append("<option value='' value='fail' selected disabled>- 시, 구 -</option>");
+			$("#mem_local2").append("<option value='fail' selected disabled>- 시, 구 -</option>");
 			for(var sub of data){
 				console.log(sub.local_sub_name);
 				$("#mem_local2").append("<option>"+sub.local_sub_name+"</option>");

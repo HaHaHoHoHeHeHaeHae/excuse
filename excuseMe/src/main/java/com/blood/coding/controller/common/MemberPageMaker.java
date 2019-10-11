@@ -109,20 +109,24 @@ public class MemberPageMaker {
 	
 	public String makeQuery(){	
 		String query="?page="+cri.getPage()
-				    +"&perPageNum="+cri.getPerPageNum();
+				    +"&perPageNum="+cri.getPerPageNum()
+				    +"&sort="+((MemberCriteria)cri).getSort()
+					+"&alignment"+((MemberCriteria)cri).getAlignment();
+				    
 		if (((MemberCriteria) cri).getSearchType() != null) {
-			query = query + "&searchType=" + ((MemberCriteria) cri).getSearchType() + "&keyword="
-					+ ((MemberCriteria) cri).getKeyword();
+			query = query + "&searchType=" + ((MemberCriteria) cri).getSearchType() + "&keyword="+((MemberCriteria) cri).getKeyword();
 		}
 		return query;
 	}
 	
 	public String makeQuery(int page){	
 		String query="?page="+page
-				    +"&perPageNum="+cri.getPerPageNum();
+				    +"&perPageNum="+cri.getPerPageNum()
+				    +"&sort="+((MemberCriteria)cri).getSort()
+				    +"&alignment"+((MemberCriteria)cri).getAlignment();
+		
 	    if (((MemberCriteria) cri).getSearchType() != null) {
-			query = query + "&searchType=" + ((MemberCriteria) cri).getSearchType() + "&keyword="
-					+ ((MemberCriteria) cri).getKeyword();
+			query = query + "&searchType=" + ((MemberCriteria) cri).getSearchType() + "&keyword="+((MemberCriteria) cri).getKeyword();
 		}
 		return query;
 	}

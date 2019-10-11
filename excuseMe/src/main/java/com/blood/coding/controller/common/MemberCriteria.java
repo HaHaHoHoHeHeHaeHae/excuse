@@ -5,11 +5,11 @@ public class MemberCriteria {
 	private int perPageNum;		//한페이지 당 보여주는 리스트 개수
 	private String searchType; //검색 구분
 	private String keyword; //검색어
-	private int alignment;
+	private int alignment; //가입순정렬
 	private int sort; //활성 비활성 정렬
 	
 	public MemberCriteria() {
-		this(1, 20, "", "",0,0);
+		this(1, 10, "", "",0,0);
 	}
 	
 

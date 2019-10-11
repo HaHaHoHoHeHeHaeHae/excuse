@@ -45,7 +45,17 @@ public class ManageUserController {
 		
 		return mav;		
 	}
-	
+	@RequestMapping("/listForm")
+	public ModelAndView memberListForm(MemberCriteria cri)throws Exception{
+		String url="manage/member/list_form";
+		ModelAndView mav = new ModelAndView();
+		
+		Map<String,Object> map=service.memberlistByAdmin(cri);
+		mav.addObject("dataMap",map);
+		mav.setViewName(url);
+		
+		return mav;		
+	}
 	
 	//상세보기
 	@RequestMapping("/detail")

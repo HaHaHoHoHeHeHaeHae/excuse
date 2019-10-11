@@ -267,18 +267,15 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public Map<String, Object> getBlackList(Criteria cri,MemberVO memberVO) throws SQLException {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
-		ClubVO clubVO = new ClubVO();
-		
-		
-		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
-		int totalCount = clubDAO.selectSearchClubCount(cri);
+		List<ClubVO> blackList = clubDAO.selectBlackList(cri);
+		int totalCount = clubDAO.selectBlackListCount(cri);
 		
 		PageMaker pageMaker = new PageMaker();
 		
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(totalCount);
 		
-		dataMap.put("clubList", clubList);
+		dataMap.put("blackList", blackList);
 		dataMap.put("pageMaker", pageMaker);
 		
 		return dataMap;

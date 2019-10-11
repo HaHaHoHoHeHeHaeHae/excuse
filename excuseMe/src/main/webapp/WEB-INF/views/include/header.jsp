@@ -131,7 +131,7 @@
 	            <div id="hmenu">
 	            	<!-- <ul class="nav nav-tabs" -->
 	            	<c:if test="${loginUser.mem_nick eq 'admin'}">
-		            	<div class="hmenu1" onclick="changeIframe('manage/club/clubList');">
+		            	<div class="hmenu1" onclick="changeIframe('manage/club');">
 		            		관리페이지
 		            	</div>
 	            	</c:if>

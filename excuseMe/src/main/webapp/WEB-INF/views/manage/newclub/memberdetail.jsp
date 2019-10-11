@@ -140,33 +140,13 @@
 					</div><!--end card-body  -->
 					</div>
 					<div class="text-center" style="margin-left:50px; margin-top:35px; margin-bottom:30px;">
-					    <button type="button" class="button special small" id="closeBtn" onclick="OpenWindow('replyList?mem_id=${member.mem_id }&mem_name=${member.mem_name }','','650','500');">댓글내역</button>
-					    &nbsp; &nbsp; &nbsp;
-					    <button type="button" class="button special small" id="statusBtn" onclick="StatusStop();">
-					    <c:if test= "${member.mem_status==1 }" >활동중지</c:if>
-						<c:if test= "${member.mem_status==0 }" >활동중지 해제</c:if></button>
-						&nbsp; &nbsp; &nbsp;
-						<button type="button" class="button special small" id="closeBtn" onclick="CloseWindow();">닫기</button>
+					  
+						<button type="button" class="button special small" id="backBtn" onclick="back();">뒤로가기</button>
 						
 					</div><!--end card-footer  -->
 				</div><!-- end card -->				
 
-				 <div id="replyList">
-					<%-- <div class="form-group row">
-							    <label>동호회 명 </label> 
-							    <input value="${club.club_name }">
-							</div>
-							<div class="form-group row">
-							    <label> 아이디</label> 
-							    <input value="${reply.reply_content }">
-							</div>
-							
-							<div class="form-group row">
-							    <label>등록날짜</label> 
-							    <input value="${reply.reply_regDate }">
-							</div>	 --%>
 				
-				</div> 
 
 <script>
 /* 	window.onload=function(){
@@ -174,9 +154,8 @@
 		$('#contentDiv').attr("contentEditable",false);
 		$(':radio:not(:checked)').attr('disabled',true);
 	} */
-	function CloseWindow(){
-		window.close();
-	
+	function back(){
+		window.history.back();
 	}
 	
 	</script>
@@ -192,68 +171,7 @@
 	}
 	
 	
-	function StatusStop(){
-		var id= mem_id.value;
-		var status=mem_status.value;
-		//alert(id);
-		//alert(status);
-		if(status=='비활성'){
-			$.ajax({
-				url:"<%=request.getContextPath() %>/manage/member/status",
-				type:"POST",
-				data:{mem_id:id},
-				success:function(result){
-					if(result=="SUCCESS"){
-						alert("활동중지 해제되었습니다.");
-						location.reload();
-					}else{
-						alert("error");
-					}
-				},
-				error:function(){
-					alert('실패했습니다.');
-				},
-				
-			}); 
-		
-		}else{
-			$.ajax({
-				url:"<%=request.getContextPath() %>/manage/member/stopstatus",
-				type:"POST",
-				data:{mem_id:id},
-				success:function(result){
-					if(result=="SUCCESS"){
-						alert("활동중지 되었습니다.");
-						location.reload();
-					}else{
-						alert("error");
-					}
-				},
-				error:function(){
-					alert('실패했습니다.');
-				},
-				
-			}); 
-			}	
-	}
 	
-	function reply(){
-		var id= mem_id.value;
-		alert(id);
-		
-			$.ajax({
-				url:"<%=request.getContextPath() %>/manage/user/replyList",
-				type:"GET",
-				data:{mem_id:id},
-				success:function(result){
-					$('#replyList').append(replyList);
-					location.reload();
-				}
-				
-			}); 
-		
-	 
-	}
 	</script>
 	
 	</body>
