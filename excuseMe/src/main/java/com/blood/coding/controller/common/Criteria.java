@@ -102,9 +102,6 @@ public class Criteria {
 		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", category=" + category + ", keyword="
 				+ keyword + ", local=" + local + ", alignment=" + alignment + ", sort=" + sort + "]";
 	}
-
-	
-	
 	
 	
 	

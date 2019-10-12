@@ -22,7 +22,7 @@ public class UpnDownController {
 	private UpnDownService service;
 	
 	//매핑의 예
-	//	
+	//http://localhost/coding/upcheck?mem_id=momo&club_no=c12
 	
 	@RequestMapping("upcheck")
 	public ResponseEntity upCheck(UpVO up, HttpServletResponse response) throws Exception {
@@ -41,16 +41,16 @@ public class UpnDownController {
 //		out.println("self.location.href='/coding/mypage/myclub';");
 		out.println("</script>");*/
 		
-		ResponseEntity entity = new ResponseEntity(bool,HttpStatus.OK);
+		ResponseEntity<Boolean> entity = new ResponseEntity<Boolean>(bool,HttpStatus.OK);
 		
 		return entity;		
 	}
 	
 	//매핑의 예
-	//http://localhost/coding/upndown/downcheck?mem_id=momo&club_no=c12
+	//http://localhost/coding/downcheck?mem_id=momo&club_no=c12
 	
 	@RequestMapping("downcheck")
-	public ResponseEntity downCheck(DownVO down, HttpServletResponse response) throws Exception {
+	public ResponseEntity<Boolean> downCheck(DownVO down, HttpServletResponse response) throws Exception {
 		boolean bool = service.registDown(down);
 		System.out.println(bool);
 		

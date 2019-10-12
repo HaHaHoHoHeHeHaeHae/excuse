@@ -88,10 +88,9 @@
 		update member
 		set
 		mem_pwd=#{mem_pwd},
-		mem_birthDate=#{mem_birthDate},
-		mem_name=#{mem_name},
 		mem_local=#{mem_local},
 		mem_phone=#{mem_phone},
+		mem_nick=#{mem_nick},
 		mem_phone_check=#{mem_phone_check},
 		mem_id_check=#{mem_id_check},
 		mem_name_check=#{mem_name_check}

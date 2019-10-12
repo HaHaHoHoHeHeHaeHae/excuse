@@ -159,7 +159,7 @@ public class ClubServiceImpl implements ClubService {
 		return dataMap;
 	}
 
-	// 그냥 ?��?�� �??��?��?���?-?��?��?���? ?�� ?���?(?��?��버튼?�� ?���??��?��?��)
+	// 그냥 하나 가져오는거-수정하기 전 단계(수정버튼을 클릭했을때)
 	@Override
 	public ClubVO getClub(String club_no) throws SQLException {
 		ClubVO club = clubDAO.selectClub(club_no);
@@ -175,7 +175,7 @@ public class ClubServiceImpl implements ClubService {
 		clubDAO.insertClub(club);
 	}
 
-	//?��?��?���? submit버튼?�� ?���??��?��?��
+	//수정하고 submit버튼을 클릭했을때
 	@Override
 	public void modify(ClubVO club) throws SQLException {
 		clubDAO.updateClub(club);
@@ -228,6 +228,16 @@ public class ClubServiceImpl implements ClubService {
 	}
 
 	@Override
+	public void updateClub(String club_no) throws SQLException {
+		clubDAO.updateClubStatus(club_no);
+	}
+
+	@Override
+	public void updateStopClub(String club_no) throws SQLException {
+		clubDAO.updateStopClubStatus(club_no);
+	}
+
+	@Override
 	public Map<String, Object> getClubListByAdmin(Criteria cri, MemberVO memberVO) throws SQLException {
 		// TODO Auto-generated method stub
 		return null;
@@ -239,22 +249,13 @@ public class ClubServiceImpl implements ClubService {
 		return null;
 	}
 
-	@Override
-	public void updateClub(String club_no) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateStopClub(String club_no) throws SQLException {
-		// TODO Auto-generated method stub
-		
-	}
-
+	//메이드 바이 우철 / 내가만든 클럽을 리스트 검색
 	@Override
 	public List<ClubVO> getMyClub(String mem_id) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	
+		List<ClubVO> myClubList = clubDAO.myClub(mem_id);
+		
+		return myClubList;
 	}
 
 }

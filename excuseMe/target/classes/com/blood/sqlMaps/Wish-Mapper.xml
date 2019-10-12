@@ -18,4 +18,28 @@
 			values(wish_seq.nextval, #{mem_id}, #{club_no})
 		</update>
 		
+		<update id="deleteWish" parameterType="wish">
+			delete
+			from wish
+			where mem_id = #{mem_id} and
+				club_no = #{club_no}
+		</update>
+		
+		<!-- 내가 관심있는 동호회 리스트 -->
+		<select id="selectWishList" resultType="wish">
+			SELECT
+   				j.wish_no, j.mem_id, j.club_no, NVL(downcnt, 0) downcnt, NVL(upcnt, 0) upcnt, NVL(joincnt, 0) joincnt, c.club_name
+			FROM 
+				wish j,
+				downcnt d,
+				upcnt u,
+				joincnt jo,
+				club c		
+			WHERE
+			    j.club_no = d.club_no(+) and
+			    j.club_no = u.club_no(+) and
+			    j.club_no = jo.club_no(+) and 
+			    j.club_no = c.club_no(+) and
+			    j.mem_id = #{mem_id}	
+		</select>
     </mapper>

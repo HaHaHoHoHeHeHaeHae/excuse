@@ -1,4 +1,4 @@
-package com.blood.coding.dao.joinClub;
+package com.blood.coding.dao.joinclub;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -45,6 +45,14 @@ public class JoinClubDAOImpl implements JoinClubDAO {
 		
 		return joinclubList;
 	}
+	
+	@Override
+	public int selectJoinClubListCount(String mem_id) throws SQLException {
+		List<JoinClubVO> joinList = session.selectList("JoinClub-Mapper.selectJoinClubList",mem_id);
+		
+		int count = joinList.size();
+		return count;
+	}
 
 	@Override
 	public List<JoinClubVO> selectMyClubList(Criteria cri, String club_no) throws SQLException {
@@ -56,12 +64,24 @@ public class JoinClubDAOImpl implements JoinClubDAO {
 		List<JoinClubVO> joinclubList = session.selectList("JoinClub-Mapper.selectMyClubList",club_no,rowBounds);
 		return joinclubList;
 	}
+	
+	@Override
+	public int selectMyClubListCount(String club_no) throws SQLException {
+		List<JoinClubVO> joinList = session.selectList("JoinClub-Mapper.selectMyClubList",club_no);
+		
+		int count = joinList.size();
+		return count;
+	}
 
 	@Override
 	public int selectJoinClubSeq() throws SQLException {
 		int seq_num = session.selectOne("JoinClub-Mapper.selectJoinClubSeqNext");
 		return seq_num;
 	}
+
+	
+
+	
 
 
 

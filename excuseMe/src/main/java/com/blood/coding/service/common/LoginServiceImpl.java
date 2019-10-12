@@ -46,4 +46,10 @@ public class LoginServiceImpl implements LoginService {
 		return count;
 	}
 
+	//멤버 정보 수정
+	@Override
+	public void modify(MemberVO memberVO) throws SQLException {
+		memberDAO.updateMember(memberVO);
+	}
+
 }

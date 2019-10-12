@@ -136,7 +136,7 @@
 		            	</div>
 	            	</c:if>
 	            	<c:if test="${loginUser.mem_nick ne 'admin'}">
-		            	<div class="hmenu1" onclick="changeIframe('notice');">
+		            	<div class="hmenu1" onclick="changeIframe('mypage');">
 		            		마이페이지
 		            	</div>
 	            	</c:if>

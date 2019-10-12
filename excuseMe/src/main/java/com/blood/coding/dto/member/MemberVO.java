@@ -122,7 +122,9 @@ public class MemberVO implements Serializable{
 	public String toString() {
 		return "MemberVO [mem_id=" + mem_id + ", mem_pwd=" + mem_pwd + ", mem_gender=" + mem_gender + ", mem_birthDate="
 				+ mem_birthDate + ", mem_name=" + mem_name + ", mem_status=" + mem_status + ", mem_local=" + mem_local
-				+ ", mem_regDate=" + mem_regDate + ", mem_phone=" + mem_phone + "]";
+				+ ", mem_regDate=" + mem_regDate + ", mem_phone=" + mem_phone + ", mem_nick=" + mem_nick
+				+ ", mem_phone_check=" + mem_phone_check + ", mem_id_check=" + mem_id_check + ", mem_name_check="
+				+ mem_name_check + ", birthDate=" + birthDate + "]";
 	}
 
 
