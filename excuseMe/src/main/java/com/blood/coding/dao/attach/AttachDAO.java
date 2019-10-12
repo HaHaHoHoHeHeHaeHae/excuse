@@ -9,6 +9,9 @@ public interface AttachDAO {
 	//상세보기 시 첨부파일 리스트
 	public List<AttachVO> selectAttachesByAttachBoard(String attach_board) throws SQLException;
 	
+	//대표사진 존재 유무 확인
+	public int selectAttachThumCount(String attach_board) throws SQLException;
+	
 	public AttachVO selectAttachesByAttachBoardOne(String attach_board) throws SQLException;
 	
 	//다운로드 시 해당 파일 정보 가져오기

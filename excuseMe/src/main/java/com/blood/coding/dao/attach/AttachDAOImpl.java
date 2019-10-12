@@ -20,12 +20,6 @@ public class AttachDAOImpl implements AttachDAO {
 			return list;
 		}
 		
-		@Override
-		public AttachVO selectAttachesByAttachBoardOne(String attach_board) throws SQLException {
-			AttachVO attach = session.selectOne("Attach.selectAttachesByAttachBoard",attach_board);
-			return attach;
-		}
-		
 		//다운로드 시 해당 파일 정보 가져오기
 	    public AttachVO selectAttachByAttachno(int attach_no) throws SQLException{
 	    	AttachVO attach = session.selectOne("Attach.selectAttachByAttachno",attach_no);
@@ -47,4 +41,16 @@ public class AttachDAOImpl implements AttachDAO {
 	    }
 
 		
+
+		@Override
+		public int selectAttachThumCount(String attach_board) throws SQLException {
+			int count = session.selectOne("Attach.selectAttachThumCount", attach_board);
+			return count;
+		}
+
+		@Override
+		public AttachVO selectAttachesByAttachBoardOne(String attach_board) throws SQLException {
+			AttachVO list = session.selectOne("Attach.selectAttachesByAttachBoard",attach_board);
+			return list;
+		}
 }

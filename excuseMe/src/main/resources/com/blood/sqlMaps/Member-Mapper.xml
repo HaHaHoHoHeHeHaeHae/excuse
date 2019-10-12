@@ -64,7 +64,12 @@
 		where
 		mem_id = #{mem_id}
 	</select>
-
+	
+	<select id="selectMember2" resultType="member" parameterType="str">
+		select *
+		from member
+		where mem_nick = #{mem_nick}
+    </select>
 	<select id="login" resultType="member">
 		select *
 		from member
@@ -145,6 +150,20 @@
 		member
 		order by mem_regDate
 	</select>
+	<select id="findId" resultType="str" parameterType="member">
+		select mem_id
+		from member
+		where mem_name=#{mem_name}
+		and mem_phone=#{mem_phone}
+		and mem_birthDate=#{mem_birthDate} 
+	</select>
+
+    <select id="findPwd" resultType="str" parameterType="member">
+        select mem_pwd
+        from member
+        where mem_name=#{mem_name}
+        and mem_id=#{mem_id}
+    </select>
 </mapper>
     
     

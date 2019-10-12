@@ -1,12 +1,9 @@
 package com.blood.coding.service.club;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.rmi.ssl.SslRMIClientSocketFactory;
 
 import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.controller.common.PageMaker;
@@ -168,10 +165,6 @@ public class ClubServiceImpl implements ClubService {
 
 	@Override
 	public void regist(ClubVO club) throws SQLException {
-		int cno = clubDAO.selectClubSeq();
-		String club_no = "c_" + cno;
-		//System.out.println(club_no);
-		club.setClub_no(club_no);
 		clubDAO.insertClub(club);
 	}
 
@@ -256,6 +249,21 @@ public class ClubServiceImpl implements ClubService {
 		List<ClubVO> myClubList = clubDAO.myClub(mem_id);
 		
 		return myClubList;
+	}
+
+
+	@Override
+	public String getClubSeq() throws SQLException {
+		int cno = clubDAO.selectClubSeq();
+		String club_no = "c" + cno;
+		return club_no;
+	}
+
+
+	@Override
+	public int countClub(String club_name) throws SQLException {
+		int count = clubDAO.selectClubCount(club_name);
+		return count;
 	}
 
 }

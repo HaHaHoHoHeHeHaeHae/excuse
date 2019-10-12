@@ -98,8 +98,7 @@
 	    </select>
 	    
 	    <select id="selectClubSeq" resultType="int">
-	    	select club_seq.nextval
-	    	<!-- as club_no -->
+	    	select club_seq.nextval as club_seq
 	    	from dual
 	    </select>
 	    
@@ -111,7 +110,7 @@
 	    <update id="updateClub" parameterType="club">
 	    	update club
 	    	set
-	    	club_name=#{club_name}, club_content=#{club_content}, club_local=#{club_local}, cate_name=#{cate_name}
+	    	club_content=#{club_content}, club_local=#{club_local}
 	    	where club_no=#{club_no}
 	    </update>
 	    
@@ -161,6 +160,13 @@
 	    	from club_view
 	    	where mem_id = #{mem_id}
 	    	order by club_name
+	    </select>
+	    
+	    <select id="selectClubCount" resultType="int">
+	    	select count(*)
+	    	from club_view
+	    	where club_name = #{club_name}
+	    	
 	    </select>
 	    
     </mapper>

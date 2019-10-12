@@ -11,7 +11,11 @@ function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
     win.focus() ; 
 }
 function changeIframe(name){
-	document.getElementById("if_list").src="<%=request.getContextPath()%>/"+name+"/list";
+	document.getElementById("if_list").src="<%=request.getContextPath()%>/"+name;
 }
+$('.hmenu1').click(function(){
+	$('.hmenu1').css("background","");
+	$(this).css("background","linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 55%,rgba(0,0,0,0) 61%,rgba(0,0,0,0.16) 100%)");
+});
 </script>
 

@@ -27,7 +27,7 @@
 			<div class="12u 12u$" style="height: 500px;">
 				<div style="position: relative; margin-top: 20px;">
 					<iframe id="if_list" name="if_list" frameborder="0" scrolling="0"
-						src="<%=request.getContextPath()%>/notice/noticeDetail?not_no=${notice.not_no}&page=${page}&mem_nick=${mem_nick}"
+						src="<%=request.getContextPath()%>/notice/noticeModify?not_no=${notice.not_no}"
 						style="position: absolute; top: 0px; left: 0px; bottom: 0px; height: 900px; width: 100%; border: 0px;">
 					</iframe>
 				</div>

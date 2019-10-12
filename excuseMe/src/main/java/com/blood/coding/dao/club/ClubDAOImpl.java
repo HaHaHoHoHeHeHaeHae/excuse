@@ -126,4 +126,11 @@ public class ClubDAOImpl implements ClubDAO {
 		return list;
 	}
 
+
+	@Override
+	public int selectClubCount(String club_name) throws SQLException {
+		int count = session.selectOne("Club.selectClubCount", club_name);
+		return count;
+	}
+
 }

@@ -55,12 +55,12 @@
 	
 	<beans:bean id="loginSuccessHandler"
 				class="com.blood.coding.security.LoginSuccessHandler"
-				p:defaultTargetUrl="/main/test"
+				p:defaultTargetUrl="/main/main_frame"
 				/>
 				
 	<beans:bean id="loginFailureHandler"
 				class="com.blood.coding.security.LoginFailureHandler"
-				p:defaultFailureUrl="/login_fail"
+				p:defaultFailureUrl="/common/login"
 				/>
 				
 	

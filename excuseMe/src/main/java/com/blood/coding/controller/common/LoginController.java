@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.blood.coding.dao.category.CategoryDAO;
+import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.dto.local.LocalVO;
 import com.blood.coding.dto.member.MemberVO;
 import com.blood.coding.service.common.LocalService;
@@ -30,8 +32,12 @@ public class LoginController {
 	@Autowired
 	private LoginService service;
 	
+	@Autowired
+	private CategoryDAO categoryDAO;
+	
 	@Resource(name="localService")
 	private LocalService localService;
+	
 	
 	@RequestMapping("/login")
 	public String login() throws Exception{
@@ -83,6 +89,23 @@ public class LoginController {
 		
 		return entity;
 	}
+	@RequestMapping(value="/registCategory", method=RequestMethod.GET)
+	public ResponseEntity<Object> ListSubCategory(@RequestParam("cate_name") String cate_name) throws Exception{
+
+		ResponseEntity<Object> entity = null;
+		try {
+			int cate_no = categoryDAO.findCateNo(cate_name);
+			System.out.println(cate_no);
+			List<CategoryVO> categoryList = categoryDAO.selectSubCategoryList(cate_no);
+			
+			entity = new ResponseEntity<Object>(categoryList,HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		return entity;
+	}
 	
 	@RequestMapping(value = "/signup", method=RequestMethod.POST)
 	@ResponseBody
@@ -93,11 +116,12 @@ public class LoginController {
 			String birthDate = memberVO.getBirthDate();
 
 			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-			System.out.println(birthDate);
 			Date mem_birthDate = transFormat.parse(birthDate);
 			memberVO.setMem_birthDate(mem_birthDate);
+			int check = memberVO.getMem_name_check();
+			System.out.println(check);
 			String id = memberVO.getMem_id();
-			System.out.println(id);
+
 			service.signUp(memberVO);
 			entity = new ResponseEntity<Object>(id,HttpStatus.OK);
 			

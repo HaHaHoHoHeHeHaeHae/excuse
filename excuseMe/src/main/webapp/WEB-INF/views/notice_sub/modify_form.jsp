@@ -105,10 +105,10 @@
 					<div class="attached row">	
 					
 						<c:forEach items="${notice.attachList}" var="attach">
-							<div class="col-sm-4 attached-inputRow" attach-name="${attach.attach_name }" attach-no="${attach.attach_no }" style="cursor: pointer;" onclick="location.href='<%=request.getContextPath()%>/attach/get?attach_no=${attach.attach_no}';">
+							<div class="col-sm-4 attached-inputRow" attach-name="${attach.attach_name }" attach-no="${attach.attach_no }" style="cursor: pointer;" >
 								<button type="button" style="border: 0; outline: 0;"
-									class="badge bg-red float-right" >X</button>
-								<div class="info-box uploadedList">
+									class="badge bg-red float-right" id="">X</button>
+								<div class="info-box uploadedList" onclick="location.href='<%=request.getContextPath()%>/attach/get?attach_no=${attach.attach_no}'">
 									<span class="info-box-icon">
 											<img src="<%=request.getContextPath() %>/attach/thum?attach_no=${attach.attach_no }" />
 									</span>
@@ -194,7 +194,7 @@
 		var endDate = not_endDate.value;
 		var title = not_title.value;
 		var content=not_content.value;
-		console.log(id+startDate+endDate+title+content);
+
 		
 		$.ajax({
 			url:"<%=request.getContextPath()%>/notice/modify",
