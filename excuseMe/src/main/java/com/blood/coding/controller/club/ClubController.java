@@ -78,10 +78,7 @@ public class ClubController {
 			//System.out.println("$$$$$$$$$$");
 			dataMap.put("split_sub", split_sub);
 		}
-		
-		
-		
-		
+
 		modelnView.addObject("dataMap",dataMap);
 		modelnView.setViewName(url);
 		return modelnView;

@@ -90,9 +90,6 @@ public class ClubServiceImpl implements ClubService {
 
 		//지역
 		List<LocalVO> localList = localDAO.selectLocalList();
-
-		cri.setPerPageNum(10);
-		cri.setAlignment(0);
 		
 		//동호회리스트
 		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);

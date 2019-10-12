@@ -43,6 +43,7 @@ div.top {
 <!-- Theme style -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/adminLTE/dist/css/adminlte.min.css">
+
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/templated/assets/css/main.css">
 
@@ -50,6 +51,7 @@ div.top {
 <link
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
 	rel="stylesheet">
+
 </head>
 
 <body class="subpage">
@@ -85,7 +87,8 @@ div.top {
 
 									<c:forEach var="cate1" items="${cateList}">
 										<c:if test="${!empty cateList }">
-											<option value="${cate1.cate_no }" ${split[0] eq cate1.cate_name ? 'selected':''}>${cate1.cate_name }</option>
+											<option value="${cate1.cate_no }"
+												${split[0] eq cate1.cate_name ? 'selected':''}>${cate1.cate_name }</option>
 										</c:if>
 									</c:forEach>
 
@@ -122,7 +125,8 @@ div.top {
 									<option value="0">전체</option>
 									<c:forEach var="local" items="${localList }">
 										<c:if test="${!empty localList }">
-											<option value="${local.local_no}" ${split_sub[0] eq local.local_name ? 'selected':''}>${local.local_name }</option>
+											<option value="${local.local_no}"
+												${split_sub[0] eq local.local_name ? 'selected':''}>${local.local_name }</option>
 										</c:if>
 									</c:forEach>
 								</select>
@@ -132,24 +136,25 @@ div.top {
 						<div class="label"
 							style="float: left; margin-left: 20px; margin-right: 10px; width: 450px;">
 							<div class="select">
-							<input type="hidden" id="selected_sub_local"
-									value="${split_sub[1]}" />
-								<select id="subLocal" class="form-control"
-									style="width: 500px; float: left;">
+								<input type="hidden" id="selected_sub_local"
+									value="${split_sub[1]}" /> <select id="subLocal"
+									class="form-control" style="width: 500px; float: left;">
 									<option selected>전체</option>
 								</select>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="search3" style="height: 80px;">
-					<div class="select" style="width: 800px, float:left; height: 80px;">
+				<div class="search3" style="height: 60px;">
+					<div class="select" style="width: 800px; float:left; height: 60px;">
 						<input name="keyword" type="text" class="form-control"
 							placeholder="동호회를 검색할 단어를 입력하세요." style="width: 1000px;">
 					</div>
-					<ul class="actions" style="float: right;">
-						<li><a id="searchBtn" href="#" class="button special small">검색</a></li>
-					</ul>
+					<div class="actions" style="float: right; height:60px;">
+						<div style="width:120px; height:55px;border-radius:5px;background:#2BB3D7; text-align:center; vertical-align:middle;">
+							<a id="searchBtn" href="#" style="font-size:16px; color:white; text-decoration:none;dispay:inline-block;line-height:55px;">검색</a>
+						</div>
+					</div>
 				</div>
 
 			</section>
@@ -190,7 +195,9 @@ div.top {
 							style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin: 3px 3px 20px 3px; width: 219px;">
 							<div class="card-body box-profile">
 								<div class="text-center">
-										<img class="profile-user-img img-fluid img-circle" id="thum" src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}" alt="<%=request.getContextPath()%>/resources/img/logo.png">	
+									<img class="profile-user-img img-fluid img-circle" id="thum"
+										src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
+										alt="<%=request.getContextPath()%>/resources/img/logo.png">
 								</div>
 
 								<h3 class="profile-username text-center"
@@ -211,7 +218,7 @@ div.top {
 								<ul class="actions vertical small"
 									style="text-align: center; margin-bottom: -10px;">
 									<li><a href="#" data-name="title"
-										onclick="OpenWindow('detail?club_no=${club.club_no}','','810','650');"
+										onclick="OpenWindow('detail?club_no=${club.club_no}','','813','650');"
 										class="button small" style="color: white;">Detail</a></li>
 								</ul>
 							</div>
@@ -253,12 +260,15 @@ div.top {
 								<li><a href="#" data-name="title"
 									onclick="OpenWindow('detail?club_no=${recommend.club_no}','','800','650');"
 									class="button alt icon fa-search">Detail</a></li>
-								<li><a href="#" class="button alt icon fa-check">가입하기</a></li>
+								<li><a href="#" class="button alt icon fa-check"
+									onclick="onJoin('join','${club.club_no}')">가입하기</a></li>
 							</ul>
 						</div>
 						<div class="2"
 							style="width: 160px; height: 160px; align: center; float: left; padding-right: 20px;">
-							<img class="profile-user-img img-fluid img-circle" id="thum" src="<%=request.getContextPath()%>/attach/img?attach_no=${recommend.attachThum_no}" alt="<%=request.getContextPath()%>/resources/img/logo.png">
+							<img class="profile-user-img img-fluid img-circle" id="thum"
+								src="<%=request.getContextPath()%>/attach/img?attach_no=${recommend.attachThum_no}"
+								alt="<%=request.getContextPath()%>/resources/img/logo.png">
 						</div>
 					</div>
 				</div>
@@ -376,7 +386,7 @@ div.top {
 		                  var selected =$("#selected_sub_category").val();
 		                
 		                  for(var sub of data){
-		                  $("#subCategory").append("<option>"+ sub.catee_sub_name +"</option>");
+		                  $("#subCategory").append("<option>"+ sub.cate_sub_name +"</option>");
 		                  }
 		                  $("#subCategory").val(selected).prop("selected",true);
 		         }
@@ -391,7 +401,7 @@ div.top {
 		
 		if($(this).val()==0){
 			$("#subLocal").html("");
-			$("#subLpcal").append("<option value=''>전체</option>");
+			$("#subLocal").append("<option value=''>전체</option>");
 		}else{
 			$.ajax({
 				data:JSON.stringify({"local_no":$(this).val()}),
@@ -438,7 +448,7 @@ div.top {
 	})
 
 	<%--search --%>
-	$('a#searchBtn').click(function(){
+ 	$('a#searchBtn').click(function(){
 		//alert("searchBtn");
 		//""(x), cate1.cate_name (x),
 		//var category = $('select#category').text();
@@ -475,20 +485,13 @@ div.top {
 		//alert("토탈카테고리="+TotalCategory+"\n토탈로컬="+TotalLocal);
 		
 		searchList(TotalCategory,TotalLocal,keyword);
-	});
-	
-	
+	}); 
+
 	function searchList(TotalCategory,TotalLocal,keyword){
 		self.location="<%=request.getContextPath()%>/club/list?category="+TotalCategory+"&local="+TotalLocal+"&keyword="+keyword;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+
 	<%--aligment --%>
 	function ali_0(){ //0:최신순
 		self.location.href="<%=request.getContextPath()%>/club/list?alignment=0";
@@ -529,22 +532,50 @@ div.top {
 		}
 	}
 	
+	function onJoin(joinnexit,club_no) {
+      <%-- joinnexit는 스트링으로 join 과 exit을 받아와야한다. --%>
+      
+      var text = "가입을";
+      
+      if(joinnexit == "exit")
+         text = "탈퇴를";
+      
+      if(confirm("정말로 " + text + " 하시겠습니까?")){
+         
+         $.ajax({
+            contentType:"application/JSON",
+            type: "POST",
+            url: "<%=request.getContextPath()%>/" + joinnexit + "club?mem_id=${loginUser.mem_id}&club_no="+club_no,
+            cache: false,
+            success: function(bool) {s
+               console.log(bool);
+               if(bool == false)
+                  alert("당신은 이미 " + text + " 하셨습니다.");
+               else
+                  alert(text + " 하셨습니다.");
+               location.reload();
+            }
+         });
+         
+      }
+      
+   }
+	
 </script>
 
 	<footer id="footer" style="position: relative; margin-top: 700px;">
 		<div class="inner">
 			<h2>Get In Touch</h2>
 			<ul class="actions">
-				<li><span class="icon fa-phone"></span> <a href="#">(000)
-						000-0000</a></li>
-				<li><span class="icon fa-envelope"></span> <a href="#">information@untitled.tld</a></li>
-				<li><span class="icon fa-map-marker"></span> 123 Somewhere
-					Road, Nashville, TN 00000</li>
+				<li><span class="icon fa-phone"></span>&nbsp;<a href="#">(042)
+						254-2462</a></li>
+				<li><span class="icon fa-envelope"></span>&nbsp;<a href="#">infomation@excuseme.com</a></li>
+				<li><span class="icon fa-map-marker"></span>&nbsp;대전광역시 서구 둔산동 둔산서로 17 양호빌딩</li>
 			</ul>
 		</div>
 		<div class="copyright">
-			&copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>.
-			Images <a href="https://unsplash.com">Unsplash</a>.
+			&copy; Copyright <a href="https://templated.co">EXCUSEME Corp.</a>.
+			
 		</div>
 	</footer>
 

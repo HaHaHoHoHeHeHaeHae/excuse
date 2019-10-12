@@ -19,41 +19,55 @@
 <title>동호회 디테일</title>
 
 <!-- Font Awesome -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">
 
 <!-- Ionicons -->
-<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
 <!-- icheck bootstrap -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/adminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 
 <!-- Theme style -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/adminLTE/dist/css/adminlte.min.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/dist/css/adminlte.min.css">
 
 <!-- Google Font: Source Sans Pro -->
-<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+	rel="stylesheet">
 
 <!-- daterange picker -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/adminLTE/plugins/daterangepicker/daterangepicker.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/daterangepicker/daterangepicker.css">
 
 <!-- summernote -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/adminLTE/plugins/summernote/summernote-bs4.css">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/summernote/summernote-bs4.css">
 
 <!-- jQuery -->
-<script src="<%=request.getContextPath()%>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap 4 -->
-	<script src="<%=request.getContextPath()%>/resources/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-		
-	<script src="<%=request.getContextPath() %>/resources/adminLTE/plugins/bootstrap/js/bootstrap.min.js"></script>
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/adminLTE/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 
 
 <!-- modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
 
 <script id="reply-list-template" type="text/x-handlebars-template">
 {{#each .}}
@@ -71,200 +85,258 @@
 {{/each}}   
 </script>
 <!-- Time Line -->
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/adminLTE/build/scss/_timeline.scss">
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/build/scss/_timeline.scss">
 
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/templated/assets/css/main.css" />
-	
-
-
-<style>
-div.top {
-	height: 100px;
-}
-</style>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/templated/assets/css/main.css" />
 
 </head>
 
 
 <body>
-	<div class="top"></div>
-	
-	<!-- main1 start -->	
-	<div id="main1" class="wrapper" style="width: 800px; position: relative;">
-		<div class="pic_demo_wqrp" style="position: absolute; width: 800px;; height: 300px; top: 0px;">
-			<div class="pic_warp" style="width: 300px; height: 300px; float: left; position: absolute;">
-				<div class="pic" style="width: 300px; height: 300px;">
-					<img class="profile-user-img" 
-						 id="thum" src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}" 
-						 alt="<%=request.getContextPath()%>/resources/img/logo.png"
-						 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; padding: 2px;" />
+	<div id="main_wrap" style="position: absolute; width: 800px;">
+		<!-- thumnail & demonstration -->
+		<div id="main1" style="position: absolute; width: 800px; height: 300px;">
+			<div class="pic_demo_wqrp" style="position: relative; width: 800px;; height: 300px;">
+				<div class="pic_warp"
+					style="position: absolute; width: 300px; height: 300px; float: left;">
+					<div class="pic" style="width: 300px; height: 300px;">
+						<img class="profile-user-img" id="thum"
+							src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
+							alt="<%=request.getContextPath()%>/resources/img/logo.png"
+							style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; padding: 2px;" />
+					</div>
 				</div>
-			</div>
-			<div class="demo_wrap" style="width: 500px; height: 300px; float: left; position: absolute; left: 300px;">
-				<div style="height: 300px;">
-					<table class="alt" style="height: 300px; margin-bottom: 0px; margin: auto; text-align: center; font-size: 18px;">
-						<tbody>
-							<tr>
-								<td><b>동호회명</b></td>
-								<td>${club.club_name }</td>
-							</tr>
-							<tr>
-								<td><b>지역</b></td>
-								<td>${club.club_local }</td>
-							</tr>
-							<tr>
-								<td><b>카테고리</b></td>
-								<td>${club.cate_name }</td>
+				<div class="demo_wrap"
+					style="position: absolute; width: 500px; height: 300px; float: left;  left: 300px;">
+					<div style="height: 300px;">
+						<table class="alt"
+							style="height: 300px; margin-bottom: 0px; margin: auto; text-align: center; font-size: 18px;">
+							<tbody>
+								<tr>
+									<td><b>동호회명</b></td>
+									<td>${club.club_name }</td>
+								</tr>
+								<tr>
+									<td><b>지역</b></td>
+									<td>${club.club_local }</td>
+								</tr>
+								<tr>
+									<td><b>카테고리</b></td>
+									<td>${club.cate_name }</td>
 
-							</tr>
-							<tr>
-								<td><b>대표자명</b></td>
-								<td>${mem_nick }</td>
-							</tr>
-						</tbody>
-					</table>
+								</tr>
+								<tr>
+									<td><b>대표자명</b></td>
+									<td>${mem_nick }</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="summernote" style="position: absolute; width: 800px; top: 300px;">
-			<table class="alt" style="margin-bottom: 0px; margin: auto; text-align: center; font-size: 18px; height: 400px;">
-				<tbody>
-					<tr valign=middle>
-						<td style="width: 156px;"><b>내용</b></td>
-						<td>${club.club_content }</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<!-- main1 end -->
 
-	<!-- main2 start -->
-	<div id="main2" class="wrapper" style="width: 800px; position: absolute; top:800px;">
-		<div class="attach" style="position: relative; width: 800px; margin-bottom:50px;">
-			<table class="alt" style="margin-bottom: 0px; margin: auto; text-align: center; font-size: 18px;">
-				<tbody>
-					<tr>
-						<td style="width: 156px;"><b>첨부파일</b></td>
-						<td class="attach_wrap" style="width: 644px; margin-right: -50px;">
-							<c:forEach var="attach" items="${attach }">
-								<div class="col-md-4 col-md-12" style="cursor: pointer;"
-									onclick="location.href='<%=request.getContextPath() %>/attach/get?attach_no=${attach.attach_no }';">
-									<div class="img info-box uploadedlist">
-										<span class="info-box-icon"> 
-											<c:if test="${!empty ImgCheck.getImgCheck(attach.attach_type) }">
-												<img src="<%=request.getContextPath() %>/attach/thum?attach_no=${attach.attach_no }" />
-											</c:if> 
-											<c:if test="${empty ImgCheck.getImgCheck(attach.attach_type) }">
-												<img src="<%=request.getContextPath() %>/resources/img/icon/${FileFormat.generate(attach.attach_type)}.png" />
-											</c:if>
-										</span>
-										<div class="text info-box-content">
-											<span class="subtext1 info-box-text"><fmt:formatDate
-													value="${attach.attach_regDate }" pattern="yyyy-MM-dd" /></span>
-											<span class="subtext2 info-box-number text-overflow"
-												style="width: 460px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${attach.attach_name }</span>
+		<div id="main2" class="wrapper"
+			style=" position: absolute; width: 800px; top:300px;">
+			<!-- summer note -->
+			<div class="summernote" style="position: relative; width: 800px;">
+				<table class="alt"
+					style="margin-bottom: 0px; margin: auto; text-align: center; font-size: 18px;">
+					<tbody>
+						<tr valign=middle>
+							<td style="width: 156px;"><b>내용</b></td>
+							<td>${club.club_content }</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- attach -->
+			<div class="attach"
+				style="position: relative; width: 800px; margin-bottom: 50px;">
+				<table class="alt"
+					style="margin-bottom: 0px; margin: auto; text-align: center; font-size: 18px;">
+					<tbody>
+						<tr>
+							<td style="width: 156px;"><b>첨부파일</b></td>
+							<td class="attach_wrap"
+								style="width: 644px; margin-right: -50px;"><c:forEach
+									var="attach" items="${attach }">
+									<div class="col-md-4 col-md-12" style="cursor: pointer;"
+										onclick="location.href='<%=request.getContextPath() %>/attach/get?attach_no=${attach.attach_no }';">
+										<div class="img info-box uploadedlist">
+											<span class="info-box-icon"> <c:if
+													test="${!empty ImgCheck.getImgCheck(attach.attach_type) }">
+													<img
+														src="<%=request.getContextPath() %>/attach/thum?attach_no=${attach.attach_no }" />
+												</c:if> <c:if
+													test="${empty ImgCheck.getImgCheck(attach.attach_type) }">
+													<img
+														src="<%=request.getContextPath() %>/resources/img/icon/${FileFormat.generate(attach.attach_type)}.png" />
+												</c:if>
+											</span>
+											<div class="text info-box-content">
+												<span class="subtext1 info-box-text"><fmt:formatDate
+														value="${attach.attach_regDate }" pattern="yyyy-MM-dd" /></span>
+												<span class="subtext2 info-box-number text-overflow"
+													style="width: 460px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${attach.attach_name }</span>
+											</div>
 										</div>
 									</div>
-								</div>
-							</c:forEach>
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+								</c:forEach></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- buttons -->
+			<div class="buttons"
+				style="position: relative; width: 800px; text-align: center; margin-bottom: 20px;">
+				<a href="#" class="button special" id="wishBtn" onclick="onWish('wish','${club.club_no}');">관심동호회등록</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#" class="button" id="joinBtn" onclick="onJoin('join','${club.club_no}');">가입하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#" class="button alt" id="closeBtn" onclick="onClose();">나가기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			</div>
+			<!-- updown -->
+			<div class="updown" style="position: relative; width: 800px; margin-bottom: 50px;">
+				<ul class="list-group list-group-unbordered mb-3">
+					<li class="list-group-item text-center"
+						style="height: 60px; width: 198px; left: 35%; float: left;"><b
+						id="btag"> <a href="#" style="text-decoration: none;"
+							onclick="club_upndown('up','${club.club_no}');"><i
+								class="far fa-thumbs-up"></i>&nbsp;&nbsp;${club.upcnt }&nbsp;&nbsp;</a>
 
-		<div class="buttons" style="position: relative; width: 800px; text-align: center; margin-bottom:20px;">
-			<a href="#" class="button special" id="wishBtn" onclick="onWish();">관심동호회등록</a>&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="#" class="button" id="joinBtn" onclick="onJoin();">가입하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="#" class="button alt" id="closeBtn" onclick="onClose();">나가기</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		</div>
-
-		<div class="updown" style="position: relative; width: 800px; margin-bottom: 50px;">
-			<ul class="list-group list-group-unbordered mb-3">
-				<li class="list-group-item text-center" style="height: 60px; width: 198px; left: 35%; float: left;">
-				<b id="btag"> 
-					<a href="#" style="text-decoration:none;" onclick="club_upndown('up','${club.club_no}');"><i class="far fa-thumbs-up"></i>&nbsp;&nbsp;${club.upcnt }&nbsp;&nbsp;</a>
-					 
-					<a href="#" style="text-decoration:none;" onclick="club_upndown('down','${club.club_no}');"><i class="fas fa-thumbs-down"></i>&nbsp;&nbsp;${club.downcnt }</a>
-				</b>
-				</li>
-			</ul>
-		</div>
-
-		<div class="reply" style="position: relative; width: 800px;">
-			<!-- Reply 부분 -->
-			<div class="card">
-				<div class="card-header">
-					<!-- 리플 작성하는 부분 -->
-					<div class="box box-success">
-						<!-- <div class="box-header">
-						<h3 class="box-title">Add new Reply</h3>
-					</div>-->
-						<div class="box-body">
-							<input class="form-control" type="hidden" id="newReplyWriter" readonly value="${loginUser.mem_id }" /> 
-							<input class="form-control" type="text" placeholder="댓글을 입력하세요." id="newReplyText" />
-						</div>
-						<div class="box-footer" style="float: right;">
-							<button type="button" class="button alt small" id="replyAddBtn">등&nbsp;&nbsp;록</button>
+							<a href="#" style="text-decoration: none;"
+							onclick="club_upndown('down','${club.club_no}');"><i
+								class="fas fa-thumbs-down"></i>&nbsp;&nbsp;${club.downcnt }</a>
+					</b></li>
+				</ul>
+			</div>
+			<!-- reply -->
+			<div class="reply" style="position: relative; width: 800px;">
+				<div class="card">
+					<div class="card-header">
+						<!-- 리플 작성하는 부분 -->
+						<div class="box box-success">
+							<div class="box-body">
+								<input class="form-control" type="hidden" id="newReplyWriter"
+									readonly value="${loginUser.mem_id }" /> <input
+									class="form-control" type="text" placeholder="댓글을 입력하세요."
+									id="newReplyText" />
+							</div>
+							<div class="box-footer" style="float: right;">
+								<button type="button" class="button alt small" id="replyAddBtn">등&nbsp;&nbsp;록</button>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="card-body">
-					<!-- 리플라이 목록 -->
-					<ul class="timeline color-palette-set">
-						<li class="bg-green color-palette row" id="repliesDiv"><span
-							class="col-sm-12">Replies List</span></li>
-					</ul>
-				</div>
-
-				<div class="card-footer">
-					<!-- 리플라이 페이지네이션 -->
-					<div class="text-center">
-						<ul id="pagination" class="pagination pagination-sm no-margin">
-
+					<div class="card-body">
+						<!-- 리플라이 목록 -->
+						<ul class="timeline color-palette-set">
+							<li class="bg-green color-palette row" id="repliesDiv"
+								style="width: 805px; background: #6E7070;"><span
+								class="col-sm-12">댓글 목록</span></li>
 						</ul>
 					</div>
+
+					<div class="card-footer">
+						<!-- 리플라이 페이지네이션 -->
+						<div class="text-center">
+							<ul id="pagination" class="pagination pagination-sm no-margin">
+
+							</ul>
+						</div>
+					</div>
 				</div>
+
 			</div>
 
-		</div>
-
-		<!-- Modal -->
-		<div id="modifyModal" class="modal modal-default fade" role="dialog">
-			<!-- modal-default 는 색상배합  -->
-			<div class="modal-dialog">
-				<!-- Modal content -->
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" style="display: none;"></h4>
-						<button type="button" class="close" data-dismiss="modal">&times;</button>
-					</div>
-					<div class="modal-body" data-reply_no>
-						<p>
-							<input type="text" id="reply_content" class="form-control">
-						</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-info" id="replyModBtn">수정</button>
-						<button type="button" class="btn btn-danger" id="replyDelBtn">삭제</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+			<!-- Modal -->
+			<div id="modifyModal" class="modal modal-default fade" role="dialog">
+				<!-- modal-default 는 색상배합  -->
+				<div class="modal-dialog">
+					<!-- Modal content -->
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" style="display: none;"></h4>
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+						</div>
+						<div class="modal-body" data-reply_no>
+							<p>
+								<input type="text" id="reply_content" class="form-control">
+							</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-info" id="replyModBtn">수정</button>
+							<button type="button" class="btn btn-danger" id="replyDelBtn">삭제</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">닫기</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-
 	<script>
-	function onWish(){}
 	
-	<%-- function onJoin(){
-		alert('onJoin성공');
-		self.location.href="<%=request.getContextPath() %>/club/joinToClub?mem_id=${member.mem_id}&club_no=${club.club_no}";
-	} --%>
+	function onWish(wishnremove,club_no) {
+	      <%-- wishnremove 에는 club 과 remove 가  스트링으로 들어야한다.--%>
+	         var text = " 추가";
+	         
+	         if(wishnremove == "remove")
+	            text = "서 삭제";
+	         
+	         if(confirm("정말로 관심동호회에" + text + "하시겠습니까?")){
+	            
+	            $.ajax({
+	               contentType:"application/JSON",
+	               type: "POST",
+	               url: "<%=request.getContextPath()%>/wish" + wishnremove + "?mem_id=${loginUser.mem_id}&club_no=" + club_no,
+	               cache: false,
+	               success: function(bool) {
+	                  console.log(bool);
+	                  
+	                  if(bool == false)
+	                     alert("이미 관심동호회에" + text + "되어있습니다.");
+	                  else
+	                     alert("관심동호회에" +text + "되었습니다.");
+	                  location.reload();
+	               }
+	            });
+	         }
+	         
+	      }
 	
+	
+	
+	function onJoin(joinnexit,club_no) {
+        <%-- joinnexit는 스트링으로 join 과 exit을 받아와야한다. --%>
+        
+        var text = "가입을";
+        
+        if(joinnexit == "exit")
+           text = "탈퇴를";
+        
+        if(confirm("정말로 " + text + " 하시겠습니까?")){
+           
+           $.ajax({
+              contentType:"application/JSON",
+              type: "POST",
+              url: "<%=request.getContextPath()%>/" + joinnexit + "club?mem_id=${loginUser.mem_id}&club_no="+club_no,
+              cache: false,
+              success: function(bool) {
+                 console.log(bool);
+                 if(bool == false)
+                    alert("당신은 이미 " + text + " 하셨습니다.");
+                 else
+                    alert(text + " 하셨습니다.");
+                 location.reload();
+              }
+           });
+           
+        }
+        
+     }
 	
 	function onClose(){
 		window.close();
@@ -327,7 +399,7 @@ div.top {
 		  });
 		}
 	
-	getPage("<%=request.getContextPath() %>/replies/${club.club_no}/"+replyPage);
+	getPage("<%=request.getContextPath()%>/replies/${club.club_no}/"+replyPage);
 	
 	var printPaging = function(pageMaker, target){ 
 		var str = "";
@@ -348,7 +420,7 @@ div.top {
 	$('.pagination').on('click','li a', function(event){
 		event.preventDefault();
 		replyPage = $(this).attr("href");
-		getPage("<%=request.getContextPath() %>/replies/${club.club_no}/"+replyPage);
+		getPage("<%=request.getContextPath()%>/replies/${club.club_no}/"+replyPage);
 	});
 		
 	
@@ -379,7 +451,7 @@ div.top {
 			success:function(data){
 				if(data=="SUCCESS"){
 					alert('댓글이 등록되었습니다.');
-					getPage("<%=request.getContextPath() %>/replies/${club.club_no}/"+replyPage);
+					getPage("<%=request.getContextPath()%>/replies/${club.club_no}/"+replyPage);
 					$('#newReplyText').val("");
 				}else{
 					alert('댓글 등록이 취소되었습니다.');
@@ -477,10 +549,11 @@ div.top {
 
 
 	<!-- AdminLTE App -->
-	<script src="<%=request.getContextPath()%>/resources/adminLTE/dist/js/adminlte.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/adminLTE/dist/js/adminlte.min.js"></script>
 
-	
-	
+
+
 
 	<!-- templated Scripts -->
 	<!-- <script src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.min.js"></script> -->
@@ -492,5 +565,4 @@ div.top {
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
-
 </body>
