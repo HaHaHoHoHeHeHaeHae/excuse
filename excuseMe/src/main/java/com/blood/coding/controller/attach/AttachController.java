@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.blood.coding.controller.common.DownloadFileUtils;
@@ -28,7 +29,7 @@ public class AttachController {
 	private String uploadPath;
 	
 	//첨부파일 클릭시 다운로드 하는 메소드!!
-	@RequestMapping("/get")
+	@RequestMapping(value = "/get", method=RequestMethod.GET)
 	public ResponseEntity<byte[]> getAttach(int attach_no) throws Exception {
 		
 		ResponseEntity<byte[]> entity = null;
@@ -46,6 +47,20 @@ public class AttachController {
 		//실제 파일위치경로 만들기
 		filePath = uploadPath + filePath + File.separator + fileName;	
 		System.out.println(filePath);
+		return DownloadFileUtils.downloadAll(filePath);
+	}
+	
+	@RequestMapping("/thum")
+	public ResponseEntity<byte[]> getThumbnail(int attach_no)throws Exception{
+		
+		ResponseEntity<byte[]> entity = null;
+		
+		AttachVO attach=attachDAO.selectAttachByAttachno(attach_no);
+		String fileName="s_"+attach.getAttach_uuid()+"$$"+attach.getAttach_name();
+		String filePath=attach.getAttach_path();
+		
+		filePath = uploadPath+filePath+File.separator+fileName;
+		
 		return DownloadFileUtils.download(filePath);
 	}
 	

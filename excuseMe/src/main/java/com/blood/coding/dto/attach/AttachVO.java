@@ -1,5 +1,7 @@
 package com.blood.coding.dto.attach;
 
+import java.util.Date;
+
 public class AttachVO {
 	private int attach_no;
 	private String attach_board; //첨부파일 구분자명
@@ -8,7 +10,7 @@ public class AttachVO {
 	private String attach_name;//파일 이름
 	private String attach_uuid;
 	private String attach_type; //확장자명
-	private String attach_regDate;
+	private Date attach_regDate;
 	public int getAttach_no() {
 		return attach_no;
 	}
@@ -51,10 +53,10 @@ public class AttachVO {
 	public void setAttach_type(String attach_type) {
 		this.attach_type = attach_type;
 	}
-	public String getAttach_regDate() {
+	public Date getAttach_regDate() {
 		return attach_regDate;
 	}
-	public void setAttach_regDate(String attach_regDate) {
+	public void setAttach_regDate(Date attach_regDate) {
 		this.attach_regDate = attach_regDate;
 	}
 	@Override
@@ -64,7 +66,7 @@ public class AttachVO {
 				+ attach_uuid + ", attach_type=" + attach_type + ", attach_regDate=" + attach_regDate + "]";
 	}
 	public AttachVO(int attach_no, String attach_board, String attach_writer, String attach_path, String attach_name,
-			String attach_uuid, String attach_type, String attach_regDate) {
+			String attach_uuid, String attach_type, Date attach_regDate) {
 		super();
 		this.attach_no = attach_no;
 		this.attach_board = attach_board;

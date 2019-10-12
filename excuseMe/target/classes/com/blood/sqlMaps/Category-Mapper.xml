@@ -32,7 +32,7 @@
     		category c, subcategory s
     		where c.cate_no = s.cate_no
     		and s.cate_no = #{cate_no}
-    		order by cate_sub_name asc
+    		order by cate_sub_name 
     	</select>
     
     </mapper>

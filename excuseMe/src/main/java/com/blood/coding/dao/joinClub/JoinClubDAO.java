@@ -11,7 +11,7 @@ public interface JoinClubDAO {
 	public void insertJoinClub(JoinClubVO joinclub) throws SQLException;
 	
 	//동호회 탈퇴
-	public void deleteJoinClub(String mem_id) throws SQLException;
+	public void deleteJoinClub(JoinClubVO joinclub) throws SQLException;
 	
 	//동호회원인지 체크
 	public JoinClubVO selectJoinClub(JoinClubVO joinclub) throws SQLException;

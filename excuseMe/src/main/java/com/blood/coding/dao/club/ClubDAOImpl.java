@@ -24,9 +24,16 @@ public class ClubDAOImpl implements ClubDAO {
 		int limit = cri.getPerPageNum();
 		int alignment = cri.getAlignment();
 		int sort = cri.getSort();
+		String local = cri.getLocal();
+		String category = cri.getCategory();
+		String keyword = cri.getKeyword();
+		
 		RowBounds rowBounds = new RowBounds(startRowNum,limit);
 		cri.setAlignment(alignment);
 		cri.setSort(sort);
+		cri.setLocal(local);
+		cri.setCategory(category);
+		cri.setKeyword(keyword);
 		
 		List<ClubVO> clubList = session.selectList("Club.selectSearchClubList",cri,rowBounds);
 		
@@ -115,6 +122,33 @@ public class ClubDAOImpl implements ClubDAO {
 		List<ClubVO> list = session.selectList("Club.recentClubMain");
 		
 		return list;
+	}
+	
+	//메이드 바이 우철 / 내가만든 클럽을 리스트 검색
+	@Override
+	public List<ClubVO> myClub(String mem_id) throws SQLException{
+				
+		List<ClubVO> list = session.selectList("Club.selectMyClub",mem_id);
+		
+		return list;
+	}
+
+
+	@Override
+	public List<ClubVO> selectBlackList(Criteria cri) throws SQLException {
+		int startRowNum = cri.getPageStartRowNum();
+		int limit = cri.getPerPageNum();
+		
+		RowBounds rowBounds = new RowBounds(startRowNum,limit);
+		List<ClubVO> blackList = session.selectList("Club.selectBlackList",cri,rowBounds);
+		return blackList;
+	}
+
+
+	@Override
+	public int selectBlackListCount(Criteria cri) throws SQLException {
+		int count = session.selectOne("Club.selectBlackListCount",cri);
+		return count;
 	}
 
 }

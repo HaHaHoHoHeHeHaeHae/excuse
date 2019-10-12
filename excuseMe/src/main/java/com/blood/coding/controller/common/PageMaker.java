@@ -107,7 +107,9 @@ public class PageMaker {
 				    +"&perPageNum="+cri.getPerPageNum()
 				    +"&local="+((Criteria)cri).getLocal()
 				    +"&keyword="+((Criteria)cri).getKeyword()
-					+"&category="+((Criteria)cri).getCategory();
+					+"&category="+((Criteria)cri).getCategory()
+					+"&sort="+((Criteria)cri).getSort()
+					+"&alignment="+((Criteria)cri).getAlignment();
 		return query;
 	}
 	
@@ -116,7 +118,9 @@ public class PageMaker {
 				    +"&perPageNum="+cri.getPerPageNum()
 				    +"&local="+((Criteria)cri).getLocal()
 				    +"&keyword="+((Criteria)cri).getKeyword()
-					+"&category="+((Criteria)cri).getCategory();
+					+"&category="+((Criteria)cri).getCategory()
+					+"&sort="+((Criteria)cri).getSort()
+					+"&alignment="+((Criteria)cri).getAlignment();
 		return query;
 	}
 

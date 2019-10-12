@@ -1,16 +1,16 @@
 package com.blood.coding.controller.mail;
 
-import java.net.Authenticator;
-import java.net.PasswordAuthentication;
 import java.util.Date;
 import java.util.Properties;
 
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.blood.coding.service.common.LoginService;
 
+
 @Controller
 @RequestMapping("/mail")
 public class MailController extends Authenticator{
@@ -31,7 +32,7 @@ public class MailController extends Authenticator{
 	
 	@RequestMapping(value="/sendPwd", method=RequestMethod.POST)
 	@ResponseBody
-    public ResponseEntity<Object> MailSend(@RequestParam("mem_id") String mem_id, @RequestParam("mem_name") String mem_name) throws Exception{
+    public ResponseEntity<Object> mailSend(@RequestParam("mem_id") String mem_id, @RequestParam("mem_name") String mem_name) throws Exception{
 		ResponseEntity<Object> mailSend = null;
 		
         Properties prop = System.getProperties();
