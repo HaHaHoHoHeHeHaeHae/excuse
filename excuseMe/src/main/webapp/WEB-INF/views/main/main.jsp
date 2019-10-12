@@ -52,11 +52,11 @@
 
 			<!-- Elements -->
 		
-				<div class ="row"id="createClub" onclick="location.href=''" style="margin:0; width:100%;height:300px;">
-					<div style="width:50%;height:300px;padding:0;">
+				<div class ="row"id="createClub"  style="margin:0; width:100%;height:300px;">
+					<div style="cursor:pointer;width:50%;height:300px;padding:0;" onclick="OpenWindow('<%=request.getContextPath() %>/club/regist', '동호회 생성', 850, 900)">
 					 	<img src="<%=request.getContextPath()%>/resources/img/createClub.jpg">
 					</div>
-					<div style="width:50%;height:300px;padding:0;margin-left:-1px;">
+					<div onclick="self.location='<%=request.getContextPath() %>/club/list'" style="cursor:pointer;width:50%;height:300px;padding:0;margin-left:-1px;">
 						<img src="<%=request.getContextPath()%>/resources/img/searchClub.jpg">
 					</div>
 					
@@ -75,7 +75,7 @@
 								<c:if test="${!empty noticeList }">
 									<c:forEach var="notice" items="${noticeList}">
 										<tr>
-											<td style="cursor:pointer;text-overflow: ellipsis; overflow: hidden;display: block;width:250px;" onclick="self.location='<%=request.getContextPath()%>/notice/detail?not_no=${notice.not_no }&page=1&mem_nick=${loginUser.mem_nick}'">${notice.not_title }</td>
+											<td style="font-weight:bold;cursor:pointer;text-overflow: ellipsis; overflow: hidden;display: block;width:250px;" onclick="self.location='<%=request.getContextPath()%>/notice/detail?not_no=${notice.not_no }&page=1&mem_nick=${loginUser.mem_nick}'">${notice.not_title }</td>
 											<td><fmt:formatDate value="${notice.not_regDate }" pattern="yyyy-MM-dd"/></td>
 										</tr>
 									</c:forEach>
@@ -83,17 +83,26 @@
 							</tbody>
 						</table>
 					</div>
-					<div id="recommend" style="width:48%; height:400px;">
-				
+					<div id="row recommend" style="width:48%; height:400px;margin-top:10px;">
+						<c:forEach var="recommend" items="${recommendClubList }">
+							<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+								<div class="image">
+									<img src="<%=request.getContextPath() %>/attach/img?attach_no=${recommend.attach_no}" style="width:200px;height:200px;" />
+								</div>
+								<div class= "info">
+									<a href="" class="d-block">${recommend.club_name }</a>
+								</div>
+							</div>								
+						</c:forEach>
 					</div>
 				</div>
 				<div id="recent" style="width:100%;height:300px;">
-					<div class="row">
+					<div class="row newClub" >
 							<h3>신규&nbsp동호회</h3>
 					</div>
 					<ul style="width:100%;list-style:none; padding:0; margin:0;">
 						<c:forEach var="recentClub" items="${recentClubList}">
-							<li style="width:27%;font-weight:bold;border-left:1.5px solid gray; float:left; padding:0;font-size:1em;margin-top:10px;margin-left:10px;cursor:pointer;text-overflow: ellipsis; overflow: hidden;display: block;" onclick="OpenWindow()">
+							<li style="width:25%;font-weight:bold;border-left:1.5px solid gray; float:left; padding:0;font-size:1em;margin-top:10px;margin-left:10px;cursor:pointer;text-overflow: ellipsis; overflow: hidden;display: block;" onclick="OpenWindow()">
 								&nbsp&nbsp&nbsp
 								${recentClub.club_name}
 							</li>
@@ -137,5 +146,15 @@
 	 
 	<!-- date-range-picker -->
 	<script src="<%=request.getContextPath()%>/resources/adminLTE/plugins/daterangepicker/daterangepicker.js"></script>
+	<script>
+	function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
+	winleft = (screen.width - WinWidth) / 2;
+	wintop = (screen.height - WinHeight) / 2;
+	var win = window.open(UrlStr , WinTitle , "scrollbars=yes,width="+ WinWidth 
+		                	+", height="+ WinHeight +", top="+ wintop +", left=" 
+		                	+ winleft + ", resizable=no, status=yes"  );
+    win.focus() ; 
+	}
+	</script>
 </body>
 </html>

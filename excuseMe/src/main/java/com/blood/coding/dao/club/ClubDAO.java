@@ -9,9 +9,13 @@ import com.blood.coding.dto.club.ClubVO;
 public interface ClubDAO {
 	//서치리스트
 	   public List<ClubVO> selectSearchClubList(Criteria cri) throws SQLException; 
-	   
+	  
 	//페이지 카운트
 	   public int selectSearchClubCount(Criteria cri) throws SQLException;
+	   
+	 //승인요청 클럽리스트
+	   public List<ClubVO> selectNewClubList(Criteria cri)throws SQLException;
+	   public int selectNewClubListCount(Criteria cri)throws SQLException;
 	   
 	//동호회 상세보기
 	   public ClubVO selectClub(String club_no) throws SQLException;
@@ -25,9 +29,16 @@ public interface ClubDAO {
 	   public void deleteClub(String club_no) throws SQLException;
 	   
 	//승인 ,운영중지
-	   public void updateClubStatus(ClubVO clubVO) throws SQLException;
+	   public void updateClubStatus(String club_no) throws SQLException;
+	   public void updateStopClubStatus(String club_no) throws SQLException;
+	   
 	
 	//Made by minho
 	   public List<ClubVO> recommendClubMain(String mem_local) throws SQLException;
 	   public List<ClubVO> recentClubMain() throws SQLException;
+	
+	//메이드 바이 우철 / 내가만든 클럽을 리스트 검색
+	   public List<ClubVO> myClub(String mem_id) throws SQLException;
+	   
+	   public int selectClubCount(String club_name) throws SQLException;
 }

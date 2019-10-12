@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.blood.coding.service.common.LoginService;
 
+
 @Controller
 @RequestMapping("/mail")
 public class MailController extends Authenticator{

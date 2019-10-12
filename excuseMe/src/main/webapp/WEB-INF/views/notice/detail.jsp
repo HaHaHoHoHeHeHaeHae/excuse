@@ -13,16 +13,17 @@
 </head>
 <body class="subpage">
 
-	
+
 	<!-- Menu -->
 	
 
 	<!-- Main -->
 	<section id="main" class="wrapper">
 		<div class="inner">
-	
+
+
 			<!-- Elements -->
-			
+		
 			<div class="12u 12u$" style="height: 500px;">
 				<div style="position: relative; margin-top: 20px;">
 					<iframe id="if_list" name="if_list" frameborder="0" scrolling="0"
@@ -36,14 +37,5 @@
 		 
 
 </body>
-<script>
-$(function(){
-	var no = not_no.value;
-	alert(1);
-	if(no !=null){
-		document.notice.target = "if_list";
-	    document.notice.submit();
-	}
-});
-</script>
+
 </html>

@@ -2,26 +2,19 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
     
-    <mapper namespace="up">
-    	
-    	<!-- 해당 클럽의 up 갯수확인 -->
-    	<select id="selectUpCount" resultType="int">
-    		select count(club_no)
-    		from up
-            where club_no = #{club_no};
-    		    		
-    	</select>
-    	
-    	<!-- 클럽의 up버튼 누르기 --> 
-    	<update id="insertUp">
-    		insert into up
-            values(#{up_no},#{mem_id},#{club_no});
-    	</update>
-    	
-    	
-    	<!-- x 멤버가   x 클럽에 추천했는지 확인 --> 
-    	<!-- <select id="checkUp" resultType="">
- 	  		
- 	  	</select> -->
+    <mapper namespace="Up">
+   		<select id="selectCheck" resultType="up">
+			select *
+			from up
+			where 
+				CLUB_NO = #{club_no} 
+           		and MEM_ID = #{mem_id}
+		</select>
+		
+		<update id="insertUp" parameterType="up">
+			insert into up
+			values(up_seq.nextval, #{mem_id}, #{club_no})
+		</update>
     </mapper>

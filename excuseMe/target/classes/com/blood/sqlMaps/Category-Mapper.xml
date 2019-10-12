@@ -13,18 +13,11 @@
  			order by cate_name asc			
  			 			
     	</select>
-    	
-    	    	
-    	<!-- 없어도 될듯 ㄱㄷ 
-    	대분류 카테고리 하나 선택했을때
-    	<select id="selectOneCategory" resultType="category">
-    		select
-    		cate_no
-    		from
-    		category
-    		where cate_no = #{cate_no}
-    		
-    	</select> -->
+    	<select id ="findCateNo" resultType="int">
+    		select cate_no
+    		from category
+    		where cate_name = #{cate_name}
+    	</select>
     	
     	<!-- 대분류 선택을 기준해서 서브카테고리 목록 -->
     	<select id="selectSubCategory" resultType="category">

@@ -16,6 +16,4 @@ public interface WishDAO {
 	//중복 체크
 	public int checkWish(String mem_id, String club_no) throws SQLException;
 	
-	//시퀀스 번호
-	public int selectWishSeq() throws SQLException;
 }

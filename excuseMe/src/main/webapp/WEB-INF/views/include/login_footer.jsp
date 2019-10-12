@@ -1,12 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page trimDirectiveWhitespaces="true" %>
 
-
-	<footer id="footer">
+	<footer id="footer" style="height:300px;padding-top:60px;">
 				<div class="inner">
-					<h2>Get In Touch</h2>
+					<h2>고객 센터</h2>
 					<ul class="actions">
-						<li><span class="icon fa-phone"></span> <a href="#">(000) 000-0000</a></li>
-						<li><span class="icon fa-envelope"></span> <a href="#">information@untitled.tld</a></li>
-						<li><span class="icon fa-map-marker"></span> 123 Somewhere Road, Nashville, TN 00000</li>
+						<li><span class="icon fa-phone"></span> (042) 254-2462</li>
+						<li><span class="icon fa-envelope"></span> excuseMe@gmail.com</li>
+						<li><span class="icon fa-map-marker"></span> 대전광역시 서구 둔산서로 17(양호빌딩 6층) </li>
 					</ul>
 				</div>
 				<div class="copyright">

@@ -5,13 +5,37 @@ public class MemberCriteria {
 	private int perPageNum;		//한페이지 당 보여주는 리스트 개수
 	private String searchType; //검색 구분
 	private String keyword; //검색어
+	private int alignment;
+	private int sort; //활성 비활성 정렬
 	
 	public MemberCriteria() {
-		this(1, 10, "", "");
+		this(1, 20, "", "",0,0);
 	}
 	
 
-	public MemberCriteria(int page, int perPageNum, String searchType, String keyword) {
+
+
+	public int getSort() {
+		return sort;
+	}
+
+
+	public void setSort(int sort) {
+		this.sort = sort;
+	}
+
+
+	public int getAlignment() {
+		return alignment;
+	}
+
+
+	public void setAlignment(int alignment) {
+		this.alignment = alignment;
+	}
+
+
+	public MemberCriteria(int page, int perPageNum, String searchType, String keyword,int alignment,int sort) {
 		super();
 		this.page = page;
 		this.perPageNum = perPageNum;
@@ -56,8 +80,13 @@ public class MemberCriteria {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
+
 	@Override
 	public String toString() {
-		return "SearchCriteria [searchType=" + searchType + ", keyword=" + keyword + "]";
+		return "MemberCriteria [page=" + page + ", perPageNum=" + perPageNum + ", searchType=" + searchType
+				+ ", keyword=" + keyword + ", alignment=" + alignment + ", sort=" + sort + "]";
 	}
+
+	
+	
 }

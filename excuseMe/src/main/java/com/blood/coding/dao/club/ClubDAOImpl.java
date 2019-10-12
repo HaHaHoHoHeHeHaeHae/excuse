@@ -22,18 +22,41 @@ public class ClubDAOImpl implements ClubDAO {
 		
 		int startRowNum = cri.getPageStartRowNum();
 		int limit = cri.getPerPageNum();
+		int alignment = cri.getAlignment();
+		int sort = cri.getSort();
 		RowBounds rowBounds = new RowBounds(startRowNum,limit);
+		cri.setAlignment(alignment);
+		cri.setSort(sort);
 		
 		List<ClubVO> clubList = session.selectList("Club.selectSearchClubList",cri,rowBounds);
 		
 		return clubList;
 	}
-
+	
 	@Override
 	public int selectSearchClubCount(Criteria cri) throws SQLException {
 		int clubCnt = session.selectOne("Club.selectSearchClubCount",cri);
 		return clubCnt;
 	}
+	
+	@Override
+	public List<ClubVO> selectNewClubList(Criteria cri) throws SQLException {
+		int startRowNum = cri.getPageStartRowNum();
+		int limit = cri.getPerPageNum();
+		RowBounds rowBounds = new RowBounds(startRowNum,limit);
+		
+		List<ClubVO> newclubList = session.selectList("Club.selectNewClubList",cri,rowBounds);
+		return newclubList;
+	}
+	
+	@Override
+	public int selectNewClubListCount(Criteria cri) throws SQLException {
+		int newcount = session.selectOne("Club.selectNewClubCount",cri);
+		return newcount;
+	}
+
+
+	
 
 	@Override
 	public ClubVO selectClub(String club_no) throws SQLException {
@@ -65,10 +88,17 @@ public class ClubDAOImpl implements ClubDAO {
 
 	}
 
-	@Override
-	public void updateClubStatus(ClubVO clubVO) throws SQLException {
-		session.update("Club.updateClubStatus",clubVO);
 
+
+	@Override
+	public void updateClubStatus(String club_no) throws SQLException {
+		session.update("Club.updateClubStatus",club_no);
+	}
+
+
+	@Override
+	public void updateStopClubStatus(String club_no) throws SQLException {
+		session.update("Club.updateStopClubStatus",club_no);
 	}
 
 
@@ -85,6 +115,22 @@ public class ClubDAOImpl implements ClubDAO {
 		List<ClubVO> list = session.selectList("Club.recentClubMain");
 		
 		return list;
+	}
+	
+	//메이드 바이 우철 / 내가만든 클럽을 리스트 검색
+	@Override
+	public List<ClubVO> myClub(String mem_id) throws SQLException{
+				
+		List<ClubVO> list = session.selectList("Club.selectMyClub",mem_id);
+		
+		return list;
+	}
+
+
+	@Override
+	public int selectClubCount(String club_name) throws SQLException {
+		int count = session.selectOne("Club.selectClubCount", club_name);
+		return count;
 	}
 
 }

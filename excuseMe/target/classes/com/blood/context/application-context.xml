@@ -10,7 +10,7 @@
 	<!-- uploadPath -->
 	<bean id="uploadPath"
 	      class="java.lang.String">
-	      <constructor-arg value="d:\\upload"/>      
+	      <constructor-arg value="d:\upload"/>      
 	</bean>
 	<bean id="imgPath"
 	      class="java.lang.String">
@@ -20,8 +20,7 @@
 	<!-- dao -->
 	<bean id="memberDAO" 
 		  class="com.blood.coding.dao.member.MemberDAOImpl"
-		  p:session-ref="sqlSession" 
-		  />
+		  p:session-ref="sqlSession"/>
 	<bean id="noticeDAO"
 		  class="com.blood.coding.dao.notice.NoticeDAOImpl"
 		  p:session-ref="sqlSession"/>
@@ -34,13 +33,20 @@
     <bean id="clubDAO"
 		  class="com.blood.coding.dao.club.ClubDAOImpl"
 		  p:session-ref="sqlSession" />
-	<bean id="CategoryDAO"
+	<bean id="categoryDAO"
 		  class="com.blood.coding.dao.category.CategoryDAOImpl"
 	      p:session-ref="sqlSession"/>
 	<bean id="attachDAO"
-		  class="com.blood.coding.dao.attach.AttachDAOImpl"
-		  p:session-ref="sqlSession"
-		  />	  	  
+			class="com.blood.coding.dao.attach.AttachDAOImpl"
+			p:session-ref="sqlSession" />
+	<bean id="upDAO"
+			class="com.blood.coding.dao.up.UpDAOImpl"
+			p:session-ref="sqlSession" />
+	<bean id="downDAO"
+			class="com.blood.coding.dao.down.DownDAOImpl"
+			p:sesssion-ref="sqlSession" />
+	
+			  	  
 	<!-- service -->	
 	<bean id="loginService"
 	  	  class="com.blood.coding.service.common.LoginServiceImpl"
@@ -63,6 +69,15 @@
 	<bean id="clubService"
 	  	  class="com.blood.coding.service.club.ClubServiceImpl"
 	  	  p:clubDAO-ref="clubDAO" 
-	  	  p:memberDAO-ref="memberDAO"/>
+	  	  p:memberDAO-ref="memberDAO"
+		  p:categoryDAO-ref="categoryDAO"
+		  p:localDAO-ref="localDAO"
+		  p:attachDAO-ref="attachDAO"
+		 />
+	<bean id="upnDownService"
+			class="com.blood.coding.service.upndown.UpnDownService"
+			p:downDAO-ref="downDAO"
+			p:upDAO-ref="upDAO" />
+
 	
 </beans>

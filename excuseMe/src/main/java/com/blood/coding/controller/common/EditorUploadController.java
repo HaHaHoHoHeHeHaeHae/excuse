@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 /*섬머노트 본문에 이미지 추가할때 쓰이는 컨트롤러*/
-
 @Controller
 public class EditorUploadController {
 	
@@ -26,8 +25,9 @@ public class EditorUploadController {
 	public String summernote() throws Exception{
 		
 		return "common/summernote";
-	}*/
-	
+<<<<<<< HEAD
+	}
+	*/
 	
 	@RequestMapping("/uploadImg")
 	public ResponseEntity<String> uploadImg(MultipartFile file, String id, HttpServletRequest request) throws Exception {

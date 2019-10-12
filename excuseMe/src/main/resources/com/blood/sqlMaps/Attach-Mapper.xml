@@ -3,6 +3,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
+
     <mapper namespace="Attach">
     
     
@@ -19,7 +20,12 @@
     		from attach
     		where attach_no = #{attach_no}    	
     	</select>
- 
+    	
+    	<select id ="selectAttachThumCount" resultType="int">
+    		select count(*)
+    		from attach
+    		where attach_board = #{attach_board}
+    	</select>
     	<update id="insertAttach">
     		insert into
     		attach
@@ -40,3 +46,4 @@
     	</update>
     
     </mapper>
+
