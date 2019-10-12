@@ -26,10 +26,22 @@ public interface ClubService {
 	//삭제
 	void remove(String club_no) throws SQLException;
 	
-	//신규동호회리스트(관리자페이지에서만)
+	
+	//관리페이지(동호회,신규동호회,블랙리스트)
+	Map<String,Object> getClubListByAdmin(Criteria cri, MemberVO memberVO) throws SQLException;
 	Map<String,Object> getNewClubList(Criteria cri) throws SQLException;
+	Map<String,Object> getBlackList(Criteria cri) throws SQLException;
+
+	
+	//동호회 승인 및 운영중지
+	public void updateClub(String club_no) throws SQLException;
+	public void updateStopClub(String club_no) throws SQLException;
+	
 	
 	//Made by minho
 	Map<String,List<ClubVO>> getClubListMain(String mem_local) throws SQLException;
 	Map<String,List<ClubVO>> getClubListMainRecent() throws SQLException;
+	
+	//메이드 바이 우철 / 내가만든 클럽을 리스트 검색
+	public List<ClubVO> getMyClub(String mem_id) throws SQLException;
 }

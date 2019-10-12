@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
@@ -56,9 +57,14 @@
 					<div class="card-body">
 						<form role="form" method="post" action="detail" name="detailForm">
 							<div class="form-group row" >
+							    <label class="col-sm-3 control-label" style="margin-top:15px;">동호회 번호</label> 
+							    <input class="col-sm-4 form-control" type="text" id="club_no" 
+							    readonly name="club_no" value="${club.club_no }">
+							</div>
+							<div class="form-group row" >
 							    <label class="col-sm-3 control-label" style="margin-top:15px;">동호회 이름</label> 
 							    <input class="col-sm-4 form-control" type="text" id="club_name" 
-							    readonly name="id" value="${club.club_name }">
+							    readonly name="club_name" value="${club.club_name }">
 							</div>
 							<div class="form-group row" style="margin-top:15px;">
 							    <label class="col-sm-3 control-label"style="margin-top:15px;">대표자 닉네임</label> 
@@ -86,8 +92,8 @@
 							<div class="form-group row" style="margin-top:15px;">
 							
 							    <label class="col-sm-3 control-label" style="margin-top:15px;">상태</label> 
-							    <input class="col-sm-4 form-control" type="text" id="nick" 
-							    readonly name="id" 
+							    <input class="col-sm-4 form-control" type="text" id="club_status" 
+							    readonly name="club_status" 
 							    value="<c:if test= "${club.club_status==0 }" >승인 대기 중</c:if>
 									<c:if test= "${club.club_status==1 }" >운영중</c:if>
 									<c:if test= "${club.club_status==2 }" >운영중지</c:if>">
@@ -102,8 +108,7 @@
 					</div>
 					<div class="text-center" style="margin-left:50px; margin-top:35px; margin-bottom:30px;">
 					    
-					    <button type="button" class="button special small" id="statusBtn" onclick="StatusStop();">
-					     <c:if test= "${club.club_status==0 }" >승인수락</c:if>
+					    <button type="button" class="button special small" id="statusBtn" onclick="Status();">
 					    <c:if test= "${club.club_status==1 }" >운영중지</c:if>
 						<c:if test= "${club.club_status==2 }" >운영중지 해제</c:if></button>
 						&nbsp; &nbsp; &nbsp;
@@ -143,18 +148,21 @@
 	</script>
 	
 	<script>
-	function StatusStop(){
-		var id= mem_id.value;
-		alert(id);
-		if(confirm("활동중지 시키겠습니까?")){
+	function Status(){
+		var id = club_no.value;
+		var status = club_status.value;
+		//alert(id);
+		//alert(status);
+		
+		if(status=='운영중'){
 			$.ajax({
-				url:"<%=request.getContextPath() %>/manage/user/status",
+				url:"<%=request.getContextPath() %>/manage/club/stopstatus",
 				type:"POST",
-				data:{mem_id:id},
+				data:{club_no:id},
 				
 				success:function(result){
 					if(result=="SUCCESS"){
-						alert("활동중지 되었습니다.");
+						alert("운영중지 되었습니다.");
 						location.reload();
 					}else{
 						alert("1234");
@@ -165,6 +173,27 @@
 				},
 				
 			}); 
+		}else{
+			$.ajax({
+				url:"<%=request.getContextPath() %>/manage/club/status",
+				type:"POST",
+				data:{club_no:id},
+				
+				success:function(result){
+					if(result=="SUCCESS"){
+						alert("동호회가 활성화 되었습니다.");
+						location.reload();
+					}else{
+						alert("1234");
+					}
+				},
+				error:function(){
+					alert('실패했습니다.');
+				},
+				
+			}); 
+			
+			
 		}
 		
 		 
@@ -178,7 +207,7 @@
 		alert(id);
 		
 			$.ajax({
-				url:"<%=request.getContextPath() %>/manage/user/replyList",
+				url:"<%=request.getContextPath() %>/manage/user/list",
 				type:"POST",
 				data:{mem_id:id},
 				success:function(result){

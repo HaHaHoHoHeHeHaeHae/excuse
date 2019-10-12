@@ -47,8 +47,8 @@ public class ClubController {
 	private LocalDAO localDAO;
 	
 	/*@Autowired
-	private JoinClubDAO joinClubDAO;
-	*/
+	private JoinClubDAO joinClubDAO;*/
+	
 	@ModelAttribute("categoryclub")
 	public String category() throws Exception{
 		return "club";
@@ -58,6 +58,7 @@ public class ClubController {
 
 	@RequestMapping("/list") //동호회 리스트보기
 	public ModelAndView clubList(Criteria cri, ModelAndView modelnView, HttpServletRequest request) throws SQLException{ //session에서 멤버VO(local)가져올거기 떄문에 request 추가해줌.
+		
 		String url = "/club/list";	
 		//로그인유저 정보
 		HttpSession session = request.getSession();
@@ -65,8 +66,20 @@ public class ClubController {
 	
 		Map<String, Object> dataMap = clubService.getClubList(cri, memberVO);
 
-		modelnView.addObject("dataMap",dataMap);
+		if(cri.getCategory().length()>0) {
+			String[] split = cri.getCategory().split("_");
+			dataMap.put("split", split);
+		}
 		
+		if(cri.getLocal().length()>0) {
+			String[] split_sub = cri.getLocal().split("_");
+			//System.out.println("$$$$$$$$$$");
+			//System.out.println(split_sub[1]);
+			//System.out.println("$$$$$$$$$$");
+			dataMap.put("split_sub", split_sub);
+		}
+
+		modelnView.addObject("dataMap",dataMap);
 		modelnView.setViewName(url);
 		return modelnView;
 	}
@@ -157,23 +170,7 @@ public class ClubController {
 	      return entity;
 	}
 	
-	/*@RequestMapping("/joinToClub")
-	public void joinToClub(JoinClubVO joinclub, HttpServletResponse response) throws SQLException{
-		joinClubDAO.insertJoinClub(joinclub);;
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out;
-		try {
-			out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('등록신청이 완료되었습니다. 관리자의 승인을 기다려주세요.')");
-			out.println("window.opener.location.href='/club/detail';window.close();");
-			out.println("</script>");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	} */
+	
 }
 
 

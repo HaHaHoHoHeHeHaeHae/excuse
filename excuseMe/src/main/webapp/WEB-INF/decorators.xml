@@ -8,14 +8,20 @@
 	<decorator name="notice" page="notice_decorator.jsp">
 		<pattern>/notice/regist</pattern>
 		<pattern>/notice/list</pattern>
+		<pattern>/notice/list_admin</pattern>
 		<pattern>/notice/detail</pattern>	
 		<pattern>/notice/modify</pattern>	
 	</decorator>		
-
 		
 	<decorator name="mypage" page="mypage_decorator.jsp">
 		<pattern>/mypage/*</pattern>		
-	</decorator>			
+	</decorator>	
+	
+	<decorator name="manage" page="manage_decorator.jsp">
+		<pattern>/manage/*</pattern>		
+	</decorator>	
+	
+
 	
 <!-- 	<decorator name="OpenWindow" page="open_decorator.jsp">
 		<pattern>/*</pattern>		
@@ -28,7 +34,6 @@
 		<pattern>*/common/regist*</pattern>
 		<pattern>*/common/search*</pattern>		
 		<pattern>*/detail*</pattern>
-		<pattern>*/newdetail*</pattern>
 		<pattern>*/replyList*</pattern>
 	</excludes>
 </decorators>

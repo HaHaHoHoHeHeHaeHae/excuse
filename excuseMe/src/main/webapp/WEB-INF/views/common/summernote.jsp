@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
@@ -14,18 +15,40 @@
   <!-- Time Line -->
   <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/adminLTE/build/scss/_timeline.scss">
   
+    <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   
+  <!-- Font Awesome -->
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">
+
+<!-- jQuery -->
+  <script src="<%=request.getContextPath() %>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>
+  
+  <!-- summernote -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath() %>/resources/adminLTE/plugins/summernote/summernote-bs4.css">
 
 </head>
 <body>
 
-      <div class="col-md-12">
-         
+      <div class="col-md-12" id="content">
+      	
+         ss
       </div>
 </body>
 </html>
   
-  
+  <!-- Bootstrap 4 -->
+<script src="<%=request.getContextPath() %>/resources/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<%=request.getContextPath() %>/resources/adminLTE/dist/js/adminlte.min.js"></script>
+
+<!-- InputMask -->
+<script src="<%=request.getContextPath() %>/resources/adminLTE/plugins/inputmask/jquery.inputmask.bundle.js"></script>
+<script src="<%=request.getContextPath() %>/resources/adminLTE/plugins/moment/moment.min.js"></script>
+
+<!-- 공지사항 등록할때 섬머노트 경로지정 및 실행 -->
+<script src="<%=request.getContextPath() %>/resources/adminLTE/plugins/summernote/summernote-bs4.min.js"></script>  
 
 <script>
    $('#content').summernote({

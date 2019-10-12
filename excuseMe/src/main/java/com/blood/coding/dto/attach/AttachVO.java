@@ -2,11 +2,9 @@ package com.blood.coding.dto.attach;
 
 import java.util.Date;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 public class AttachVO {
 	private int attach_no;
-	private String attach_board; //첨부파일 구분자명
+	private String attach_board; //첨부파일 올라간 보드 (club, member ...)
 	private String attach_writer;//파일 등록자
 	private String attach_path;//파일 경로
 	private String attach_name;//파일 이름
@@ -60,8 +58,6 @@ public class AttachVO {
 	public Date getAttach_regDate() {
 		return attach_regDate;
 	}
-	
-	@DateTimeFormat(pattern="yyyy-MM-dd")
 	public void setAttach_regDate(Date attach_regDate) {
 		this.attach_regDate = attach_regDate;
 	}
