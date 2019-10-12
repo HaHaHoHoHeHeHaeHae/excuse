@@ -146,13 +146,16 @@ div.top {
 					</div>
 				</div>
 				<div class="search3" style="height: 60px;">
-					<div class="select" style="width: 800px; float:left; height: 60px;">
+					<div class="select"
+						style="width: 800px; float: left; height: 60px;">
 						<input name="keyword" type="text" class="form-control"
 							placeholder="동호회를 검색할 단어를 입력하세요." style="width: 1000px;">
 					</div>
-					<div class="actions" style="float: right; height:60px;">
-						<div style="width:120px; height:55px;border-radius:5px;background:#2BB3D7; text-align:center; vertical-align:middle;">
-							<a id="searchBtn" href="#" style="font-size:16px; color:white; text-decoration:none;dispay:inline-block;line-height:55px;">검색</a>
+					<div class="actions" style="float: right; height: 60px;">
+						<div
+							style="width: 120px; height: 55px; border-radius: 5px; background: #2BB3D7; text-align: center; vertical-align: middle;">
+							<a id="searchBtn" href="#"
+								style="font-size: 16px; color: white; text-decoration: none; dispay: inline-block; line-height: 55px;">검색</a>
 						</div>
 					</div>
 				</div>
@@ -196,8 +199,12 @@ div.top {
 							<div class="card-body box-profile">
 								<div class="text-center">
 									<img class="profile-user-img img-fluid img-circle" id="thum"
-										src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
-										alt="<%=request.getContextPath()%>/resources/img/logo.png">
+										<c:if test="${club.attachThum_no > 0}">
+											src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
+										</c:if>
+										<c:if test="${club.attachThum_no <= 0}">
+											src="<%=request.getContextPath()%>/resources/img/logo.png"
+										</c:if> >
 								</div>
 
 								<h3 class="profile-username text-center"
@@ -205,28 +212,29 @@ div.top {
 								<%-- <div class="content1" style="margin: 10px;">
 									<div class="text-muted text-center"
 										style="max-height: 3.6em; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">${club.club_content}</div>
-								</div> --%>
-								<ul class="list-group list-group-unbordered mb-3">
-									<li class="list-group-item text-center"
-										style="height: 60px; width: 198px; left: -10px;"><b
-										id="btag"> <i class="fas fa-user-alt"></i>&nbsp;&nbsp;${club.joincnt }
-											&nbsp;&nbsp; <i class="far fa-thumbs-up"></i>&nbsp;&nbsp;${club.upcnt }
-											&nbsp;&nbsp; <i class="fas fa-thumbs-down"></i>&nbsp;&nbsp;${club.downcnt }
-									</b></li>
+									</div>	
+								--%>
+							<ul class="list-group list-group-unbordered mb-3">
+								<li class="list-group-item text-center"
+									style="height: 60px; width: 198px; left: -10px;"><b
+									id="btag"> <i class="fas fa-user-alt"></i>&nbsp;&nbsp;${club.joincnt }
+										&nbsp;&nbsp; <i class="far fa-thumbs-up"></i>&nbsp;&nbsp;${club.upcnt }
+										&nbsp;&nbsp; <i class="fas fa-thumbs-down"></i>&nbsp;&nbsp;${club.downcnt }
+								</b></li>
 
-								</ul>
-								<ul class="actions vertical small"
-									style="text-align: center; margin-bottom: -10px;">
-									<li><a href="#" data-name="title"
-										onclick="OpenWindow('detail?club_no=${club.club_no}','','813','650');"
-										class="button small" style="color: white;">Detail</a></li>
-								</ul>
-							</div>
+							</ul>
+							<ul class="actions vertical small"
+								style="text-align: center; margin-bottom: -10px;">
+								<li><a href="#" data-name="title"
+									onclick="OpenWindow('detail?club_no=${club.club_no}','','825','650');"
+									class="button small" style="color: white;">Detail</a></li>
+							</ul>
 						</div>
-					</c:if>
-				</c:forEach>
-			</section>
 		</div>
+		</c:if>
+		</c:forEach>
+	</section>
+	</div>
 	</section>
 	<!-- clubList End -->
 
@@ -288,7 +296,9 @@ div.top {
 				<ul class="pagination ">
 					<li class="page-item"><a class="page-link"
 						href="list${pageMaker.makeQuery(1)}" style="text-decoration: none">&lt;&lt;</a>
-					<li class="page-item"><a class="page-link"
+
+
+						<li class="page-item"><a class="page-link"
 						href="list<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
 						style="text-decoration: none">&lt;</a></li>
 					<c:forEach begin="${pageMaker.startPage }"
@@ -326,11 +336,10 @@ div.top {
 
 
 	<%--Script --%>
-
-	<%-- 	<script
+<%-- 	<script
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script> --%>
-	<script
-		src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
+						<script
+							src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
 	<%-- <script
 		src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script> --%>
 	<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
@@ -580,4 +589,5 @@ div.top {
 	</footer>
 
 
-</body>
+
+					</body>

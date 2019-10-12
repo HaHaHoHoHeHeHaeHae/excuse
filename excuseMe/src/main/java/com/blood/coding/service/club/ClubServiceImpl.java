@@ -31,16 +31,6 @@ public class ClubServiceImpl implements ClubService {
 	public void setAttachDAO(AttachDAO attachDAO) {
 		this.attachDAO = attachDAO;
 	}
-
-	private UpDAO upDAO;
-	public void setUpDAO(UpDAO upDAO) {
-		this.upDAO = upDAO;
-	}
-
-	private DownDAO downDAO;
-	public void setDownDAO(DownDAO downDAO) {
-		this.downDAO = downDAO;
-	}
 	
 	private MemberDAO memberDAO;
 	public void setMemberDAO(MemberDAO memberDAO) {
@@ -75,11 +65,12 @@ public class ClubServiceImpl implements ClubService {
 		for(ClubVO reco : recommendList) {
 			String club_no = reco.getClub_no();
 			String attach_board = club_no + "c";
-			AttachVO attachThum = attachDAO.selectAttachesByAttachBoardOne("c16c");
-			int attachNO = attachThum.getAttach_no();
-			reco.setAttachThum_no(attachNO);
+			AttachVO attachThum = attachDAO.selectAttachesByAttachBoardOne(attach_board);
+			if(attachThum != null) {
+				int attachNO = attachThum.getAttach_no();
+				reco.setAttachThum_no(attachNO);
+			}
 
-			System.out.println(reco);
 		}
 		
 		//카테고리
@@ -97,12 +88,12 @@ public class ClubServiceImpl implements ClubService {
 		for(ClubVO club : clubList) {
 			String club_no = club.getClub_no();
 			String attach_board = club_no + "c";
-			AttachVO attachThum = attachDAO.selectAttachesByAttachBoardOne("c1c");
-			int attachNO = attachThum.getAttach_no();
-			club.setAttachThum_no(attachNO);
-			
-			System.out.println(attachThum);
-		}
+			AttachVO attachThum = attachDAO.selectAttachesByAttachBoardOne(attach_board);
+			if(attachThum != null) {
+				int attachNO = attachThum.getAttach_no();
+				club.setAttachThum_no(attachNO);
+			}
+					}
 		
 		// pagination
 		PageMaker pageMaker = new PageMaker();
@@ -142,9 +133,11 @@ public class ClubServiceImpl implements ClubService {
 		//썸네일
 		club.getClub_no();
 		String attach_board_no = club_no + "c";
-		AttachVO attachThum = attachDAO.selectAttachesByAttachBoardOne("c1c");
-		int attachNO = attachThum.getAttach_no();
-		club.setAttachThum_no(attachNO);
+		AttachVO attachThum = attachDAO.selectAttachesByAttachBoardOne(attach_board_no);
+		if(attachThum != null) {
+			int attachNO = attachThum.getAttach_no();
+			club.setAttachThum_no(attachNO);
+		}
 		
 		System.out.println(club);
 		
@@ -184,22 +177,13 @@ public class ClubServiceImpl implements ClubService {
 	
 //관리자
 	@Override
-	public Map<String, Object> getNewClubList(Criteria cri) throws SQLException {
-		Map<String, Object> dataMap = new HashMap<String, Object>();
+	public void updateClub(String club_no) throws SQLException {
+		clubDAO.updateClubStatus(club_no);
+	}
 
-		List<ClubVO> newclubList = clubDAO.selectNewClubList(cri);
-		
-		int totalCount = clubDAO.selectNewClubListCount(cri);
-		
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(totalCount);
-		
-		
-		dataMap.put("newclubList", newclubList);
-		dataMap.put("pageMaker", pageMaker);
-
-		return dataMap;
+	@Override
+	public void updateStopClub(String club_no) throws SQLException {
+		clubDAO.updateStopClubStatus(club_no);
 	}
 
 
@@ -220,26 +204,69 @@ public class ClubServiceImpl implements ClubService {
 		return map;
 	}
 
-	@Override
-	public void updateClub(String club_no) throws SQLException {
-		clubDAO.updateClubStatus(club_no);
-	}
-
-	@Override
-	public void updateStopClub(String club_no) throws SQLException {
-		clubDAO.updateStopClubStatus(club_no);
-	}
-
+	
+    // 관리자 동호회 리스트
 	@Override
 	public Map<String, Object> getClubListByAdmin(Criteria cri, MemberVO memberVO) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
+		
+		int totalCount = clubDAO.selectSearchClubCount(cri);
+		
+		List<CategoryVO> categoryList = categoryDAO.selectCategoryList();
+		List<LocalVO> localList = localDAO.selectLocalList();
+		
+		PageMaker pageMaker = new PageMaker();
+		
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		
+		
+		dataMap.put("clubList", clubList);
+		dataMap.put("pageMaker", pageMaker);
+		dataMap.put("cateList", categoryList);
+		dataMap.put("localList", localList);
 
+		return dataMap;
+	}
+	
+	//관리자 신규동호회목록
+		@Override
+		public Map<String, Object> getNewClubList(Criteria cri,MemberVO memberVO) throws SQLException {
+			Map<String, Object> dataMap = new HashMap<String, Object>();
+			List<ClubVO> newclubList = clubDAO.selectNewClubList(cri);
+			
+			int totalCount = clubDAO.selectNewClubListCount(cri);
+			
+			PageMaker pageMaker = new PageMaker();
+			
+			pageMaker.setCri(cri);
+			pageMaker.setTotalCount(totalCount);
+			
+			dataMap.put("newclubList", newclubList);
+			dataMap.put("pageMaker", pageMaker);
+
+
+			return dataMap;
+		}
+		
+	//관리자 블랙리스트
 	@Override
-	public Map<String, Object> getBlackList(Criteria cri) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, Object> getBlackList(Criteria cri,MemberVO memberVO) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		List<ClubVO> blackList = clubDAO.selectBlackList(cri);
+		int totalCount = clubDAO.selectBlackListCount(cri);
+		
+		PageMaker pageMaker = new PageMaker();
+		
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		
+		dataMap.put("blackList", blackList);
+		dataMap.put("pageMaker", pageMaker);
+		
+		return dataMap;
+		
 	}
 
 	//메이드 바이 우철 / 내가만든 클럽을 리스트 검색

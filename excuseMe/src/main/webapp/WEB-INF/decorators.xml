@@ -34,6 +34,7 @@
 		<pattern>*/common/regist*</pattern>
 		<pattern>*/common/search*</pattern>
 		<pattern>*/club/detail</pattern>		
+		<pattern>*/memberdetail*</pattern>
 		<pattern>*/replyList*</pattern>
 	</excludes>
 </decorators>

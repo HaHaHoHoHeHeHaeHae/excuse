@@ -44,9 +44,9 @@
 	</select>
 
 	<update id="insertNotice" parameterType="notice">
-		insert into notice(not_no, mem_id,not_regDate, not_startDate, not_endDate,
+		insert into notice(not_no, mem_id, not_startDate, not_endDate,
 		not_content, not_title)
-		values(#{not_no}, #{mem_id},sysdate, #{not_startDate}, #{not_endDate}, #{not_content},
+		values(#{not_no}, #{mem_id},#{not_startDate}, #{not_endDate}, #{not_content},
 		#{not_title})
 	</update>
 

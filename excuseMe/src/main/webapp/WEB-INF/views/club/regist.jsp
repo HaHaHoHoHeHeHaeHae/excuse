@@ -184,7 +184,6 @@
 	<script
 		src="<%=request.getContextPath()%>/resources/adminLTE/dist/js/adminlte.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js" defer></script>
-
 		<!-- Bootstrap 4 -->
 	<script
 		src="<%=request.getContextPath()%>/resources/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

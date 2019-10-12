@@ -61,7 +61,6 @@
 	    	from club_view
 
 	    	where club_no is not null and (club_status='1' or club_status='2')
-
 	    	<include refid="sort" />
 	    	<include refid="searchlocal" />
 	    	<include refid="searchcategory" />
@@ -73,22 +72,25 @@
 	    	select *
 	    	from club_view
 	    	where club_no is not null and club_status='0'
+	    	<include refid="searchclubname" />
 	    </select>
 	    
 	     <select id="selectNewClubCount" resultType="int">
 	    	select count(*)
 	    	from club_view
 	    	where club_no is not null and club_status='0'
+	    	<include refid="searchclubname" />
 	    </select>
 	    
 	    <select id="selectSearchClubCount" resultType="int">
 	    	select count(*)
 	    	from club_view
-
 	    	where club_no is not null and (club_status='1' or club_status='2')
+	    	<include refid="sort" />
 	    	<include refid="searchlocal" />
 	    	<include refid="searchcategory" />
 	    	<include refid="searchclubname" />
+	    	<include refid="alignment" />
 	    </select>
 	    
 	    <select id="selectClub" resultType="club">
@@ -166,6 +168,34 @@
 	    	select count(*)
 	    	from club_view
 	    	where club_name = #{club_name}
+	    	
+	    </select>
+	    
+	    <!-- 블랙리스트 -->
+	    <select id="selectBlackList" resultType="club">
+	    	
+	    	select *
+	    	from club_view
+	    	where club_no is not null 
+	    	and (club_status='1' or club_status='2') 
+	    	<![CDATA[
+	    	and mi < 0
+	    	]]>
+	    	<include refid="sort" />
+	    	<include refid="searchclubname" />
+	    </select>
+	    
+	    <select id="selectBlackListCount" resultType="int">
+	    
+	    	select count(*)
+	    	from club_view
+	    	where club_no is not null 
+	    	and (club_status='1' or club_status='2') 
+	    	<![CDATA[
+	    	and mi < 0
+	    	]]>
+	    	<include refid="sort" />
+	    	<include refid="searchclubname" />
 	    	
 	    </select>
 	    

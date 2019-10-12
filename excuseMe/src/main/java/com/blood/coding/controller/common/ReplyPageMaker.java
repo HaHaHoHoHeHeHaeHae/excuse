@@ -1,6 +1,6 @@
 package com.blood.coding.controller.common;
 
-public class PageMaker {
+public class ReplyPageMaker {
 
 	private int totalCount; // 전체 board 개수
 	private int startPage; // 시작 페이지 번호
@@ -11,7 +11,12 @@ public class PageMaker {
 
 	private int displayPageNum = 10; // 한 페이지에 보여줄 페이지번호 개수
 
-	private Criteria cri; // 현재 페이지 정보
+	private MemberCriteria cri; // 현재 페이지 정보
+	
+	
+	public ReplyPageMaker() {
+		super();
+	}
 
 	public int getTotalCount() {
 		return totalCount;
@@ -71,11 +76,11 @@ public class PageMaker {
 		this.displayPageNum = displayPageNum;
 	}
 
-	public Criteria getCri() {
+	public MemberCriteria getCri() {
 		return cri;
 	}
 
-	public void setCri(Criteria cri) {
+	public void setCri(MemberCriteria cri) {
 		this.cri = cri;
 	}
 
@@ -98,29 +103,27 @@ public class PageMaker {
 			endPage = realEndPage;
 		}
 
-		prev = (startPage == 1) ? false : true;
-		next = (endPage * cri.getPerPageNum()) >= totalCount ? false : true;
+		prev = startPage == 1 ? false : true;
+		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
 	}
 	
 	public String makeQuery(){	
 		String query="?page="+cri.getPage()
 				    +"&perPageNum="+cri.getPerPageNum()
-				    +"&local="+((Criteria)cri).getLocal()
-				    +"&keyword="+((Criteria)cri).getKeyword()
-					+"&category="+((Criteria)cri).getCategory()
-					+"&sort="+((Criteria)cri).getSort()
-					+"&alignment="+((Criteria)cri).getAlignment();
+				    +"&mem_id="+((MemberCriteria)cri).getSort()
+					+"&mem_name"+((MemberCriteria)cri).getAlignment();
+				    
+		
 		return query;
 	}
 	
 	public String makeQuery(int page){	
 		String query="?page="+page
 				    +"&perPageNum="+cri.getPerPageNum()
-				    +"&local="+((Criteria)cri).getLocal()
-				    +"&keyword="+((Criteria)cri).getKeyword()
-					+"&category="+((Criteria)cri).getCategory()
-					+"&sort="+((Criteria)cri).getSort()
-					+"&alignment="+((Criteria)cri).getAlignment();
+				    +"&mem_id="+((MemberCriteria)cri).getSort()
+					+"&mem_name"+((MemberCriteria)cri).getAlignment();
+		
+	   
 		return query;
 	}
 

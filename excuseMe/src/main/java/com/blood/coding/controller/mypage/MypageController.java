@@ -71,7 +71,7 @@ public class MypageController {
 	}
 	
 	//내가 만든 클럽리스트
-	@RequestMapping("/list")
+	@RequestMapping("/myclub")
 	public ModelAndView myClub(Criteria cir, ModelAndView modelnView, HttpServletRequest request) throws Exception {
 		
 		//세션에서 로그인한 유저 정보 가져온다.

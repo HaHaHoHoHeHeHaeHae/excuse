@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.blood.coding.controller.common.Criteria;
-import com.blood.coding.controller.common.PageMaker;
 import com.blood.coding.dto.member.MemberVO;
 import com.blood.coding.service.club.ClubService;
+import com.blood.coding.service.member.MemberService;
 
 @Controller
 @RequestMapping("/manage")
@@ -27,6 +27,8 @@ public class ManageClubController {
 
 	@Autowired
 	private ClubService service;
+	@Autowired
+	private MemberService mservice;
 	
 	@ModelAttribute("categoryclub")
 	public String category() throws Exception{
@@ -34,8 +36,26 @@ public class ManageClubController {
 	}
 
 	@RequestMapping("/club/list")
+	public String club() throws Exception{
+		return "manage/form/manage_form";
+	}
+	@RequestMapping("/club/clubList")
 	public ModelAndView clubList(Criteria cri) throws Exception {
 		String url = "manage/club/list";
+
+		ModelAndView mav = new ModelAndView();
+		
+		MemberVO memberVO = new MemberVO();
+		Map<String, Object> dataMap = service.getClubListByAdmin(cri, memberVO);
+		mav.addObject("dataMap", dataMap);
+		mav.setViewName(url);
+
+		return mav;
+	}
+	
+	@RequestMapping("/club/clubListTable")
+	public ModelAndView clubListTable(Criteria cri) throws Exception {
+		String url = "manage/club/list_form";
 
 		ModelAndView mav = new ModelAndView();
 		
@@ -54,17 +74,30 @@ public class ManageClubController {
 		ModelAndView mav = new ModelAndView();
 		
 		MemberVO memberVO = new MemberVO();
-		Map<String, Object> dataMap = service.getClubListByAdmin(cri, memberVO);
+		Map<String, Object> dataMap = service.getBlackList(cri,memberVO);
+		mav.addObject("dataMap", dataMap);
+		mav.setViewName(url);
+
+		return mav;
+	}
+	@RequestMapping("/blacklist/blackListTable")
+	public ModelAndView blackListTable(Criteria cri) throws Exception {
+		String url = "manage/blacklist/list_form";
+
+		ModelAndView mav = new ModelAndView();
+		
+		MemberVO memberVO = new MemberVO();
+		Map<String, Object> dataMap = service.getBlackList(cri,memberVO);
 		mav.addObject("dataMap", dataMap);
 		mav.setViewName(url);
 
 		return mav;
 	}
 
-	@RequestMapping("/club/detail") // ?™?˜¸?šŒ ?ƒ?„¸ë³´ê¸°
+	@RequestMapping("/club/detail") // ë™í˜¸íšŒ ìƒì„¸ë³´ê¸°
 	public ModelAndView clubDetail(String club_no, ModelAndView modelnView) throws SQLException {
 		String url = "manage/club/detail";
-		Map dataMap = service.readClub(club_no);// ?””?…Œ?¼?— ?Œ“ê¸?ë³´ì—¬?•¼ ?˜?‹ˆê¹? readClub.(replycntê°? ?ˆ?Œ)
+		Map dataMap = service.readClub(club_no);// ë””í…Œì¼ì— ëŒ“ê¸€ë³´ì—¬ì•¼ ë˜ë‹ˆê¹Œ readClub.(replycntê°€ ìˆìŒ)
 
 		modelnView.addObject("dataMap", dataMap);
 		modelnView.setViewName(url);
@@ -76,13 +109,27 @@ public class ManageClubController {
 		String url = "manage/newclub/list";
 		ModelAndView mav = new ModelAndView();
 
-		Map<String, Object> dataMap = service.getNewClubList(cri);
+		MemberVO memberVO = new MemberVO();
+		Map<String, Object> dataMap = service.getNewClubList(cri,memberVO);
 		mav.addObject("dataMap", dataMap);
 		mav.setViewName(url);
 
 		return mav;
 	}
-	//?š´?˜ì¤‘ì?
+	
+	@RequestMapping("/newclub/listForm")
+	public ModelAndView newclubListForm(Criteria cri, Model model) throws Exception {
+		String url = "manage/newclub/list_form";
+		ModelAndView mav = new ModelAndView();
+
+		MemberVO memberVO = new MemberVO();
+		Map<String, Object> dataMap = service.getNewClubList(cri,memberVO);
+		mav.addObject("dataMap", dataMap);
+		mav.setViewName(url);
+
+		return mav;
+	}
+	//ìš´ì˜ì¤‘ì§€
 	@RequestMapping(value="/club/stopstatus",method=RequestMethod.POST)
 	@ResponseBody
 	public ResponseEntity<String> stopupdate(@RequestParam("club_no") String club_no)throws Exception{
@@ -99,7 +146,7 @@ public class ManageClubController {
 	}
 
 	
-	//?Š¹?¸,?š´?˜ì¤‘ì? ?•´? œ
+	//ìŠ¹ì¸,ìš´ì˜ì¤‘ì§€ í•´ì œ
 		@RequestMapping(value="/club/status",method=RequestMethod.POST)
 		@ResponseBody
 		public ResponseEntity<String> update(@RequestParam("club_no") String club_no)throws Exception{
@@ -114,9 +161,8 @@ public class ManageClubController {
 			 return entity;
 		}
 
-
-	
-	@RequestMapping("/newclub/detail") // ?™?˜¸?šŒ ?ƒ?„¸ë³´ê¸°
+	// ë™í˜¸íšŒ ìƒì„¸ë³´ê¸°
+	@RequestMapping("/newclub/detail") 
 	public ModelAndView newDetail(String club_no, ModelAndView modelnView) throws SQLException {
 		String url = "manage/newclub/detail";
 		Map dataMap = service.readClub(club_no);
@@ -126,7 +172,28 @@ public class ManageClubController {
 		return modelnView;
 	}
 	
+	@RequestMapping("/blacklist/detail") 
+	public ModelAndView blcakDetail(String club_no, ModelAndView modelnView) throws SQLException {
+		String url = "manage/blacklist/detail";
+		Map dataMap = service.readClub(club_no);
+
+		modelnView.addObject("dataMap", dataMap);
+		modelnView.setViewName(url);
+		return modelnView;
+	}
 	
+	//ëŒ€í‘œìƒì„¸ë³´ê¸°
+		@RequestMapping("/newclub/memberdetail")
+		public String detail(String mem_id, Model model)throws Exception{
+			System.out.println(mem_id);
+			String url="manage/newclub/memberdetail";
+			MemberVO member = mservice.selectMember(mem_id);
+			
+			model.addAttribute("member", member);
+			
+			return url;
+			
+		}
 
 
 

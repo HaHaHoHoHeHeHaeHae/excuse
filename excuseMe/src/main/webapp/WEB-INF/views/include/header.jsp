@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="decorator"
-	uri="http://www.opensymphony.com/sitemesh/decorator"%>
+   uri="http://www.opensymphony.com/sitemesh/decorator"%>
 <!DOCTYPE html >
 <html>
 <head>
@@ -15,48 +15,48 @@
 
 <!-- Font Awesome -->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">
+   href="<%=request.getContextPath()%>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/templated/assets/css/font-awesome.min.css">
-	
+   href="<%=request.getContextPath()%>/resources/templated/assets/css/font-awesome.min.css">
+   
 <!-- Ionicons -->
 <link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+   href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
 <!-- icheck bootstrap -->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-	
+   href="<%=request.getContextPath()%>/resources/adminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+   
 <!-- Theme style -->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/dist/css/adminlte.min.css">
+   href="<%=request.getContextPath()%>/resources/adminLTE/dist/css/adminlte.min.css">
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/templated/assets/css/main.css">	
+   href="<%=request.getContextPath()%>/resources/templated/assets/css/main.css">   
 
 <!-- Google Font: Source Sans Pro -->
 <link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
-	
+   href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+   rel="stylesheet">
+   
 <style>
-	#header{
-			height:100px;
-	}
-	#hleft{
-			height:100px;
-			width:350px;
+   #header{
+         height:100px;
+   }
+   #hleft{
+         height:100px;
+         width:350px;
 
-	}
-	#hmenu{
-			height:40px;
-			width:600px;
-			float:right;
-			margin-top:-40px;
-			text-align:center;
-	}
-	#hid{
-			height:40px;
-			width:500px;
+   }
+   #hmenu{
+         height:40px;
+         width:600px;
+         float:right;
+         margin-top:-40px;
+         text-align:center;
+   }
+   #hid{
+         height:40px;
+         width:500px;
 
 			float:right;
 			margin-top:-100px;
@@ -85,7 +85,6 @@
 	  	  height:40px;
 		  width:400px;
 		  position:relative;
-
 		  float:right;
 	}
 	#hid2{
@@ -152,11 +151,6 @@
 		}
 	}
 	
-			
-			
-			
-	
-
 </style>
 </head>
 <body>
@@ -174,7 +168,7 @@
 		            	</div>
 	            	</c:if>
 	            	<c:if test="${loginUser.mem_nick ne 'admin'}">
-		            	<div class="hmenu1" onclick="changeIframe('mypage');">
+		            	<div class="hmenu1" onclick="changeIframe('mypage/myclub');">
 		            		마이페이지
 		            	</div>
 	            	</c:if>

@@ -12,8 +12,6 @@
 		p:username="ABC"
 		p:password="123" />
 
-
-	
 	
 	<bean id="dataSource"
 			class="net.sf.log4jdbc.Log4jdbcProxyDataSource">

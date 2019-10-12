@@ -46,4 +46,10 @@
 		from club c, reply r
 		where c.club_no = r.club_no and r.mem_id=#{mem_id}
 	</select>
+	
+	<select id="selectMemberReplyCount" resultType="int">
+		select count(*)
+		from reply
+		where mem_id=#{mem_id}
+	</select>
 </mapper>

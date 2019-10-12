@@ -41,4 +41,8 @@ public interface ClubDAO {
 	   public List<ClubVO> myClub(String mem_id) throws SQLException;
 	   
 	   public int selectClubCount(String club_name) throws SQLException;
+	   
+	  //메바지선 블랙리스트
+	   public List<ClubVO> selectBlackList(Criteria cri)throws SQLException;
+	   public int selectBlackListCount(Criteria cri)throws SQLException;
 }

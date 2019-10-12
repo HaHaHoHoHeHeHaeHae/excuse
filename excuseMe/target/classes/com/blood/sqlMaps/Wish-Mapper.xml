@@ -40,6 +40,7 @@
 			    j.club_no = u.club_no(+) and
 			    j.club_no = jo.club_no(+) and 
 			    j.club_no = c.club_no(+) and
-			    j.mem_id = #{mem_id}	
+			    j.mem_id = #{mem_id}
+			ORDER BY wish_no desc
 		</select>
     </mapper>

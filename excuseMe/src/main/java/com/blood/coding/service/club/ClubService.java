@@ -29,8 +29,8 @@ public interface ClubService {
 	
 	//관리페이지(동호회,신규동호회,블랙리스트)
 	Map<String,Object> getClubListByAdmin(Criteria cri, MemberVO memberVO) throws SQLException;
-	Map<String,Object> getNewClubList(Criteria cri) throws SQLException;
-	Map<String,Object> getBlackList(Criteria cri) throws SQLException;
+	Map<String,Object> getNewClubList(Criteria cri,MemberVO memberVO) throws SQLException;
+	Map<String,Object> getBlackList(Criteria cri,MemberVO memberVO) throws SQLException;
 
 	
 	//동호회 승인 및 운영중지

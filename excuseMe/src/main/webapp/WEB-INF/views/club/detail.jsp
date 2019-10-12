@@ -192,7 +192,7 @@
 			<!-- buttons -->
 			<div class="buttons"
 				style="position: relative; width: 800px; text-align: center; margin-bottom: 20px;">
-				<a href="#" class="button special" id="wishBtn" onclick="onWish('wish','${club.club_no}');">관심동호회등록</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<a href="#" class="button special" id="wishBtn" onclick="onWish('club','${club.club_no}');">관심동호회등록</a>&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="#" class="button" id="joinBtn" onclick="onJoin('join','${club.club_no}');">가입하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
 				<a href="#" class="button alt" id="closeBtn" onclick="onClose();">나가기</a>&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>
