@@ -27,7 +27,7 @@ public class ClubDAOImpl implements ClubDAO {
 		RowBounds rowBounds = new RowBounds(startRowNum,limit);
 		cri.setAlignment(alignment);
 		cri.setSort(sort);
-		
+			
 		List<ClubVO> clubList = session.selectList("Club.selectSearchClubList",cri,rowBounds);
 		
 		return clubList;

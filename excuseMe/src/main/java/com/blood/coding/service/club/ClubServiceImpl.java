@@ -67,22 +67,17 @@ public class ClubServiceImpl implements ClubService {
 	public Map<String, Object> getClubList(Criteria cri,MemberVO memberVO) throws SQLException { //(매개변수에 memberVO추가)
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 
-
-		cri.setPerPageNum(3);
-		//cri.setLocal(memberVO.getMem_local());
-		cri.setLocal("대전");
-		cri.setAlignment(2);
+		//추천리스트를위한 크리테리아
+		Criteria cri2 = new Criteria();
+		cri2.setPerPageNum(3);
+		cri2.setLocal(memberVO.getMem_local());
+		//cri2.setLocal("대전");
+		cri2.setAlignment(2);
 		//검색창 돌릴때 추천동호회도 검색파라미터를 포함해서 가져오니까 강제 fix해주기
-		cri.setLocal("");
-		cri.setCategory("");
-		cri.setKeyword("");
+		
 		
 		//추천리스트
-		List<ClubVO> recommendList = clubDAO.selectSearchClubList(cri);
-
-		cri.setPerPageNum(10);
-		cri.setAlignment(0);
-		
+		List<ClubVO> recommendList = clubDAO.selectSearchClubList(cri2);
 		
 		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
 		//List<CategoryVO> cateList = categoryDAO.selectCategoryList();

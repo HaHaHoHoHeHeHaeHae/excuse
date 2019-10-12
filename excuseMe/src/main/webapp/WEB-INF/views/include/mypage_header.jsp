@@ -53,6 +53,7 @@
 			float:right;
 			margin-top:-40px;
 			text-align:center;
+			top: 200px;
 	}
 	#hid{
 			height:40px;
@@ -114,7 +115,7 @@
 	}
 	
 			#subm {
-				top: 120px;
+				top: 220px;
 				position: absolute;
 				height: 500px;
 				width: 240px;
@@ -136,6 +137,7 @@
 				position: relative;
 				left:  280px;
 				width: 1200px;
+				top: 100px;
 			}
 			
 			
@@ -156,6 +158,66 @@
 			h3{
 				margin: 0;
 			}
+			
+			.register-box {
+				width: 950px;
+				margin-top: -80px;
+			}
+			
+			.register-logo img {
+				width: 150px;
+				height: auto;
+			}
+			
+			#registForm div {
+				margin-left: 5px;
+			}
+			
+			#registForm div div {
+				padding: 0;
+			}
+			
+			#checkbutton {
+				margin: 0;
+				padding: 0;
+				position: relative;
+				left: 20px;
+				top: 35px;
+			}
+			
+			.card-footer div {
+				margin-left: 100px;
+			}
+			
+			.card-footer div div {
+				padding: 0;
+			}
+			
+			#nullform {
+				width: 10px;
+			}
+			
+			#jungbok {
+				margin-top: 5px;
+			}
+			
+			#mem_id_check_label, #mem_name_check_label, #mem_phone_check_label {
+				font-size: 0.8em;
+			}
+			
+			#mem_id_test, #mem_pwd_test, #mem_pwd_check_test, #mem_name_test,
+				#mem_nick_test, #mem_phone_test,#mem_birthDate_test {
+				margin-left: 10px;
+				font-size: 0.8em;
+				color: red;
+			}
+			#soso {
+				position: absolute;
+				top: 500px;
+				background: red;
+				width: 50px;
+				height: 100px;
+			}
 
 </style>
 </head>
@@ -170,12 +232,12 @@
 	            	<!-- <ul class="nav nav-tabs" -->
 	            	<%-- <c:if test="mem_nick == 'admin'"> --%>
 	            	<div class="hmenu1" onclick="location.href='#'">
-	            		관리페이지
+	            		ㅁa관리페이지
 	            	</div>
 	            	<%-- </c:if> --%>
 	            	<c:if test="mem_nick!='admin'">
 	            	<div class="hmenu1" onclick="location.href='#'">
-	            		마이페이지
+	            		나마이페이지
 	            	</div>
 	            	</c:if>
 	            	<div class="hmenu1" onclick="location.href='#'">
@@ -196,6 +258,8 @@
 						<p>${loginUser.mem_nick} 님 환영합니다</p>
 					</div>
 				    
+				</div>
+				<div id="soso">
 				</div>
 				
 	</header>

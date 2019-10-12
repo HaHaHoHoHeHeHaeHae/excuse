@@ -6,19 +6,19 @@
     <mapper namespace="Club">
     
     	<sql id="searchlocal">
-    		<if test="local != null"> 
+    		<if test="local.length() > 0"> 
     		and club_local like '%'||#{local}||'%'
     		</if>
     	</sql>
     		
     	<sql id="searchcategory">
-    		<if test="category != null">
+    		<if test="category.length() > 0">
     		and cate_name like '%'||#{category}||'%'
     		</if>
     	</sql>
     	
     	<sql id="searchclubname">
-    		<if test="keyword != null">
+    		<if test="keyword.length() > 0">
     		and club_name like '%'||#{keyword}||'%'
     		</if>    
     	</sql>
@@ -59,7 +59,7 @@
 	    <select id="selectSearchClubList" resultType="club">
 	    	select *
 	    	from club_view
-	    	where club_no is not null and club_status='1' or club_status='2'
+	    	where club_no is not null 
 	    	<include refid="sort" />
 	    	<include refid="searchlocal" />
 	    	<include refid="searchcategory" />
@@ -82,7 +82,7 @@
 	    <select id="selectSearchClubCount" resultType="int">
 	    	select count(*)
 	    	from club_view
-	    	where club_no is not null and club_status='1' or club_status='2'
+	    	where club_no is not null 
 	    	<include refid="searchlocal" />
 	    	<include refid="searchcategory" />
 	    	<include refid="searchclubname" />

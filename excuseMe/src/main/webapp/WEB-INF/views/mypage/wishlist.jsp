@@ -2,13 +2,18 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<c:set var="wishList" value="${dataMap.wishList }" />
+<c:set var="pageMaker" value="${dataMap.pageMaker }" />
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지 - 생성한 동호회</title>
-<%-- 
-<c:set var="clubList" value="${dataMap.clubList }" />
+<title>마이페이지 - 관심 동호회</title>
+
+<%-- <c:set var="clubList" value="${dataMap.clubList }" />
 <c:set var="pageMaker" value="${dataMap.pageMaker }" /> --%>
 <%-- <c:set var="noticeList" value="${dataMap.noticeList }" />
 <c:set var="pageMaker" value="${dataMap.pageMaker }" /> --%>
@@ -64,20 +69,24 @@
 </style>
 </head>
 
-<body>
+<body class="subpage">
 
 	<div id="subm">
+
 		<br> <br> <br> <a
 			href="<%=request.getContextPath()%>/mypage/myjoinlist" class="atag"
 			style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가입한
 			동호회</a><br> <br> <a
 			href="<%=request.getContextPath()%>/mypage/myclub" class="atag"
 			style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;생성한
-			동호회</a><br> <br> <a href="<%=request.getContextPath()%>/mypage/wishlist" class="atag"
+			동호회</a><br> <br> <a
+			href="<%=request.getContextPath()%>/mypage/wishlist" class="atag"
 			style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;관심
-			동호회</a><br> <br> <a href="<%=request.getContextPath()%>/mypage/" class="atag"
+			동호회</a><br> <br> <a
+			href="<%=request.getContextPath()%>/mypage/" class="atag"
 			style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;내가
-			쓴 댓글</a><br> <br> <a href="<%=request.getContextPath()%>/mypage/myinfo" class="atag"
+			쓴 댓글</a><br> <br> <a
+			href="<%=request.getContextPath()%>/mypage/myinfo" class="atag"
 			style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;개인정보수정</a><br>
 
 
@@ -89,7 +98,7 @@
 			<!-- Main -->
 			<section id="main" class="wrapper"> <!-- Menu --> <!-- Elements -->
 			<div class="row">
-				<h2 id="elements">마이페이지 - 생성한 동호회</h2>
+				<h2 id="elements">마이페이지 - 관심 동호회</h2>
 				<!-- <div class="nav nav-pills ml-auto p-2">
 							<span class="button small" onclick="#">글 쓰기</span>
 						</div> -->
@@ -97,16 +106,15 @@
 			<div class="row 200%">
 				<div class="12u">
 					<!-- Table -->
-
-					<c:if test="${empty myClubList }">
-						<b><strong style="position: relative; left: 45px;">
-						생성한 동호회가 없어요.</strong></b>
+					<c:if test="${empty wishList }">
+						<b><strong>관심 동호회가 없어요.</strong></b>
 					</c:if>
 
-					<c:if test="${!empty myClubList }">
-						<c:forEach var="club" items="${myClubList }">
-							<div class="myClubList_body"
-								style="width: 300px; float: left; border: 1px dashed #bcbcbc; margin-left: 3px; margin-right: 3px; width: 219px;">
+
+					<c:if test="${!empty wishList }">
+						<c:forEach var="club" items="${wishList }">
+							<div class="clublist_body"
+								style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin-left: 3px; margin-right: 3px; width: 219px;">
 								<div class="card-body box-profile">
 									<div class="text-center">
 										<img class="profile-user-img img-fluid img-circle"
@@ -120,25 +128,10 @@
 
 										<li class="list-group-item text-center"
 											style="height: 40px; width: 198px; left: -10px;"><b
-											id="btag"> 승인여부&nbsp;&nbsp;:&nbsp;&nbsp; <c:if
-													test="${club.club_status eq '0'}">
-													<i class="fas fa-exclamation-circle" style="color: #c7c402;">&nbsp;승인대기</i>&nbsp;
-													</c:if> <c:if test="${club.club_status eq '1'}">
-													<i class="fas fa-check-circle" style="color: green;">&nbsp;승인</i>&nbsp;&nbsp;
-													</c:if> <c:if test="${club.club_status eq '2'}">
-													<i class="fas fa-times-circle" style="color: red;">&nbsp;운영중지</i>&nbsp;
-													</c:if>
+											id="btag"> <i class="fas fa-user-alt"></i>&nbsp;&nbsp;${club.joincnt }
+												&nbsp;&nbsp; <i class="far fa-thumbs-up"></i>&nbsp;&nbsp;${club.upcnt }
+												&nbsp;&nbsp; <i class="fas fa-thumbs-down"></i>&nbsp;&nbsp;${club.downcnt }
 										</b></li>
-										
-										<li class="list-group-item text-center" style="height: 40px; width: 198px; left: -10px;">
-											<b id="btag">
-												<i class="fas fa-user-alt"></i>&nbsp;&nbsp;${club.joincnt }
-												&nbsp;&nbsp;
-												<i class="far fa-thumbs-up"></i>&nbsp;&nbsp;${club.upcnt }
-												&nbsp;&nbsp;
-												<i class="fas fa-thumbs-down"></i>&nbsp;&nbsp;${club.downcnt }
-											</b>
-										</li>
 
 									</ul>
 									<ul class="actions vertical small" style="text-align: center;">
@@ -147,16 +140,12 @@
 												<div class="btn-group"
 													style="position: absolute; left: -18px; top: -10px;">
 													<a href="#" class="button small"
-														style="color: white; width: 108px; height: 35px; position: relative;">
-														<p
-															style="position: relative; left: -12px; font-size: 15px;"
-															onclick="club_upndown('up','${club.club_no}');">상세보기</p>
-													</a> &nbsp; <a href="#" class="button special small"
-														style="color: white; width: 102px; height: 35px; position: relative;">
-														<p
-															style="position: relative; left: -12px; font-size: 15px;"
-															onclick="club_upndown('down','${club.club_no}');" >회원보기</p>
-													</a>
+														style="color: white; width: 108px; height: 35px; position: relative;"><p
+															style="position: relative; left: -12px; font-size: 15px;" onclick="OpenWindow('<%=request.getContextPath()%>/club/detail?club_no=${club.club_no }','','800','650');">상세보기</p></a>
+													&nbsp; <a href="" class="button special small"
+														style="color: white; width: 102px; height: 35px; position: relative;"><p
+															style="position: relative; left: -7px; font-size: 15px;"
+															onclick="wishclub('remove','${club.club_no}');">삭&nbsp;&nbsp;&nbsp;제</p></a>
 												</div>
 											</div>
 										</li>
@@ -168,26 +157,28 @@
 					</c:if>
 			</section>
 
-			<%-- 			<!-- pagination Start-->
+			<!-- pagination Start-->
 			<div class="card-body">
 				<div class="pagination justify-content-center m-0">
 					<ul class="pagination ">
 						<li class="page-item"><a class="page-link"
-							href="joinclub${pageMaker.makeQuery(1)}" style="text-decoration: none">&lt;&lt;</a>
+							href="wishlist${pageMaker.makeQuery(1)}"
+							style="text-decoration: none">&lt;&lt;</a>
 						<li class="page-item"><a class="page-link"
-							href="joinclub<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
+							href="wishlist<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
 							style="text-decoration: none">&lt;</a></li>
 						<c:forEach begin="${pageMaker.startPage }"
 							end="${pageMaker.endPage }" var="pageNum">
 							<li
 								class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
-								<a class="page-link" href="joinclub${pageMaker.makeQuery(pageNum) }"
+								<a class="page-link"
+								href="wishlist${pageMaker.makeQuery(pageNum) }"
 								style="text-decoration: none">${pageNum } </a>
 							</li>
 						</c:forEach>
-	
+
 						<li class="page-item"><a class="page-link"
-							href="joinclub
+							href="wishlist
 										<c:if test="${pageMaker.next }">
 											${pageMaker.makeQuery(pageMaker.endPage+1) }
 										</c:if>
@@ -196,107 +187,54 @@
 										</c:if>
 									"
 							style="text-decoration: none">&gt;</a></li>
-	
+
 						<li class="page-item"><a class="page-link"
-							href="joinclub${pageMaker.makeQuery(pageMaker.realEndPage) }"
+							href="wishlist${pageMaker.makeQuery(pageMaker.realEndPage) }"
 							style="text-decoration: none"> &gt;&gt; </a></li>
 					</ul>
 				</div>
-			</div> --%>
+			</div>
 
 		</div>
 
 		<br> <br> <br>
 
-		<script>
-				//팝업창들 뛰우기
-	//새로운 윈도우 창을 오픈할 경우 사용되는 함수(arg : 주소, 창타이틀, 넓이, 길이)
-	function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
-		winleft = (screen.width - WinWidth) / 2;
-		wintop = (screen.height - WinHeight) / 2;
-		
-		var win = window.open(UrlStr , WinTitle, "scrollbars=yes, width="+ WinWidth
-				+", height="+ WinHeight+ ", top="+wintop + ", left="+winleft +", resizable=no, status=yes");
-		
-		win.focus();
-		//대문자를 쓴 이유 확인
-		//내가 만든 펑션 제공되는 펑션 = 대문자로 구분
-	}
-	
-	
-		
-</script>
-	<%-- 상세보기 와 회원보기 스크립트 추가 --%>
 	<script>
-		
-	</script>
-
-		<script>
-
-<%-- 추천, 비추천하는 에이젝스 , upndown은 up,down 둘중 하나의 스트링값이 들어가면된다, club_no는 클럽 넘버가 들어가야함--%> 
-	function club_upndown(upndown,club_no) {
-		var text ="추천";
-		
-		if(upndown == "down")
-			text = "비추천";
-		
-		if(confirm(text + "을 하시겠습니까?")){
+	
+		function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
+			winleft = (screen.width - WinWidth) /2;
+			wintop = (screen.height - WinHeight) /2;
+			var win = window.open(UrlStr, WinTitle, "scrollbars=no, width="+WinWidth+",height="+WinHeight+",top="+wintop+",left="+winleft+", resizable=no, status=yes");
+			win.focus();
+		}
+	
+		function wishclub(wishnremove,club_no) {
+		<%-- wishnremove 에는 club 과 remove 가  스트링으로 들어야한다.--%>
+			var text = " 추가";
 			
-			$.ajax({
+			if(wishnremove == "remove")
+				text = "서 삭제";
+			
+			if(confirm("정말로 관심동호회에" + text + "하시겠습니까?")){
 				
-				contentType:"application/JSON",
-				type: "POST",
-				url: "<%=request.getContextPath()%>/"+upndown+"check?mem_id=${member.mem_id}&club_no="+club_no,
-				cache: false,
-				success: function(bool) {
-					console.log(bool);
-					
+				$.ajax({
+					contentType:"application/JSON",
+					type: "POST",
+					url: "<%=request.getContextPath()%>/wish" + wishnremove + "?mem_id=${loginUser.mem_id}&club_no=" + club_no,
+					cache: false,
+					success: function(bool) {
+						console.log(bool);
+						
 						if(bool == false)
-							alert("당신은 이미 " + text + "을 하셨습니다.");
-							
+							alert("이미 관심동호회에" + text + "되어있습니다.");
 						else
-							alert(text + "을 하셨습니다.");
+							alert("관심동호회에" +text + "되었습니다.");
 						location.reload();
-								
-				}
-			});
+					}
+				});
+			}
 			
 		}
-			
-	}
-	
-	
-
-	$('#category').change(function() { 
-		/* alert('sssssssssssssssssssssssssssssssssssssssssss'); */ 
-		<%-- self.location="<%=request.getContextPath()%>/subcategory" --%>
-		
-	/* 	var go = ; */
-		/* var gogo ={
-				
-		
-		} */
-		/* alert(go); */
-		$.ajax({
-			data:JSON.stringify({"cate_no":$(this).val()}),
-			contentType:"application/JSON",
-			type: "POST",
-			url: "<%=request.getContextPath()%>/subcategory",
-			cache: false,
-			success: function(data) {
-				console.log(data);
-				$("#subCategory").html("");
-				
-				$("#subCategory").append("<option selected disabled >소분류</option>");
-				for(var sub of data){
-					console.log(sub.cate_sub_name);
-					$("#subCategory").append("<option>"+sub.cate_sub_name+"</option>");
-				}
-			}
-		});
-	
-	});
-
 	</script>
 
 
@@ -320,6 +258,6 @@
 		<script
 			src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
 		<script>
-		/* $("#sidemenu").add("style='padding: 0px;'"); */
-	</script>
+			/* $("#sidemenu").add("style='padding: 0px;'"); */
+		</script>
 </body>

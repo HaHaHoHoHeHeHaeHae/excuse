@@ -24,7 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.dao.category.CategoryDAO;
-import com.blood.coding.dao.joinClub.JoinClubDAO;
+import com.blood.coding.dao.joinclub.JoinClubDAO;
 import com.blood.coding.dao.local.LocalDAO;
 import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.dto.club.ClubVO;

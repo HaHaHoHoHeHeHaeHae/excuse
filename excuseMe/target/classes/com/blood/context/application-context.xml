@@ -45,6 +45,12 @@
 	<bean id="downDAO"
 			class="com.blood.coding.dao.down.DownDAOImpl"
 			p:sesssion-ref="sqlSession" />
+	<bean id="joinClubDAO"
+			class="com.blood.coding.dao.joinclub.JoinClubDAOImpl"
+			p:session-ref="sqlSession" />
+	<bean id="wishDAO"
+			class="com.blood.coding.dao.wish.WishDAOImpl"
+			p:session-ref="sqlSession" />
 	
 			  	  
 	<!-- service -->	
@@ -78,6 +84,14 @@
 			class="com.blood.coding.service.upndown.UpnDownService"
 			p:downDAO-ref="downDAO"
 			p:upDAO-ref="upDAO" />
+			
+	<bean id="joinClubService"
+			class="com.blood.coding.service.joinclub.JoinClubServiceImpl"
+			p:joinClubDAO-ref="joinClubDAO"/>
+	<bean id="wishService"
+			class="com.blood.coding.service.wish.WishServiceImpl" 
+			p:wishDAO-ref="wishDAO" />
+	
 
 	
 </beans>

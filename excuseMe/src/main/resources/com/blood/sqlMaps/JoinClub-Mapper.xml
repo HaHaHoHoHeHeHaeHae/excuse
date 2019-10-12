@@ -14,7 +14,8 @@
 		<update id="deleteJoinClub">
 			delete 
 			from joinclub
-			where mem_id=#{mem_id}
+			where mem_id=#{mem_id} and
+				  club_no=#{club_no}
 		</update>
 		
 		<!-- 동호회원인지 체크->가입,탈퇴 버튼 표시 -->
@@ -27,19 +28,19 @@
 		<!-- 내가 가입한 동호회 리스트 -->
 		<select id="selectJoinClubList" resultType="join">
 			select *
-			from join_view
-			where joinclub.mem_id=#{mem_id}
+			from JOINCLUB_VIEW
+			where mem_id=#{mem_id}
 			
 		</select>
-		
-		
+			
 		<!-- 내동호회의 동호회원 리스트 -->
 		<select id="selectMyClubList" resultType="join">
 			select *
-			from join_view
-			where club_no=#{clun_no}
+			from JOINCLUB_VIEW
+			where club_no=#{club_no}
 		</select>
 		
+
 		<select id="selectJoinClubSeqNext" resultType="int">
 			select joinclub_seq.nextval as join_no 
 			from dual
