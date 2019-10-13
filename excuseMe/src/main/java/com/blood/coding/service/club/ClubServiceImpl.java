@@ -78,7 +78,7 @@ public class ClubServiceImpl implements ClubService {
 		for(ClubVO reco : recommendList) {
 			String club_no = reco.getClub_no();
 			String attach_board = club_no + "c";
-			AttachVO attachThum = attachDAO.selectAttachesByAttachBoardOne("c16c");
+			AttachVO attachThum = attachDAO.selectAttachesByAttachBoardOne(attach_board);
 			int attachNO = attachThum.getAttach_no();
 			reco.setAttachThum_no(attachNO);
 
@@ -100,7 +100,7 @@ public class ClubServiceImpl implements ClubService {
 		for(ClubVO club : clubList) {
 			String club_no = club.getClub_no();
 			String attach_board = club_no + "c";
-			AttachVO attachThum = attachDAO.selectAttachesByAttachBoardOne("c1c");
+			AttachVO attachThum = attachDAO.selectAttachesByAttachBoardOne(attach_board);
 			int attachNO = attachThum.getAttach_no();
 			club.setAttachThum_no(attachNO);
 			

@@ -150,9 +150,9 @@ div.top {
 						<input name="keyword" type="text" class="form-control"
 							placeholder="동호회를 검색할 단어를 입력하세요." style="width: 1000px;">
 					</div>
-					<div class="actions" style="float: right; height:60px;">
-						<div style="width:120px; height:55px;border-radius:5px;background:#2BB3D7; text-align:center; vertical-align:middle;">
-							<a id="searchBtn" href="#" style="font-size:16px; color:white; text-decoration:none;dispay:inline-block;line-height:55px;">검색</a>
+					<div  class="actions" style="float: right; height:60px;">
+						<div id="searchBtn" style="width:120px; height:55px;border-radius:5px;background:#2BB3D7; text-align:center; vertical-align:middle;cursor:pointer;">
+							<div style="width:120px; height:55px; font-size:16px; color:white; dispay:inline-block; line-height:55px;">검&nbsp;&nbsp;색</div>
 						</div>
 					</div>
 				</div>
@@ -193,7 +193,7 @@ div.top {
 					<c:if test="${!empty clubList }">
 						<div class="clublist_body"
 							style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin: 3px 3px 20px 3px; width: 219px;">
-							<div class="card-body box-profile">
+							<div class="card-body box-profile" style="cursor:pointer;"onclick="OpenWindow('detail?club_no=${club.club_no}','','813','650');"> <%--onclick 붙이고 --%>
 								<div class="text-center">
 									<img class="profile-user-img img-fluid img-circle" id="thum"
 										src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
@@ -215,12 +215,13 @@ div.top {
 									</b></li>
 
 								</ul>
-								<ul class="actions vertical small"
+								<%--디테일 버튼 삭제 --%>
+								<%-- <ul class="actions vertical small"
 									style="text-align: center; margin-bottom: -10px;">
 									<li><a href="#" data-name="title"
 										onclick="OpenWindow('detail?club_no=${club.club_no}','','813','650');"
 										class="button small" style="color: white;">Detail</a></li>
-								</ul>
+								</ul> --%>
 							</div>
 						</div>
 					</c:if>
@@ -280,10 +281,8 @@ div.top {
 	<!-- recommendClub End-->
 
 	<!-- pagination Start-->
-	<section class="pagination"
-		style="width: 1126.66px; margin: 0 auto; height: 68px; position: absolute; top: 1800px; left: 50%; transform: translateX(-50%);">
-		<div class="card-footer clearfix"
-			style="align: center; width: 1126.66px;">
+	<section class="pagination" style="width: 1126.66px; margin: 0 auto; height: 68px; position: absolute; top: 1800px; left: 50%; transform: translateX(-50%);">
+		<div class="card-footer clearfix" style="align: center; width: 1126.66px;">
 			<div class="pagination justify-content-center m-0">
 				<ul class="pagination ">
 					<li class="page-item"><a class="page-link"
@@ -448,7 +447,7 @@ div.top {
 	})
 
 	<%--search --%>
- 	$('a#searchBtn').click(function(){
+ 	$('div#searchBtn').click(function(){
 		//alert("searchBtn");
 		//""(x), cate1.cate_name (x),
 		//var category = $('select#category').text();
