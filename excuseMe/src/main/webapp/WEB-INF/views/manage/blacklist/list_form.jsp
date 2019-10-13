@@ -20,13 +20,13 @@
 		
 		<div class="card-body">
     		<!-- Table -->
-			<div class="table-wrapper" style="margin-left: 0px; margin-top:-186px;">
+			<div class="table-wrapper" style="margin-top:-180px;">
 				<table>
       				<tr>
 						<th class="text-center" style="width:100px;">동호회명</th>
 						<th class="text-center" style="width:100px;">카테고리</th>
-						<th class="text-center" style="width:100px;">UP-DOWN</th>
-						<th class="text-center" style="width:100px;">상태</th>
+						<th class="text-center" style="width:50px;">UP-DOWN</th>
+						<th class="text-center" style="width:50px;">상태</th>
 						<th class="text-center" style="width:100px;">등록일</th>
 					</tr>
  					<c:if test="${empty blackList }">
