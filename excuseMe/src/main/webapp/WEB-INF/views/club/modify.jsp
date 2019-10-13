@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>동호회 생성</title>
+<title>동호회 수정</title>
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">

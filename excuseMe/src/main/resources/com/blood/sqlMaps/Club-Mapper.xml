@@ -73,12 +73,13 @@
 	    	from club_view
 	    	where club_no is not null and club_status='0'
 	    	<include refid="searchclubname" />
+	    	order by club_regDate desc
 	    </select>
 	    
 	     <select id="selectNewClubCount" resultType="int">
 	    	select count(*)
 	    	from club_view
-	    	where club_no is not null and club_status='0'
+	    	where club_status='0'
 	    	<include refid="searchclubname" />
 	    </select>
 	    

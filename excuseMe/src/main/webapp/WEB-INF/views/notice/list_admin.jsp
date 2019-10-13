@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>공지사항 상세보기</title>
 <c:set var="noticeList" value="${dataMap.noticeList }" />
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 
