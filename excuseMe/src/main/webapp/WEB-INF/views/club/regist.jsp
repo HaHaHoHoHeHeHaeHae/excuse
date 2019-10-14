@@ -277,7 +277,39 @@
 		    $('#maxContentPost').text(max+"/3000");
 		  });
 		}); 
-	 
+	 function sendFile(file, el) {
+	      var form_data = new FormData();
+	      form_data.append("file", file);
+	      form_data.append("id","admin@naver.com");
+	      
+	      $.ajax({
+	         data: form_data,
+	         type: "POST",
+	         url: '<%=request.getContextPath()%>/uploadImg',
+	         contentType: false,
+	         processData: false,
+	         success: function(img_url) {
+	            $(el).summernote('editor.insertImage', img_url);
+	         }
+	      });
+	   } 
+	   
+	   
+	   
+	function deleteFile(src) {
+	      
+	      /* src.split("/")[src.split("/").length-1]; */
+	      
+	      $.ajax({
+	         data: {fileName : src.split("/")[src.split("/").length-1]},
+	         type: "POST",
+	         url: "<%=request.getContextPath()%>/deleteImg",
+			cache : false,
+			success : function(resp) {
+			console.log(resp);
+					}
+				});
+			}
 	 $("#club_local1").change(function(){
 			
 			var local = $("#club_local1").val();
@@ -333,7 +365,7 @@
 		 	}
 		 readURL(this);
 	 });
-	 
+		
 	 function readURL(input){
 		
 		 if (input.files && input.files[0]) {
@@ -444,22 +476,26 @@
 		}
 	 function findName(){
 		 var name = club_name.value;
+		 if(name==""){
+			 alert("빈칸을 입력하셨습니다.");
+		 }else{
+			 $.ajax({
+					url : "<%=request.getContextPath()%>/club/findName",
+					data : {
+						club_name:name
+					},
+					type:"GET",
+					success:function(name){
+						alert(name + "은(는) 사용 가능한 이름입니다.");
+						$("#club_name").css("disable",true);
+					},
+					error:function(){
+						alert("이미 존재하는 이름입니다.");
+						$("#club_name").val("");
+					}
+			 }); 
+		 }
 		 
-		 $.ajax({
-			url : "<%=request.getContextPath()%>/club/findName",
-			data : {
-				club_name:name
-			},
-			type:"GET",
-			success:function(name){
-				alert(name + "은(는) 사용 가능한 이름입니다.");
-				$("#club_name").css("disable",true);
-			},
-			error:function(){
-				alert("이미 존재하는 이름입니다.");
-				$("#club_name").val("");
-			}
-		 });
 	 }
 	 $('div.fileInput').on('click','div.inputRow > button', function(event){
 			
