@@ -1,3 +1,4 @@
+
 package com.blood.coding.controller.mail;
 
 import java.util.Date;
@@ -44,7 +45,7 @@ public class MailController extends Authenticator{
         
         Message msg = new MimeMessage(Session.getDefaultInstance(prop, new Authenticator(){
         	protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("mhhan2004@gmail.com", "ë¹„ë°€ë²ˆí˜¸");
+                return new PasswordAuthentication("mhhan2004@gmail.com", "ë¹„ë?ë²ˆí˜¸");
             }
         }
 		));
@@ -61,8 +62,8 @@ public class MailController extends Authenticator{
             msg.setFrom(new InternetAddress("mhhan2004@gmail.com", "VISITOR"));
             InternetAddress to = new InternetAddress("mhhan2007@naver.com");         
             msg.setRecipient(Message.RecipientType.TO, to);            
-            msg.setSubject("ì œëª©");            
-            msg.setText("ë¹„ë°€ë²ˆí˜¸ëŠ”"+mem_pwd+"ìž…ë‹ˆë‹¤.");            
+            msg.setSubject("? œëª?");            
+            msg.setText("ë¹„ë?ë²ˆí˜¸?Š”"+mem_pwd+"?ž…?‹ˆ?‹¤.");            
            
             Transport.send(msg);
             mailSend = new ResponseEntity<Object>(HttpStatus.OK);

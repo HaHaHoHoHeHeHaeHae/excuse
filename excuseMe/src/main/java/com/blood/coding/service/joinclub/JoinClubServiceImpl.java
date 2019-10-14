@@ -1,10 +1,13 @@
 package com.blood.coding.service.joinclub;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.blood.coding.controller.common.Criteria;
-import com.blood.coding.dao.joinClub.JoinClubDAO;
+import com.blood.coding.controller.common.PageMaker;
+import com.blood.coding.dao.joinclub.JoinClubDAO;
 import com.blood.coding.dto.joinClub.JoinClubVO;
 
 public class JoinClubServiceImpl implements JoinClubService {
@@ -45,16 +48,38 @@ public class JoinClubServiceImpl implements JoinClubService {
 			return true;
 		}
 	}
-	//내가 가입한 클럽 리스트
+	
+	//내가 가입한 클럽 리스트 = 마이페이지 컨트롤러에서 사용함
 	@Override
-	public List<JoinClubVO> selectJoinClubList(Criteria cri, String mem_id) throws SQLException {
+	public Map<String, Object> selectJoinClubList(Criteria cri, String mem_id) throws SQLException {
+		Map<String, Object> dataMap = new HashMap<String, Object>();
 		
-		return null;
+		List<JoinClubVO> myjoinList = joinClubDAO.selectJoinClubList(cri, mem_id);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(joinClubDAO.selectJoinClubListCount(mem_id));
+		
+		
+		dataMap.put("myjoinList", myjoinList);
+		dataMap.put("pageMaker", pageMaker);
+		
+		return dataMap;
 	}
-	//해당클럽에 가입한 멤버 리스트
+	
+	//해당클럽에 가입한 멤버 리스트 = 마이페이지 컨트롤러에서 사용함
 	@Override
-	public List<JoinClubVO> selectMyClubList(Criteria cri, String club_no) throws SQLException {
+	public Map<String, Object> selectMyClubList(Criteria cri, String club_no) throws SQLException {
+		List<JoinClubVO> myjoinList = joinClubDAO.selectMyClubList(cri, club_no);
 		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(joinClubDAO.selectMyClubListCount(club_no));
+		
+		Map<String, Object> dataMap = new HashMap<String, Object>();
+		
+		dataMap.put("myjoinList", myjoinList);
+		dataMap.put("dataMap", dataMap);
 		return null;
 	}
 

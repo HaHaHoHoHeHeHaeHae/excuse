@@ -20,6 +20,7 @@ public class ClubVO {
 	private int joincnt;
 	private int mi;
 	private List<AttachVO> attachList;
+	private int attachThum_no;
 	
 	
 	
@@ -107,13 +108,22 @@ public class ClubVO {
 	public void setAttachList(List<AttachVO> attachList) {
 		this.attachList = attachList;
 	}
+	public int getAttachThum_no() {
+		return attachThum_no;
+	}
+	public void setAttachThum_no(int attachThum_no) {
+		this.attachThum_no = attachThum_no;
+	}
 	@Override
 	public String toString() {
 		return "ClubVO [club_no=" + club_no + ", mem_id=" + mem_id + ", cate_name=" + cate_name + ", club_name="
 				+ club_name + ", club_content=" + club_content + ", club_status=" + club_status + ", club_local="
 				+ club_local + ", club_regDate=" + club_regDate + ", replycnt=" + replycnt + ", upcnt=" + upcnt
-				+ ", downcnt=" + downcnt + ", joincnt=" + joincnt + ", mi=" + mi + ", attachList=" + attachList + "]";
+				+ ", downcnt=" + downcnt + ", joincnt=" + joincnt + ", mi=" + mi + ", attachList=" + attachList
+				+ ", attachThum_no=" + attachThum_no + "]";
 	}
 	
+	
 
+	
 }

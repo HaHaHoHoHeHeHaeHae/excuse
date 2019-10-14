@@ -1,3 +1,4 @@
+
 package com.blood.coding.controller.common;
 
 import java.io.File;
@@ -15,7 +16,7 @@ public class DeleteFileUtils {
 		
 		
 		
-		//ì´í”„ë¬¸ ì¶©ì¡±ì‹œ ì´ë¯¸ì§€ íŒŒì¼
+		//?´?”„ë¬? ì¶©ì¡±?‹œ ?´ë¯¸ì? ?ŒŒ?¼
 		if(imgCheck != null) {
 			File thumbnail = new File(uploadPath + attach.getAttach_path() + File.separator + "s_" + attach.getAttach_uuid() + "$$" + attach.getAttach_name());
 			thumbnail.delete();
@@ -31,7 +32,7 @@ public class DeleteFileUtils {
 		
 		
 		
-		//ì´í”„ë¬¸ ì¶©ì¡±ì‹œ ì´ë¯¸ì§€ íŒŒì¼
+		//?´?”„ë¬? ì¶©ì¡±?‹œ ?´ë¯¸ì? ?ŒŒ?¼
 		if(imgCheck != null) {
 			File thumbnail = new File(uploadPath + attachVO.getAttach_path() + File.separator + "s_" + attachVO.getAttach_uuid() + "$$" + attachVO.getAttach_name());
 			thumbnail.delete();

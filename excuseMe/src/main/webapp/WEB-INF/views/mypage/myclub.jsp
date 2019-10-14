@@ -64,20 +64,20 @@
 </style>
 </head>
 
-<body class="subpage">
+<body>
 
 	<div id="subm">
 		<br> <br> <br> <a
-			href="<%=request.getContextPath()%>/mypage/joinclub" class="atag"
+			href="<%=request.getContextPath()%>/mypage/myjoinlist" class="atag"
 			style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;가입한
 			동호회</a><br> <br> <a
 			href="<%=request.getContextPath()%>/mypage/myclub" class="atag"
 			style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;생성한
-			동호회</a><br> <br> <a href="<%=request.getContextPath()%>/mypage/" class="atag"
+			동호회</a><br> <br> <a href="<%=request.getContextPath()%>/mypage/wishlist" class="atag"
 			style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;관심
 			동호회</a><br> <br> <a href="<%=request.getContextPath()%>/mypage/" class="atag"
 			style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;내가
-			쓴 댓글</a><br> <br> <a href="<%=request.getContextPath()%>/mypage/" class="atag"
+			쓴 댓글</a><br> <br> <a href="<%=request.getContextPath()%>/mypage/myinfo" class="atag"
 			style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;개인정보수정</a><br>
 
 
@@ -99,8 +99,8 @@
 					<!-- Table -->
 
 					<c:if test="${empty myClubList }">
-						<b><strong style="position: relative; left: 45px;">자신이
-								생성한 동호회가 없어요오 !</strong></b>
+						<b><strong style="position: relative; left: 45px;">
+						생성한 동호회가 없어요.</strong></b>
 					</c:if>
 
 					<c:if test="${!empty myClubList }">
@@ -122,11 +122,11 @@
 											style="height: 40px; width: 198px; left: -10px;"><b
 											id="btag"> 승인여부&nbsp;&nbsp;:&nbsp;&nbsp; <c:if
 													test="${club.club_status eq '0'}">
-													<i class="fas fa-exclamation-circle">&nbsp;승인대기</i>&nbsp;
+													<i class="fas fa-exclamation-circle" style="color: #c7c402;">&nbsp;승인대기</i>&nbsp;
 													</c:if> <c:if test="${club.club_status eq '1'}">
-													<i class="fas fa-check-circle">&nbsp;승인</i>&nbsp;&nbsp;
+													<i class="fas fa-check-circle" style="color: green;">&nbsp;승인</i>&nbsp;&nbsp;
 													</c:if> <c:if test="${club.club_status eq '2'}">
-													<i class="fas fa-times-circle">&nbsp;운영중지</i>&nbsp;
+													<i class="fas fa-times-circle" style="color: red;">&nbsp;운영중지</i>&nbsp;
 													</c:if>
 										</b></li>
 										
@@ -144,18 +144,13 @@
 									<ul class="actions vertical small" style="text-align: center;">
 										<li>
 											<div class="btn_g" style="position: relative;">
-												<div class="btn-group"
-													style="position: absolute; left: -18px; top: -10px;">
-													<a href="#" class="button small"
-														style="color: white; width: 108px; height: 35px; position: relative;">
-														<p
-															style="position: relative; left: -12px; font-size: 15px;"
-															onclick="club_upndown('up','${club.club_no}');">상세보기</p>
-													</a> &nbsp; <a href="#" class="button special small"
-														style="color: white; width: 102px; height: 35px; position: relative;">
-														<p
-															style="position: relative; left: -12px; font-size: 15px;"
-															onclick="club_upndown('down','${club.club_no}');" >회원보기</p>
+												<div class="btn-group" style="position: absolute; left: -18px; top: -10px;">
+													<a href="#" class="button small" style="color: white; width: 108px; height: 35px; position: relative;">
+														<p style="position: relative; left: -12px; font-size: 15px;"
+														   onclick="club_upndown('up','${club.club_no}');">상세보기</p>
+													</a> &nbsp; <a href="#" class="button special small" style="color: white; width: 102px; height: 35px; position: relative;">
+														<p style="position: relative; left: -12px; font-size: 15px;"
+														   onclick="club_upndown('down','${club.club_no}');" >회원보기</p>
 													</a>
 												</div>
 											</div>
@@ -226,36 +221,43 @@
 	
 		
 </script>
+	<%-- 상세보기 와 회원보기 스크립트 추가 --%>
+	<script>
+		
+	</script>
 
 		<script>
 
-<%-- 추천, 비추천하는 에이젝스 , upndown은 up,down 둘중 하나의 스트링값이 들어가면된다, no는 클럽 넘버가 들어가야함--%> 
-	function club_upndown(upndown,no) {
+<%-- 추천, 비추천하는 에이젝스 , upndown은 up,down 둘중 하나의 스트링값이 들어가면된다, club_no는 클럽 넘버가 들어가야함--%> 
+	function club_upndown(upndown,club_no) {
+		var text ="추천";
 		
-		$.ajax({
+		if(upndown == "down")
+			text = "비추천";
+		
+		if(confirm(text + "을 하시겠습니까?")){
 			
-			contentType:"application/JSON",
-			type: "POST",
-			url: "<%=request.getContextPath()%>/"+upndown+"check?mem_id=${member.mem_id}&club_no="+no,
-			cache: false,
-			success: function(bool) {
-				console.log(bool);
-				if(upndown=="up"){
-					if(bool == false)
-						alert('당신은 이미 추천을 하셨습니다.');
-					else
-						alert('추천을 하셨습니다.');
-				}
-				else if(upndown == 'down'){
-					if(bool == false)
-						alert('당신은 이미 비추천을 하셨습니다.');
-					else
-						alert('비추천을 하셨습니다.');
-				}
+			$.ajax({
+				
+				contentType:"application/JSON",
+				type: "POST",
+				url: "<%=request.getContextPath()%>/"+upndown+"check?mem_id=${member.mem_id}&club_no="+club_no,
+				cache: false,
+				success: function(bool) {
+					console.log(bool);
 					
-			}
-		});
-		
+						if(bool == false)
+							alert("당신은 이미 " + text + "을 하셨습니다.");
+							
+						else
+							alert(text + "을 하셨습니다.");
+						location.reload();
+								
+				}
+			});
+			
+		}
+			
 	}
 	
 	

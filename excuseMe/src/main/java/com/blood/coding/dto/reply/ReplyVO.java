@@ -8,14 +8,9 @@ public class ReplyVO {
 	private String club_no;
 	private String reply_content;
 	private Date reply_regDate;
-	private String club_name;
+	private String mem_nick;
 	
-	public String getClub_name() {
-		return club_name;
-	}
-	public void setClub_name(String club_name) {
-		this.club_name = club_name;
-	}
+	
 	public int getReply_no() {
 		return reply_no;
 	}
@@ -57,10 +52,17 @@ public class ReplyVO {
 	public ReplyVO() {
 		super();
 	}
+
+	public String getMem_nick() {
+		return mem_nick;
+	}
+	public void setMem_nick(String mem_nick) {
+		this.mem_nick = mem_nick;
+	}
 	@Override
 	public String toString() {
 		return "ReplyVO [reply_no=" + reply_no + ", mem_id=" + mem_id + ", club_no=" + club_no + ", reply_content="
-				+ reply_content + ", reply_regDate=" + reply_regDate + "]";
+				+ reply_content + ", reply_regDate=" + reply_regDate + ", mem_nick=" + mem_nick + "]";
 	}
 
 	

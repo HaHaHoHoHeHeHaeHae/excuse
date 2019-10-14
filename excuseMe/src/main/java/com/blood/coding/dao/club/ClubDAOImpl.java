@@ -27,7 +27,7 @@ public class ClubDAOImpl implements ClubDAO {
 		RowBounds rowBounds = new RowBounds(startRowNum,limit);
 		cri.setAlignment(alignment);
 		cri.setSort(sort);
-		
+			
 		List<ClubVO> clubList = session.selectList("Club.selectSearchClubList",cri,rowBounds);
 		
 		return clubList;
@@ -130,6 +130,24 @@ public class ClubDAOImpl implements ClubDAO {
 	@Override
 	public int selectClubCount(String club_name) throws SQLException {
 		int count = session.selectOne("Club.selectClubCount", club_name);
+		return count;
+	}
+
+
+	@Override
+	public List<ClubVO> selectBlackList(Criteria cri) throws SQLException {
+		int startRowNum = cri.getPageStartRowNum();
+		int limit = cri.getPerPageNum();
+		
+		RowBounds rowBounds = new RowBounds(startRowNum,limit);
+		List<ClubVO> blackList = session.selectList("Club.selectBlackList",cri,rowBounds);
+		return blackList;
+	}
+
+
+	@Override
+	public int selectBlackListCount(Criteria cri) throws SQLException {
+		int count = session.selectOne("Club.selectBlackListCount",cri);
 		return count;
 	}
 

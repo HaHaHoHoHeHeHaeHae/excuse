@@ -22,4 +22,7 @@ public interface LoginService {
 	//비밀번호 찾기
 	public String pwdFind(String mem_id,String mem_name) throws SQLException;
 	
+	//멤버 정보 수정
+	public void modify(MemberVO memberVO) throws SQLException;
+	
 }

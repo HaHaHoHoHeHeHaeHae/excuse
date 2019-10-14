@@ -1,5 +1,6 @@
 package com.blood.coding.controller.main;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -49,5 +50,14 @@ public class MainController {
 		mav.addObject("recentClubList",clubMap2);
 		mav.setViewName(url);
 		return mav;
+	}
+	@RequestMapping("/detail") //동호회 상세보기
+	public ModelAndView clubDetail(String club_no, ModelAndView modelnView) throws SQLException {
+		String url = "club/detail";
+		Map<String, Object> dataMap = clubService.readClub(club_no);//디테일에 댓글보여야 되니까 readClub.(replycnt가 있음)
+		
+		modelnView.addObject("dataMap",dataMap);
+		modelnView.setViewName(url);
+		return modelnView;
 	}
 }

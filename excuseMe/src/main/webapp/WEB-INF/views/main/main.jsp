@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메인 페이지</title>
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">
@@ -84,16 +84,29 @@
 						</table>
 					</div>
 					<div id="row recommend" style="width:48%; height:400px;margin-top:10px;">
-						<c:forEach var="recommend" items="${recommendClubList }">
-							<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-								<div class="image">
-									<img src="<%=request.getContextPath() %>/attach/img?attach_no=${recommend.attach_no}" style="width:200px;height:200px;" />
-								</div>
-								<div class= "info">
-									<a href="" class="d-block">${recommend.club_name }</a>
-								</div>
-							</div>								
-						</c:forEach>
+						<div class="row">
+							<h3>추천 동호회</h3>
+						</div>
+						<c:if test="${empty recommendClubList }">
+						<div style="background:#f5f5f5;margin-top:-10px;height:55px;border-top:1px solid #cfcfcf; border-bottom:1px solid #cfcfcf;">
+							<p style="text-align:center;margin-top:15px;font-size:1.1em; font-weight:bold;">추천 동호회가 없습니다.</p>
+						</div>
+						</c:if>
+						<c:if test="${!empty recommendClubList }">
+							<c:forEach var="recommend" items="${recommendClubList }">
+								<div class="row" style="border-bottom:1px solid #cfcfcf;margin-top:15px;margin-left:20px;" >
+									<div class="image" >
+										<img src="<%=request.getContextPath() %>/attach/img?attach_no=${recommend.attachThum_no}" style="width:80px;height:80px;" />
+									</div>
+									<div style="width:200px;">
+										<p style="font-size:1.3em;margin-bottom:0;font-weight:bold;margin-top:15px;cursor:pointer; padding:0;" onclick="OpenWindow('detail?club_no=${recommend.club_no}','','800','650');">${recommend.club_name }</p>
+									</div>
+									<div style="margin-top:20px;">
+										<p ><fmt:formatDate value="${recommend.club_regDate }" pattern="yyyy-MM-dd"/></p>
+									</div>
+								</div>								
+							</c:forEach>
+						</c:if>
 					</div>
 				</div>
 				<div id="recent" style="width:100%;height:300px;">
@@ -114,21 +127,19 @@
 				</div>
 		</div>
 	</section>
-	<footer id="footer" style="position:relative;margin-top:80px;">
-	<div class="inner">
-		<h2>Get In Touch</h2>
-		<ul class="actions">
-			<li><span class="icon fa-phone"></span> <a href="#">(000)
-					000-0000</a></li>
-			<li><span class="icon fa-envelope"></span> <a href="#">information@untitled.tld</a></li>
-			<li><span class="icon fa-map-marker"></span> 123 Somewhere Road, Nashville, TN 00000</li>
-		</ul>
-	</div>
-	<div class="copyright">
-		&copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>.
-		Images <a href="https://unsplash.com">Unsplash</a>.
-	</div>
-</footer>
+	<footer id="footer" style="height:300px;padding-top:60px;">
+      <div class="inner">
+         <h2>고객 센터</h2>
+         <ul class="actions">
+            <li><span class="icon fa-phone"></span> (042) 254-2462</li>
+            <li><span class="icon fa-envelope"></span> excuseMe@gmail.com</li>
+            <li><span class="icon fa-map-marker"></span> 대전광역시 서구 둔산서로 17(양호빌딩 6층) </li>
+         </ul>
+      </div>
+      <div class="copyright">
+         &copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>. Images <a href="https://unsplash.com">Unsplash</a>.
+      </div>
+   </footer>
 	<!-- AdminLTE App -->
 	<script
 		src="<%=request.getContextPath()%>/resources/adminLTE/dist/js/adminlte.min.js"></script>

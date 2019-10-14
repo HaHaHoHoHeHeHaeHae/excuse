@@ -4,13 +4,15 @@ import java.util.Date;
 
 public class AttachVO {
 	private int attach_no;
-	private String attach_board; //첨부파일 구분자명
+	private String attach_board; //첨부파일 올라간 보드 (club, member ...)
 	private String attach_writer;//파일 등록자
 	private String attach_path;//파일 경로
 	private String attach_name;//파일 이름
 	private String attach_uuid;
 	private String attach_type; //확장자명
 	private Date attach_regDate;
+	
+	
 	public int getAttach_no() {
 		return attach_no;
 	}

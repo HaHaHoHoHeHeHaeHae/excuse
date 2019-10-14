@@ -1,6 +1,7 @@
 package com.blood.coding.controller.club;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,7 @@ import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.controller.common.DeleteFileUtils;
 import com.blood.coding.controller.common.UploadFileUtils;
 import com.blood.coding.dao.attach.AttachDAO;
+import com.blood.coding.dao.attach.AttachDAO;
 import com.blood.coding.dao.category.CategoryDAO;
 import com.blood.coding.dao.local.LocalDAO;
 import com.blood.coding.dto.attach.AttachVO;
@@ -51,10 +53,7 @@ public class ClubController {
 	
 	@Autowired
 	private AttachDAO attachDAO;
-
-	/*@Autowired
-	private JoinClubDAO joinClubDAO;
-	*/
+	
 	
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -68,6 +67,7 @@ public class ClubController {
 
 	@RequestMapping("/list") //동호회 리스트보기
 	public ModelAndView clubList(Criteria cri, ModelAndView modelnView, HttpServletRequest request) throws SQLException{ //session에서 멤버VO(local)가져올거기 떄문에 request 추가해줌.
+		
 		String url = "/club/list";	
 		//로그인유저 정보
 		HttpSession session = request.getSession();
@@ -75,8 +75,20 @@ public class ClubController {
 	
 		Map<String, Object> dataMap = clubService.getClubList(cri, memberVO);
 
-		modelnView.addObject("dataMap",dataMap);
+		if(cri.getCategory().length()>0) {
+			String[] split = cri.getCategory().split("_");
+			dataMap.put("split", split);
+		}
 		
+		if(cri.getLocal().length()>0) {
+			String[] split_sub = cri.getLocal().split("_");
+			//System.out.println("$$$$$$$$$$");
+			//System.out.println(split_sub[1]);
+			//System.out.println("$$$$$$$$$$");
+			dataMap.put("split_sub", split_sub);
+		}
+
+		modelnView.addObject("dataMap",dataMap);
 		modelnView.setViewName(url);
 		return modelnView;
 	}
@@ -171,7 +183,11 @@ public class ClubController {
 	@RequestMapping(value="/remove", method=RequestMethod.GET)
 	public void remove(String club_no, HttpServletResponse response) throws Exception {
 		clubService.remove(club_no);
-
+		response.setContentType("text/html;charset=urt-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("window.opener.location.reload();window.close();");//지웠으니까 reload한번 하고 창닫아죠
+		out.println("</script>");
 	}
 	
 	@RequestMapping("/subcategory")
@@ -223,49 +239,6 @@ public class ClubController {
 			entity = new ResponseEntity <String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return entity;
-	}
-	/*@RequestMapping("/joinToClub")
-	public void joinToClub(JoinClubVO joinclub, HttpServletResponse response) throws SQLException{
-		joinClubDAO.insertJoinClub(joinclub);;
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out;
-		try {
-			out = response.getWriter();
-			out.println("<script>");
-			out.println("alert('등록신청이 완료되었습니다. 관리자의 승인을 기다려주세요.')");
-			out.println("window.opener.location.href='/club/detail';window.close();");
-			out.println("</script>");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	} */
-	
-	@RequestMapping(value = "/removeAttach", method = RequestMethod.POST)
-	public void attachRemove(String club_no) throws Exception {
-		try {
-			String club_no2 = club_no + "c";
-			List<AttachVO> attach = attachDAO.selectAttachesByAttachBoard(club_no);
-			DeleteFileUtils.delete(uploadPath, attach);
-			
-			List<AttachVO> attach2 = attachDAO.selectAttachesByAttachBoard(club_no2);
-			DeleteFileUtils.delete(uploadPath, attach);
-			
-			for (AttachVO attachVO : attach) {
-				int attach_no = attachVO.getAttach_no();
-
-				attachDAO.deleteAttach(attach_no);
-			}
-			for (AttachVO attachVO : attach2) {
-				int attach_no2 = attachVO.getAttach_no();
-
-				attachDAO.deleteAttach(attach_no2);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
 	}
 
 	@RequestMapping(value = "/registAttach", method = RequestMethod.POST)

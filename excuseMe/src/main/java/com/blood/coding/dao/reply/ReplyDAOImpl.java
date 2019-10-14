@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 
 import com.blood.coding.controller.common.Criteria;
+import com.blood.coding.controller.common.MemberCriteria;
 import com.blood.coding.dto.reply.ReplyVO;
 
 public class ReplyDAOImpl implements ReplyDAO {
@@ -17,12 +18,12 @@ public class ReplyDAOImpl implements ReplyDAO {
 	}
 
 	@Override
+	//댓글리스트
 	public List<ReplyVO> selectReplyList(Criteria cri, String club_no) throws SQLException {
 		int offset = cri.getPageStartRowNum();
 		int limit = cri.getPerPageNum();
 		
 		RowBounds rowBounds = new RowBounds(offset,limit);
-		
 		
 		List<ReplyVO> replyList = session.selectList("Reply-Mapper.selectReplyList",club_no,rowBounds);
 		
@@ -30,19 +31,20 @@ public class ReplyDAOImpl implements ReplyDAO {
 	}
 
 	@Override
+	//댓글수
 	public int selectReplyListCount(Criteria cri, String club_no) throws SQLException {
 		int count = session.selectOne("Reply-Mapper.ReplyListCount",club_no);
 		return count;
 	}
 
 	@Override
-	public void insertReply(ReplyVO replyVO) throws SQLException {
-		session.update("Reply-Mapper.insertReply",replyVO);
+	public void insertReply(ReplyVO reply) throws SQLException {
+		session.update("Reply-Mapper.insertReply",reply);
 	}
 
 	@Override
-	public void updateReply(ReplyVO replyVO) throws SQLException {
-		session.update("Reply-Mapper.updateReply",replyVO);
+	public void updateReply(ReplyVO reply) throws SQLException {
+		session.update("Reply-Mapper.updateReply",reply);
 
 
 	}
@@ -60,9 +62,24 @@ public class ReplyDAOImpl implements ReplyDAO {
 	}
 
 	@Override
-	public List<ReplyVO> selectMemberReply(String mem_id) throws SQLException {
-		List<ReplyVO> replymemList = session.selectList("Reply-Mapper.selectMemberReply",mem_id);
-		return replymemList;
+	public List<ReplyVO> selectMemberReply(MemberCriteria cri,String mem_id) throws SQLException {
+		int offset = cri.getPageStartRowNum();
+		int limit = cri.getPerPageNum();
+		
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		List<ReplyVO> replyList = session.selectList("Reply-Mapper.selectMemberReply",mem_id,rowBounds);
+		return replyList;
+	}
+
+	
+
+	@Override
+	public int selectMemberReplyCount(MemberCriteria cri, String mem_id) throws SQLException {
+		
+		int count = session.selectOne("Reply-Mapper.selectMemberReplyCount",mem_id);
+		System.out.println(count);
+		return count;
 	}
 
 }
