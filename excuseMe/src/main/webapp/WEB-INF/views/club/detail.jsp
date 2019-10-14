@@ -16,7 +16,7 @@
 <c:set var="reply" value="${dataMap.replyList }" />
 <head>
 
-<title>동호회 디테일</title>
+<title>동호회 상세보기</title>
 
 <!-- Font Awesome -->
 <link rel="stylesheet"

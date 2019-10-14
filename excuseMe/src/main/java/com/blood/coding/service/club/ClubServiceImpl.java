@@ -191,6 +191,13 @@ public class ClubServiceImpl implements ClubService {
 	public Map<String, List<ClubVO>> getClubListMain(String mem_local) throws SQLException {
 		Map<String, List<ClubVO>> map = new HashMap();
 		List<ClubVO> list = clubDAO.recommendClubMain(mem_local);
+		for(ClubVO vo : list) {
+			String club_no = vo.getClub_no();
+			club_no = club_no +"c";
+			AttachVO attachVO = attachDAO.selectAttachesByAttachBoardOne(club_no);
+			int attachThum_no = attachVO.getAttach_no();
+			vo.setAttachThum_no(attachThum_no);
+		}
 		map.put("recommendClubList", list);
 		return map;
 	}

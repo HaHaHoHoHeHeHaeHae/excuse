@@ -14,7 +14,7 @@ div.top {
 
 <head>
 
-<title>동호회 리스트 창</title>
+<title>동호회 리스트</title>
 <c:set var="clubList" value="${dataMap.clubList }" />
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 <c:set var="cateList" value="${dataMap.cateList }" />
@@ -227,7 +227,7 @@ div.top {
 								style="text-align: center; margin-bottom: -10px;">
 								<li><a href="#" data-name="title"
 									onclick="OpenWindow('detail?club_no=${club.club_no}','','825','650');"
-									class="button small" style="color: white;">Detail</a></li>
+									class="button small" style="color: white;">상세보기</a></li>
 							</ul>
 						</div>
 		</div>
@@ -267,7 +267,7 @@ div.top {
 								style="text-align: center; margin-bottom: -10px;">
 								<li><a href="#" data-name="title"
 									onclick="OpenWindow('detail?club_no=${recommend.club_no}','','800','650');"
-									class="button alt icon fa-search">Detail</a></li>
+									class="button alt icon fa-search">상세보기</a></li>
 								<li><a href="#" class="button alt icon fa-check"
 									onclick="onJoin('join','${club.club_no}')">가입하기</a></li>
 							</ul>
