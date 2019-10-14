@@ -60,6 +60,7 @@
         where
  		c.club_no = r.club_no and
         r.mem_id = #{mem_id}
+        order by reply_regDate desc
 	</select>
 	<select id="selectMypageReplyCount" resultType="int">
 		SELECT

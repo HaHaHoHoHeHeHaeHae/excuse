@@ -195,8 +195,10 @@ public class ClubServiceImpl implements ClubService {
 			String club_no = vo.getClub_no();
 			club_no = club_no +"c";
 			AttachVO attachVO = attachDAO.selectAttachesByAttachBoardOne(club_no);
-			int attachThum_no = attachVO.getAttach_no();
-			vo.setAttachThum_no(attachThum_no);
+			if(attachVO != null) {
+				int attachThum_no = attachVO.getAttach_no();
+				vo.setAttachThum_no(attachThum_no);
+			}
 		}
 		map.put("recommendClubList", list);
 		return map;

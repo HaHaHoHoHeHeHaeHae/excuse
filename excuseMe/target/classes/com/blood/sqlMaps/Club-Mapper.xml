@@ -162,7 +162,7 @@
 	    	select *
 	    	from club_view
 	    	where mem_id = #{mem_id}
-	    	order by club_name
+	    	order by club_regDate desc
 	    </select>
 	    
 	    <select id="selectClubCount" resultType="int">

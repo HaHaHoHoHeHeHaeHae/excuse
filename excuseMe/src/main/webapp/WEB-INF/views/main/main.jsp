@@ -96,7 +96,17 @@
 							<c:forEach var="recommend" items="${recommendClubList }">
 								<div class="row" style="border-bottom:1px solid #cfcfcf;margin-top:15px;margin-left:20px;" >
 									<div class="image" >
-										<img src="<%=request.getContextPath() %>/attach/img?attach_no=${recommend.attachThum_no}" style="width:80px;height:80px;" />
+										<img style="width:80px;height:80px;"
+											<c:if test="${recommend.attachThum_no > 0}">
+												src="<%=request.getContextPath() %>/attach/img?attach_no=${recommend.attachThum_no}"
+											</c:if>
+											<c:if test="${recommend.attachThum_no <= 0}">
+												src="<%=request.getContextPath()%>/resources/img/logo.png"
+											</c:if> />
+										
+										
+										
+										
 									</div>
 									<div style="width:200px;">
 										<p style="font-size:1.3em;margin-bottom:0;font-weight:bold;margin-top:15px;cursor:pointer; padding:0;" onclick="OpenWindow('detail?club_no=${recommend.club_no}','','800','650');">${recommend.club_name }</p>
