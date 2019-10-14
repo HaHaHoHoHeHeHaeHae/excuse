@@ -107,7 +107,7 @@
 				<div class="12u">
 					<!-- Table -->
 					<c:if test="${empty wishList }">
-						<b><strong>관심 동호회가 없어요.</strong></b>
+						<b><strong>관심 동호회가 없습니다.</strong></b>
 					</c:if>
 
 

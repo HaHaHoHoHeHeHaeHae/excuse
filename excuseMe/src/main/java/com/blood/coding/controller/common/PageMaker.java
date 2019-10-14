@@ -98,8 +98,8 @@ public class PageMaker {
 			endPage = realEndPage;
 		}
 
-		prev = (startPage == 1) ? false : true;
-		next = (endPage * cri.getPerPageNum()) >= totalCount ? false : true;
+		prev = (cri.getPage() == 1) ? false : true;
+		next = (cri.getPage() * cri.getPerPageNum()) >= totalCount ? false : true;
 	}
 	
 	public String makeQuery(){	
