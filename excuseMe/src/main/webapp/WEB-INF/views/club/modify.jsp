@@ -4,6 +4,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%-- 
+<c:set var="attachT" value="${dataMap.attachThum }" /> --%>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>동호회 수정</title>
 <!-- Font Awesome -->
@@ -56,12 +59,21 @@
 		<div class = "card-header">
 			<input type="hidden" id="mem_id" name="mem_id" value="${loginUser.mem_id }">
 			<input type="hidden" id="club_no" name="club_no" value="${club.club_no }">
-			<h2 style="margin-left: 40px; margin-bottom:0; font-weight: 900; color: #4f9cc2;">동호회 수정</h2>
+			<h2 style="margin-left: 40px; margin-bottom:0; font-weight: 900; color: #4f9cc2;">동호${attachThum.attach_no }회 수정</h2>
 		</div>
 		<div class= "card-body">
 			<div>
 				<div class="text-center">
-					<img class="img-fluid" id="thum" src="<%=request.getContextPath() %>/attach/img?attach_no=${attachThum.attach_no}" style="width:200px;height:200px;">
+					<img class="img-fluid" id="thum" 
+					
+					<c:if test="${attachThum.attach_no > 0}">
+						src="<%=request.getContextPath()%>/attach/img?attach_no=${attachThum.attach_no}" style="width:200px;height:200px;"
+					</c:if>
+					<c:if test="${attachThum==null}">
+						src="<%=request.getContextPath()%>/resources/img/logo.png" style="width:200px;height:200px;"
+					</c:if>	
+					/>
+					
 				</div>
 				<div>
 				<p></p>
@@ -152,11 +164,11 @@
 		<div class= "card-footer">
 			<div class="row" style="margin-left:290px;">
 				<div>
-					<button type="button" class="btn btn-block btn-info" style="width:100px;" onclick="registClub()">신청</button>
+					<button type="button" class="btn btn-block btn-info" style="width:100px;" onclick="registClub()">수정</button>
 				</div>
 				&nbsp&nbsp&nbsp&nbsp
 				<div>
-					<button class="btn btn-block btn-secondary" style="width:100px;">취소</button>
+					<button class="btn btn-block btn-secondary" style="width:100px;" onclick="onClose();" >취소</button>
 				</div>	
 			</div>
 		</div>
@@ -181,6 +193,11 @@
 	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<script>
+	
+	function onClose(){
+		window.close();
+	}
+	
 	function registerSummernote(element, placeholder, max, callbackMax) {
 		 $('#club_content').summernote({
 		      height:410,
@@ -261,6 +278,37 @@
 		    $('#maxContentPost').text(max+"/3000");
 		  });
 		}); 
+	 
+	 function sendFile(file, el) {
+	      var form_data = new FormData();
+	      form_data.append("file", file);
+	      form_data.append("id","admin@naver.com");
+	      
+	      $.ajax({
+	         data: form_data,
+	         type: "POST",
+	         url: '<%=request.getContextPath()%>/uploadImg',
+	         contentType: false,
+	         processData: false,
+	         success: function(img_url) {
+	            $(el).summernote('editor.insertImage', img_url);
+	         }
+	      });
+	   } 
+		function deleteFile(src) {
+		      
+		      /* src.split("/")[src.split("/").length-1]; */
+		      
+		      $.ajax({
+		         data: {fileName : src.split("/")[src.split("/").length-1]},
+		         type: "POST",
+		         url: "<%=request.getContextPath()%>/deleteImg",
+				cache : false,
+				success : function(resp) {
+				console.log(resp);
+						}
+					});
+				}
 	 
 	 $("#club_local1").change(function(){
 			
@@ -344,6 +392,7 @@
 		 } 
 	 	
 	 	var no = club_no.value;
+	 	
 	 	var local = club_local1.value + "_" +club_local2.value;
 	 	
 	 	var content= club_content.value;
@@ -363,14 +412,17 @@
 		 			},
 		 		success:function(club_no){ 			
 		 			onSubmit(document.club_RegistThum,"modifyAttachThum","post",club_no);
-		 			alert("동호회 정보가 수정 되었습니다.");
+		 			
 		 			onSubmit(document.club_Regist,"modifyAttach","post",club_no);
+		 			
+		 			alert("동호회 정보가 수정 되었습니다.");
 					
 		 		},
 		 		error:function(){
 		 			alert("서버 오류입니다.");
 		 		},
 		 		complete:function(){
+		 			window.opener.location.reload();
 		 			window.close();
 		 		}
 		 	});
@@ -379,7 +431,7 @@
 	 }
 	 
 	 function onSubmit(form,url,method,no){
-		 	
+		 	alert("dlrj이거 실행함?");
 			form.action="<%=request.getContextPath()%>/club/"+url+"?club_no="+no;
 			form.method = method;
 			form.submit();

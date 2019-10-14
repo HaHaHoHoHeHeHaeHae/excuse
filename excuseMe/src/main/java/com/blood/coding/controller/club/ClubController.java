@@ -146,6 +146,14 @@ public class ClubController {
 		AttachVO attachThum = attachDAO.selectAttachesByAttachBoardOne(club_noForThum);
 		List<AttachVO> attach = attachDAO.selectAttachesByAttachBoard(club_no);
 		
+		System.out.println("sssssssssss");
+		System.out.println("sssssssssss");
+		System.out.println("sssssssssss");
+		System.out.println("sssssssssss");
+		
+		System.out.println("sssssssssss");
+		System.out.println("sssssssssss");
+		
 		String local = club.getClub_local();
 		int local_count = local.indexOf("_");
 		String sub_local = local.substring(local_count+1);

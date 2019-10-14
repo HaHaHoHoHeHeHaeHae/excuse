@@ -42,4 +42,4 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <decorator:head />
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+<div class="wrapper">ssssssssssssss

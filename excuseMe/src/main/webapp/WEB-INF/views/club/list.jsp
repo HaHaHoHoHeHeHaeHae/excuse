@@ -85,7 +85,7 @@ div.top {
          <section class="search" style="background:#e8f4ff; border-right: 2px solid #bfced9;border-bottom: 2px solid #bfced9;border-radius:8px;margin-top: 110px;">
             <div class="search1" style="padding-top:40px;">
                <div class="form-group" >
-                  <div class="row" style=" margin-left: 15%; height: 40px;">
+                  <div class="row" style=" margin-left: 15%; height: 40px; width: 1020px;">
                      <div class="label_name"
                         style="margin-right: 10px; margin-top:4px;">
                         <strong >카테고리</strong>
@@ -202,7 +202,7 @@ div.top {
                      style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin: 3px 3px 20px 3px; width: 219px;">
                      <div class="card-body box-profile" style="cursor:pointer;"onclick="OpenWindow('detail?club_no=${club.club_no}','','813','650');"> <%--onclick 붙이고 --%>
                         <div class="text-center">
-                           <img class="profile-user-img img-fluid img-circle" id="thum"
+                           <img class="profile-user-img img-fluid img-circle" id="thum" style="width: 100px; height: 100px;"
                              <c:if test="${club.attachThum_no > 0}">
 								src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
 							</c:if>
@@ -294,7 +294,7 @@ div.top {
                      style="width: 160px; height: 160px; align: center; float: left; padding-right: 20px;">
                      <img class="profile-user-img img-fluid img-circle" id="thum" style="width:140px; height:140px;"
 						<c:if test="${recommend.attachThum_no > 0}">
-							src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
+							src="<%=request.getContextPath()%>/attach/img?attach_no=${recommend.attachThum_no}"
 						</c:if>
 						<c:if test="${recommend.attachThum_no <= 0}">
 							src="<%=request.getContextPath()%>/resources/img/logo.png"

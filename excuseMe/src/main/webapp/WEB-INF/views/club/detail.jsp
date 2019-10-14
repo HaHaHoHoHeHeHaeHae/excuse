@@ -198,15 +198,14 @@
 			<div class="buttons"
 				style="position: relative; width: 800px; text-align: center; margin-bottom: 20px;">
 				<a href="#" class="button special" id="wishBtn" onclick="onWish('club','${club.club_no}');">관심동호회등록</a>&nbsp;&nbsp;&nbsp;&nbsp;
-				
+				<%-- 만든 사람이 아닐때--%>
+				<c:if test="${loginUser.mem_nick != mem_nick }"> 
 					<a href="#" class="button" id="joinBtn" onclick="onJoin('join','${club.club_no}');">가입하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
-				<%-- 만든 사람이 아닐때
-				<c:if test="${loginUser == '어드민' }"> 	
-				</c:if> --%>
-				<%-- 만든 사람일때				
-				<c:if test="">
-					<a href="#" class="button" id="joinBtn" onclick="onJoin('join','${club.club_no}');">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
-				</c:if>--%>
+				</c:if> 
+				<%-- 만든 사람일때	--%>			
+				<c:if test="${loginUser.mem_nick == mem_nick }">
+					<a href="#" class="button" id="joinBtn"  onclick="OpenWindow('<%=request.getContextPath()%>/club/modify?club_no=${club.club_no }','','850','900')">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				</c:if>
 				<a href="#" class="button alt" id="closeBtn" onclick="onClose();">나가기</a>&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>
 			<!-- updown -->
@@ -320,7 +319,9 @@
 	         
 	      }
 	
-	
+	function onModify() {
+		self.location="<%=request.getContextPath()%>/club/modify?club_no=${club.club_no}";
+	}
 	
 	function onJoin(joinnexit,club_no) {
         <%-- joinnexit는 스트링으로 join 과 exit을 받아와야한다. --%>
@@ -557,6 +558,20 @@
 			}
 		});
 	});
+	
+	//팝업창들 뛰우기
+	//새로운 윈도우 창을 오픈할 경우 사용되는 함수(arg : 주소, 창타이틀, 넓이, 길이)
+	function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
+		winleft = (screen.width - WinWidth) / 2;
+		wintop = (screen.height - WinHeight) / 2;
+		
+		var win = window.open(UrlStr , WinTitle, "scrollbars=yes, width="+ WinWidth
+				+", height="+ WinHeight+ ", top="+wintop + ", left="+winleft +", resizable=no, status=yes");
+		
+		win.focus();
+		//대문자를 쓴 이유 확인
+		//내가 만든 펑션 제공되는 펑션 = 대문자로 구분
+	}
  		
 	</script>
 

@@ -173,7 +173,7 @@
 				</div>
 				&nbsp&nbsp&nbsp&nbsp
 				<div>
-					<button class="btn btn-block btn-secondary" style="width:100px;">취소</button>
+					<button class="btn btn-block btn-secondary" style="width:100px;" onclick="onClose();" >취소</button>
 				</div>	
 			</div>
 		</div>
@@ -197,6 +197,11 @@
 	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<script>
+	
+	function onClose(){
+		window.close();
+	}
+	
 	function registerSummernote(element, placeholder, max, callbackMax) {
 		 $('#club_content').summernote({
 		      height:410,
