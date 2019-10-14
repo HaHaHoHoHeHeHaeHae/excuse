@@ -89,4 +89,10 @@ public class NoticeDAOImpl implements NoticeDAO {
 		return list;
 	}
 
+	@Override
+	public int selectNoticeCountAll() throws SQLException {
+		int count = session.selectOne("Notice.selectNoticeCountAll");
+		return count;
+	}
+
 }

@@ -227,7 +227,7 @@ div.top {
                <li class="page-item"><a class="page-link"
                   href="list
                            <c:if test="${pageMaker.next }">
-                              ${pageMaker.makeQuery(pageMaker.endPage+1) }
+                              ${pageMaker.makeQuery(pageMaker.cri.page+1) }
                            </c:if>
                            <c:if test="${!pageMaker.next }">
                               ${pageMaker.makeQuery(pageMaker.cri.page) }

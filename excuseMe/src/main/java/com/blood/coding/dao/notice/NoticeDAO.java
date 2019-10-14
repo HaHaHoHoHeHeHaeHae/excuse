@@ -13,7 +13,7 @@ public interface NoticeDAO {
 	public List<NoticeVO> selectNoticeRecentList() throws SQLException;
 	//페이지 카운트
 	public int selectNoticeCount() throws SQLException;
-	
+	public int selectNoticeCountAll() throws SQLException;
 	//등록,수정,삭제
 	public void insertNotice(NoticeVO noticeVO) throws SQLException;
 	public void updateNotice(NoticeVO noticeVO) throws SQLException;

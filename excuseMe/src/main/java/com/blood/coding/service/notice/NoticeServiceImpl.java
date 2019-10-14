@@ -57,7 +57,7 @@ public class NoticeServiceImpl implements NoticeService {
 		}
 		PageMaker page = new PageMaker();
 		
-		int count = noticeDAO.selectNoticeCount();
+		int count = noticeDAO.selectNoticeCountAll();
 		page.setCri(cri);
 		page.setTotalCount(count);
 		
