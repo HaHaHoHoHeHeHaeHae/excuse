@@ -51,7 +51,21 @@ div.top {
 <link
    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
    rel="stylesheet">
+<style>
 
+@media screen and (max-width: 1920px){
+	body{
+		font-size:1.05em;
+	}
+	
+}
+@media screen and (max-width: 1680px){
+	body{
+		font-size:1.2em;
+	}
+	
+}
+</style>
 </head>
 
 <body class="subpage">
@@ -108,10 +122,10 @@ div.top {
             <div class="search2" style="height: 50px;">
                <div class="form-group">
                   <div class="row" style=" margin-left: 15%; height: 40px;">
-                     <div class="label_name" style="margin-right: 10px; width: 75px;margin-top:4px;">
+                     <div class="label_name" style="margin-right: 10px;margin-top:4px;">
                         <strong>지&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp역</strong>
                      </div>
-                     <div class="select" style="margin-left:29px;">
+                     <div class="select" style="">
                         <select id="local" class="form-control"
                            style="width: 250px;">
                            <option value="0">- 전체 보기 -</option>
