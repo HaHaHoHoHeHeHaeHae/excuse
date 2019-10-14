@@ -64,7 +64,7 @@
 					<li class="page-item">
 						<a class="page-link"style="text-decoration:none;" href="listForm
 							<c:if test="${pageMaker.prev }">
-								${pageMaker.makeQuery(pageMaker.startPage-1) }
+								${pageMaker.makeQuery(pageMaker.cri.page-1) }
 							</c:if>
 						">&lt;</a>
 					</li>
