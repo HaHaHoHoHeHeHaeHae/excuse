@@ -45,7 +45,7 @@ public class MailController extends Authenticator{
         
         Message msg = new MimeMessage(Session.getDefaultInstance(prop, new Authenticator(){
         	protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("mhhan2004@gmail.com", "비�?번호");
+                return new PasswordAuthentication("mhhan2004@gmail.com", "비�?번호");
             }
         }
 		));
@@ -62,8 +62,8 @@ public class MailController extends Authenticator{
             msg.setFrom(new InternetAddress("mhhan2004@gmail.com", "VISITOR"));
             InternetAddress to = new InternetAddress("mhhan2007@naver.com");         
             msg.setRecipient(Message.RecipientType.TO, to);            
-            msg.setSubject("?���?");            
-            msg.setText("비�?번호?��"+mem_pwd+"?��?��?��.");            
+            msg.setSubject("회원님의 Excuse Me 비밀번호입니다.");            
+            msg.setText("비밀번호는"+mem_pwd+"입니다.");            
            
             Transport.send(msg);
             mailSend = new ResponseEntity<Object>(HttpStatus.OK);
