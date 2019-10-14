@@ -244,15 +244,7 @@ div.top {
                </c:forEach>
 
                <li class="page-item"><a class="page-link"
-                  href="list
-                           <c:if test="${pageMaker.next }">
-                              ${pageMaker.makeQuery(pageMaker.cri.page+1) }
-                           </c:if>
-                           <c:if test="${!pageMaker.next }">
-                              ${pageMaker.makeQuery(pageMaker.cri.page) }
-                           </c:if>
-                        "
-                  style="text-decoration: none">&gt;</a></li>
+                  href="list<c:if test="${pageMaker.next }">${pageMaker.makeQuery(pageMaker.cri.page+1) }</c:if><c:if test="${!pageMaker.next }">${pageMaker.makeQuery(pageMaker.cri.page) }</c:if>"style="text-decoration: none">&gt;</a></li>
 
                <li class="page-item"><a class="page-link"
                   href="list${pageMaker.makeQuery(pageMaker.realEndPage) }"
