@@ -28,9 +28,9 @@ public class MainController {
 	@Resource(name="memberService")
 	private MemberService memberService;
 	
-	@RequestMapping("/test")
+	@RequestMapping("/main_frame")
 	public String test() throws Exception{
-		return "main/test";
+		return "main/main_frame";
 	}
 	@RequestMapping(value="/main", method=RequestMethod.GET)
 	public ModelAndView mainPage(String mem_nick) throws Exception{

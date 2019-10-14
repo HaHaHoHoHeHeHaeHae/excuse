@@ -1,220 +1,471 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>동호회 생성</title>
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">
+
+<!-- Ionicons -->
+<link rel="stylesheet"
+	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+<!-- icheck bootstrap -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+
+<!-- Theme style -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/dist/css/adminlte.min.css">
+
+<!-- Google Font: Source Sans Pro -->
+<link
+	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
+	rel="stylesheet">
+<!-- daterange picker -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/daterangepicker/daterangepicker.css">
+<!-- summernote -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/summernote/summernote-bs4.css">
+<!-- jQuery -->
+<script
+	src="<%=request.getContextPath()%>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>
+<script
+	src="<%=request.getContextPath()%>/resources/adminLTE/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- Time Line -->
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/resources/adminLTE/build/scss/_timeline.scss">
+<style>
+	.caution{
+			height:5px;
+			margin-left:200px;
+			color:red;
+			margin-top:-5px;
+	}
+</style>
 </head>
 <body>
-<div class="club-regist">
-
-<div class="card-header">
-	<h3 class="card-title">동호회 생성하기</h3>
-	</div>
-	
-<div class="card-body">
-				<form action="#" method="post" id="registForm">
-					<div>
-						<p>
-							이메일 &nbsp&nbsp&nbsp&nbsp&nbsp <input type="checkbox"
-								id="mem_id_check" name="mem_id_check" value="1"> <label
-								for="mem_id_check" id="mem_id_check_label">정보&nbsp비공개</label>
-						</p>
-					</div>
-
-					<div class="row uniform" id="emailform">
-						<div class="3u 10u$(xsmall)">
-							<input type="text" name="mem_id" id="mem_id" value=""
-								placeholder="아이디" maxlength="20" />
-						</div>
-
-						<div class="3u$ 12u$(xsmall)">
-							<input type="text" name="email_add" id="email_add" value=""
-								placeholder="@" maxlength="20" />
-						</div>
-						<div class="3u$ 12u$(xsmall)">
-							<select name="email_address" id="email_address">
-								<option value="">- 직접입력 -</option>
-								<option value="@naver.com">naver.com</option>
-								<option value="@daum.net">daum.net</option>
-								<option value="@gmail.com">gmail.com</option>
-								<option value="@hotmail.com">hotmail.com</option>
-								<option value="@nate.com">nate.com</option>
-								<option value="@yahoo.co.kr">yahoo.co.kr</option>
-							</select>
-						</div>
-						<div class="2u$ 12u$(xsmall)" id="checkbutton">
-							<span class="button alt small" id="jungbok"
-								onclick="mem_id_jungbok()">중&nbsp복&nbsp체&nbsp크</span>
-						</div>
+	<div style="width:800px;">
+		
+		
+		<div class = "card-header">
+			<input type="hidden" id="mem_id" name="mem_id" value="${loginUser.mem_id }">
+			<h2 style="margin-left: 40px; margin-bottom:0; font-weight: 900; color: #4f9cc2;">동호회 생성</h2>
+		</div>
+		<div class= "card-body">
+			<div>
+				<div class="text-center">
+					<img class="img-fluid" id="thum" src="<%=request.getContextPath()%>/resources/img/logo.png" style="width:200px;height:200px;">
+				</div>
+				<div>
+				<p></p>
+				</div>
+				<form id="club_RegistThum" name="club_RegistThum" enctype="multipart/form-data">
+					<div class="text-center">
+					    <button type="button"  class="btn btn-block btn-outline-secondary" style="width:160px;margin-left:300px;">대표사진 추가하기</button>
+						<input type="file" style="width:170px;margin-left:-80px;margin-top:-35px;opacity:0;position:absolute;" name="uploadThum" id="uploadThum" />
 					</div>
 					<div>
-						<p id="mem_id_test"></p>
-						<input type="hidden" id="mem_id_hidden1" value=""><input
-							type="hidden" id="mem_id_hidden2" value=""><input
-							type="hidden" id="mem_id_check_hidden" value="">
-					</div>
-
-					<div>
-						<p>비밀번호</p>
-					</div>
-					<div class="row uniform">
-						<div class="9u 12u$(xsmall)">
-							<input type="password" name="mem_pwd" id="mem_pwd" value=""
-								placeholder="비밀번호" maxlength="30" />
-						</div>
-					</div>
-					<div>
-						<p id="mem_pwd_test"></p>
-						<input type="hidden" id="mem_pwd_hidden" value="">
-					</div>
-					<div>
-						<p>비밀번호 확인</p>
-					</div>
-					<div class="row uniform">
-						<div class="9u 12u$(xsmall)">
-							<input type="password" name="mem_pwd_check" id="mem_pwd_check"
-								value="" placeholder="비밀번호 확인" maxlength="30" />
-						</div>
-					</div>
-					<div>
-						<p id="mem_pwd_check_test"></p>
-						<input type="hidden" id="mem_pwd_check_hidden" value="">
-					</div>
-					<div>
-						<p>
-							이름&nbsp&nbsp&nbsp&nbsp&nbsp <input type="checkbox"
-								id="mem_name_check" name="mem_name_check" value="1"> <label
-								for="mem_name_check" id="mem_name_check_label">정보&nbsp비공개</label>
-						</p>
-					</div>
-					<div class="row uniform">
-						<div class="5u 12u$(xsmall)">
-							<input type="text" name="mem_name" id="mem_name" value=""
-								placeholder="이름" maxlength="8" />
-						</div>
-					</div>
-					<div>
-						<p id="mem_name_test"></p>
-						<input type="hidden" id="mem_name_hidden" value="">
-					</div>
-					<div>
-						<p>닉네임</p>
-					</div>
-					<div class="row uniform">
-						<div class="5u 12u$(xsmall)">
-							<input type="text" name="mem_nick" id="mem_nick"
-								placeholder="닉네임" maxlength="20" />
-						</div>
-						<div class="2u$ 12u$(xsmall)" id="checkbutton">
-							<span class="button alt small" id="jungbok"
-								onclick="mem_nick_jungbok()">중&nbsp복&nbsp체&nbsp크</span>
-						</div>
-
-					</div>
-					<div>
-						<p id="mem_nick_test"></p>
-						<input type="hidden" id="mem_nick_hidden" value=""><input
-							type="hidden" id="mem_nick_check_hidden" value="">
-					</div>
-					<div>
-						<p>
-							전화번호&nbsp&nbsp&nbsp&nbsp&nbsp <input type="checkbox"
-								id="mem_phone_check" name="mem_phone_check" value="1"> <label
-								for="mem_phone_check" id="mem_phone_check_label">정보&nbsp비공개</label>
-						</p>
-					</div>
-					<div class="row uniform">
-						<div class="3u$ 12u$(xsmall)">
-							<select name="mem_phone1" id="mem_phone1">
-								<option value="fail" selected disabled>- 전화번호 -</option>
-								<option value="010">010</option>
-								<option value="02">02</option>
-								<option value="051">051</option>
-								<option value="053">053</option>
-								<option value="032">032</option>
-								<option value="062">062</option>
-								<option value="042">042</option>
-								<option value="052">052</option>
-								<option value="044">044</option>
-								<option value="031">031</option>
-								<option value="033">033</option>
-								<option value="043">043</option>
-								<option value="041">041</option>
-								<option value="063">063</option>
-								<option value="061">061</option>
-								<option value="054">054</option>
-								<option value="055">055</option>
-								<option value="064">064</option>
-							</select>
-						</div>
-						<div class="3u 12u$(xsmall)">
-							<input type="text" name="mem_phone2" id="mem_phone2" value=""
-								placeholder="" maxlength="4" />
-						</div>
-						<div class="3u 12u$(xsmall)">
-							<input type="text" name="mem_phone3" id="mem_phone3" value=""
-								placeholder="" maxlength="4" />
-						</div>
-					</div>
-					<div>
-						<p id="mem_phone_test"></p>
-						<input type="hidden" id="mem_phone_hidden" value="">
-					</div>
-					<div>
-						<p>지역</p>
-					</div>
-					<div class="row uniform">
-						<div class="4u$ 12u$(xsmall)">
-							<select name="mem_local1" id="mem_local1" style="width: 100%;">
-
-								<option value="fail" selected disabled>- 광역시, 도 -</option>
-								<c:forEach var="local" items="${localList.localList}">
-									<option value="${local.local_name }">${local.local_name }</option>
-								</c:forEach>
-
-							</select>
-						</div>
-						<div class="4u$ 12u$(xsmall)">
-							<select name="mem_local2" id="mem_local2">
-								<option value="" value="fail" selected disabled>- 시, 구
-									-</option>
-							</select>
-						</div>
-					</div>
-					<br />
-					<div>
-						<p>생년월일</p>
-					</div>
-					<div class="row uniform">
-						<div class="4u$ 9u$(xsmall)">
-							<p>
-								<input type="text" class="form-control" id="mem_birthDate"
-							name="mem_birthDate" placeholder="년-월-일 ex) 1993-02-18">
-							</p>
-						</div>
-					</div>
-					<div>
-						<p id="mem_birthDate_test"></p>
-						<input type="hidden" id="mem_birthDate_hidden" value="">
-					</div>
-					<div>
-						<p>성 별</p>
-					</div>
-					<div class="row uniform">
-						<div class="4u 12u$(small)">
-							<input type="radio" id="priority-low" name="mem_gender" checked
-								value="남성"> <label for="priority-low">남&nbsp&nbsp&nbsp&nbsp성</label>
-						</div>
-						<div class="4u 12u$(small)">
-							<input type="radio" id="priority-normal" name="mem_gender"
-								value="여성"> <label for="priority-normal">여&nbsp&nbsp&nbsp&nbsp성</label>
-						</div>
+						<p style="font-size:0.9em; color:gray; margin-left:250px;">사진 크기는 200x200(픽셀)으로 고정됩니다.</p>
 					</div>
 				</form>
 			</div>
-</div>
+			<div>
+				<p class="caution"></p>
+			</div>
+			<div class="row">
+				<div  class="col-md-3">
+					<h5 style="font-weight: bold; margin-top: 7px;margin-left:40px; color: #768d99;">동&nbsp&nbsp호&nbsp&nbsp회&nbsp&nbsp명</h5>
+				</div>
+				<div  class="col-md-6">
+					<input type="text" id="club_name" name="club_name" class="form-control" maxlength="9">
+				</div>
+				<div class="col-md-3">
+					<button type="button" class="btn btn-block btn-default" onclick="findName()">중복체크</button>
+				</div>
+			</div>
+			<div>
+				<p class="caution"  id="caution"></p><input type="hidden" id="caution_check">
+			</div>
+			<div class="row">
+				<div  class="col-md-3">
+					<h5 style="font-weight: bold; margin-top: 7px;margin-left:40px; color: #768d99;">지&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp역</h5>
+				</div>
+				<div  class="col-md-4">
+					<select class="form-control" id="club_local1" name="club_local1">
+						<option value="fail" selected disabled>- 광역시, 도 -</option>
+								<c:forEach var="local" items="${localList}">
+									<option value="${local.local_name }">${local.local_name }</option>
+								</c:forEach>
+					</select>
+				</div>
+				<div class="col-md-1">
+					<h5 style="font-weight: bold; margin-top: 7px;margin-left:22px; color: #768d99;">-</h5>
+				</div>
+				<div  class="col-md-4">
+					<select class="form-control" id="club_local2" name="club_local2">
+						<option value="fail" selected disabled>- 시, 구
+									-</option>
+					</select>
+				</div>
+			</div>
+			<div>
+				<p class="caution"></p>
+			</div>
+			<div class="row">
+				<div  class="col-md-3">
+					<h5 style="font-weight: bold; margin-top: 7px;margin-left:40px; color: #768d99;">카&nbsp&nbsp테&nbsp&nbsp고&nbsp&nbsp리</h5>
+				</div>
+				<div  class="col-md-4">
+					<select class="form-control" id="club_cate1" name="club_cate1">
+						<option value="fail" selected disabled>- 카테고리 -</option>
+								<c:forEach var="category" items="${categoryList}">
+									<option value="${category.cate_name }">${category.cate_name }</option>
+								</c:forEach>
+					</select>
+				</div>
+				<div class="col-md-1">
+					<h5 style="font-weight: bold; margin-top: 7px;margin-left:22px; color: #768d99;">-</h5>
+				</div>
+				<div  class="col-md-4">
+					<select class="form-control" id="club_cate2" name="club_cate2">
+						<option value="" value="fail" selected disabled>- 세부 카테고리
+									-</option>
+					</select>
+				</div>
+			</div>
+			<div>
+				<p class="caution"></p>
+			</div>
+			<div class="row" style="margin-left:35px;">
+				
+			    <textarea id="club_content" name="club_content"> </textarea>
+			</div>
+			<div class="row" style="margin-top:10px;">
+				
+				<div class="card-header" style="margin-left:60px;width:700px;padding:0;">
+					<div class="row">
+						<div>
+							<h5 style="font-weight: bold; margin-top: 7px;margin-left:22px; color: #768d99;">첨부&nbsp&nbsp파일</h5>
+						</div>
+						<div>
+							<button type="button" class="btn btn-block btn-default" style="color: #768d99;font-weight: bold;margin-left:30px;" onclick="uploadFile()">추가하기</button>
+						</div>
+					</div>
+					
+				</div>
+				<form id="club_Regist" name="club_Regist" enctype="multipart/form-data">
+					<div class="card-body fileInput"style="width:200px;padding-top:10px;">
+					
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class= "card-footer">
+			<div class="row" style="margin-left:290px;">
+				<div>
+					<button type="button" class="btn btn-block btn-info" style="width:100px;" onclick="registClub()">신청</button>
+				</div>
+				&nbsp&nbsp&nbsp&nbsp
+				<div>
+					<button class="btn btn-block btn-secondary" style="width:100px;">취소</button>
+				</div>	
+			</div>
+		</div>
+		
+	</div>
+	
+			<!-- AdminLTE App -->
+	<script
+		src="<%=request.getContextPath()%>/resources/adminLTE/dist/js/adminlte.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js" defer></script>
+		<!-- Bootstrap 4 -->
+	<script
+		src="<%=request.getContextPath()%>/resources/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<script>
+	function registerSummernote(element, placeholder, max, callbackMax) {
+		 $('#club_content').summernote({
+		      height:410,
+		      placeholder:"",
+		      tabsize:1,
+		      fontNames : ['맑은고딕', 'Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+		      fontNamesIgnoreCheck : ['맑은고딕'],
+		      focus: true,
+		      lang : 'ko-KR',
+		       toolbar: [
+		               ['style', ['style']],
+		               ['font', ['bold', 'italic', 'underline', 'superscript', 'subscript', 'strikethrough', 'clear']],
+		               ['fontname', ['fontname']],
+		               ['fontsize', ['fontsize']],
+		               ['color', ['color']],
+		               ['para', ['ul', 'ol', 'paragraph']],
+		               ['height', ['height']],
+		               ['table', ['table']],
+		               ['insert', ['link', 'picture', 'video', 'hr']],
+		               ['view', ['codeview']]
+		           ],
+		           callbacks: {
+		              onImageUpload : function(files, editor, welEditable) {
+		                 
+		                 for(var i = files.length - 1; i >= 0; i--) {
+		                    if(files[i].size > 1024 *1024*5){
+		                       alert("이미지는 5MB 미만입니다.");
+		                       return;
+		                    }
+		                    <%-- 본문내용에 사진 추가시 사진파일인지 확인한다.--%>
+		                    if(files[i].name.substring(files[i].name.lastIndexOf(".")+1).toLowerCase()!="jpg" && 
+		                          files[i].name.substring(files[i].name.lastIndexOf(".")+1).toLowerCase()!="gif" &&
+		                          files[i].name.substring(files[i].name.lastIndexOf(".")+1).toLowerCase()!="png" &&
+		                          files[i].name.substring(files[i].name.lastIndexOf(".")+1).toLowerCase()!="jpeg"){
+		                       alert("본문내용에는 이미지만 올릴 수 있습니다.");
+		                       return;
+		                    }
+		                 }
+		                 for(var i = files.length - 1; i >= 0; i--) {
+		                    sendFile(files[i], this);
+		                 }
+		                 
+		              },
+		              onMediaDelete : function(target) {
+		                 alert("delete image : " + target[0].src);
+		                 deleteFile(target[0].src);
+		              },
+		              onKeydown: function(e) {
+		                  var t = e.currentTarget.innerText;
+		                  if (t.trim().length >= max) {
+		                    //delete key
+		                    if (e.keyCode != 8)
+		                      e.preventDefault();
+		                    // add other keys ...
+		                  }
+		                },
+		                onKeyup: function(e) {
+		                  var t = e.currentTarget.innerText;
+		                  if (typeof callbackMax == 'function') {
+		                    callbackMax(max - t.trim().length);
+		                  }
+		                },
+		                onPaste: function(e) {
+		                  var t = e.currentTarget.innerText;
+		                  var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+		                  e.preventDefault();
+		                  var all = t + bufferText;
+		                  document.execCommand('insertText', false, all.trim().substring(0, 400));
+		                  if (typeof callbackMax == 'function') {
+		                    callbackMax(max - t.length);
+		                  }
+		                }
+		           }
+		 		
+		   });}
+	 $(function(){
+		  registerSummernote('#club_content', 'Leave a comment', 3000, function(max) {
+		    $('#maxContentPost').text(max+"/3000");
+		  });
+		}); 
+	 
+	 $("#club_local1").change(function(){
+			
+			var local = $("#club_local1").val();
+			
+			$.ajax({
+				data:{local_name:local},
+				type:"GET",
+				url:"<%=request.getContextPath()%>/common/registLocal",
+				success:function(data){
+					$("#club_local2").html("");
+					$("#club_local2").append("<option value='fail' selected disabled>- 시, 구 -</option>");
+					for(var sub of data){
+						console.log(sub.local_sub_name);
+						$("#club_local2").append("<option>"+sub.local_sub_name+"</option>");
+					}
+							
+				},
+				error:function(){
+					alert("서버오류입니다.");
+				}
+			});
+		});
+	 $("#club_cate1").change(function(){
+			
+			var category = $("#club_cate1").val();
+
+			$.ajax({
+				data:{cate_name:category},
+				type:"GET",
+				url:"<%=request.getContextPath()%>/common/registCategory",
+				success:function(data){
+					$("#club_cate2").html("");
+					$("#club_cate2").append("<option value='fail' selected disabled>- 세부 카테고리 -</option>");
+					for(var sub of data){
+						console.log(sub.cate_sub_name);
+						$("#club_cate2").append("<option>"+sub.cate_sub_name+"</option>");
+					}
+							
+				},
+				error:function(){
+					alert("서버오류입니다.");
+				}
+			});
+		});
+	 $('#uploadThum').change(function(){
+		 var thum = $('#uploadThum').val();
+		 	if(thum != null){
+		 		var type = thum.slice(thum.lastIndexOf('.')+1);
+		 		if(!(type == "jpg" || type == "png" || type == "jpeg")){
+		 			alert("대표사진은 jpg, png, jpeg 파일만 가능합니다.");
+		 			return false;
+		 		}
+		 	}
+		 readURL(this);
+	 });
+	 
+	 function readURL(input){
+		
+		 if (input.files && input.files[0]) {
+			  var reader = new FileReader();
+			  
+			  reader.onload = function (e) {
+			   $('#thum').attr('src', e.target.result);  
+			  }
+			  
+			  reader.readAsDataURL(input.files[0]);
+			  }
+	 }
+	 
+	 function uploadFile(){
+		 if($('input[name="uploadFile"]').length >= 5){
+			 alert("파일 추가는 5개까지 가능합니다.");
+			 return;
+		 }
+		 
+		 var input=$('<input>').attr({"type":"file", "name":"uploadFile"}).css({"dispaly":"inline", "margin-left":"50px","margin-top":"10px"});
+		 
+		 var div = $('<div>').addClass("inputRow").css("width","600px");
+		 
+		 div.append(input).append("<button style='border:0;outline:0;width:40px;' class='badge bg-red' type='button'>X</button>");
+		 
+		 div.appendTo('.fileInput');
+	 }
+	 
+	 function registClub(){
+		 
+		var files = $('input[name="uploadFile"]');
+		 
+	 	for(var file of files){
+		 	console.log(file.name+" : "+file.value);
+		 	if(file.value==""){
+		 		alert("파일을 선택하세요.");
+		 		file.focus();
+		 		return false;
+		 	}
+		 } 
+	 	
+	 	var id = mem_id.value;
+	 	var name = club_name.value;
+	 	var local = club_local1.value + "_" +club_local2.value;
+	 	var category = club_cate1.value + "_" + club_cate2.value;
+	 	
+	 	var content= club_content.value;
+
+	 	if($('#caution_check').val() != "success" || club_local1.value == "fail" || club_local2.value == "fail" || club_cate1.value =="fail"  || club_cate2.value == "fail"){
+	 		alert("잘 못 된 입력입니다. 다시 입력하십시오.");
+	 		return false;
+	 	}else{
+	 		$.ajax({
+		 		url:"<%=request.getContextPath()%>/club/regist",
+		 		type:"post",
+		 		data:{
+		 			mem_id : id,
+		 			club_name: name,
+		 			club_content: content,
+		 			club_local : local,
+		 			cate_name : category,
+		 			},
+		 		success:function(club_no){ 			
+		 			onSubmit(document.club_RegistThum,"registAttachThum","post",club_no);
+		 			alert("동호회 생성 신청 되었습니다. 관리자 승인 후 이용 가능합니다.");
+		 			onSubmit(document.club_Regist,"registAttach","post",club_no);
+					
+		 		},
+		 		error:function(){
+		 			alert("서버 오류입니다.");
+		 		},
+		 		complete:function(){
+		 			window.close();
+		 		}
+		 	});
+	 	}
+	 	
+	 }
+	 
+	 function onSubmit(form,url,method,no){
+		 	
+			form.action="<%=request.getContextPath()%>/club/"+url+"?club_no="+no;
+			form.method = method;
+			form.submit();
+	}
+	
+	 $(function(){
+		 $("#club_name").keyup(function(){
+				var name = $("#club_name").val();
+				if(name != 0) {
+					if(chkName2(name)){
+						$("#caution").html("");
+						$("#caution_check").val("success");
+					}else{
+						$("#caution").html("한글과 영문만 입력 가능합니다.");
+						$("#caution_check").val("");
+					}
+				}else{
+					$("#caution").html("빈칸을 입력하실 수 없습니다.");
+					$("#caution_check").val("");
+				}	
+			}); 
+	 });
+	 function chkName2(name){
+			var chkName = new RegExp(/^[가-힣a-zA-Z]{1,10}$/);
+			return chkName.test(name);
+		}
+	 function findName(){
+		 var name = club_name.value;
+		 
+		 $.ajax({
+			url : "<%=request.getContextPath()%>/club/findName",
+			data : {
+				club_name:name
+			},
+			type:"GET",
+			success:function(name){
+				alert(name + "은(는) 사용 가능한 이름입니다.");
+				$("#club_name").css("disable",true);
+			},
+			error:function(){
+				alert("이미 존재하는 이름입니다.");
+				$("#club_name").val("");
+			}
+		 });
+	 }
+	 $('div.fileInput').on('click','div.inputRow > button', function(event){
+			
+			$(this).parent('div.inputRow').remove();
+			
+		});
+	</script>
+	
 </body>
 </html>

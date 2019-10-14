@@ -6,19 +6,19 @@
     <mapper namespace="Club">
     
     	<sql id="searchlocal">
-    		<if test="local != null"> 
+    		<if test="local.length() > 0"> 
     		and club_local like '%'||#{local}||'%'
     		</if>
     	</sql>
     		
     	<sql id="searchcategory">
-    		<if test="category != null">
+    		<if test="category.length() > 0">
     		and cate_name like '%'||#{category}||'%'
     		</if>
     	</sql>
     	
     	<sql id="searchclubname">
-    		<if test="keyword != null">
+    		<if test="keyword.length() > 0">
     		and club_name like '%'||#{keyword}||'%'
     		</if>    
     	</sql>
@@ -55,13 +55,11 @@
     	and club_status = 2
     	</if>
     </sql>
-    
-     
-   
 
 	    <select id="selectSearchClubList" resultType="club">
 	    	select *
 	    	from club_view
+
 	    	where club_no is not null and (club_status='1' or club_status='2')
 	    	<include refid="sort" />
 	    	<include refid="searchlocal" />
@@ -75,14 +73,15 @@
 	    	from club_view
 	    	where club_no is not null and club_status='0'
 	    	<include refid="searchclubname" />
+	    	<include refid="alignment" />
 	    </select>
-	    
 	    
 	     <select id="selectNewClubCount" resultType="int">
 	    	select count(*)
 	    	from club_view
 	    	where club_no is not null and club_status='0'
 	    	<include refid="searchclubname" />
+	    	<include refid="alignment" />
 	    </select>
 	    
 	    <select id="selectSearchClubCount" resultType="int">
@@ -98,13 +97,12 @@
 	    
 	    <select id="selectClub" resultType="club">
 	    	select *
-	    	from club
+	    	from club_view
 	    	where club_no=#{club_no}
 	    </select>
 	    
 	    <select id="selectClubSeq" resultType="int">
-	    	select club_seq.nextval
-	    	<!-- as club_no -->
+	    	select club_seq.nextval as club_seq
 	    	from dual
 	    </select>
 	    
@@ -116,7 +114,7 @@
 	    <update id="updateClub" parameterType="club">
 	    	update club
 	    	set
-	    	club_name=#{club_name}, club_content=#{club_content}, club_local=#{club_local}, cate_name=#{cate_name}
+	    	club_content=#{club_content}, club_local=#{club_local}
 	    	where club_no=#{club_no}
 	    </update>
 	    
@@ -168,6 +166,13 @@
 	    	order by club_name
 	    </select>
 	    
+	    <select id="selectClubCount" resultType="int">
+	    	select count(*)
+	    	from club_view
+	    	where club_name = #{club_name}
+	    	
+	    </select>
+	    
 	    <!-- 블랙리스트 -->
 	    <select id="selectBlackList" resultType="club">
 	    	
@@ -180,6 +185,7 @@
 	    	]]>
 	    	<include refid="sort" />
 	    	<include refid="searchclubname" />
+	    	<include refid="alignment" />
 	    </select>
 	    
 	    <select id="selectBlackListCount" resultType="int">
@@ -193,6 +199,7 @@
 	    	]]>
 	    	<include refid="sort" />
 	    	<include refid="searchclubname" />
+	    	<include refid="alignment" />
 	    	
 	    </select>
 	    

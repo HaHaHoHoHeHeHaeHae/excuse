@@ -2,7 +2,7 @@ package com.blood.coding.controller.common;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
+
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.UUID;

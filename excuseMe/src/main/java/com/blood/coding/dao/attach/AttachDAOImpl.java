@@ -14,7 +14,7 @@ public class AttachDAOImpl implements AttachDAO {
 		this.session = session;
 	}
 	
-	//상세보기 시 첨부파일 리스트
+		//상세보기 시 첨부파일 리스트
 		public List<AttachVO> selectAttachesByAttachBoard(String attach_board) throws SQLException{
 			List<AttachVO> list = session.selectList("Attach.selectAttachesByAttachBoard",attach_board);
 			return list;
@@ -39,4 +39,18 @@ public class AttachDAOImpl implements AttachDAO {
 	    public void deleteAllAttach(String attach_board) throws SQLException{
 	    	session.update("Attach.deleteAllAttach", attach_board);
 	    }
+
+		
+
+		@Override
+		public int selectAttachThumCount(String attach_board) throws SQLException {
+			int count = session.selectOne("Attach.selectAttachThumCount", attach_board);
+			return count;
+		}
+
+		@Override
+		public AttachVO selectAttachesByAttachBoardOne(String attach_board) throws SQLException {
+			AttachVO list = session.selectOne("Attach.selectAttachesByAttachBoard",attach_board);
+			return list;
+		}
 }

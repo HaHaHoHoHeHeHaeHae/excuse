@@ -296,43 +296,53 @@
 	<script>
 function mem_nick_jungbok(){
 	var nick = mem_nick.value;
+	if(nick==""){
+		alert("빈칸을 입력하셨습니다.");
+	}else{
+		$.ajax({
+			type:"GET",
+			url:"<%=request.getContextPath()%>/common/searchNickForCheck?mem_nick="+nick,
+			success:function(response){
+				alert("사용 가능한 닉네임입니다.");
+				$("#mem_nick").attr("readonly",true).attr("disabled",true);
+				$("#mem_nick_check_hidden").val("success");
+			},
+			error:function(error){
+				alert("중복된 닉네임입니다.");
+				$("#mem_nick").val("");
+				$("#mem_nick_check_hidden").val("");
+			}
+			
+		});	
+	}
 	
-	$.ajax({
-		type:"GET",
-		url:"<%=request.getContextPath()%>/common/searchNickForCheck?mem_nick="+nick,
-		success:function(response){
-			alert("사용 가능한 닉네임입니다.");
-			$("#mem_nick").attr("readonly",true).attr("disabled",true);
-			$("#mem_nick_check_hidden").val("success");
-		},
-		error:function(error){
-			alert("중복된 닉네임입니다.");
-			$("#mem_nick").val("");
-			$("#mem_nick_check_hidden").val("");
-		}
-		
-	});
 	
 }
 function mem_id_jungbok(){
 	var id = mem_id.value+email_add.value;
+	var id_first = mem_id.value;
 	
-	$.ajax({
-		type:"GET",
-		url:"<%=request.getContextPath()%>/common/searchIdForCheck?mem_id="+id,
-		success:function(response){
-			alert("사용 가능한 아이디입니다.");
-			$("#mem_id").attr("readonly",true).attr("disabled",true);
-			$("#mem_id_check_hidden").val("success");
-			$("#mem_id_hidden2").val("success");
-		},
-		error:function(error){
-			alert("이미 가입된 이메일입니다.");
-			$("#mem_id").val("");
-			$("#mem_id_check_hidden").val("success");
-		}
-		
-	});
+	if(id_first == ""){
+		alert("빈칸을 입력하셨습니다.");
+	}else{
+		$.ajax({
+			type:"GET",
+			url:"<%=request.getContextPath()%>/common/searchIdForCheck?mem_id="+id,
+			success:function(response){
+				alert("사용 가능한 아이디입니다.");
+				$("#mem_id").attr("readonly",true).attr("disabled",true);
+				$("#mem_id_check_hidden").val("success");
+				$("#mem_id_hidden2").val("success");
+			},
+			error:function(error){
+				alert("이미 가입된 이메일입니다.");
+				$("#mem_id").val("");
+				$("#mem_id_check_hidden").val("success");
+			}
+			
+		});
+	}
+	
 	
 }
 
@@ -597,6 +607,7 @@ $("#signup").click(function(){
 		alert("잘 못 된 정보를 입력하셨습니다.");
 		
 	}else{
+		
 		$.ajax({
 			url:"<%=request.getContextPath()%>/common/signup",
 			type:"POST",
@@ -610,7 +621,7 @@ $("#signup").click(function(){
 				  birthDate:birthDate2,
 				  mem_phone_check:phone_check,
 				  mem_id_check:id_check,
-				  mem_name_chcek:name_check
+				  mem_name_check:name_check,
 				  },
 			success:function(mem_id){
 				alert(mem_id+"님 회원가입 되었습니다");

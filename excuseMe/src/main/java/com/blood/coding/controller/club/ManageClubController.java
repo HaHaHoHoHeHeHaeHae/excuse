@@ -1,3 +1,4 @@
+
 package com.blood.coding.controller.club;
 
 import java.sql.SQLException;
@@ -33,6 +34,7 @@ public class ManageClubController {
 	public String category() throws Exception{
 		return "manage/club";
 	}
+
 	@RequestMapping("/club/list")
 	public String club() throws Exception{
 		return "manage/form/manage_form";
@@ -159,7 +161,6 @@ public class ManageClubController {
 			 return entity;
 		}
 
-
 	// 동호회 상세보기
 	@RequestMapping("/newclub/detail") 
 	public ModelAndView newDetail(String club_no, ModelAndView modelnView) throws SQLException {
@@ -197,10 +198,3 @@ public class ManageClubController {
 
 
 }
-
-
-
-
-
-
-

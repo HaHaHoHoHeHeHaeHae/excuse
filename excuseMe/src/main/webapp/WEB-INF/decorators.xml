@@ -2,7 +2,7 @@
 
 <decorators defaultdir="/WEB-INF/decorators">	
 	<decorator name="main" page="decorator.jsp">
-		<pattern>*/main/test</pattern>
+		<pattern>*/main/main_frame</pattern>		
 	</decorator>
 	
 	<decorator name="notice" page="notice_decorator.jsp">
@@ -12,7 +12,6 @@
 		<pattern>/notice/detail</pattern>	
 		<pattern>/notice/modify</pattern>	
 	</decorator>		
-
 		
 	<decorator name="mypage" page="mypage_decorator.jsp">
 		<pattern>/mypage/*</pattern>		
@@ -20,7 +19,9 @@
 	
 	<decorator name="manage" page="manage_decorator.jsp">
 		<pattern>/manage/*</pattern>		
-	</decorator>		
+	</decorator>	
+	
+
 	
 <!-- 	<decorator name="OpenWindow" page="open_decorator.jsp">
 		<pattern>/*</pattern>		
@@ -31,8 +32,8 @@
 	<excludes>
 		<pattern>*/common/login*</pattern>
 		<pattern>*/common/regist*</pattern>
-		<pattern>*/common/search*</pattern>		
-		<pattern>*/detail*</pattern>
+		<pattern>*/common/search*</pattern>
+		<pattern>*/club/detail</pattern>		
 		<pattern>*/memberdetail*</pattern>
 		<pattern>*/replyList*</pattern>
 	</excludes>
