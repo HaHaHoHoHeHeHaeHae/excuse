@@ -94,9 +94,10 @@
 							<div class="col-sm-4 attached-inputRow" attach-name="${attach.attach_name }" attach-no="${attach.attach_no }" style="cursor: pointer;" onclick="location.href='<%=request.getContextPath()%>/attach/get?attach_no=${attach.attach_no}';">
 
 								<div class="info-box uploadedList">
+									
 									<span class="info-box-icon">
-											<img src="<%=request.getContextPath() %>/attach/thum?attach_no=${attach.attach_no }" />
-									</span>
+													<img src="<%=request.getContextPath() %>/resources/img/icon/hwp.png" />
+									</span>	
 									<div class="info-box-content">
 										<span class="info-box-text"> 
 											${attach.attach_regDate }

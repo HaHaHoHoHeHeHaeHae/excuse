@@ -78,7 +78,8 @@
 	  	  p:memberDAO-ref="memberDAO"
 		  p:categoryDAO-ref="categoryDAO"
 		  p:localDAO-ref="localDAO"
-		  p:attachDAO-ref="attachDAO" />
+		  p:attachDAO-ref="attachDAO" 
+		  p:joinClubDAO-ref="joinClubDAO"/>
 		  
 	<bean id="replyService"
 		  class="com.blood.coding.service.reply.ReplyServiceImpl"

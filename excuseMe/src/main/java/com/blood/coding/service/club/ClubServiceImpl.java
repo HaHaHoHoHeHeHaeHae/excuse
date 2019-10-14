@@ -10,13 +10,13 @@ import com.blood.coding.controller.common.PageMaker;
 import com.blood.coding.dao.attach.AttachDAO;
 import com.blood.coding.dao.category.CategoryDAO;
 import com.blood.coding.dao.club.ClubDAO;
-import com.blood.coding.dao.down.DownDAO;
+import com.blood.coding.dao.joinclub.JoinClubDAO;
 import com.blood.coding.dao.local.LocalDAO;
 import com.blood.coding.dao.member.MemberDAO;
-import com.blood.coding.dao.up.UpDAO;
 import com.blood.coding.dto.attach.AttachVO;
 import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.dto.club.ClubVO;
+import com.blood.coding.dto.joinClub.JoinClubVO;
 import com.blood.coding.dto.local.LocalVO;
 import com.blood.coding.dto.member.MemberVO;
 
@@ -45,6 +45,11 @@ public class ClubServiceImpl implements ClubService {
 	private LocalDAO localDAO;
 	public void setLocalDAO(LocalDAO localDAO) {
 		this.localDAO=localDAO;
+	}
+	
+	private JoinClubDAO joinClubDAO;
+	public void setJoinClubDAO(JoinClubDAO joinClubDAO) {
+		this.joinClubDAO = joinClubDAO;
 	}
 	
 
@@ -93,7 +98,7 @@ public class ClubServiceImpl implements ClubService {
 				int attachNO = attachThum.getAttach_no();
 				club.setAttachThum_no(attachNO);
 			}
-					}
+		}
 		
 		// pagination
 		PageMaker pageMaker = new PageMaker();
@@ -159,6 +164,7 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public void regist(ClubVO club) throws SQLException {
 		clubDAO.insertClub(club);
+		
 	}
 
 	//수정하고 submit버튼을 클릭했을때

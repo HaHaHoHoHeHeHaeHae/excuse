@@ -30,10 +30,12 @@ import com.blood.coding.controller.common.UploadFileUtils;
 import com.blood.coding.dao.attach.AttachDAO;
 import com.blood.coding.dao.attach.AttachDAO;
 import com.blood.coding.dao.category.CategoryDAO;
+import com.blood.coding.dao.joinclub.JoinClubDAO;
 import com.blood.coding.dao.local.LocalDAO;
 import com.blood.coding.dto.attach.AttachVO;
 import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.dto.club.ClubVO;
+import com.blood.coding.dto.joinClub.JoinClubVO;
 import com.blood.coding.dto.local.LocalVO;
 import com.blood.coding.dto.member.MemberVO;
 import com.blood.coding.service.club.ClubService;
@@ -53,6 +55,9 @@ public class ClubController {
 	
 	@Autowired
 	private AttachDAO attachDAO;
+	
+	@Autowired
+	private JoinClubDAO joinClubDAO;
 	
 	
 	@Resource(name = "uploadPath")
@@ -123,6 +128,16 @@ public class ClubController {
 			club.setClub_no(club_no);
 
 			clubService.regist(club);
+			
+			System.out.println("@@@@@@@@@@@@@@@@@@@");
+			System.out.println(club.getMem_id());
+			System.out.println(club.getClub_no());
+			//생성자를 바로 가입시킨다.
+			JoinClubVO joinclub = new JoinClubVO();
+			joinclub.setMem_id(club.getMem_id());
+			joinclub.setClub_name(club.getClub_no());
+			
+			joinClubDAO.insertJoinClub(joinclub);
 			entity = new ResponseEntity<String>(club_no,HttpStatus.OK);
 		}catch(Exception e) {
 			e.printStackTrace();

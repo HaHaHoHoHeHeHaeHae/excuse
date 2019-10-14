@@ -198,7 +198,15 @@
 			<div class="buttons"
 				style="position: relative; width: 800px; text-align: center; margin-bottom: 20px;">
 				<a href="#" class="button special" id="wishBtn" onclick="onWish('club','${club.club_no}');">관심동호회등록</a>&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="#" class="button" id="joinBtn" onclick="onJoin('join','${club.club_no}');">가입하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				
+					<a href="#" class="button" id="joinBtn" onclick="onJoin('join','${club.club_no}');">가입하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<%-- 만든 사람이 아닐때
+				<c:if test="${loginUser == '어드민' }"> 	
+				</c:if> --%>
+				<%-- 만든 사람일때				
+				<c:if test="">
+					<a href="#" class="button" id="joinBtn" onclick="onJoin('join','${club.club_no}');">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				</c:if>--%>
 				<a href="#" class="button alt" id="closeBtn" onclick="onClose();">나가기</a>&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>
 			<!-- updown -->
