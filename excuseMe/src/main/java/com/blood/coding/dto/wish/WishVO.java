@@ -9,7 +9,14 @@ public class WishVO {
 	private int upcnt;
 	private int joincnt;
 	private String club_name;
+	private int attachThum_no;
 	
+	public int getAttachThum_no() {
+		return attachThum_no;
+	}
+	public void setAttachThum_no(int attachThum_no) {
+		this.attachThum_no = attachThum_no;
+	}
 	public int getWish_no() {
 		return wish_no;
 	}
@@ -52,12 +59,18 @@ public class WishVO {
 	public void setClub_name(String club_name) {
 		this.club_name = club_name;
 	}
+	
 	@Override
 	public String toString() {
 		return "WishVO [wish_no=" + wish_no + ", mem_id=" + mem_id + ", club_no=" + club_no + ", downcnt=" + downcnt
-				+ ", upcnt=" + upcnt + ", joincnt=" + joincnt + ", club_name=" + club_name + "]";
+				+ ", upcnt=" + upcnt + ", joincnt=" + joincnt + ", club_name=" + club_name + ", attachThum_no="
+				+ attachThum_no + "]";
 	}
-	public WishVO(int wish_no, String mem_id, String club_no, int downcnt, int upcnt, int joincnt, String club_name) {
+	public WishVO() {
+		super();
+	}
+	public WishVO(int wish_no, String mem_id, String club_no, int downcnt, int upcnt, int joincnt, String club_name,
+			int attachThum_no) {
 		this.wish_no = wish_no;
 		this.mem_id = mem_id;
 		this.club_no = club_no;
@@ -65,9 +78,7 @@ public class WishVO {
 		this.upcnt = upcnt;
 		this.joincnt = joincnt;
 		this.club_name = club_name;
-	}
-	public WishVO() {
-		super();
+		this.attachThum_no = attachThum_no;
 	}
 	
 	

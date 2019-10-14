@@ -103,9 +103,14 @@
 					style="position: absolute; width: 300px; height: 300px; float: left;">
 					<div class="pic" style="width: 300px; height: 300px;">
 						<img class="profile-user-img" id="thum"
-							src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
-							alt="<%=request.getContextPath()%>/resources/img/logo.png"
-							style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; padding: 2px;" />
+							style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; padding: 2px;" 
+							<c:if test="${club.attachThum_no > 0}">
+								src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
+							</c:if>
+							<c:if test="${club.attachThum_no <= 0}">
+								src="<%=request.getContextPath()%>/resources/img/logo.png"
+							</c:if>	
+							/>
 					</div>
 				</div>
 				<div class="demo_wrap"

@@ -19,7 +19,7 @@ public class PageMaker {
 
 	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
-		
+
 		calcData();
 	}
 
@@ -88,8 +88,7 @@ public class PageMaker {
 
 	// starPage,endPage, prev, next 설정. by totalCount
 	private void calcData() {
-		endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) 
-																	* displayPageNum);
+		endPage = (int) (Math.ceil(cri.getPage() / (double) displayPageNum) * displayPageNum);
 		startPage = (endPage - displayPageNum) + 1;
 
 		realEndPage = (int) (Math.ceil(totalCount / (double) cri.getPerPageNum()));
@@ -101,34 +100,20 @@ public class PageMaker {
 		prev = (startPage == 1) ? false : true;
 		next = (endPage * cri.getPerPageNum()) >= totalCount ? false : true;
 	}
-	
-	public String makeQuery(){	
-		String query="?page="+cri.getPage()
-				    +"&perPageNum="+cri.getPerPageNum()
-				    +"&local="+((Criteria)cri).getLocal()
-				    +"&keyword="+((Criteria)cri).getKeyword()
-					+"&category="+((Criteria)cri).getCategory()
-					+"&sort="+((Criteria)cri).getSort()
-					+"&alignment="+((Criteria)cri).getAlignment();
+
+	public String makeQuery() {
+		String query = "?page=" + cri.getPage() + "&perPageNum=" + cri.getPerPageNum() + "&local="
+				+ ((Criteria) cri).getLocal() + "&keyword=" + ((Criteria) cri).getKeyword() + "&category="
+				+ ((Criteria) cri).getCategory() + "&sort=" + ((Criteria) cri).getSort() + "&alignment="
+				+ ((Criteria) cri).getAlignment();
 		return query;
 	}
-	
-	public String makeQuery(int page){	
-		String query="?page="+page
-				    +"&perPageNum="+cri.getPerPageNum()
-				    +"&local="+((Criteria)cri).getLocal()
-				    +"&keyword="+((Criteria)cri).getKeyword()
-					+"&category="+((Criteria)cri).getCategory()
-					+"&sort="+((Criteria)cri).getSort()
-					+"&alignment="+((Criteria)cri).getAlignment();
+
+	public String makeQuery(int page) {
+		String query = "?page=" + page + "&perPageNum=" + cri.getPerPageNum() + "&local=" + ((Criteria) cri).getLocal()
+				+ "&keyword=" + ((Criteria) cri).getKeyword() + "&category=" + ((Criteria) cri).getCategory() + "&sort="
+				+ ((Criteria) cri).getSort() + "&alignment=" + ((Criteria) cri).getAlignment();
 		return query;
 	}
 
 }
-
-
-
-
-
-
-

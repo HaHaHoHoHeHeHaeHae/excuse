@@ -13,8 +13,15 @@ public class JoinClubVO {
 	private int upcnt;
 	private String club_name;
 	private String mem_nick;
+	private int attachThum_no;
 
 	
+	public int getAttachThum_no() {
+		return attachThum_no;
+	}
+	public void setAttachThum_no(int attachThum_no) {
+		this.attachThum_no = attachThum_no;
+	}
 	public int getUpcnt() {
 		return upcnt;
 	}
@@ -70,14 +77,15 @@ public class JoinClubVO {
 	public void setClub_no(String club_no) {
 		this.club_no = club_no;
 	}
+	
 	@Override
 	public String toString() {
 		return "JoinClubVO [join_no=" + join_no + ", mem_id=" + mem_id + ", club_no=" + club_no + ", club_Date="
 				+ club_Date + ", downcnt=" + downcnt + ", joincnt=" + joincnt + ", upcnt=" + upcnt + ", club_name="
-				+ club_name + ", mem_nick=" + mem_nick + "]";
+				+ club_name + ", mem_nick=" + mem_nick + ", attachThum_no=" + attachThum_no + "]";
 	}
 	public JoinClubVO(int join_no, String mem_id, String club_no, Date club_Date, int downcnt, int joincnt, int upcnt,
-			String club_name, String mem_nick) {
+			String club_name, String mem_nick, int attachThum_no) {
 		this.join_no = join_no;
 		this.mem_id = mem_id;
 		this.club_no = club_no;
@@ -87,9 +95,11 @@ public class JoinClubVO {
 		this.upcnt = upcnt;
 		this.club_name = club_name;
 		this.mem_nick = mem_nick;
+		this.attachThum_no = attachThum_no;
 	}
 	public JoinClubVO() {
 		super();
 	}
+	
 	
 }

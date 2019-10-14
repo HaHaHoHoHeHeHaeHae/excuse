@@ -275,6 +275,16 @@ public class ClubServiceImpl implements ClubService {
 	
 		List<ClubVO> myClubList = clubDAO.myClub(mem_id);
 		
+		for(ClubVO club : myClubList) {
+			String club_no = club.getClub_no();
+			String attach_board = club_no + "c";
+			AttachVO attachThum = attachDAO.selectAttachesByAttachBoardOne(attach_board);
+			if(attachThum != null) {
+				int attachNO = attachThum.getAttach_no();
+				club.setAttachThum_no(attachNO);
+			}
+		}
+		
 		return myClubList;
 	}
 

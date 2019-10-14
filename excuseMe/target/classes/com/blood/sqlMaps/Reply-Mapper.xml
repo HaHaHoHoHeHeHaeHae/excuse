@@ -52,4 +52,22 @@
 		from reply
 		where mem_id=#{mem_id}
 	</select>
+	
+	<select id="selectMypageReply" resultType="reply">
+		SELECT
+            *
+        FROM reply r, club c
+        where
+ 		c.club_no = r.club_no and
+        r.mem_id = #{mem_id}
+	</select>
+	<select id="selectMypageReplyCount" resultType="int">
+		SELECT
+            count(*)
+        FROM reply r, club c
+        where 
+        c.club_no = r.club_no and
+        r.mem_id = #{mem_id}
+	</select>
+	
 </mapper>

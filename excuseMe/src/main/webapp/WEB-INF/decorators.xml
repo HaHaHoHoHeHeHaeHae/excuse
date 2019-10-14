@@ -14,7 +14,11 @@
 	</decorator>		
 		
 	<decorator name="mypage" page="mypage_decorator.jsp">
-		<pattern>/mypage/*</pattern>		
+		<pattern>/mypage/myclub</pattern>
+		<pattern>/mypage/myinfo</pattern>	
+		<pattern>/mypage/wishlist</pattern>	
+		<pattern>/mypage/myjoinlist</pattern>	
+		<pattern>/mypage/myreply</pattern>					
 	</decorator>	
 	
 	<decorator name="manage" page="manage_decorator.jsp">
@@ -36,5 +40,8 @@
 		<pattern>*/club/detail</pattern>		
 		<pattern>*/memberdetail*</pattern>
 		<pattern>*/replyList*</pattern>
+		<pattern>/mypage/myclubuser</pattern>	
+		<!-- <pattern>/mypage/listForm</pattern> -->
+		
 	</excludes>
 </decorators>
