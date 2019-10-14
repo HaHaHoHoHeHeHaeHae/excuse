@@ -51,7 +51,21 @@ div.top {
 <link
    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
    rel="stylesheet">
+<style>
 
+@media screen and (max-width: 1920px){
+	body{
+		font-size:1.05em;
+	}
+	
+}
+@media screen and (max-width: 1680px){
+	body{
+		font-size:1.2em;
+	}
+	
+}
+</style>
 </head>
 
 <body class="subpage">
@@ -108,10 +122,10 @@ div.top {
             <div class="search2" style="height: 50px;">
                <div class="form-group">
                   <div class="row" style=" margin-left: 15%; height: 40px;">
-                     <div class="label_name" style="margin-right: 10px; width: 75px;margin-top:4px;">
+                     <div class="label_name" style="margin-right: 10px;margin-top:4px;">
                         <strong>지&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp역</strong>
                      </div>
-                     <div class="select" style="margin-left:29px;">
+                     <div class="select" style="">
                         <select id="local" class="form-control"
                            style="width: 250px;">
                            <option value="0">- 전체 보기 -</option>
@@ -232,7 +246,7 @@ div.top {
                <li class="page-item"><a class="page-link"
                   href="list
                            <c:if test="${pageMaker.next }">
-                              ${pageMaker.makeQuery(pageMaker.endPage+1) }
+                              ${pageMaker.makeQuery(pageMaker.cri.page+1) }
                            </c:if>
                            <c:if test="${!pageMaker.next }">
                               ${pageMaker.makeQuery(pageMaker.cri.page) }
@@ -258,7 +272,7 @@ div.top {
 		</div>
 	</div>
 	<section class="joinclub_wrap1"
-      style="width: 1126.66px; ">
+      style="margin-top: 20px; width: 1126.66px; ">
       <c:if test="${empty recommendList }">
       	<div style="height:100px; background:#f5f5f5;border-top:1px solid #cfcfcf; border-bottom:1px solid #cfcfcf;margin-top:20px;">
       		<p style="font-size:1.3em; font-weight:bold;text-align:center;padding-top:30px;">해당 지역에 동호회가 없습니다.</p>
@@ -286,7 +300,7 @@ div.top {
                   </div>
                   <div class="2"
                      style="width: 160px; height: 160px; align: center; float: left; padding-right: 20px;">
-                     <img class="profile-user-img img-fluid img-circle" id="thum"
+                     <img class="profile-user-img img-fluid img-circle" id="thum" style="width:140px; height:140px;"
 						<c:if test="${recommend.attachThum_no > 0}">
 							src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
 						</c:if>

@@ -16,7 +16,7 @@
 
 
 	<!-- Menu -->
-	<div class="inner" style="margin-left:-3px; ">					
+	<div class="inner" id="sidebardiv" style="margin-left:-3px; ">					
 		<div id="sidebar" style="margin-top:120px;margin-left:120px;float:left;z-index:100;position:absolute;background: #25a1c3;width: 250px;height: 1000px;text-align: center;display: inline-block;vertical-align: middle;height: 100%;">
 			
 			<div style="height:50px;background:#306170;">
@@ -49,26 +49,26 @@
 				<div style="position: relative; margin-top: 20px;">
 					<iframe id="if_list2" name="if_list2" frameborder="0" scrolling="0"
 						src="<%=request.getContextPath()%>/manage/club/clubList"
-						style="position: absolute; top: 0px; left: 0px; bottom: 0px; height: 1050px; width: 100%; border: 0px;">
+						style="position: absolute; top: 0px; left: 0px; bottom: 0px; height: 1070px; width: 100%; border: 0px;">
 					</iframe>
 				</div>
 			</div>
 		</div>
 	</section>
-	<div id="footer_div" style="margin-top:500px;">
-		<footer id="footer" style="height:300px;padding-top:60px;">
-      <div class="inner">
-         <h2>고객 센터</h2>
-         <ul class="actions">
-            <li><span class="icon fa-phone"></span> (042) 254-2462</li>
-            <li><span class="icon fa-envelope"></span> excuseMe@gmail.com</li>
-            <li><span class="icon fa-map-marker"></span> 대전광역시 서구 둔산서로 17(양호빌딩 6층) </li>
-         </ul>
-      </div>
-      <div class="copyright">
-         &copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>. Images <a href="https://unsplash.com">Unsplash</a>.
-      </div>
-   </footer>
+	<div id="footer_div" style="margin-top:600px;">
+		<footer id="footer" style="height:300px;padding-top:80px;">
+		<div class="inner">
+			<h2>고객 센터</h2>
+			<ul class="actions">
+				<li><span class="icon fa-phone"></span> (042) 254-2462</li>
+				<li><span class="icon fa-envelope"></span> excuseMe@gmail.com</li>
+				<li><span class="icon fa-map-marker"></span> 대전광역시 서구 둔산서로 17(양호빌딩 6층) </li>
+			</ul>
+		</div>
+		<div class="copyright">
+			&copy; Untitled. Design <a href="https://templated.co">TEMPLATED</a>. Images <a href="https://unsplash.com">Unsplash</a>.
+		</div>
+	</footer>
 	</div>	 
 	
 	

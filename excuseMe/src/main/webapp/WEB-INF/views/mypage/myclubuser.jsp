@@ -65,7 +65,7 @@
 		<div class="inner"">
 			<!-- Elements -->
 			<div  style="position: relative;">
-				<h2 id="elements">${myjoinList.get(0).club_name} 의 회원 목록</h2>
+			<%-- 	<h2 id="elements">${myjoinList.get(1).club_name} 의 회원 목록</h2> --%>
 				
 			</div>
 			

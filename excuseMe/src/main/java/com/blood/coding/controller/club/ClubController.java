@@ -56,9 +56,6 @@ public class ClubController {
 	@Autowired
 	private AttachDAO attachDAO;
 	
-	@Autowired
-	private JoinClubDAO joinClubDAO;
-	
 	
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -129,15 +126,7 @@ public class ClubController {
 
 			clubService.regist(club);
 			
-			System.out.println("@@@@@@@@@@@@@@@@@@@");
-			System.out.println(club.getMem_id());
-			System.out.println(club.getClub_no());
-			//생성자를 바로 가입시킨다.
-			JoinClubVO joinclub = new JoinClubVO();
-			joinclub.setMem_id(club.getMem_id());
-			joinclub.setClub_name(club.getClub_no());
 			
-			joinClubDAO.insertJoinClub(joinclub);
 			entity = new ResponseEntity<String>(club_no,HttpStatus.OK);
 		}catch(Exception e) {
 			e.printStackTrace();

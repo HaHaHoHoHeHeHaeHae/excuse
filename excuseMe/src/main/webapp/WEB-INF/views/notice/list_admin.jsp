@@ -96,19 +96,19 @@
 					<div class="card-footer clearfix">
 						<div class="pagination justify-content-center m-0">
 							<ul class="pagination ">
-								<li class="page-item"><a class="page-link" href="list${pageMaker.makeQuery(1)}" style="text-decoration:none">&lt;&lt;</a>
-								<li class="page-item"><a class="page-link" href="list<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>" style="text-decoration:none">&lt;</a>
+								<li class="page-item"><a class="page-link" href="list_admin${pageMaker.makeQuery(1)}" style="text-decoration:none">&lt;&lt;</a>
+								<li class="page-item"><a class="page-link" href="list_admin<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>" style="text-decoration:none">&lt;</a>
 								</li>
 								<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
 									<li class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>"`>
-										<a class="page-link" href="list${pageMaker.makeQuery(pageNum) }" style="text-decoration:none">${pageNum } </a>
+										<a class="page-link" href="list_admin${pageMaker.makeQuery(pageNum) }" style="text-decoration:none">${pageNum } </a>
 									</li>
 								</c:forEach>
 
 								<li class="page-item"><a class="page-link"
-									href="list
+									href="list_admin
 									<c:if test="${pageMaker.next }">
-										${pageMaker.makeQuery(pageMaker.endPage+1) }
+										${pageMaker.makeQuery(pageMaker.cri.page+1) }
 									</c:if>
 									<c:if test="${!pageMaker.next }">
 										${pageMaker.makeQuery(pageMaker.cri.page) }
@@ -117,7 +117,7 @@
 								</li>
 
 								<li class="page-item"><a class="page-link"
-									href="list${pageMaker.makeQuery(pageMaker.realEndPage) }"style="text-decoration:none">
+									href="list_admin${pageMaker.makeQuery(pageMaker.realEndPage) }"style="text-decoration:none">
 										&gt;&gt; </a></li>
 
 							</ul>

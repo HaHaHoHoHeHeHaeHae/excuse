@@ -145,7 +145,7 @@
 		    	from
 		    	(select * from club_view where club_local like '%'||#{mem_local}||'%' order by abs(upcnt-downcnt) desc)
 		    <![CDATA[
-		    	where rownum <= 5
+		    	where rownum <= 3
 	    	]]>
 	    	
 	    </select>

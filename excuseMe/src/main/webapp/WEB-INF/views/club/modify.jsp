@@ -56,7 +56,7 @@
 		<div class = "card-header">
 			<input type="hidden" id="mem_id" name="mem_id" value="${loginUser.mem_id }">
 			<input type="hidden" id="club_no" name="club_no" value="${club.club_no }">
-			<h2 style="margin-left: 40px; margin-bottom:0; font-weight: 900; color: #4f9cc2;">동호회 생성</h2>
+			<h2 style="margin-left: 40px; margin-bottom:0; font-weight: 900; color: #4f9cc2;">동호회 수정</h2>
 		</div>
 		<div class= "card-body">
 			<div>
@@ -78,7 +78,7 @@
 			</div>
 			<div class="row">
 				<div  class="col-md-3">
-					<h5 style="font-weight: bold; margin-top: 7px;margin-left:40px; color: #768d99;">카&nbsp&nbsp테&nbsp&nbsp고&nbsp&nbsp리</h5>
+					<h5 style="font-weight: bold; margin-top: 7px;margin-left:40px; color: #768d99;">지&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp역</h5>
 				</div>
 				<div  class="col-md-4">
 					<select class="form-control" id="club_local1" name="club_local1">

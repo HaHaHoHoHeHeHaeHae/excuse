@@ -165,6 +165,13 @@ public class ClubServiceImpl implements ClubService {
 	public void regist(ClubVO club) throws SQLException {
 		clubDAO.insertClub(club);
 		
+		//생성자를 바로 가입시킨다.
+		JoinClubVO joinclub = new JoinClubVO();
+		joinclub.setMem_id(club.getMem_id());
+		joinclub.setClub_no(club.getClub_no());
+		
+		joinClubDAO.insertJoinClub(joinclub);
+		
 	}
 
 	//수정하고 submit버튼을 클릭했을때

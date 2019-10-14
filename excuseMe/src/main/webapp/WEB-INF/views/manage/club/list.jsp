@@ -19,7 +19,7 @@
 
 		<!-- Main -->
 	<div style="margin-left:50px;margin-top:-88px; width:200px; border-bottom:1px solid gray;">
-			<h1 style="margin:0; color:#25a1c3;">동호회 리스트</h1>
+			<h1 id="listHead" style="margin:0; color:#25a1c3;">동호회 리스트</h1>
 	</div>	
 	
 	<section class="search" style="margin-top:40px;background:#e8f4ff;margin-left:10%; width: 80%;border-right: 2px solid #bfced9;border-bottom: 2px solid #bfced9;border-radius:8px;">
