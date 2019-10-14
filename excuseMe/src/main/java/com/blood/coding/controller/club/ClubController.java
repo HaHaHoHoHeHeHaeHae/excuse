@@ -223,7 +223,7 @@ public class ClubController {
 	      }
 	      return entity;
 	}
-	@RequestMapping("/findName")
+	@RequestMapping(value="/findName",produces = "application/text; charset=utf8")
 	public ResponseEntity <String> findName(String club_name) throws Exception{
 		ResponseEntity <String> entity = null;
 		try {
@@ -278,16 +278,19 @@ public class ClubController {
 			String mem_id = clubVO.getMem_id();
 	
 			club_no = club_no + "c";
-	
+			
+			
 			if(uploadThum != null) {
 				for (MultipartFile file : uploadThum) {
-					
-					attach.setAttach_writer(mem_id);
-					attach = UploadFileUtils.uploadFile("d:\\upload", file.getOriginalFilename(), mem_id,
-							file.getBytes());
-					attach.setAttach_board(club_no);
-					
-					attachDAO.insertAttach(attach);
+					String fileName = file.getOriginalFilename();
+					if(fileName!="") {
+						attach.setAttach_writer(mem_id);
+						attach = UploadFileUtils.uploadFile("d:\\upload", file.getOriginalFilename(), mem_id,
+								file.getBytes());
+						attach.setAttach_board(club_no);
+						
+						attachDAO.insertAttach(attach);
+					}
 				}
 			}
 

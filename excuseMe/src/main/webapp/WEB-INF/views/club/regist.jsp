@@ -389,6 +389,7 @@
 	 		$.ajax({
 		 		url:"<%=request.getContextPath()%>/club/regist",
 		 		type:"post",
+		 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 		 		data:{
 		 			mem_id : id,
 		 			club_name: name,
