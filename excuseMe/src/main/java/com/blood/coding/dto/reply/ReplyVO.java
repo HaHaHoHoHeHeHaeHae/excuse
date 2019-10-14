@@ -75,6 +75,7 @@ public class ReplyVO {
 				+ reply_content + ", reply_regDate=" + reply_regDate + ", mem_nick=" + mem_nick + ", club_name="
 				+ club_name + "]";
 	}
+	
 
 	
 }

@@ -17,14 +17,14 @@
       <!-- Main -->
     <section id="main" class="wrapper" >
         <!-- Elements -->
-		
+		<div class="row 200%">
 		<div class="card-body">
     		<!-- Table -->
-			<div class="table-wrapper" style="margin-left: 0px; margin-top:-186px;">
+			<div class="table-wrapper" style=" margin-left: 0px;margin-top:-170px;">
 				<table>
       				<tr>
-						<th class="text-center" style="width:100px;">동호회명</th>
-						<th class="text-center" style="width:100px;">카테고리</th>
+						<th class="text-center" style="width:300px;">동호회명</th>
+						<th class="text-center" style="width:200px;">카테고리</th>
 						<th class="text-center" style="width:100px;">UP-DOWN</th>
 						<th class="text-center" style="width:100px;">상태</th>
 						<th class="text-center" style="width:100px;">등록일</th>
@@ -39,7 +39,7 @@
 					<c:if test="${!empty blackList }">
 						<c:forEach items="${blackList }" var="black" >
 							<tr>
-								<td class="text-center"><a href="#" style="text-decoration:none;" onclick="OpenWindow('detail?club_no=${black.club_no}','','850','800')"> ${black.club_name }</a></td>
+								<td class="text-center"><a href="#" style="text-decoration:none; color:gray;" onclick="OpenWindow('detail?club_no=${black.club_no}','','850','800')"> ${black.club_name }</a></td>
 								<td class="text-center">${black.cate_name }</td>
 								<td class="text-center">${black.mi }</td>
 								<td class="text-center">
@@ -96,6 +96,7 @@
 			</div> 
 		</div>   
 	</div>
+	
 </section>
 
 <script>

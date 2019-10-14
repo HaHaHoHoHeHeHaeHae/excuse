@@ -73,14 +73,15 @@
 	    	from club_view
 	    	where club_no is not null and club_status='0'
 	    	<include refid="searchclubname" />
-	    	order by club_regDate desc
+	    	<include refid="alignment" />
 	    </select>
 	    
 	     <select id="selectNewClubCount" resultType="int">
 	    	select count(*)
 	    	from club_view
-	    	where club_status='0'
+	    	where club_no is not null and club_status='0'
 	    	<include refid="searchclubname" />
+	    	<include refid="alignment" />
 	    </select>
 	    
 	    <select id="selectSearchClubCount" resultType="int">
@@ -184,6 +185,7 @@
 	    	]]>
 	    	<include refid="sort" />
 	    	<include refid="searchclubname" />
+	    	<include refid="alignment" />
 	    </select>
 	    
 	    <select id="selectBlackListCount" resultType="int">
@@ -197,6 +199,7 @@
 	    	]]>
 	    	<include refid="sort" />
 	    	<include refid="searchclubname" />
+	    	<include refid="alignment" />
 	    	
 	    </select>
 	    
