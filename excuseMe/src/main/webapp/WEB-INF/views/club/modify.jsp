@@ -59,7 +59,7 @@
 		<div class = "card-header">
 			<input type="hidden" id="mem_id" name="mem_id" value="${loginUser.mem_id }">
 			<input type="hidden" id="club_no" name="club_no" value="${club.club_no }">
-			<h2 style="margin-left: 40px; margin-bottom:0; font-weight: 900; color: #4f9cc2;">동호${attachThum.attach_no }회 수정</h2>
+			<h2 style="margin-left: 40px; margin-bottom:0; font-weight: 900; color: #4f9cc2;">동호회 수정</h2>
 		</div>
 		<div class= "card-body">
 			<div>

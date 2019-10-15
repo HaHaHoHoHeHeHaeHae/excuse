@@ -345,6 +345,7 @@
                  else
                     alert(text + " 하셨습니다.");
                  location.reload();
+                 opener.location.reload();
               }
            });
            
@@ -379,7 +380,8 @@
 						alert('이미 비추천하신 동호회입니다.');	
 					else
 						alert('비추천되었습니다.');
-				location.reload();	
+				location.reload();
+				opener.location.reload();
 				}
 			}
 		});

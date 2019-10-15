@@ -39,12 +39,6 @@
    src="<%=request.getContextPath()%>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>
 <style>
 
-@media screen and (max-width: 1920px){
-   body{
-      font-size:1.05em;
-   }
-   
-}
 </style>
 
 </head>
@@ -83,7 +77,7 @@
                         <c:if test="${!empty noticeList }">
                            <c:forEach var="notice" items="${noticeList}">
                               <tr>
-                                 <td style="font-weight:bold;cursor:pointer;text-overflow: ellipsis; overflow: hidden;display: block;width:250px;" onclick="self.location='<%=request.getContextPath()%>/notice/detail?not_no=${notice.not_no }&page=1&mem_nick=${loginUser.mem_nick}'">${notice.not_title }</td>
+                                 <td style="font-weight:bold;cursor:pointer; text-overflow: ellipsis; overflow: hidden;display: block;width:250px;white-space:nowrap;" onclick="self.location='<%=request.getContextPath()%>/notice/detail?not_no=${notice.not_no }&page=1&mem_nick=${loginUser.mem_nick}'">${notice.not_title }</td>
                                  <td><fmt:formatDate value="${notice.not_regDate }" pattern="yyyy-MM-dd"/></td>
                               </tr>
                            </c:forEach>
