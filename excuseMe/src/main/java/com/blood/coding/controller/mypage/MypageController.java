@@ -149,6 +149,7 @@ public class MypageController {
 		
 		Map<String,Object> dataMap=joinClubService.selectMyClubList(cri, club_no);
 		dataMap.put("cri", cri);
+		dataMap.put("club", club_no);
 		
 		mav.addObject("dataMap",dataMap);
 		mav.setViewName(url);

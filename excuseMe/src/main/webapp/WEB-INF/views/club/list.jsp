@@ -184,10 +184,10 @@ div.top {
             </div>
          </section>
 
-         <div class="divLine"
-            style="background: #f6755e;margin-top:10px; margin-bottom: 20px; height: 5px; top: 450px; width: 1126.66px;"></div>
+			<div class="divLine"
+				style="background: #f6755e; margin-top: 10px; margin-bottom: 20px; height: 5px; top: 450px; width: 1126.66px;"></div>
 
-         <div class="clublist"
+			<div class="clublist"
             style="width: 1126.66px;">
             <c:if test="${empty clubList }">
                <div class="empty" style="text-align: center;">
@@ -200,7 +200,7 @@ div.top {
                <c:if test="${!empty clubList }">
                   <div class="clublist_body"
                      style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin: 3px 3px 20px 3px; width: 219px;">
-                     <div class="card-body box-profile" style="cursor:pointer;"onclick="OpenWindow('detail?club_no=${club.club_no}','','813','650');"> <%--onclick 붙이고 --%>
+                     <div class="card-body box-profile" style="cursor:pointer;"onclick="OpenWindow('detail?club_no=${club.club_no}','','825','650');"> <%--onclick 붙이고 --%>
                         <div class="text-center">
                            <img class="profile-user-img img-fluid img-circle" id="thum" style="width: 100px; height: 100px;"
                              <c:if test="${club.attachThum_no > 0}">
@@ -284,7 +284,7 @@ div.top {
                      <ul class="actions vertical small"
                         style="text-align: center; margin-bottom: -10px;">
                         <li><a href="#" data-name="title"
-                           onclick="OpenWindow('detail?club_no=${recommend.club_no}','','800','650');"
+                           onclick="OpenWindow('detail?club_no=${recommend.club_no}','','825','650');"
                            class="button alt icon fa-search">Detail</a></li>
                         <li><a href="#" class="button alt icon fa-check"
                            onclick="onJoin('join','${club.club_no}')">가입하기</a></li>

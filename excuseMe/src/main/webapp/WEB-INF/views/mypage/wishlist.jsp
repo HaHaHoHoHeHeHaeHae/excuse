@@ -128,7 +128,7 @@
 								style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin-left: 3px; margin-right: 3px; width: 219px;">
 								<div class="card-body box-profile">
 									<div class="text-center">
-										<img class="profile-user-img img-fluid img-circle"
+										<img class="profile-user-img img-fluid img-circle" style="width: 100px; height: 100px;"
 											<c:if test="${club.attachThum_no > 0}">
 												src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
 											</c:if>
@@ -197,7 +197,9 @@
 							</c:forEach>
 
 							<li class="page-item"><a class="page-link"
-								href="wishlist<c:if test="${pageMaker.next }">${pageMaker.makeQuery(pageMaker.endPage+1) }</c:if><c:if test="${!pageMaker.next }">${pageMaker.makeQuery(pageMaker.cri.page) }</c:if>"
+								href="wishlist
+								<c:if test="${pageMaker.next }">${pageMaker.makeQuery(pageMaker.endPage) }</c:if>
+								<c:if test="${!pageMaker.next }">${pageMaker.makeQuery(pageMaker.cri.page) }</c:if>"
 								style="text-decoration: none">&gt;</a></li>
 
 							<li class="page-item"><a class="page-link"

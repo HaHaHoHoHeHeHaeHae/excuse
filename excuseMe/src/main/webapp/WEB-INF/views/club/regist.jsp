@@ -436,9 +436,9 @@
 		 			},
 		 		success:function(club_no){ 			
 		 			onSubmit(document.club_RegistThum,"registAttachThum","post",club_no);
-		 			alert("동호회 생성 신청 되었습니다. 관리자 승인 후 이용 가능합니다.");
+		 			
 		 			onSubmit(document.club_Regist,"registAttach","post",club_no);
-					
+		 			alert("동호회 생성 신청 되었습니다. 관리자 승인 후 이용 가능합니다.");
 		 		},
 		 		error:function(){
 		 			alert("서버 오류입니다.");
@@ -452,7 +452,7 @@
 	 }
 	 
 	 function onSubmit(form,url,method,no){
-		 	
+		 alert("이거 실행함?");
 			form.action="<%=request.getContextPath()%>/club/"+url+"?club_no="+no;
 			form.method = method;
 			form.submit();

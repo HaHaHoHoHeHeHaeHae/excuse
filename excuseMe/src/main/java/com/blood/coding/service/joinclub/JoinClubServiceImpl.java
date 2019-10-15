@@ -89,7 +89,7 @@ public class JoinClubServiceImpl implements JoinClubService {
 	//해당클럽에 가입한 멤버 리스트 = 마이페이지 컨트롤러에서 사용함
 	@Override
 	public Map<String, Object> selectMyClubList(Criteria cri, String club_no) throws SQLException {
-		List<JoinClubVO> myjoinList = joinClubDAO.selectMyClubList(cri, club_no);
+		List<JoinClubVO> joinclubList = joinClubDAO.selectMyClubList(cri, club_no);
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
@@ -97,7 +97,7 @@ public class JoinClubServiceImpl implements JoinClubService {
 		
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		
-		dataMap.put("myjoinList", myjoinList);
+		dataMap.put("joinclubList", joinclubList);
 		dataMap.put("pageMaker", pageMaker);
 		return dataMap;
 	}

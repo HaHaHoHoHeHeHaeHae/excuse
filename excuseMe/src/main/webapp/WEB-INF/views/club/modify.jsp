@@ -431,7 +431,7 @@
 	 }
 	 
 	 function onSubmit(form,url,method,no){
-		 	alert("dlrj이거 실행함?");
+		 	
 			form.action="<%=request.getContextPath()%>/club/"+url+"?club_no="+no;
 			form.method = method;
 			form.submit();

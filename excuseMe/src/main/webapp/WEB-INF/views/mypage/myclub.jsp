@@ -108,7 +108,7 @@
 								style="width: 300px; float: left; border: 1px dashed #bcbcbc; margin-left: 3px; margin-right: 3px; width: 219px;">
 								<div class="card-body box-profile">
 									<div class="text-center">
-										<img class="profile-user-img img-fluid img-circle"
+										<img class="profile-user-img img-fluid img-circle" style="width: 100px; height: 100px;"
 											<c:if test="${club.attachThum_no > 0}">
 												src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}";
 											</c:if>

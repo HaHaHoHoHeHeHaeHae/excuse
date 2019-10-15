@@ -62,6 +62,7 @@ public class JoinClubDAOImpl implements JoinClubDAO {
 		RowBounds rowBounds = new RowBounds(offset,limit);
 		
 		List<JoinClubVO> joinclubList = session.selectList("JoinClub-Mapper.selectMyClubList",club_no,rowBounds);
+				
 		return joinclubList;
 	}
 	

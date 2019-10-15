@@ -2,9 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="myjoinList" value="${dataMap.myjoinList }" />
+<c:set var="joinclubList" value="${dataMap.joinclubList }" /> 
 <c:set var="pageMaker" value="${dataMap.pageMaker }" />
 <c:set var="cri" value="${dataMap.cri }" />
+<c:set var="club" value="${dataMap.club }" />
 
 
 <html>
@@ -65,7 +66,8 @@
 		<div class="inner"">
 			<!-- Elements -->
 			<div  style="position: relative;">
-			<%-- 	<h2 id="elements">${myjoinList.get(1).club_name} 의 회원 목록</h2> --%>
+			<h2 id="elements">${joinclubList.get(0).club_name} 의 회원 목록</h2>
+								
 				
 			</div>
 			
@@ -83,15 +85,15 @@
 								
 								
 							</tr>
-							<c:if test="${empty myjoinList }">
+							<c:if test="${empty joinclubList }">
 								<tr>
 									<td colspan="5" class="text-center">
 										<strong>동호회에 가입한 회원이 없습니다.</strong>
 									</td>
 								</tr>
 							</c:if>
-							<c:if test="${!empty myjoinList }">
-								<c:forEach items="${myjoinList }" var="member" varStatus="status">
+							<c:if test="${!empty joinclubList }">
+								<c:forEach items="${joinclubList }" var="member" varStatus="status">
 									<tr>
 										<td class="text-center" style="height: 55px; width: 67px;">${(cri.page-1)*10+status.count }</td>
 										<td class="text-center">${member.mem_id }</td>
@@ -106,36 +108,39 @@
 					<div class="text-center"  >													
 				<ul class="pagination ">
 					<li class="page-item">
-						<a class="page-link"style="text-decoration:none;" href="listForm${pageMaker.makeQuery(1)}">&lt;&lt;</a>
+						<a class="page-link"style="text-decoration:none;" href="myclubuser${pageMaker.makeQuery(1)}&club_no=${club}">&lt;&lt;</a>
 					</li>
 					<li class="page-item">
-						<a class="page-link"style="text-decoration:none;" href="listForm
+						<a class="page-link"style="text-decoration:none;" href="myclubuser
 							<c:if test="${pageMaker.prev }">
-								${pageMaker.makeQuery(pageMaker.startPage-1) }
+								${pageMaker.makeQuery(pageMaker.startPage-1) }&club_no=${club}
+							</c:if>
+							<c:if test="${!pageMaker.prev }">
+								?club_no=${club}
 							</c:if>
 						">&lt;</a>
 					</li>
 					<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
 						<li class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
-							<a class="page-link"style="text-decoration:none;" href="listForm${pageMaker.makeQuery(pageNum) }" >
+							<a class="page-link"style="text-decoration:none;" href="myclubuser${pageMaker.makeQuery(pageNum) }&club_no=${club}" >
 								${pageNum }
 							</a>
 						</li>
 					</c:forEach>	
 	
 					<li class="page-item">
-						<a class="page-link"style="text-decoration:none;" href="listForm
+						<a class="page-link"style="text-decoration:none;" href="myclubuser
 							<c:if test="${pageMaker.next }">
 								${pageMaker.makeQuery(pageMaker.endPage+1) }
 							</c:if>
 							<c:if test="${!pageMaker.next }">
 								${pageMaker.makeQuery(pageMaker.cri.page) }
 							</c:if>
-						">&gt;</a>
+						&club_no=${club}">&gt;</a>
 					</li>			
 	
 					<li class="page-item">
-						<a class="page-link"style="text-decoration:none;" href="listForm${pageMaker.makeQuery(pageMaker.realEndPage) }">
+						<a class="page-link"style="text-decoration:none;" href="myclubuser${pageMaker.makeQuery(pageMaker.realEndPage) }&club_no=${club}">
 							&gt;&gt;
 						</a>
 					</li>					
