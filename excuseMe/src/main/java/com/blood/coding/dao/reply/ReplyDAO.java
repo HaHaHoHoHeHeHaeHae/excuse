@@ -25,4 +25,8 @@ public interface ReplyDAO {
 	//유저가 쓴 댓글
 	public List<ReplyVO> selectMemberReply(MemberCriteria cri,String mem_id) throws SQLException;
 	public int selectMemberReplyCount(MemberCriteria cri, String mem_id)throws SQLException;
+	
+	//마이페이지 유저 댓글
+	public List<ReplyVO> selectMypageReply(MemberCriteria cri, String loginUser) throws SQLException;
+	public int selectMypageReplyCount(MemberCriteria cri, String loginUser) throws SQLException;
 }

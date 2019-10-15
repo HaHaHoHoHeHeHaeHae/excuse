@@ -66,10 +66,11 @@ public class JoinClubDAOImpl implements JoinClubDAO {
 	}
 	
 	@Override
-	public int selectMyClubListCount(String club_no) throws SQLException {
-		List<JoinClubVO> joinList = session.selectList("JoinClub-Mapper.selectMyClubList",club_no);
+	public int selectMyClubListCount(String club_name) throws SQLException {
+		List<JoinClubVO> joinList = session.selectList("JoinClub-Mapper.selectMyClubList",club_name);
 		
 		int count = joinList.size();
+		
 		return count;
 	}
 

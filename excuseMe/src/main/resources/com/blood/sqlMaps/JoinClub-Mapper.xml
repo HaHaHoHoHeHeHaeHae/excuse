@@ -29,7 +29,7 @@
 			select *
 			from JOINCLUB_VIEW
 			where mem_id=#{mem_id}
-			
+			order by club_Date desc
 		</select>
 			
 		<!-- 내동호회의 동호회원 리스트 -->

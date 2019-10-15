@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 
     <script>
-    	self.location.href="main/main_frame";
+    	self.location.href="/main/main_frame";
     </script>

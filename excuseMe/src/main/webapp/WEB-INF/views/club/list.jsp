@@ -203,8 +203,13 @@ div.top {
                      <div class="card-body box-profile" style="cursor:pointer;"onclick="OpenWindow('detail?club_no=${club.club_no}','','813','650');"> <%--onclick 붙이고 --%>
                         <div class="text-center">
                            <img class="profile-user-img img-fluid img-circle" id="thum"
-                              src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
-                              alt="<%=request.getContextPath()%>/resources/img/logo.png">
+                             <c:if test="${club.attachThum_no > 0}">
+								src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
+							</c:if>
+							<c:if test="${club.attachThum_no <= 0}">
+								src="<%=request.getContextPath()%>/resources/img/logo.png"
+							</c:if> >
+                              
                         </div>
 
                         <h3 class="profile-username text-center"
@@ -259,7 +264,7 @@ div.top {
 		</div>
 	</div>
 	<section class="joinclub_wrap1"
-      style="width: 1126.66px; ">
+      style="margin-top: 20px; width: 1126.66px; ">
       <c:if test="${empty recommendList }">
       	<div style="height:100px; background:#f5f5f5;border-top:1px solid #cfcfcf; border-bottom:1px solid #cfcfcf;margin-top:20px;">
       		<p style="font-size:1.3em; font-weight:bold;text-align:center;padding-top:30px;">해당 지역에 동호회가 없습니다.</p>
@@ -287,9 +292,14 @@ div.top {
                   </div>
                   <div class="2"
                      style="width: 160px; height: 160px; align: center; float: left; padding-right: 20px;">
-                     <img class="profile-user-img img-fluid img-circle" id="thum"
-                        src="<%=request.getContextPath()%>/attach/img?attach_no=${recommend.attachThum_no}"
-                        alt="<%=request.getContextPath()%>/resources/img/logo.png">
+                     <img class="profile-user-img img-fluid img-circle" id="thum" style="width:140px; height:140px;"
+						<c:if test="${recommend.attachThum_no > 0}">
+							src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
+						</c:if>
+						<c:if test="${recommend.attachThum_no <= 0}">
+							src="<%=request.getContextPath()%>/resources/img/logo.png"
+						</c:if> >                    
+
                   </div>
                </div>
             </div>

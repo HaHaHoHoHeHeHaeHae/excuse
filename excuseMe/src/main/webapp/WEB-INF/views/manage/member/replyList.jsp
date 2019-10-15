@@ -40,8 +40,6 @@
    rel="stylesheet">
 </head>
 
-<style>
-</style>
 <body class="subpage">
    <div class="text-center">
                <div class="card-header" style="background:#6499b0;margin-top:-50px;">

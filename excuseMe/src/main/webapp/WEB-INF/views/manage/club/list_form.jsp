@@ -28,9 +28,10 @@
 					<tr>
 						<th class="text-center" style="width:300px;">동호회명</th>
 						<th class="text-center" style="width:300px;">카테고리</th>
-						<th class="text-center" style="width:200px;">회원수</th>
+						<th class="text-center" style="width:100px;">회원수</th>
 						<th class="text-center" style="width:200px;">UP-DOWN</th>
 						<th class="text-center" style="width:200px;">상태</th>
+						<th class="text-center" style="width:200px;">등록일</th>
 					</tr>
 					<c:if test="${empty clubList }">
 						<tr>
@@ -54,6 +55,7 @@
 										운영 중지
 									</c:if>
 								</td>
+								<td class="text-center"><fmt:formatDate value="${club.club_regDate }" pattern="yyyy-MM-dd" /></td>
 							</tr>
 						</c:forEach>
 					</c:if>

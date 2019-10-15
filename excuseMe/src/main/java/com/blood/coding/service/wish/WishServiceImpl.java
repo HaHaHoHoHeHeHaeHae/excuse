@@ -7,7 +7,10 @@ import java.util.Map;
 
 import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.controller.common.PageMaker;
+import com.blood.coding.dao.attach.AttachDAO;
 import com.blood.coding.dao.wish.WishDAO;
+import com.blood.coding.dto.attach.AttachVO;
+import com.blood.coding.dto.club.ClubVO;
 import com.blood.coding.dto.wish.WishVO;
 
 public class WishServiceImpl implements WishService {
@@ -15,6 +18,11 @@ public class WishServiceImpl implements WishService {
 	private WishDAO wishDAO;
 	public void setWishDAO(WishDAO wishDAO) {
 		this.wishDAO = wishDAO;
+	}
+	
+	private AttachDAO attachDAO;
+	public void setAttachDAO(AttachDAO attachDAO) {
+		this.attachDAO = attachDAO;
 	}
 	
 	@Override
@@ -52,6 +60,16 @@ public class WishServiceImpl implements WishService {
 	public Map<String, Object> selectWishList(Criteria cri , WishVO wishVO) throws SQLException {
 		List<WishVO> wishList = wishDAO.selectWishList(cri, wishVO.getMem_id());
 
+		for(WishVO club : wishList) {
+			String club_no = club.getClub_no();
+			String attach_board = club_no + "c";
+			AttachVO attachThum = attachDAO.selectAttachesByAttachBoardOne(attach_board);
+			if(attachThum != null) {
+				int attachNO = attachThum.getAttach_no();
+				club.setAttachThum_no(attachNO);
+			}
+		}
+		
 		Map<String, Object> dataMap = new HashMap<String, Object>();
 		
 		PageMaker pageMaker = new PageMaker();

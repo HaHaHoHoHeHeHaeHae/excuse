@@ -12,32 +12,6 @@
 <title>마이페이지 - 개인정보수정</title>
 
 
-
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/templated/assets/css/font-awesome.min.css">
-
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
-<!-- icheck bootstrap -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-
-<!-- Theme style -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/dist/css/adminlte.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/templated/assets/css/main.css">
-
-<!-- Google Font: Source Sans Pro -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
-
 <style>
 #subm {
 	top: 170px;
@@ -68,7 +42,7 @@
 
 <body class="subpage">
 
-	<div id="subm">
+	<%-- <div id="subm">
 
 		<br> <br> <br> <a
 			href="<%=request.getContextPath()%>/mypage/myjoinlist" class="atag"
@@ -80,29 +54,52 @@
 			href="<%=request.getContextPath()%>/mypage/wishlist" class="atag"
 			style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;관심
 			동호회</a><br> <br> <a
-			href="<%=request.getContextPath()%>/mypage/" class="atag"
+			href="<%=request.getContextPath()%>/mypage/myreply" class="atag"
 			style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;내가
 			쓴 댓글</a><br> <br> <a
 			href="<%=request.getContextPath()%>/mypage/myinfo" class="atag"
 			style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;개인정보수정</a><br>
 
 
-	</div>
+	</div> --%>
+	<div id="sidebar" style="margin-top:120px;margin-left:120px;float:left;z-index:100;position:relative;background: #25a1c3;width: 250px;height: 1000px;text-align: center;display: inline-block;vertical-align: middle;height: 100%; left: -3px;">
+			
+			<div style="height:50px;background:#306170;">
+				<p style=" padding-top:6px;font-size:1.3em; color:white; font-weight:bold;">마이 페이지</p>
+			</div>
+			<div class="subButton" onclick="myPage('myjoinlist');" style="cursor:pointer;height:50px;margin-top: 20px;width:230px;margin-left:10px; border-bottom:1px solid #cce3de;">
+				<p style="padding-top:10px;color: white; font-size:1.1em; text-align:left; padding-left:20px;">가입한 동호회</p>
+			</div>
+			<div class="subButton" onclick="myPage('myclub');" style="cursor:pointer;height:50px;margin-top: 20px;width:230px;margin-left:10px; border-bottom:1px solid #cce3de;">
+				<p style="padding-top:10px;color: white; font-size:1.1em; text-align:left; padding-left:20px;">생성한 동호회</p>
+			</div>
+			<div class="subButton"  onclick="myPage('wishlist');" style="cursor:pointer;height:50px;margin-top: 20px;width:230px;margin-left:10px; border-bottom:1px solid #cce3de;">
+				<p style="padding-top:10px;color: white; font-size:1.1em; text-align:left; padding-left:20px;">관심 동호회</p>
+			</div>
+			<div class="subButton" onclick="myPage('myreply');" style="cursor:pointer;height:50px;margin-top: 20px;width:230px;margin-left:10px; border-bottom:1px solid #cce3de;">
+				<p style="padding-top:10px;color: white; font-size:1.1em; text-align:left; padding-left:20px;">내가 쓴 댓글</p>
+			</div>
+			<div class="subButton" onclick="myPage('myinfo');" style="cursor:pointer;height:50px;margin-top: 20px;width:230px;margin-left:10px; border-bottom:1px solid #cce3de;">
+				<p style="padding-top:10px;color: white; font-size:1.1em; text-align:left; padding-left:20px;" >개인정보수정</p>
+			</div>
+			
+		</div>
+	
+
 	<div id="all_div">
-
-
-		<div id="section_div">
+		<div id="section_div" style="postion: relative; left: 5px; top: 18px;">
+	
 			<!-- Main -->
-			<section id="main" class="wrapper"> <!-- Menu --> <!-- Elements -->
+			<section id="main" class="wrapper" > <!-- Menu --> <!-- Elements -->
 			<div class="row">
 				<h2 id="elements">마이페이지 - 개인정보수정</h2>
 				<!-- <div class="nav nav-pills ml-auto p-2">
 							<span class="button small" onclick="#">글 쓰기</span>
 						</div> -->
 			</div>
-			<div class="card" style="position: relative; width: 1200px; height: 400px;">
+			<div class="card" style="position: absolute; width: 1000px; height: 400px; left: 400px;">
 				<form method="POST" action="myinfo" onsubmit="return check()">
-					<div class="card" style="position: relative; top: 60px; left: 290px; width: 600px; height: 280px;">
+					<div class="card" style="position: relative; top: 60px; left: 194px; width: 600px; height: 280px;">
 						<div style="position: relative; left: 90px; top: 25px;">
 							<b>본인 확인을 위해 비밀번호를 입력해주세요.</b>
 						</div>
@@ -139,26 +136,7 @@
 
 
 
-		<!-- jQuery -->
-		<script
-			src="<%=request.getContextPath()%>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>
-		<!-- Bootstrap 4 -->
-		<script
-			src="<%=request.getContextPath()%>/resources/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script
-			src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.min.js"></script>
-		<script
-			src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
-		<script
-			src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
-		<script
-			src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
-		<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-		<script
-			src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
-		<script>
-			/* $("#sidemenu").add("style='padding: 0px;'"); */
-		</script>
+	
 	<script>
 		
 		
@@ -171,7 +149,15 @@
 			return false;
 		}
 			
-			
+		
+		function myPage(url) {
+			self.location.href="<%=request.getContextPath()%>/mypage/"+url;
+		}
+		
+		$('.subButton').click(function(){
+		      $('.subButton').css("background","");
+		      $(this).css("background","linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 55%,rgba(0,0,0,0) 61%,rgba(0,0,0,0.16) 100%)");
+		   });
 			
 		
 	</script>

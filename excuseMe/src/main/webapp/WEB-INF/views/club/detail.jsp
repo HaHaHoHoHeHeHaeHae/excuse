@@ -103,9 +103,14 @@
 					style="position: absolute; width: 300px; height: 300px; float: left;">
 					<div class="pic" style="width: 300px; height: 300px;">
 						<img class="profile-user-img" id="thum"
-							src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
-							alt="<%=request.getContextPath()%>/resources/img/logo.png"
-							style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; padding: 2px;" />
+							style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; padding: 2px;" 
+							<c:if test="${club.attachThum_no > 0}">
+								src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
+							</c:if>
+							<c:if test="${club.attachThum_no <= 0}">
+								src="<%=request.getContextPath()%>/resources/img/logo.png"
+							</c:if>	
+							/>
 					</div>
 				</div>
 				<div class="demo_wrap"
@@ -193,7 +198,15 @@
 			<div class="buttons"
 				style="position: relative; width: 800px; text-align: center; margin-bottom: 20px;">
 				<a href="#" class="button special" id="wishBtn" onclick="onWish('club','${club.club_no}');">관심동호회등록</a>&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="#" class="button" id="joinBtn" onclick="onJoin('join','${club.club_no}');">가입하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				
+					<a href="#" class="button" id="joinBtn" onclick="onJoin('join','${club.club_no}');">가입하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<%-- 만든 사람이 아닐때
+				<c:if test="${loginUser == '어드민' }"> 	
+				</c:if> --%>
+				<%-- 만든 사람일때				
+				<c:if test="">
+					<a href="#" class="button" id="joinBtn" onclick="onJoin('join','${club.club_no}');">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				</c:if>--%>
 				<a href="#" class="button alt" id="closeBtn" onclick="onClose();">나가기</a>&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>
 			<!-- updown -->

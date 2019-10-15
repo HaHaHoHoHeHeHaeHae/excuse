@@ -43,7 +43,7 @@
 				<div style="position: relative; margin-top: -30px;">
 					<iframe id="if_list3" name="if_list3" frameborder="0" scrolling="0"
 						src="<%=request.getContextPath()%>/manage/blacklist/blackListTable"
-						style="position: absolute; top: 0px; left: 0px; bottom: 0px; height: 650px; width: 100%; border: 0px;">
+						style="position: absolute; top: 0px; left: 0px; bottom: 0px; height: 700px; width: 100%; border: 0px;">
 					</iframe>
 				</div>
 			</div>

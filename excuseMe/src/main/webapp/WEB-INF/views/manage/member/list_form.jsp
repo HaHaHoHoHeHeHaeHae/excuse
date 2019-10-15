@@ -107,7 +107,7 @@
 
 	<script>
 	function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
-		winleft = (screen.width - WinWidth) / 2;
+		winleft = (screen.width - WinWidth) / 1.1;
 		wintop = (screen.height - WinHeight) / 2;
 		var win = window.open(UrlStr , WinTitle , "scrollbars=yes,width="+ WinWidth 
 			                	+", height="+ WinHeight +", top="+ wintop +", left=" 
