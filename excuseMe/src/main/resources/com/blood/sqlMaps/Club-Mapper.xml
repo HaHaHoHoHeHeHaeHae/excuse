@@ -60,6 +60,17 @@
           select *
           from club_view
 
+          where club_no is not null and club_status='1'
+          <include refid="sort" />
+          <include refid="searchlocal" />
+          <include refid="searchcategory" />
+          <include refid="searchclubname" />
+          <include refid="alignment" />
+       </select>
+       <select id="selectSearchClubListForAdmin" resultType="club">
+          select *
+          from club_view
+
           where club_no is not null and (club_status='1' or club_status='2')
           <include refid="sort" />
           <include refid="searchlocal" />
@@ -84,6 +95,16 @@
        </select>
        
        <select id="selectSearchClubCount" resultType="int">
+          select count(*)
+          from club_view
+          where club_no is not null and club_status='1'
+          <include refid="sort" />
+          <include refid="searchlocal" />
+          <include refid="searchcategory" />
+          <include refid="searchclubname" />
+          <include refid="alignment" />
+       </select>
+       <select id="selectSearchClubCountForAdmin" resultType="int">
           select count(*)
           from club_view
           where club_no is not null and (club_status='1' or club_status='2')
@@ -142,7 +163,7 @@
           
              select *
              from
-             (select * from club_view where club_local like '%'||#{mem_local}||'%' order by abs(upcnt-downcnt) desc)
+             (select * from club_view where club_local like '%'||#{mem_local}||'%' and club_status='1' order by abs(upcnt-downcnt) desc)
           <![CDATA[
              where rownum <= 3
           ]]>
@@ -152,7 +173,7 @@
           <![CDATA[
              select *
              from
-             (select * from club where club_status='1' or club_status='2' order by club_regDate desc)
+             (select * from club where club_status='1' order by club_regDate desc)
              where rownum <= 6
           ]]>
        </select>
@@ -184,6 +205,7 @@
           ]]>
           <include refid="sort" />
           <include refid="searchclubname" />
+          order by abs(upcnt-downcnt) desc
        </select>
        
        <select id="selectBlackListCount" resultType="int">

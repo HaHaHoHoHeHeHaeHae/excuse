@@ -276,7 +276,7 @@ function Status(){
 			success:function(result){
 				if(result=="SUCCESS"){
 					alert("승인수락 되었습니다.");
-					location.reload();
+					window.close();
 				}else{
 					alert("1234");
 				}
@@ -301,7 +301,8 @@ function StatusStop(){
 			success:function(result){
 				if(result=="SUCCESS"){
 					alert("승인거부 되었습니다.");
-					location.reload();
+					
+					window.close();
 				}else{
 					alert("1234");
 				}

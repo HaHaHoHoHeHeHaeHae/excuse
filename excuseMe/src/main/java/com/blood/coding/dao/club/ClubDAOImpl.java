@@ -32,10 +32,30 @@ public class ClubDAOImpl implements ClubDAO {
 		
 		return clubList;
 	}
+	@Override
+	public List<ClubVO> selectSearchClubListForAdmin(Criteria cri) throws SQLException {
+		
+		int startRowNum = cri.getPageStartRowNum();
+		int limit = cri.getPerPageNum();
+		int alignment = cri.getAlignment();
+		int sort = cri.getSort();
+		RowBounds rowBounds = new RowBounds(startRowNum,limit);
+		cri.setAlignment(alignment);
+		cri.setSort(sort);
+			
+		List<ClubVO> clubList = session.selectList("Club.selectSearchClubListForAdmin",cri,rowBounds);
+		
+		return clubList;
+	}
 	
 	@Override
 	public int selectSearchClubCount(Criteria cri) throws SQLException {
 		int clubCnt = session.selectOne("Club.selectSearchClubCount",cri);
+		return clubCnt;
+	}
+	@Override
+	public int selectSearchClubCountForAdmin(Criteria cri) throws SQLException {
+		int clubCnt = session.selectOne("Club.selectSearchClubCountForAdmin",cri);
 		return clubCnt;
 	}
 	

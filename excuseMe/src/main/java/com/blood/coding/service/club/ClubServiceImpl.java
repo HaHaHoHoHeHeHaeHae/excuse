@@ -231,9 +231,9 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public Map<String, Object> getClubListByAdmin(Criteria cri, MemberVO memberVO) throws SQLException {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
-		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
+		List<ClubVO> clubList = clubDAO.selectSearchClubListForAdmin(cri);
 		
-		int totalCount = clubDAO.selectSearchClubCount(cri);
+		int totalCount = clubDAO.selectSearchClubCountForAdmin(cri);
 		
 		List<CategoryVO> categoryList = categoryDAO.selectCategoryList();
 		List<LocalVO> localList = localDAO.selectLocalList();

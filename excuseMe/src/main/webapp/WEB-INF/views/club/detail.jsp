@@ -362,7 +362,7 @@
 		$.ajax({
 			contentType:"application/JSON",
 			type:"POST",
-			url:"<%=request.getContextPath()%>/"+upndown+"check?mem_id=${member.mem_id}&club_no="+club_no,
+			url:"<%=request.getContextPath()%>/"+upndown+"check?mem_id=${loginUser.mem_id}&club_no="+club_no,
 			cache:false,
 			success:function(bool){
 				if(upndown=="up"){

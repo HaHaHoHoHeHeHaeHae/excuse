@@ -127,6 +127,7 @@
 								</tr>
 								<tr id="clubstatus">
 							<td><b>상태</b></td>
+							
 							<td><c:if test= "${club.club_status==1 }" >운영중</c:if>
 									<c:if test= "${club.club_status==2 }" >운영중지</c:if></td>
 						</tr>

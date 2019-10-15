@@ -8,9 +8,9 @@
 	<bean id="dataSourceSpied"
 		class="org.apache.commons.dbcp2.BasicDataSource"
 		p:driverClassName="oracle.jdbc.driver.OracleDriver"
-		p:url="jdbc:oracle:thin:@Localhost:1521:XE"
-		p:username="ABC"
-		p:password="123" />
+		p:url="jdbc:oracle:thin:@192.168.0.5:1521:XE"
+		p:username="excuse"
+		p:password="excuse" />
 
 	
 	<bean id="dataSource"

@@ -41,25 +41,5 @@
 <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
 <style>
 
-@media screen and (max-width: 1920px){
-	body{
-		font-size:0.96em;
-	}
-	
-}
-@media screen and (max-width: 1680px){
-	body{
-		font-size:1em;
-	}
-	#if_list2{
-		margin-left:80px;margin-top:30px;
-	}
-	#listHead{
-		width:260px;
-	}
-	#sidebardiv{
-		margin-top:30px;
-	}
-	
-}
+
 </style>

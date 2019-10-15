@@ -24,6 +24,7 @@
 			where mem_id = #{mem_id} and
 				club_no = #{club_no}
 		</update>
+
 		
 		<!-- 내가 관심있는 동호회 리스트 -->
 		<select id="selectWishList" resultType="wish">
