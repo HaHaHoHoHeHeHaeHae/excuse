@@ -103,9 +103,14 @@
 					style="position: absolute; width: 300px; height: 300px; float: left;">
 					<div class="pic" style="width: 300px; height: 300px;">
 						<img class="profile-user-img" id="thum"
-							src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
-							alt="<%=request.getContextPath()%>/resources/img/logo.png"
-							style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; padding: 2px;" />
+							style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 300px; height: 300px; padding: 2px;" 
+							<c:if test="${club.attachThum_no > 0}">
+								src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
+							</c:if>
+							<c:if test="${club.attachThum_no <= 0}">
+								src="<%=request.getContextPath()%>/resources/img/logo.png"
+							</c:if>	
+							/>
 					</div>
 				</div>
 				<div class="demo_wrap"
@@ -193,7 +198,14 @@
 			<div class="buttons"
 				style="position: relative; width: 800px; text-align: center; margin-bottom: 20px;">
 				<a href="#" class="button special" id="wishBtn" onclick="onWish('club','${club.club_no}');">관심동호회등록</a>&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="#" class="button" id="joinBtn" onclick="onJoin('join','${club.club_no}');">가입하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				<%-- 만든 사람이 아닐때--%>
+				<c:if test="${loginUser.mem_nick != mem_nick }"> 
+					<a href="#" class="button" id="joinBtn" onclick="onJoin('join','${club.club_no}');">가입하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				</c:if> 
+				<%-- 만든 사람일때	--%>			
+				<c:if test="${loginUser.mem_nick == mem_nick }">
+					<a href="#" class="button" id="joinBtn"  onclick="OpenWindow('<%=request.getContextPath()%>/club/modify?club_no=${club.club_no }','','850','900')">수정하기</a>&nbsp;&nbsp;&nbsp;&nbsp;
+				</c:if>
 				<a href="#" class="button alt" id="closeBtn" onclick="onClose();">나가기</a>&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>
 			<!-- updown -->
@@ -307,7 +319,9 @@
 	         
 	      }
 	
-	
+	function onModify() {
+		self.location="<%=request.getContextPath()%>/club/modify?club_no=${club.club_no}";
+	}
 	
 	function onJoin(joinnexit,club_no) {
         <%-- joinnexit는 스트링으로 join 과 exit을 받아와야한다. --%>
@@ -331,6 +345,7 @@
                  else
                     alert(text + " 하셨습니다.");
                  location.reload();
+                 opener.location.reload();
               }
            });
            
@@ -348,7 +363,7 @@
 		$.ajax({
 			contentType:"application/JSON",
 			type:"POST",
-			url:"<%=request.getContextPath()%>/"+upndown+"check?mem_id=${member.mem_id}&club_no="+club_no,
+			url:"<%=request.getContextPath()%>/"+upndown+"check?mem_id=${loginUser.mem_id}&club_no="+club_no,
 			cache:false,
 			success:function(bool){
 				if(upndown=="up"){
@@ -365,7 +380,8 @@
 						alert('이미 비추천하신 동호회입니다.');	
 					else
 						alert('비추천되었습니다.');
-				location.reload();	
+				location.reload();
+				opener.location.reload();
 				}
 			}
 		});
@@ -544,6 +560,20 @@
 			}
 		});
 	});
+	
+	//팝업창들 뛰우기
+	//새로운 윈도우 창을 오픈할 경우 사용되는 함수(arg : 주소, 창타이틀, 넓이, 길이)
+	function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
+		winleft = (screen.width - WinWidth) / 2;
+		wintop = (screen.height - WinHeight) / 2;
+		
+		var win = window.open(UrlStr , WinTitle, "scrollbars=yes, width="+ WinWidth
+				+", height="+ WinHeight+ ", top="+wintop + ", left="+winleft +", resizable=no, status=yes");
+		
+		win.focus();
+		//대문자를 쓴 이유 확인
+		//내가 만든 펑션 제공되는 펑션 = 대문자로 구분
+	}
  		
 	</script>
 

@@ -10,13 +10,13 @@ import com.blood.coding.controller.common.PageMaker;
 import com.blood.coding.dao.attach.AttachDAO;
 import com.blood.coding.dao.category.CategoryDAO;
 import com.blood.coding.dao.club.ClubDAO;
-import com.blood.coding.dao.down.DownDAO;
+import com.blood.coding.dao.joinclub.JoinClubDAO;
 import com.blood.coding.dao.local.LocalDAO;
 import com.blood.coding.dao.member.MemberDAO;
-import com.blood.coding.dao.up.UpDAO;
 import com.blood.coding.dto.attach.AttachVO;
 import com.blood.coding.dto.category.CategoryVO;
 import com.blood.coding.dto.club.ClubVO;
+import com.blood.coding.dto.joinClub.JoinClubVO;
 import com.blood.coding.dto.local.LocalVO;
 import com.blood.coding.dto.member.MemberVO;
 
@@ -45,6 +45,11 @@ public class ClubServiceImpl implements ClubService {
 	private LocalDAO localDAO;
 	public void setLocalDAO(LocalDAO localDAO) {
 		this.localDAO=localDAO;
+	}
+	
+	private JoinClubDAO joinClubDAO;
+	public void setJoinClubDAO(JoinClubDAO joinClubDAO) {
+		this.joinClubDAO = joinClubDAO;
 	}
 	
 
@@ -93,7 +98,7 @@ public class ClubServiceImpl implements ClubService {
 				int attachNO = attachThum.getAttach_no();
 				club.setAttachThum_no(attachNO);
 			}
-					}
+		}
 		
 		// pagination
 		PageMaker pageMaker = new PageMaker();
@@ -159,6 +164,14 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public void regist(ClubVO club) throws SQLException {
 		clubDAO.insertClub(club);
+		
+		//생성자를 바로 가입시킨다.
+		JoinClubVO joinclub = new JoinClubVO();
+		joinclub.setMem_id(club.getMem_id());
+		joinclub.setClub_no(club.getClub_no());
+		
+		joinClubDAO.insertJoinClub(joinclub);
+		
 	}
 
 	//수정하고 submit버튼을 클릭했을때
@@ -195,8 +208,10 @@ public class ClubServiceImpl implements ClubService {
 			String club_no = vo.getClub_no();
 			club_no = club_no +"c";
 			AttachVO attachVO = attachDAO.selectAttachesByAttachBoardOne(club_no);
-			int attachThum_no = attachVO.getAttach_no();
-			vo.setAttachThum_no(attachThum_no);
+			if(attachVO != null) {
+				int attachThum_no = attachVO.getAttach_no();
+				vo.setAttachThum_no(attachThum_no);
+			}
 		}
 		map.put("recommendClubList", list);
 		return map;
@@ -216,9 +231,9 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public Map<String, Object> getClubListByAdmin(Criteria cri, MemberVO memberVO) throws SQLException {
 		Map<String, Object> dataMap = new HashMap<String, Object>();
-		List<ClubVO> clubList = clubDAO.selectSearchClubList(cri);
+		List<ClubVO> clubList = clubDAO.selectSearchClubListForAdmin(cri);
 		
-		int totalCount = clubDAO.selectSearchClubCount(cri);
+		int totalCount = clubDAO.selectSearchClubCountForAdmin(cri);
 		
 		List<CategoryVO> categoryList = categoryDAO.selectCategoryList();
 		List<LocalVO> localList = localDAO.selectLocalList();
@@ -281,6 +296,16 @@ public class ClubServiceImpl implements ClubService {
 	public List<ClubVO> getMyClub(String mem_id) throws SQLException {
 	
 		List<ClubVO> myClubList = clubDAO.myClub(mem_id);
+		
+		for(ClubVO club : myClubList) {
+			String club_no = club.getClub_no();
+			String attach_board = club_no + "c";
+			AttachVO attachThum = attachDAO.selectAttachesByAttachBoardOne(attach_board);
+			if(attachThum != null) {
+				int attachNO = attachThum.getAttach_no();
+				club.setAttachThum_no(attachNO);
+			}
+		}
 		
 		return myClubList;
 	}

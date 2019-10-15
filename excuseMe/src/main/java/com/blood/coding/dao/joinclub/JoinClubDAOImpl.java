@@ -62,14 +62,16 @@ public class JoinClubDAOImpl implements JoinClubDAO {
 		RowBounds rowBounds = new RowBounds(offset,limit);
 		
 		List<JoinClubVO> joinclubList = session.selectList("JoinClub-Mapper.selectMyClubList",club_no,rowBounds);
+				
 		return joinclubList;
 	}
 	
 	@Override
-	public int selectMyClubListCount(String club_no) throws SQLException {
-		List<JoinClubVO> joinList = session.selectList("JoinClub-Mapper.selectMyClubList",club_no);
+	public int selectMyClubListCount(String club_name) throws SQLException {
+		List<JoinClubVO> joinList = session.selectList("JoinClub-Mapper.selectMyClubList",club_name);
 		
 		int count = joinList.size();
+		
 		return count;
 	}
 

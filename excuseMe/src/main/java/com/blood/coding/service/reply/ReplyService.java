@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Map;
 
 import com.blood.coding.controller.common.Criteria;
+import com.blood.coding.controller.common.MemberCriteria;
 import com.blood.coding.dto.reply.ReplyVO;
 
 public interface ReplyService {
@@ -14,4 +15,6 @@ public interface ReplyService {
 	void modifyReply(ReplyVO reply) throws SQLException;
 
 	void removeReply(int reply_no) throws SQLException;
+	
+	Map<String, Object> getMypageReplyList(MemberCriteria cri, String loginUser) throws SQLException;
 }

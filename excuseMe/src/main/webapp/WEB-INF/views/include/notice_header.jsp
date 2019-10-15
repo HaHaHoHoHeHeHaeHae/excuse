@@ -28,16 +28,5 @@
 	src="<%=request.getContextPath()%>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>
 <style>
 
-@media screen and (max-width: 1920px){
-	body{
-		font-size:1.05em;
-	}
-	
-}
-@media screen and (max-width: 1680px){
-	body{
-		font-size:1.2em;
-	}
-	
-}
+
 </style>

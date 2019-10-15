@@ -13,35 +13,6 @@
 <meta charset="UTF-8">
 <title>마이페이지 - 관심 동호회</title>
 
-<%-- <c:set var="clubList" value="${dataMap.clubList }" />
-<c:set var="pageMaker" value="${dataMap.pageMaker }" /> --%>
-<%-- <c:set var="noticeList" value="${dataMap.noticeList }" />
-<c:set var="pageMaker" value="${dataMap.pageMaker }" /> --%>
-
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/fontawesome-free/css/all.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/templated/assets/css/font-awesome.min.css">
-
-<!-- Ionicons -->
-<link rel="stylesheet"
-	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-
-<!-- icheck bootstrap -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-
-<!-- Theme style -->
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/adminLTE/dist/css/adminlte.min.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/templated/assets/css/main.css">
-
-<!-- Google Font: Source Sans Pro -->
-<link
-	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700"
-	rel="stylesheet">
 
 <style>
 #subm {
@@ -71,7 +42,7 @@
 
 <body class="subpage">
 
-	<div id="subm">
+	<%-- <div id="subm">
 
 		<br> <br> <br> <a
 			href="<%=request.getContextPath()%>/mypage/myjoinlist" class="atag"
@@ -83,18 +54,56 @@
 			href="<%=request.getContextPath()%>/mypage/wishlist" class="atag"
 			style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;관심
 			동호회</a><br> <br> <a
-			href="<%=request.getContextPath()%>/mypage/" class="atag"
+			href="<%=request.getContextPath()%>/mypage/myreply" class="atag"
 			style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;내가
 			쓴 댓글</a><br> <br> <a
 			href="<%=request.getContextPath()%>/mypage/myinfo" class="atag"
 			style="color: white; text-decoration: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;개인정보수정</a><br>
 
 
+	</div> --%>
+	<div id="sidebar"
+		style="margin-top: 120px; margin-left: 120px; float: left; z-index: 100; position: relative; background: #25a1c3; width: 250px; height: 1000px; text-align: center; display: inline-block; vertical-align: middle; height: 100%; left: -3px;">
+
+		<div style="height: 50px; background: #306170;">
+			<p
+				style="padding-top: 6px; font-size: 1.3em; color: white; font-weight: bold;">마이
+				페이지</p>
+		</div>
+		<div class="subButton" onclick="myPage('myjoinlist');"
+			style="cursor: pointer; height: 50px; margin-top: 20px; width: 230px; margin-left: 10px; border-bottom: 1px solid #cce3de;">
+			<p
+				style="padding-top: 10px; color: white; font-size: 1.1em; text-align: left; padding-left: 20px;">가입한
+				동호회</p>
+		</div>
+		<div class="subButton" onclick="myPage('myclub');"
+			style="cursor: pointer; height: 50px; margin-top: 20px; width: 230px; margin-left: 10px; border-bottom: 1px solid #cce3de;">
+			<p
+				style="padding-top: 10px; color: white; font-size: 1.1em; text-align: left; padding-left: 20px;">생성한
+				동호회</p>
+		</div>
+		<div class="subButton" onclick="myPage('wishlist');"
+			style="cursor: pointer; height: 50px; margin-top: 20px; width: 230px; margin-left: 10px; border-bottom: 1px solid #cce3de;">
+			<p
+				style="padding-top: 10px; color: white; font-size: 1.1em; text-align: left; padding-left: 20px;">관심
+				동호회</p>
+		</div>
+		<div class="subButton" onclick="myPage('myreply');"
+			style="cursor: pointer; height: 50px; margin-top: 20px; width: 230px; margin-left: 10px; border-bottom: 1px solid #cce3de;">
+			<p
+				style="padding-top: 10px; color: white; font-size: 1.1em; text-align: left; padding-left: 20px;">내가
+				쓴 댓글</p>
+		</div>
+		<div class="subButton" onclick="myPage('myinfo');"
+			style="cursor: pointer; height: 50px; margin-top: 20px; width: 230px; margin-left: 10px; border-bottom: 1px solid #cce3de;">
+			<p
+				style="padding-top: 10px; color: white; font-size: 1.1em; text-align: left; padding-left: 20px;">개인정보수정</p>
+		</div>
+
 	</div>
 	<div id="all_div">
-
-
-		<div id="section_div">
+		<div id="section_div"
+			style="postion: relative; left: 5px; top: 18px; width: 1570px;">
 			<!-- Main -->
 			<section id="main" class="wrapper"> <!-- Menu --> <!-- Elements -->
 			<div class="row">
@@ -107,7 +116,9 @@
 				<div class="12u">
 					<!-- Table -->
 					<c:if test="${empty wishList }">
-						<b><strong>관심 동호회가 없습니다.</strong></b>
+						<b><strong style="position: relative; left: 45px;">관심
+								동호회가 없어요.</strong></b>
+						<div style="postion: relative; height: 400px;"></div>
 					</c:if>
 
 
@@ -117,9 +128,13 @@
 								style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin-left: 3px; margin-right: 3px; width: 219px;">
 								<div class="card-body box-profile">
 									<div class="text-center">
-										<img class="profile-user-img img-fluid img-circle"
-											src="<%=request.getContextPath()%>/resources/img/logo.png"
-											alt="User profile picture">
+										<img class="profile-user-img img-fluid img-circle" style="width: 100px; height: 100px;"
+											<c:if test="${club.attachThum_no > 0}">
+												src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
+											</c:if>
+											<c:if test="${club.attachThum_no <= 0}">
+												src="<%=request.getContextPath()%>/resources/img/logo.png"
+											</c:if>>
 									</div>
 									<h3 class="profile-username text-center"
 										style="height: 31px; width: 190px; overflow: hidden; text-overflow: ellipsis;">${club.club_name }</h3>
@@ -140,9 +155,12 @@
 												<div class="btn-group"
 													style="position: absolute; left: -18px; top: -10px;">
 													<a href="#" class="button small"
-														style="color: white; width: 108px; height: 35px; position: relative;"><p
-															style="position: relative; left: -12px; font-size: 15px;" onclick="OpenWindow('<%=request.getContextPath()%>/club/detail?club_no=${club.club_no }','','800','650');">상세보기</p></a>
-													&nbsp; <a href="" class="button special small"
+														style="color: white; width: 108px; height: 35px; position: relative;"
+														onclick="OpenWindow('<%=request.getContextPath()%>/club/detail?club_no=${club.club_no }','','825','650')">
+														<p
+															style="position: relative; left: -12px; font-size: 15px;">상세보기</p>
+
+													</a> &nbsp; <a href="#" class="button special small"
 														style="color: white; width: 102px; height: 35px; position: relative;"><p
 															style="position: relative; left: -7px; font-size: 15px;"
 															onclick="wishclub('remove','${club.club_no}');">삭&nbsp;&nbsp;&nbsp;제</p></a>
@@ -158,48 +176,48 @@
 			</section>
 
 			<!-- pagination Start-->
-			<div class="card-body">
-				<div class="pagination justify-content-center m-0">
-					<ul class="pagination ">
-						<li class="page-item"><a class="page-link"
-							href="wishlist${pageMaker.makeQuery(1)}"
-							style="text-decoration: none">&lt;&lt;</a>
-						<li class="page-item"><a class="page-link"
-							href="wishlist<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
-							style="text-decoration: none">&lt;</a></li>
-						<c:forEach begin="${pageMaker.startPage }"
-							end="${pageMaker.endPage }" var="pageNum">
-							<li
-								class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
-								<a class="page-link"
-								href="wishlist${pageMaker.makeQuery(pageNum) }"
-								style="text-decoration: none">${pageNum } </a>
-							</li>
-						</c:forEach>
+			<c:if test="${!empty wishList }">
+				<div class="card-body">
+					<div class="pagination justify-content-center m-0">
+						<ul class="pagination ">
+							<li class="page-item"><a class="page-link"
+								href="wishlist${pageMaker.makeQuery(1)}"
+								style="text-decoration: none">&lt;&lt;</a>
+							<li class="page-item"><a class="page-link"
+								href="wishlist<c:if test="true">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>"
+								style="text-decoration: none">&lt;</a></li>
+							<c:forEach begin="${pageMaker.startPage }"
+								end="${pageMaker.endPage }" var="pageNum">
+								<li
+									class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
+									<a class="page-link"
+									href="wishlist${pageMaker.makeQuery(pageNum) }"
+									style="text-decoration: none">${pageNum } </a>
+								</li>
+							</c:forEach>
 
-						<li class="page-item"><a class="page-link"
-							href="wishlist
-										<c:if test="${pageMaker.next }">
-											${pageMaker.makeQuery(pageMaker.endPage+1) }
-										</c:if>
-										<c:if test="${!pageMaker.next }">
-											${pageMaker.makeQuery(pageMaker.cri.page) }
-										</c:if>
-									"
-							style="text-decoration: none">&gt;</a></li>
+							<li class="page-item"><a class="page-link"
+								href="wishlist
+								<c:if test="${pageMaker.next }">${pageMaker.makeQuery(pageMaker.endPage) }</c:if>
+								<c:if test="${!pageMaker.next }">${pageMaker.makeQuery(pageMaker.cri.page) }</c:if>"
+								style="text-decoration: none">&gt;</a></li>
 
-						<li class="page-item"><a class="page-link"
-							href="wishlist${pageMaker.makeQuery(pageMaker.realEndPage) }"
-							style="text-decoration: none"> &gt;&gt; </a></li>
-					</ul>
+							<li class="page-item"><a class="page-link"
+								href="wishlist${pageMaker.makeQuery(pageMaker.realEndPage) }"
+								style="text-decoration: none"> &gt;&gt; </a></li>
+						</ul>
+					</div>
 				</div>
-			</div>
-
+			</c:if>
 		</div>
 
 		<br> <br> <br>
 
-	<script>
+
+
+		
+
+		<script>
 	
 		function OpenWindow(UrlStr, WinTitle, WinWidth, WinHeight) {
 			winleft = (screen.width - WinWidth) /2;
@@ -220,44 +238,37 @@
 				$.ajax({
 					contentType:"application/JSON",
 					type: "POST",
-					url: "<%=request.getContextPath()%>/wish" + wishnremove + "?mem_id=${loginUser.mem_id}&club_no=" + club_no,
-					cache: false,
-					success: function(bool) {
-						console.log(bool);
-						
-						if(bool == false)
-							alert("이미 관심동호회에" + text + "되어있습니다.");
-						else
-							alert("관심동호회에" +text + "되었습니다.");
-						location.reload();
-					}
-				});
+					url: "<%=request.getContextPath()%>/wish"
+								+ wishnremove
+								+ "?mem_id=${loginUser.mem_id}&club_no="
+								+ club_no,
+						cache : false,
+						success : function(bool) {
+							console.log(bool);
+
+							if (bool == false)
+								alert("이미 관심동호회에" + text + "되어있습니다.");
+							else
+								alert("관심동호회에" + text + "되었습니다.");
+							location.reload();
+						}
+					});
+				}
+
 			}
-			
-		}
-	</script>
 
+		function myPage(url) {
+			self.location.href="<%=request.getContextPath()%>/mypage/"+ url;
+			}
 
-
-
-		<!-- jQuery -->
-		<script
-			src="<%=request.getContextPath()%>/resources/adminLTE/plugins/jquery/jquery.min.js"></script>
-		<!-- Bootstrap 4 -->
-		<script
-			src="<%=request.getContextPath()%>/resources/adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-		<script
-			src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.min.js"></script>
-		<script
-			src="<%=request.getContextPath()%>/resources/templated/assets/js/jquery.scrolly.min.js"></script>
-		<script
-			src="<%=request.getContextPath()%>/resources/templated/assets/js/skel.min.js"></script>
-		<script
-			src="<%=request.getContextPath()%>/resources/templated/assets/js/util.js"></script>
-		<script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
-		<script
-			src="<%=request.getContextPath()%>/resources/templated/assets/js/main.js"></script>
-		<script>
-			/* $("#sidemenu").add("style='padding: 0px;'"); */
+			$('.subButton')
+					.click(
+							function() {
+								$('.subButton').css("background", "");
+								$(this)
+										.css(
+												"background",
+												"linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 55%,rgba(0,0,0,0) 61%,rgba(0,0,0,0.16) 100%)");
+							});
 		</script>
 </body>

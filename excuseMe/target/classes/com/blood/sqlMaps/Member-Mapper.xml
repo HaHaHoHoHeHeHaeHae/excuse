@@ -52,6 +52,7 @@
 		from member
 		where mem_id is not null
 		<include refid="search" />
+		<include refid="sort" />
 		<include refid="alignment" />
 	</select>
 	

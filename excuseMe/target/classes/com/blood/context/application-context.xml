@@ -78,7 +78,8 @@
 	  	  p:memberDAO-ref="memberDAO"
 		  p:categoryDAO-ref="categoryDAO"
 		  p:localDAO-ref="localDAO"
-		  p:attachDAO-ref="attachDAO" />
+		  p:attachDAO-ref="attachDAO" 
+		  p:joinClubDAO-ref="joinClubDAO"/>
 		  
 	<bean id="replyService"
 		  class="com.blood.coding.service.reply.ReplyServiceImpl"
@@ -89,13 +90,16 @@
 			class="com.blood.coding.service.upndown.UpnDownService"
 			p:downDAO-ref="downDAO"
 			p:upDAO-ref="upDAO" />
-			
-	<bean id="joinClubService"
-			class="com.blood.coding.service.joinclub.JoinClubServiceImpl"
-			p:joinClubDAO-ref="joinClubDAO"/>
+	
 	<bean id="wishService"
 			class="com.blood.coding.service.wish.WishServiceImpl" 
-			p:wishDAO-ref="wishDAO" />
+			p:wishDAO-ref="wishDAO"
+			p:attachDAO-ref="attachDAO" />		
+	<bean id="joinClubService"
+			class="com.blood.coding.service.joinclub.JoinClubServiceImpl"
+			p:joinClubDAO-ref="joinClubDAO"
+			p:attachDAO-ref="attachDAO" />
+	
 	
 
 	

@@ -173,7 +173,7 @@
 				</div>
 				&nbsp&nbsp&nbsp&nbsp
 				<div>
-					<button class="btn btn-block btn-secondary" style="width:100px;">취소</button>
+					<button class="btn btn-block btn-secondary" style="width:100px;" onclick="onClose();" >취소</button>
 				</div>	
 			</div>
 		</div>
@@ -197,6 +197,11 @@
 	<script type="text/javascript"
 		src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<script>
+	
+	function onClose(){
+		window.close();
+	}
+	
 	function registerSummernote(element, placeholder, max, callbackMax) {
 		 $('#club_content').summernote({
 		      height:410,
@@ -431,9 +436,9 @@
 		 			},
 		 		success:function(club_no){ 			
 		 			onSubmit(document.club_RegistThum,"registAttachThum","post",club_no);
-		 			alert("동호회 생성 신청 되었습니다. 관리자 승인 후 이용 가능합니다.");
+		 			
 		 			onSubmit(document.club_Regist,"registAttach","post",club_no);
-					
+		 			alert("동호회 생성 신청 되었습니다. 관리자 승인 후 이용 가능합니다.");
 		 		},
 		 		error:function(){
 		 			alert("서버 오류입니다.");
@@ -447,7 +452,7 @@
 	 }
 	 
 	 function onSubmit(form,url,method,no){
-		 	
+		 
 			form.action="<%=request.getContextPath()%>/club/"+url+"?club_no="+no;
 			form.method = method;
 			form.submit();

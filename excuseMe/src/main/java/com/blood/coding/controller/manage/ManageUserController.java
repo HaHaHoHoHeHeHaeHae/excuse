@@ -1,4 +1,4 @@
-package com.blood.coding.controller.club;
+package com.blood.coding.controller.manage;
 
 import java.sql.SQLException;
 import java.util.List;

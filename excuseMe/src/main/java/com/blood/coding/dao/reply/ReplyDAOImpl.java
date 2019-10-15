@@ -82,4 +82,20 @@ public class ReplyDAOImpl implements ReplyDAO {
 		return count;
 	}
 
+	@Override
+	public List<ReplyVO> selectMypageReply(MemberCriteria cri, String loginUser) throws SQLException {
+		int offset = cri.getPageStartRowNum();
+		int limit = cri.getPerPageNum();
+		
+		RowBounds rowBounds = new RowBounds(offset,limit);
+		
+		List<ReplyVO> replyList = session.selectList("Reply-Mapper.selectMypageReply",loginUser,rowBounds);
+		return replyList;
+	}
+
+	@Override
+	public int selectMypageReplyCount(MemberCriteria cri, String loginUser) throws SQLException {
+		return session.selectOne("Reply-Mapper.selectMypageReplyCount",loginUser);
+	}
+
 }

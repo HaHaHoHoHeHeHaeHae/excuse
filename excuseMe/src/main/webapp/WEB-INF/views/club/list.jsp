@@ -54,21 +54,21 @@ div.top {
 <style>
 
 @media screen and (max-width: 1920px){
-	body{
-		font-size:1.05em;
-	}
-	
+   body{
+      font-size:1.05em;
+   }
+   
 }
 @media screen and (max-width: 1680px){
-	body{
-		font-size:1.2em;
-	}
-	
+   body{
+      font-size:1.2em;
+   }
+   
 }
 </style>
 </head>
 
-<body class="subpage">
+<body class="subpage" style="overflow-x: hidden;">
    <!-- Main -->
    <div class="top"></div>
    <section id="main" class="wrapper" style="position: relative;">
@@ -85,7 +85,7 @@ div.top {
          <section class="search" style="background:#e8f4ff; border-right: 2px solid #bfced9;border-bottom: 2px solid #bfced9;border-radius:8px;margin-top: 110px;">
             <div class="search1" style="padding-top:40px;">
                <div class="form-group" >
-                  <div class="row" style=" margin-left: 15%; height: 40px;">
+                  <div class="row" style=" margin-left: 15%; height: 40px; width: 1020px;">
                      <div class="label_name"
                         style="margin-right: 10px; margin-top:4px;">
                         <strong >카테고리</strong>
@@ -105,7 +105,7 @@ div.top {
 
                         </select>
                      </div>
-					 <div class="select">
+                <div class="select">
                         <input type="hidden" id="selected_sub_category"
                            value="${split[1]}" />
 
@@ -138,32 +138,32 @@ div.top {
                         </select>
                      </div>
                      <div class="label">
-	                     <div class="select">
-	                        <input type="hidden" id="selected_sub_local" value="${split_sub[1]}" /> 
-	                        <select id="subLocal"
-	                           class="form-control" style="width: 250px; ">
-	                           <option selected>- 전체 보기 -</option>
-	                        </select>
-	                     </div>
-	                  </div>
+                        <div class="select">
+                           <input type="hidden" id="selected_sub_local" value="${split_sub[1]}" /> 
+                           <select id="subLocal"
+                              class="form-control" style="width: 250px; ">
+                              <option selected>- 전체 보기 -</option>
+                           </select>
+                        </div>
+                     </div>
                   </div>        
                </div>
             </div>
             <div class="search3" style="height: 60px;">
-           		<div class="row" style=" margin-left: 15%; height: 40px;">
-                	<div class="label_name" style="margin-right: 10px;margin-top:4px;">
+                 <div class="row" style=" margin-left: 15%; height: 40px;">
+                   <div class="label_name" style="margin-right: 10px;margin-top:4px;">
                         <strong>동호회명</strong>
                      </div>
-                	 <div class="select" >
-                  		<input name="keyword" type="text" class="form-control" placeholder="검색어를 입력하세요." style="background:white;width: 535px;height: 40px;">
-               		 </div> 
+                    <div class="select" >
+                        <input name="keyword" type="text" class="form-control" placeholder="검색어를 입력하세요." style="background:white;width: 535px;height: 40px;">
+                      </div> 
                 </div>
             </div>
-			<div class="actions" style="height:60px;">
-           	 	<div id="searchBtn" style="margin-left:40%;width:220px; height:45px;border-radius:5px;background:#2BB3D7; text-align:center; vertical-align:middle;cursor:pointer;">
-               		<div style="font-size:16px; color:white; dispay:inline-block; line-height:45px;">검&nbsp;&nbsp;색</div>
-  	     		</div>
-       		</div>
+         <div class="actions" style="height:60px;">
+                  <div id="searchBtn" style="margin-left:40%;width:220px; height:45px;border-radius:5px;background:#2BB3D7; text-align:center; vertical-align:middle;cursor:pointer;">
+                     <div style="font-size:16px; color:white; dispay:inline-block; line-height:45px;">검&nbsp;&nbsp;색</div>
+                </div>
+             </div>
          </section>
          <!-- searchClubList End-->
 
@@ -185,7 +185,7 @@ div.top {
          </section>
 
          <div class="divLine"
-            style="background: #f6755e;margin-top:10px; margin-bottom: 20px; height: 5px; top: 450px; width: 1126.66px;"></div>
+            style="background: #f6755e; margin-top: 10px; margin-bottom: 20px; height: 5px; top: 450px; width: 1126.66px;"></div>
 
          <div class="clublist"
             style="width: 1126.66px;">
@@ -200,11 +200,16 @@ div.top {
                <c:if test="${!empty clubList }">
                   <div class="clublist_body"
                      style="width: 20%; float: left; border: 1px dashed #bcbcbc; margin: 3px 3px 20px 3px; width: 219px;">
-                     <div class="card-body box-profile" style="cursor:pointer;"onclick="OpenWindow('detail?club_no=${club.club_no}','','813','650');"> <%--onclick 붙이고 --%>
+                     <div class="card-body box-profile" style="cursor:pointer;"onclick="OpenWindow('detail?club_no=${club.club_no}','','825','650');"> <%--onclick 붙이고 --%>
                         <div class="text-center">
-                           <img class="profile-user-img img-fluid img-circle" id="thum"
-                              src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
-                              alt="<%=request.getContextPath()%>/resources/img/logo.png">
+                           <img class="profile-user-img img-fluid img-circle" id="thum" style="width: 100px; height: 100px;"
+                             <c:if test="${club.attachThum_no > 0}">
+                        src="<%=request.getContextPath()%>/attach/img?attach_no=${club.attachThum_no}"
+                     </c:if>
+                     <c:if test="${club.attachThum_no <= 0}">
+                        src="<%=request.getContextPath()%>/resources/img/logo.png"
+                     </c:if> >
+                              
                         </div>
 
                         <h3 class="profile-username text-center"
@@ -227,10 +232,10 @@ div.top {
          </div>
          <section class="pagination" style="width: 1126.66px;height: 68px;margin-left:35%">
        <div style="width:500px;">
-            	<ul class="pagination ">
-               		<li class="page-item">
-               			<a class="page-link" href="list${pageMaker.makeQuery(1)}" style="text-decoration: none">&lt;&lt;</a>
-              		    <li class="page-item"><a class="page-link" href="list<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>" style="text-decoration: none">&lt;</a></li>
+               <ul class="pagination ">
+                     <li class="page-item">
+                        <a class="page-link" href="list${pageMaker.makeQuery(1)}" style="text-decoration: none">&lt;&lt;</a>
+                        <li class="page-item"><a class="page-link" href="list<c:if test="${pageMaker.prev }">${pageMaker.makeQuery(pageMaker.startPage-1) }</c:if>" style="text-decoration: none">&lt;</a></li>
                 <c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="pageNum">
                   <li class="page-item <c:out value="${pageMaker.cri.page == pageNum ?'active':''}"/>">
                      <a class="page-link" href="list${pageMaker.makeQuery(pageNum) }"
@@ -248,25 +253,25 @@ div.top {
          </div>
    </section>
    <div class="row" style="height: 50px;width: 1126.66px;position:relative;margin-left:5px;margin-top:00px;border: 1px solid #bfced9;border-radius:8px;">
-		<div style="margin-top:15px;border-radius:4px;">
-			<span class="info-box-icon bg-danger"  style="width:30px; height:30px;"><i class="far fa-star" style="height:30px;"></i></span>
-		</div>
-		<div style="margin-top:10px;margin-left:-20px;">
-			<span class="info-box-text"
+      <div style="margin-top:15px;border-radius:4px;">
+         <span class="info-box-icon bg-danger"  style="width:30px; height:30px;"><i class="far fa-star" style="height:30px;"></i></span>
+      </div>
+      <div style="margin-top:10px;margin-left:-20px;">
+         <span class="info-box-text"
             style="font-size: 18px; height:30px;"><b>&nbsp;${member.mem_nick}&nbsp;&nbsp;님
                지역의 인기많은 동호회 리스트입니다.</b></span>
       
-		</div>
-	</div>
-	<section class="joinclub_wrap1"
-      style="width: 1126.66px; ">
+      </div>
+   </div>
+   <section class="joinclub_wrap1"
+      style="margin-top: 20px; width: 1126.66px; ">
       <c:if test="${empty recommendList }">
-      	<div style="height:100px; background:#f5f5f5;border-top:1px solid #cfcfcf; border-bottom:1px solid #cfcfcf;margin-top:20px;">
-      		<p style="font-size:1.3em; font-weight:bold;text-align:center;padding-top:30px;">해당 지역에 동호회가 없습니다.</p>
-      	</div>
+         <div style="height:100px; background:#f5f5f5;border-top:1px solid #cfcfcf; border-bottom:1px solid #cfcfcf;margin-top:20px;">
+            <p style="font-size:1.3em; font-weight:bold;text-align:center;padding-top:30px;">해당 지역에 동호회가 없습니다.</p>
+         </div>
       </c:if>
       <c:if test="${!empty recommendList }">
-      		<c:forEach var="recommend" items="${recommendList }">
+            <c:forEach var="recommend" items="${recommendList }">
          <div class="joinclub card bg-light"
             style="width: 350px; height: 200px; float: left; margin: 0 12.5px 0 12.5px;">
             <div class="joinclub_sub text-muted border-bottom-0">&nbsp;${recommend.cate_name }</div>
@@ -279,7 +284,7 @@ div.top {
                      <ul class="actions vertical small"
                         style="text-align: center; margin-bottom: -10px;">
                         <li><a href="#" data-name="title"
-                           onclick="OpenWindow('detail?club_no=${recommend.club_no}','','800','650');"
+                           onclick="OpenWindow('detail?club_no=${recommend.club_no}','','825','650');"
                            class="button alt icon fa-search">Detail</a></li>
                         <li><a href="#" class="button alt icon fa-check"
                            onclick="onJoin('join','${club.club_no}')">가입하기</a></li>
@@ -287,9 +292,14 @@ div.top {
                   </div>
                   <div class="2"
                      style="width: 160px; height: 160px; align: center; float: left; padding-right: 20px;">
-                     <img class="profile-user-img img-fluid img-circle" id="thum"
-                        src="<%=request.getContextPath()%>/attach/img?attach_no=${recommend.attachThum_no}"
-                        alt="<%=request.getContextPath()%>/resources/img/logo.png">
+                     <img class="profile-user-img img-fluid img-circle" id="thum" style="width:140px; height:140px;"
+                  <c:if test="${recommend.attachThum_no > 0}">
+                     src="<%=request.getContextPath()%>/attach/img?attach_no=${recommend.attachThum_no}"
+                  </c:if>
+                  <c:if test="${recommend.attachThum_no <= 0}">
+                     src="<%=request.getContextPath()%>/resources/img/logo.png"
+                  </c:if> >                    
+
                   </div>
                </div>
             </div>
@@ -298,14 +308,14 @@ div.top {
       </c:if>
       
    </section>
-	
+   
       </div>
       
    </section>
   
    
    <!-- clubList End -->
-	
+   
 
    <!-- recommendClub Start-->
   

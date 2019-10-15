@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.blood.coding.controller.common.Criteria;
 import com.blood.coding.controller.common.DeleteFileUtils;
+import com.blood.coding.controller.common.MemberCriteria;
 import com.blood.coding.controller.common.UploadFileUtils;
 import com.blood.coding.dao.attach.AttachDAO;
 import com.blood.coding.dao.local.LocalDAO;
@@ -29,6 +30,8 @@ import com.blood.coding.dto.member.MemberVO;
 import com.blood.coding.dto.wish.WishVO;
 import com.blood.coding.service.club.ClubService;
 import com.blood.coding.service.joinclub.JoinClubService;
+import com.blood.coding.service.member.MemberService;
+import com.blood.coding.service.reply.ReplyService;
 import com.blood.coding.service.wish.WishService;
 
 @Controller
@@ -49,8 +52,14 @@ public class MypageController {
 	@Autowired
 	private LocalDAO localDAO;
 	
+	@Autowired
+	private ReplyService replyService;
+	
 	@Resource(name="uploadPath")
 	private String uploadPath;
+	
+	@Autowired
+	private MemberService memberservice;
 	
 	//내가 가입한 클럽 리스트
 	@RequestMapping("/myjoinlist")
@@ -114,8 +123,8 @@ public class MypageController {
 	
 	@RequestMapping(value="/myinfo", method=RequestMethod.GET)
 	public String myinfoGet() throws Exception {
-		
 		return "mypage/myinfo_pw";
+		
 	}
 
 	
@@ -133,8 +142,39 @@ public class MypageController {
 	}
 		
 	
+	@RequestMapping("/myclubuser")
+	public ModelAndView memberListForm(Criteria cri,String club_no)throws Exception{
+		String url="mypage/myclubuser";
+		ModelAndView mav = new ModelAndView();
+		
+		Map<String,Object> dataMap=joinClubService.selectMyClubList(cri, club_no);
+		dataMap.put("cri", cri);
+		dataMap.put("club", club_no);
+		
+		mav.addObject("dataMap",dataMap);
+		mav.setViewName(url);
+		
+		return mav;		
+	}
 	
-	
+	//내가 쓴 댓글 내역
+	@RequestMapping("/myreply")
+	public ModelAndView memberReplyList(MemberCriteria cri, HttpServletRequest request)throws Exception{
+		
+		ModelAndView modlenView = new ModelAndView();
+		
+		MemberVO loginUser = (MemberVO)request.getSession().getAttribute("loginUser");
+		
+		String url="mypage/myreply";
+		
+		Map<String,Object> dataMap=replyService.getMypageReplyList(cri, loginUser.getMem_id());
+		dataMap.put("cri", cri);
+		
+		modlenView.setViewName(url);
+		modlenView.addObject("dataMap",dataMap);
+		return modlenView;		
+	}
+
 	
 	
 	
