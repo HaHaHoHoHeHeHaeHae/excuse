@@ -19,7 +19,7 @@
 	<properties>
 		<java-version>1.6</java-version>
 		<org.springframework-version>4.3.4.RELEASE</org.springframework-version>
-		<org.springframework-security>3.2.3.RELEASE</org.springframework-security>
+		<org.springframework-security>5.2.10.RELEASE</org.springframework-security>
 		<sitemesh-version>2.4.2</sitemesh-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
